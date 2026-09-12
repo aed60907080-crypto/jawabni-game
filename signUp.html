@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>حساب جديد — جاوبني</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --ink-deep:#020b09;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --green:#3fae95;
+      --green-soft:#8fe3d0;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+      --ok:#5fd0a8;
+      --err:#ff8b76;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 20px;
+      overflow-x:hidden;
+    }
+
+    /* ---------- background ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(1000px 620px at 20% -10%, #155447 0%, transparent 60%),
+        radial-gradient(900px 620px at 88% 12%, #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 45% 115%, #1a5b4d 0%, transparent 62%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.34; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:440px; height:440px; background:#1f7d68; top:-110px; left:-70px; }
+    .bg-fx .orb.b{ width:380px; height:380px; background:#c9962f; bottom:-130px; right:-90px; opacity:.2; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-40px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb{ animation:none; } }
+
+    /* ---------- shell ---------- */
+    .auth{
+      display:flex;
+      width:100%;
+      max-width:940px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      overflow:hidden;
+      background:linear-gradient(150deg, rgba(21,74,65,.5), rgba(6,24,20,.7));
+      backdrop-filter:blur(16px);
+      box-shadow:0 34px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(231,183,64,.1);
+      animation:riseIn .6s cubic-bezier(.2,.9,.3,1.15);
+    }
+    @keyframes riseIn{ from{ opacity:0; transform:translateY(26px) scale(.98);} to{ opacity:1; transform:none;} }
+
+    /* ---------- brand side ---------- */
+    .brand-side{
+      position:relative;
+      flex:0 0 46%;
+      padding:44px 34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:18px;
+      text-align:center;
+      background:linear-gradient(165deg, rgba(63,174,149,.24), rgba(231,183,64,.18) 55%, rgba(4,18,15,.45));
+      border-left:1px solid var(--line);
+      overflow:hidden;
+    }
+    .brand-side::before{
+      content:"";
+      position:absolute; top:-90px; left:-90px;
+      width:280px; height:280px; border-radius:50%;
+      background:radial-gradient(circle, rgba(143,227,208,.3), transparent 70%);
+      filter:blur(20px);
+    }
+    .brand-side .lamp{
+      position:absolute; inset:auto 0 -40% 0;
+      height:70%;
+      background:conic-gradient(from 200deg at 50% 0%,
+        transparent 0deg, rgba(231,183,64,.12) 20deg, transparent 40deg,
+        rgba(143,227,208,.12) 60deg, transparent 80deg);
+      animation:sweepLamp 9s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes sweepLamp{ from{ opacity:.4; } to{ opacity:1; } }
+    @media (prefers-reduced-motion: reduce){ .brand-side .lamp{ animation:none; } }
+
+    .brand-side img.logo{
+      position:relative;
+      width:92px; height:92px;
+      border-radius:26px;
+      object-fit:cover;
+      margin:0 auto;
+      box-shadow:0 0 0 3px var(--gold), 0 18px 40px rgba(0,0,0,.5);
+      animation:bob 4.5s ease-in-out infinite;
+    }
+    @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+    @media (prefers-reduced-motion: reduce){ .brand-side img.logo{ animation:none; } }
+
+    .brand-side h2{
+      position:relative;
+      font-family:'Cairo', sans-serif;
+      font-weight:900; font-size:30px;
+      margin:0; color:#fff;
+      text-shadow:0 3px 18px rgba(0,0,0,.5);
+    }
+    .brand-side p{
+      position:relative;
+      color:rgba(255,255,255,.86);
+      font-size:14.5px; line-height:2; margin:0;
+    }
+    .brand-points{
+      position:relative;
+      list-style:none;
+      padding:0; margin:8px 0 0;
+      display:flex; flex-direction:column; gap:10px;
+      text-align:right;
+    }
+    .brand-points li{
+      display:flex; align-items:center; gap:10px;
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:13.5px;
+      color:#fff;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:14px;
+      padding:10px 14px;
+    }
+    .brand-points i{ color:var(--green-soft); }
+
+    /* ---------- form side ---------- */
+    .form-side{ flex:1; padding:44px 38px; min-width:290px; }
+
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12px; letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:28px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+    h3.title{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(24px, 3.4vw, 32px);
+      margin:0 0 6px;
+      background:linear-gradient(120deg, var(--gold) 0%, #fff3d0 45%, var(--gold) 70%);
+      background-size:220% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 4.5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+    .subtitle{ color:var(--muted); font-size:14px; margin:0 0 26px; }
+
+    .field{ margin-bottom:16px; }
+    .form-label{
+      display:flex; align-items:center; gap:8px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:13px;
+      color:var(--ivory);
+      margin-bottom:8px;
+    }
+    .form-label i{ color:var(--gold); font-size:12.5px; }
+
+    .input-wrap{ position:relative; }
+    .form-control{
+      width:100%;
+      padding:14px 16px;
+      font-family:'Tajawal', sans-serif;
+      font-size:15px; font-weight:600;
+      color:var(--ivory);
+      background:rgba(0,0,0,.3);
+      border:1.5px solid rgba(255,255,255,.1);
+      border-radius:14px;
+      transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      unicode-bidi:plaintext;
+    }
+    .form-control::placeholder{ color:rgba(159,194,187,.6); font-weight:500; }
+    .form-control:focus{
+      outline:none;
+      background:rgba(0,0,0,.38);
+      border-color:var(--green-soft);
+      box-shadow:0 0 0 4px rgba(63,174,149,.16);
+    }
+    .input-wrap.has-toggle .form-control{ padding-left:48px; }
+    .toggle-eye{
+      position:absolute;
+      top:50%; left:12px;
+      transform:translateY(-50%);
+      width:32px; height:32px;
+      border:none; border-radius:10px;
+      background:rgba(255,255,255,.06);
+      color:var(--muted);
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:color .2s ease, background .2s ease;
+    }
+    .toggle-eye:hover{ color:var(--green-soft); background:rgba(63,174,149,.16); }
+
+    /* ---------- strength meter ---------- */
+    .strength{ margin-top:10px; }
+    .strength-track{
+      height:7px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .strength-fill{
+      height:100%; width:0%;
+      border-radius:999px;
+      background:var(--err);
+      transition:width .35s ease, background .35s ease;
+    }
+    .strength-text{
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:11.5px;
+      color:var(--muted);
+      margin-top:6px;
+      display:block;
+    }
+
+    .btn-success{
+      position:relative;
+      overflow:hidden;
+      width:100%;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background:linear-gradient(135deg, var(--green-soft), var(--green));
+      color:#04231d;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:17px;
+      padding:15px 26px;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      margin-top:10px;
+      box-shadow:0 16px 34px rgba(63,174,149,.32), inset 0 1px 0 rgba(255,255,255,.4);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-success::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:60px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transform:skewX(-20deg);
+      animation:shine 3.4s ease-in-out infinite;
+    }
+    @keyframes shine{ 0%{ right:-80px; } 55%,100%{ right:120%; } }
+    .btn-success:hover{ transform:translateY(-3px); box-shadow:0 22px 44px rgba(63,174,149,.45); }
+    .btn-success:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+    @media (prefers-reduced-motion: reduce){ .btn-success::after{ animation:none; } }
+
+    #message{
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:14px;
+      margin-top:18px;
+      min-height:22px;
+      border-radius:14px;
+      padding:0;
+      transition:padding .2s ease;
+      display:flex; align-items:center; justify-content:center; gap:9px;
+    }
+    #message.show{ padding:13px 16px; animation:msgIn .3s ease; }
+    @keyframes msgIn{ from{ opacity:0; transform:translateY(-6px);} to{ opacity:1; transform:none;} }
+    #message.ok{
+      color:var(--ok);
+      background:rgba(95,208,168,.12);
+      border:1px solid rgba(95,208,168,.35);
+    }
+    #message.bad{
+      color:var(--err);
+      background:rgba(255,107,77,.12);
+      border:1px solid rgba(255,107,77,.35);
+    }
+
+    .switch-link{
+      text-align:center;
+      color:var(--muted);
+      font-size:13.5px;
+      margin-top:20px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+    .switch-link a{
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800;
+      text-decoration:none;
+      transition:color .2s ease;
+    }
+    .switch-link a:hover{ color:var(--gold-soft); text-decoration:underline; }
+
+    .back-home{
+      display:block; text-align:center;
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12.5px;
+      text-decoration:none;
+    }
+    .back-home:hover{ color:var(--gold-soft); }
+
+    @media (max-width: 800px){
+      .auth{ flex-direction:column; max-width:460px; }
+      .brand-side{ flex:none; padding:34px 26px 28px; border-left:none; border-bottom:1px solid var(--line); }
+      .brand-side img.logo{ width:74px; height:74px; }
+      .brand-side h2{ font-size:25px; }
+      .brand-points{ display:none; }
+      .form-side{ padding:30px 24px 34px; }
+    }
+  </style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+<div class="bg-fx">
+  <span class="orb a"></span>
+  <span class="orb b"></span>
+</div>
+
+<div class="auth">
+
+  <div class="brand-side">
+    <span class="lamp"></span>
+    <img class="logo" src="image/jawbnny.png" alt="جاوبني">
+    <h2>انضم إلى جاوبني</h2>
+    <p>أنشئ حسابك في أقل من دقيقة وابدأ أول جولة مع أصدقائك.</p>
+    <ul class="brand-points">
+      <li><i class="fa-solid fa-star"></i> اختر ٦ فئات من ١٨+ فئة</li>
+      <li><i class="fa-solid fa-trophy"></i> لوحة نتائج وبطاقات جزاء</li>
+      <li><i class="fa-solid fa-clock-rotate-left"></i> سجل بكل ألعابك السابقة</li>
+    </ul>
+  </div>
+
+  <div class="form-side">
+    <span class="eyebrow-line">ابدأ الآن</span>
+    <h3 class="title">تسجيل مستخدم جديد</h3>
+    <p class="subtitle">بيانات بسيطة وتصير جاهز للعب</p>
+
+    <form id="registerForm" novalidate>
+      <div class="field">
+        <label for="username" class="form-label"><i class="fa-solid fa-user"></i> اسم المستخدم</label>
+        <div class="input-wrap">
+          <input type="text" class="form-control" id="username" placeholder="أدخل اسم المستخدم" required autocomplete="username">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+        <div class="input-wrap">
+          <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+        <div class="input-wrap has-toggle">
+          <input type="password" class="form-control" id="password" placeholder="كلمة المرور" required autocomplete="new-password">
+          <button type="button" class="toggle-eye" onclick="togglePass(this, 'password')" title="إظهار / إخفاء">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div class="strength">
+          <div class="strength-track"><div class="strength-fill" id="strengthFill"></div></div>
+          <small class="strength-text" id="strengthText">قوة كلمة المرور</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-success"><i class="fa-solid fa-user-plus"></i> تسجيل</button>
+    </form>
+
+    <div id="message"></div>
+
+    <p class="switch-link">لديك حساب بالفعل؟ <a href="signIn.html">سجّل دخولك</a></p>
+    <a class="back-home" href="main-page.html"><i class="fa-solid fa-house"></i> العودة للصفحة الرئيسية</a>
+  </div>
+
+</div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+  function togglePass(btn, id){
+    SFX.click();
+    const inp = document.getElementById(id);
+    const icon = btn.querySelector('i');
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    icon.className = show ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+  }
+
+  function setMessage(el, text, ok){
+    el.textContent = "";
+    const i = document.createElement('i');
+    i.className = ok ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation';
+    const s = document.createElement('span');
+    s.textContent = text;
+    el.appendChild(i); el.appendChild(s);
+    el.className = 'show ' + (ok ? 'ok' : 'bad');
+    ok ? SFX.correct() : SFX.wrong();
+  }
+
+  /* ---------- مؤشر قوة كلمة المرور (عرض فقط) ---------- */
+  const fill = document.getElementById("strengthFill");
+  const stext = document.getElementById("strengthText");
+
+  document.getElementById("password").addEventListener("input", function(){
+    const v = this.value;
+    let score = 0;
+    if (v.length >= 6) score++;
+    if (v.length >= 10) score++;
+    if (/[A-Za-z]/.test(v) && /[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+
+    const levels = [
+      { w: '0%',   c: '#ff8b76', t: 'قوة كلمة المرور' },
+      { w: '25%',  c: '#ff8b76', t: 'ضعيفة' },
+      { w: '50%',  c: '#e7b740', t: 'متوسطة' },
+      { w: '75%',  c: '#8fe3d0', t: 'جيدة' },
+      { w: '100%', c: '#5fd0a8', t: 'قوية جداً' }
+    ];
+    const lvl = levels[v.length === 0 ? 0 : score];
+    fill.style.width = lvl.w;
+    fill.style.background = lvl.c;
+    stext.textContent = lvl.t;
+    stext.style.color = v.length === 0 ? '' : lvl.c;
+  });
+
+  document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    if (!username || !email || !password) {
+      setMessage(message, "يرجى تعبئة جميع الحقول.", false);
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    if (users.some(u => u.email === email)) {
+      setMessage(message, "هذا البريد مسجل مسبقًا.", false);
+      return;
+    }
+
+    users.push({ username, email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    setMessage(message, "تم التسجيل بنجاح!", true);
+
+    setTimeout(() => {
+      window.location.href = "signIn.html";
+    }, 1500);
+  });
+  SFX.mountControls({ music: false });
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>النتيجة النهائية — جاوبني</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --ink-deep:#020b09;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --blue:#4a9bff;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      text-align:center;
+      min-height:100vh;
+      overflow-x:hidden;
+      padding:0 0 50px;
+    }
+
+    /* ---------- background ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(900px 620px at 50% -10%, #1c6b58 0%, transparent 62%),
+        radial-gradient(800px 600px at 12% 20%, #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 88% 90%, #1a5b4d 0%, transparent 60%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.34; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:440px; height:440px; background:#c9962f; top:-120px; left:50%; margin-left:-220px; opacity:.22; }
+    .bg-fx .orb.b{ width:360px; height:360px; background:#1f7d68; bottom:-110px; right:-70px; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-38px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    /* rays behind the trophy */
+    .rays{
+      position:fixed;
+      top:-160px; left:50%;
+      width:900px; height:900px;
+      margin-left:-450px;
+      z-index:-1;
+      background:repeating-conic-gradient(from 0deg,
+        rgba(231,183,64,.10) 0deg 8deg,
+        transparent 8deg 22deg);
+      border-radius:50%;
+      filter:blur(1px);
+      animation:spin 46s linear infinite;
+      pointer-events:none;
+      -webkit-mask-image:radial-gradient(circle, #000 25%, transparent 68%);
+      mask-image:radial-gradient(circle, #000 25%, transparent 68%);
+    }
+    @keyframes spin{ to{ transform:rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb, .rays{ animation:none; } }
+
+    #confetti{
+      position:fixed; inset:0;
+      width:100%; height:100%;
+      pointer-events:none;
+      z-index:5;
+    }
+
+    .lightbar{
+      height:6px;
+      background:radial-gradient(circle, var(--gold-soft) 38%, transparent 42%) 0 0 / 24px 24px repeat-x;
+      filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+      animation:twinkle 1.8s linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ filter:drop-shadow(0 0 4px rgba(231,183,64,.6)); background-position-x:0; }
+      50%{ filter:drop-shadow(0 0 12px rgba(231,183,64,1)); background-position-x:12px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .lightbar{ animation:none; } }
+
+    /* ---------- result card ---------- */
+    .result-card{
+      position:relative;
+      z-index:6;
+      max-width:640px;
+      margin:56px auto 0;
+      background:linear-gradient(150deg, rgba(21,74,65,.55), rgba(6,24,20,.72));
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:0 30px 34px;
+      backdrop-filter:blur(16px);
+      box-shadow:0 34px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(231,183,64,.12), 0 0 90px rgba(231,183,64,.12);
+      animation:riseIn .6s cubic-bezier(.2,.9,.3,1.2);
+    }
+    @keyframes riseIn{ from{ opacity:0; transform:translateY(30px) scale(.97);} to{ opacity:1; transform:none;} }
+
+    .trophy{
+      width:104px; height:104px;
+      margin:-52px auto 18px;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:44px;
+      color:#5a3f00;
+      background:linear-gradient(145deg, #fff3d0, var(--gold) 55%, var(--gold-deep));
+      border:4px solid rgba(4,18,15,.75);
+      box-shadow:0 18px 40px rgba(231,183,64,.45), inset 0 -6px 14px rgba(0,0,0,.18);
+      animation:trophyPop .7s cubic-bezier(.2,.9,.3,1.6) .15s backwards, bob 3.4s ease-in-out 1s infinite;
+    }
+    @keyframes trophyPop{ from{ transform:scale(.3) rotate(-25deg); opacity:0; } to{ transform:none; opacity:1; } }
+    @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
+    @media (prefers-reduced-motion: reduce){ .trophy{ animation:none; } }
+
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12.5px; letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    h1{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(28px, 5vw, 40px);
+      margin:0 0 6px;
+      background:linear-gradient(120deg, var(--gold) 0%, #fff3d0 45%, var(--gold) 70%);
+      background-size:220% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 4.5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+    .game-title{ color:var(--muted); font-size:14.5px; margin:0 0 26px; }
+
+    /* ---------- score rows ---------- */
+    .score{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      background:rgba(0,0,0,.24);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;
+      padding:16px 18px;
+      margin-bottom:14px;
+      text-align:right;
+      overflow:hidden;
+      transition:border-color .25s ease, transform .25s ease;
+      animation:rowIn .5s ease backwards;
+    }
+    @keyframes rowIn{ from{ opacity:0; transform:translateX(-16px);} to{ opacity:1; transform:none;} }
+    #row1{ animation-delay:.25s; }
+    #row2{ animation-delay:.35s; }
+    .score .bar{
+      position:absolute;
+      top:0; bottom:0;
+      right:0; left:auto;
+      width:0%;
+      background:linear-gradient(270deg, rgba(255,255,255,.16), rgba(255,255,255,.04));
+      transition:width 1s cubic-bezier(.2,.8,.3,1) .4s;
+      z-index:0;
+    }
+    .score .medal{
+      position:relative; z-index:1;
+      flex:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:17px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.1);
+      color:var(--muted);
+    }
+    .score .who{
+      position:relative; z-index:1;
+      flex:1;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:17px;
+      color:var(--ivory);
+    }
+    .score .pts{
+      position:relative; z-index:1;
+      font-family:'Cairo', sans-serif;
+      font-weight:900; font-size:26px;
+      color:var(--gold);
+      white-space:nowrap;
+    }
+    .score .pts span{ font-size:13px; font-weight:700; color:var(--muted); margin-right:5px; }
+
+    .score.win{
+      border-color:var(--line-strong);
+      box-shadow:0 0 0 1px rgba(231,183,64,.25), 0 16px 40px rgba(231,183,64,.16);
+    }
+    .score.win .bar{ background:linear-gradient(270deg, rgba(231,183,64,.34), rgba(231,183,64,.08)); }
+    .score.win .medal{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      border-color:var(--gold);
+      color:var(--ink-deep);
+      box-shadow:0 8px 20px rgba(231,183,64,.45);
+    }
+    .score.t1 .bar{ background:linear-gradient(270deg, rgba(74,155,255,.3), rgba(74,155,255,.06)); }
+    .score.t2 .bar{ background:linear-gradient(270deg, rgba(255,107,77,.3), rgba(255,107,77,.06)); }
+    .score.win.t1 .bar, .score.win.t2 .bar{ background:linear-gradient(270deg, rgba(231,183,64,.36), rgba(231,183,64,.08)); }
+
+    /* ---------- winner banner ---------- */
+    .winner{
+      position:relative;
+      margin:24px 0 8px;
+      padding:18px 22px;
+      border-radius:20px;
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(20px, 3.6vw, 27px);
+      color:var(--ink-deep);
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold) 60%, var(--gold-deep));
+      box-shadow:0 18px 44px rgba(231,183,64,.35);
+      overflow:hidden;
+      animation:riseIn .6s ease .45s backwards;
+    }
+    .winner::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:70px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+      transform:skewX(-20deg);
+      animation:shine 3.2s ease-in-out 1.2s infinite;
+    }
+    @keyframes shine{ 0%{ right:-90px; } 55%,100%{ right:120%; } }
+    .winner.draw{
+      background:linear-gradient(135deg, #b9d6cf, #6f9b92);
+      color:#06231d;
+      box-shadow:0 18px 44px rgba(111,155,146,.3);
+    }
+    @media (prefers-reduced-motion: reduce){ .winner::after{ animation:none; } }
+
+    .margin-note{ color:var(--muted); font-size:13.5px; margin:0 0 4px; }
+
+    /* ---------- buttons ---------- */
+    .btn-row{
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+      margin-top:26px;
+    }
+    .btn-new, .btn-home{
+      display:inline-flex; align-items:center; gap:10px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:16px;
+      border-radius:999px;
+      padding:15px 32px;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, background .2s ease;
+    }
+    .btn-new{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      color:#fff;
+      box-shadow:0 16px 34px rgba(255,107,77,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .btn-new::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:60px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+      transform:skewX(-20deg);
+      animation:shine 3.4s ease-in-out infinite;
+    }
+    .btn-new:hover{ transform:translateY(-3px); box-shadow:0 22px 44px rgba(255,107,77,.5); }
+    .btn-home{
+      background:transparent;
+      border:1.5px solid var(--line-strong);
+      color:var(--gold-soft);
+    }
+    .btn-home:hover{ background:rgba(231,183,64,.1); transform:translateY(-3px); }
+
+    @media (max-width:520px){
+      .result-card{ margin-top:44px; padding:0 18px 28px; border-radius:26px; }
+      .score{ padding:14px; gap:10px; }
+      .score .who{ font-size:15px; }
+      .score .pts{ font-size:22px; }
+    }
+  </style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+<div class="bg-fx">
+  <span class="orb a"></span>
+  <span class="orb b"></span>
+</div>
+<div class="rays"></div>
+<canvas id="confetti"></canvas>
+
+<div class="lightbar"></div>
+
+<div class="result-card">
+  <div class="trophy"><i class="fa-solid fa-trophy"></i></div>
+
+  <span class="eyebrow-line">انتهت الجولة</span>
+  <h1>النتيجة النهائية</h1>
+  <p class="game-title" id="gameTitle">لعبتنا الثقافية</p>
+
+  <div class="score t1" id="row1">
+    <span class="bar" id="bar1"></span>
+    <span class="medal" id="medal1"><i class="fa-solid fa-shield-halved"></i></span>
+    <span class="who" id="team1Name"></span>
+    <span class="pts" id="pts1">0<span>نقطة</span></span>
+  </div>
+
+  <div class="score t2" id="row2">
+    <span class="bar" id="bar2"></span>
+    <span class="medal" id="medal2"><i class="fa-solid fa-shield-halved"></i></span>
+    <span class="who" id="team2Name"></span>
+    <span class="pts" id="pts2">0<span>نقطة</span></span>
+  </div>
+
+  <p id="winnerMessage" class="winner"></p>
+  <p class="margin-note" id="marginNote"></p>
+
+  <div class="btn-row">
+    <button class="btn-new" onclick="startNewGame()">
+      <i class="fa-solid fa-rotate-right"></i> ابدأ لعبة جديدة
+    </button>
+    <a class="btn-home" href="main-page.html">
+      <i class="fa-solid fa-house"></i> الصفحة الرئيسية
+    </a>
+  </div>
+</div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+  const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+  const team1 = localStorage.getItem("team1") || "الفريق 1";
+  const team2 = localStorage.getItem("team2") || "الفريق 2";
+  const gameName = localStorage.getItem("gameName");
+
+  if (gameName) document.getElementById("gameTitle").textContent = gameName;
+
+  document.getElementById("team1Name").textContent = team1;
+  document.getElementById("team2Name").textContent = team2;
+
+  const s1 = Number(scores.team1) || 0;
+  const s2 = Number(scores.team2) || 0;
+  const max = Math.max(s1, s2, 1);
+
+  countUp(document.getElementById("pts1"), s1);
+  countUp(document.getElementById("pts2"), s2);
+
+  function countUp(el, target){
+    const suffix = '<span>نقطة</span>';
+    if (target <= 0){ el.innerHTML = '0' + suffix; return; }
+    let cur = 0;
+    const step = Math.max(1, Math.ceil(target / 30));
+    const timer = setInterval(() => {
+      cur += step;
+      if (cur >= target){ cur = target; clearInterval(timer); }
+      el.innerHTML = cur + suffix;
+    }, 30);
+  }
+
+  // أشرطة النسبة
+  requestAnimationFrame(() => {
+    document.getElementById("bar1").style.width = (s1 / max * 100) + '%';
+    document.getElementById("bar2").style.width = (s2 / max * 100) + '%';
+  });
+
+  const winnerEl = document.getElementById("winnerMessage");
+  const marginEl = document.getElementById("marginNote");
+
+  if (s1 > s2) {
+    winnerEl.textContent = `🎉 الفائز هو: ${team1}`;
+    document.getElementById("row1").classList.add("win");
+    document.getElementById("medal1").innerHTML = '<i class="fa-solid fa-crown"></i>';
+    marginEl.textContent = `بفارق ${s1 - s2} نقطة`;
+    fireConfetti(); playWin();
+  } else if (s2 > s1) {
+    winnerEl.textContent = `🎉 الفائز هو: ${team2}`;
+    document.getElementById("row2").classList.add("win");
+    document.getElementById("medal2").innerHTML = '<i class="fa-solid fa-crown"></i>';
+    marginEl.textContent = `بفارق ${s2 - s1} نقطة`;
+    fireConfetti(); playWin();
+  } else {
+    winnerEl.textContent = "🤝 تعادل!";
+    winnerEl.classList.add("draw");
+    marginEl.textContent = "أداء متكافئ من الفريقين";
+    playDraw();
+  }
+
+  /* ---------------- الصوت ---------------- */
+  /* المتصفحات تمنع الصوت قبل أول تفاعل، فنشغّل الفانفير عند أول نقرة إن لزم */
+  function afterGesture(fn){
+    if (SFX.sfxOn) { fn(); }
+    const kick = () => { fn(); document.removeEventListener('pointerdown', kick); };
+    document.addEventListener('pointerdown', kick, { once: true });
+  }
+  function playWin(){ afterGesture(() => SFX.win()); }
+  function playDraw(){ afterGesture(() => SFX.draw()); }
+
+  SFX.mountControls();
+  document.querySelectorAll('.btn-new, .btn-home').forEach(el =>
+    el.addEventListener('click', () => SFX.click()));
+
+  /* ---------------- confetti ---------------- */
+  function fireConfetti(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const cvs = document.getElementById('confetti');
+    const ctx = cvs.getContext('2d');
+    let W, H;
+    function resize(){
+      W = cvs.width = window.innerWidth;
+      H = cvs.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colors = ['#e7b740', '#f7dd9c', '#ff6b4d', '#ffffff', '#4a9bff', '#3fae95'];
+    const pieces = [];
+    for (let i = 0; i < 130; i++){
+      pieces.push({
+        x: Math.random() * W,
+        y: Math.random() * -H,
+        w: 6 + Math.random() * 7,
+        h: 9 + Math.random() * 10,
+        color: colors[(Math.random() * colors.length) | 0],
+        speed: 1.6 + Math.random() * 2.6,
+        drift: -1 + Math.random() * 2,
+        rot: Math.random() * Math.PI,
+        spin: -0.09 + Math.random() * 0.18
+      });
+    }
+
+    const start = Date.now();
+    const DURATION = 7000;
+
+    (function frame(){
+      const elapsed = Date.now() - start;
+      ctx.clearRect(0, 0, W, H);
+
+      const fade = elapsed > DURATION - 1500
+        ? Math.max(0, (DURATION - elapsed) / 1500)
+        : 1;
+
+      pieces.forEach(p => {
+        p.y += p.speed;
+        p.x += p.drift;
+        p.rot += p.spin;
+        if (p.y > H + 20){ p.y = -20; p.x = Math.random() * W; }
+
+        ctx.save();
+        ctx.globalAlpha = fade;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      if (elapsed < DURATION) requestAnimationFrame(frame);
+      else ctx.clearRect(0, 0, W, H);
+    })();
+  }
+
+  /* ---------------- new game ---------------- */
+  function startNewGame() {
+    // مسح بيانات الجولة فقط، مع الإبقاء على الحساب والنقاط والرصيد وسجل الألعاب
+    ["selectedCards", "selectedCategories", "selectedQuestions", "answeredQuestions",
+     "currentTurn", "teamScores", "currentQuestion", "gameStarted", "roundQuestions", "bonusMilestones",
+     "gameName", "team1", "team2"].forEach(k => localStorage.removeItem(k));
+
+    window.location.href = "question-section.html"; // صفحة اختيار الفئات
+  }
+</script>
+
+</body>
+</html>

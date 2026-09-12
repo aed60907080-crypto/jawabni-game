@@ -1,0 +1,177 @@
+/* ============================================================
+   جاوبني — تحسينات الأجهزة المحمولة (ملف مشترك بين كل الصفحات)
+   ------------------------------------------------------------
+   يُربط في آخر <head> بعد أنماط الصفحة حتى تسبق قواعده قواعدها.
+   يعالج ما لا تعالجه قياسات العرض وحدها:
+     ١) ارتفاع الشاشة الحقيقي على الهواتف (شريط العنوان يظهر ويختفي)
+     ٢) المناطق الآمنة: نوتش آيفون وشريط الإيماءات السفلي
+     ٣) الزرّان العائمان (الصوت واللغة) كانا فوق بعضهما
+     ٤) أهداف اللمس ٤٤ بكسل، والحقول ١٦ بكسل (وإلا كبّر آيفون الصفحة)
+     ٥) إلغاء آثار hover العالقة بعد اللمس
+     ٦) الهاتف أفقياً: مؤقّت وترويسة وبطاقة سؤال مضغوطة
+   ============================================================ */
+
+/* ---------- ٠) لا تمرير أفقي للصفحة ----------
+   الكرات الزخرفية داخل .bg-fx (وهي position:fixed) لا يقصّها overflow
+   الخاص بـ body، فكانت توسّع مساحة التمرير ويمكن سحب الصفحة جانباً
+   نحو فراغ بمقدار ٤٥٠ بكسل على الهاتف. */
+html { overflow-x: hidden; }
+.bg-fx { overflow: hidden; }
+
+/* ---------- ١) أساسيات اللمس ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  /* لا «سحب للتحديث» يقطع اللعب في وسط السؤال */
+  overscroll-behavior-y: contain;
+}
+
+button, a, .btn, .chip-btn, .seg-btn, label, summary, .card, .category-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;            /* يلغي تأخير النقر والتكبير بنقرتين */
+}
+
+button, .btn, .chip-btn, .seg-btn, .points-grid .btn, .team-btn, .help-btn {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ---------- ٢) ارتفاع الشاشة الحقيقي ---------- */
+@supports (min-height: 100dvh) {
+  body { min-height: 100dvh; }
+}
+
+/* ---------- ٣) المناطق الآمنة (آيفون) ---------- */
+@supports (padding: env(safe-area-inset-top)) {
+  /* الترويسة لاصقة أعلى الصفحة، وشريط حالة آيفون شفّاف في التطبيق المثبّت */
+  header { padding-top: calc(env(safe-area-inset-top) + 12px); }
+
+  #sfxControls, #i18nDock { bottom: calc(env(safe-area-inset-bottom) + 12px) !important; }
+  .start-dock, #toastBox  { padding-bottom: env(safe-area-inset-bottom); }
+
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ---------- ٤) الزرّان العائمان: الصوت يميناً واللغة يساراً ----------
+   كان زر اللغة يستعمل inset-inline-start فيصير يميناً في العربية،
+   فيقع فوق أزرار الصوت في الشاشات الصغيرة. */
+/* !important لأن i18n.js و sfx.js يضيفان أنماطهما بعد هذا الملف */
+#sfxControls {
+  inset-inline: auto !important;
+  right: 12px !important;
+  left: auto !important;
+}
+#i18nDock {
+  inset-inline: auto !important;
+  left: 12px !important;
+  right: auto !important;
+}
+
+/* ---------- ٥) أهداف اللمس ---------- */
+@media (pointer: coarse) {
+  .chip-btn, .seg-btn { min-height: 44px; }
+  .points-grid .btn   { min-height: 44px; min-width: 54px; font-size: 15px; }
+  .card-btns .btn-reset { min-height: 44px; }
+  .help-btn  { min-height: 46px; }
+  .team-btn  { min-height: 58px; }
+  nav a, nav button { min-height: 40px; }
+
+  /* آيفون يكبّر الصفحة عند الكتابة في حقل أصغر من ١٦ بكسل */
+  input[type="text"], input[type="search"], input[type="email"],
+  input[type="password"], input[type="number"], input[type="tel"],
+  select, textarea, #catSearch, #i18nSearch {
+    font-size: 16px;
+  }
+}
+
+/* ---------- ٦) لا آثار hover عالقة بعد اللمس ---------- */
+@media (hover: none) {
+  .card:hover, .category-card:hover, .btn:hover, .chip-btn:hover,
+  nav a:hover, nav button:hover, .power-chip:hover, .shop-item:hover,
+  .lang-item:hover, .fact:hover, .btn-reset:hover, .help-btn:hover,
+  .seg-btn:hover, .step:hover, .panel:hover {
+    transform: none;
+  }
+}
+
+/* ---------- ٦.٥) شاشة تكبير الصورة: القرص بإصبعين والسحب ----------
+   لولا touch-action:none يتولّى المتصفح لمسة الإصبعين فلا تصل للعبة. */
+#imgZoom, #zoomStage, #zoomStage img, #zoomStage .worldpin {
+  touch-action: none;
+}
+@media (pointer: coarse) {
+  #imgZoom .zoom-bar button, #zoomClose, #zoomIn, #zoomOut {
+    min-width: 46px;
+    min-height: 46px;
+  }
+}
+
+/* ---------- ٦.٦) شريط مجموعات الفئات: تمرير أفقي حقيقي ----------
+   كان الشريط عنصراً مرناً عرضه بعرض محتواه (١٢٨٢ بكسل) فيتجاوز أباه
+   ويُقصّ، فلا تصل إلى أغلب المجموعات على الهاتف. */
+@media (max-width: 760px) {
+  .filter-bar { min-width: 0; }
+  .chips {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+}
+
+/* ---------- ٦.٧) ترويسة أقصر على الهاتف ----------
+   الشعار وأزرار التنقّل كانت تلتف على سطرين فتأكل ١٣١ بكسل من الشاشة،
+   والترويسة لاصقة فتبقى هذه المساحة مفقودة طوال التمرير. */
+@media (max-width: 480px) {
+  header {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
+    padding-bottom: 8px;
+    padding-inline: 12px;
+    gap: 8px;
+  }
+  header .logo, .head-brand img { width: 40px; height: 40px; border-radius: 12px; }
+  .head-brand b { font-size: 17px; }
+  nav { gap: 6px; }
+  nav a, nav button { font-size: 12.5px; padding: 8px 12px; }
+}
+
+/* ---------- ٧) الهاتف عمودياً: صورة السؤال لا تأكل الشاشة ---------- */
+@media (max-width: 480px) {
+  .q-media img, .a-media img { max-height: 46vh; }
+  .worldpin { max-height: 46vh; }
+}
+
+/* ---------- ٨) الهاتف أفقياً (شاشة قصيرة) ---------- */
+@media (orientation: landscape) and (max-height: 520px) {
+  header {
+    padding-top: calc(env(safe-area-inset-top) + 6px);
+    padding-bottom: 6px;
+  }
+
+  /* المؤقّت الدائري أصغر حتى يظهر السؤال بلا تمرير */
+  .timer { width: 92px; height: 92px; margin-bottom: 12px; }
+  .timer svg { width: 92px; height: 92px; }
+  .timer .num { font-size: 26px; }
+  .timer .num small { display: none; }
+
+  .q-card { padding: 14px 16px; }
+  .q-text { font-size: 18px; }
+  .q-media img, .a-media img, .worldpin { max-height: 52vh; }
+
+  .page-head, .cover, .result-card { margin-top: 14px; }
+  h1.title, .cover h1 { font-size: 24px; margin-bottom: 8px; }
+  .meta { margin-bottom: 8px; }
+  .helps { margin-top: 10px; }
+}
+
+/* ---------- ٩) شاشات ضيقة جداً (٣٢٠ بكسل) ---------- */
+@media (max-width: 360px) {
+  .points-grid .btn { min-width: 48px; padding-inline: 8px; }
+  /* عجلة السؤال الإضافي: نصغّرها كلها بالتحويل، فتصغير القطر وحده
+     يترك أرقام المضاعف (×1 ×2 ×3) خارج الدائرة لأن موضعها محسوب بالبكسل */
+  .bw-stage { transform: scale(.86); transform-origin: top center; margin-bottom: 0; }
+  .bw-title { font-size: 18px; }
+}

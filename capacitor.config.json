@@ -1,0 +1,15 @@
+{
+  "appId": "com.jawabni.game",
+  "appName": "جاوبني",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#0a2a25"
+  },
+  "ios": {
+    "backgroundColor": "#0a2a25",
+    "contentInset": "always"
+  }
+}

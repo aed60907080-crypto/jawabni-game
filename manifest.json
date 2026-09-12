@@ -1,0 +1,20 @@
+{
+  "name": "جاوبني — لعبة الأسئلة الثقافية",
+  "short_name": "جاوبني",
+  "description": "لعبة أسئلة ثقافية جماعية لفريقين: فئات متنوعة، مفاجآت ومساعدات، وعجلة سؤال إضافي.",
+  "lang": "ar",
+  "dir": "rtl",
+  "id": "./main-page.html",
+  "start_url": "./main-page.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a2a25",
+  "theme_color": "#0a2a25",
+  "categories": ["games", "education", "entertainment"],
+  "icons": [
+    { "src": "image/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "image/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "image/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>شحن الرصيد — جاوبني</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --ink-deep:#020b09;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+      padding-bottom:60px;
+    }
+
+    /* ---------- background ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+        radial-gradient(900px 620px at 10% 5%,  #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 50% 110%, #1a5b4d 0%, transparent 60%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.32; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:420px; height:420px; background:#1f7d68; top:-90px; right:-60px; }
+    .bg-fx .orb.b{ width:380px; height:380px; background:#c9962f; bottom:-120px; left:-80px; opacity:.2; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-40px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb{ animation:none; } }
+
+    .lightbar{
+      height:6px;
+      background:radial-gradient(circle, var(--gold-soft) 38%, transparent 42%) 0 0 / 24px 24px repeat-x;
+      filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+      animation:twinkle 1.8s linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ filter:drop-shadow(0 0 4px rgba(231,183,64,.6)); background-position-x:0; }
+      50%{ filter:drop-shadow(0 0 12px rgba(231,183,64,1)); background-position-x:12px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .lightbar{ animation:none; } }
+
+    /* ---------- header ---------- */
+    header{
+      position:sticky; top:0; z-index:40;
+      background:linear-gradient(180deg, rgba(13,51,45,.92), rgba(4,18,15,.82));
+      backdrop-filter:blur(16px) saturate(140%);
+      -webkit-backdrop-filter:blur(16px) saturate(140%);
+      padding:12px 24px;
+      display:flex; justify-content:space-between; align-items:center; gap:14px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 12px 40px rgba(0,0,0,.4);
+      flex-wrap:wrap;
+    }
+    .head-brand{ display:flex; align-items:center; gap:12px; }
+    .logo{ width:50px; height:50px; border-radius:16px; object-fit:cover;
+      box-shadow:0 0 0 2px var(--gold), 0 8px 22px rgba(0,0,0,.45); }
+    .head-brand b{
+      font-family:'Cairo', sans-serif; font-weight:900; font-size:21px;
+      background:linear-gradient(120deg, var(--gold-soft), var(--gold) 50%, #fff6dd 65%, var(--gold));
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+
+    .head-right{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .chip{
+      display:flex; align-items:center; gap:8px;
+      background:var(--glass);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 15px;
+      font-weight:700; font-size:13.5px;
+      backdrop-filter:blur(8px);
+    }
+    .chip i{ color:var(--gold); }
+    .chip .value{
+      font-family:'Cairo', sans-serif;
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      color:#fff;
+      border-radius:999px;
+      padding:1px 11px;
+      font-weight:800;
+      min-width:24px; text-align:center;
+      box-shadow:0 4px 14px rgba(255,107,77,.45);
+    }
+    .value.pop{ animation:pop .5s ease; }
+    @keyframes pop{ 0%{transform:scale(1);} 40%{transform:scale(1.4);} 100%{transform:scale(1);} }
+
+    .ghost-link{
+      background:var(--glass);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 18px;
+      color:var(--ivory);
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:13.5px;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:8px;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      transition:border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    .ghost-link i{ color:var(--gold); }
+    .ghost-link:hover{ border-color:var(--line-strong); transform:translateY(-2px); background:rgba(231,183,64,.1); }
+
+    /* ---------- page head ---------- */
+    .page-head{ max-width:1000px; margin:46px auto 30px; padding:0 22px; text-align:center; }
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12.5px; letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+    .page-head h1{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(28px, 4.6vw, 44px);
+      margin:0 0 8px;
+      background:linear-gradient(120deg, var(--gold) 0%, #fff3d0 45%, var(--gold) 70%);
+      background-size:220% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 4.5s linear infinite;
+    }
+    .page-head p{ color:var(--muted); margin:0; font-size:15px; }
+
+    .wrap{ max-width:1000px; margin:0 auto; padding:0 22px; }
+
+    /* ---------- plans ---------- */
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+      margin-bottom:30px;
+    }
+    .plan{
+      position:relative;
+      display:block;
+      cursor:pointer;
+      border:1.5px solid var(--line);
+      border-radius:24px;
+      padding:28px 22px 24px;
+      text-align:center;
+      background:linear-gradient(160deg, rgba(21,74,65,.5), rgba(6,24,20,.68));
+      backdrop-filter:blur(12px);
+      box-shadow:0 20px 46px rgba(0,0,0,.42);
+      overflow:hidden;
+      transition:transform .25s cubic-bezier(.2,.9,.3,1.3), border-color .25s ease, box-shadow .25s ease;
+      animation:cardIn .5s ease backwards;
+    }
+    @keyframes cardIn{ from{ opacity:0; transform:translateY(20px) scale(.97);} to{ opacity:1; transform:none;} }
+    .plan:nth-child(2){ animation-delay:.08s; }
+    .plan:nth-child(3){ animation-delay:.16s; }
+    .plan::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(120deg, transparent 30%, rgba(231,183,64,.16) 50%, transparent 70%);
+      transform:translateX(-120%);
+      transition:transform .8s ease;
+      pointer-events:none;
+    }
+    .plan:hover::before{ transform:translateX(120%); }
+    .plan:hover{ transform:translateY(-7px); border-color:var(--line-strong); box-shadow:0 28px 58px rgba(0,0,0,.5); }
+    .plan input{ position:absolute; opacity:0; pointer-events:none; }
+
+    .plan .coins{
+      width:64px; height:64px;
+      margin:0 auto 14px;
+      border-radius:20px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px;
+      color:var(--ink-deep);
+      background:linear-gradient(145deg, #fff3d0, var(--gold) 60%, var(--gold-deep));
+      box-shadow:0 12px 28px rgba(231,183,64,.4);
+      transition:transform .3s ease;
+    }
+    .plan:hover .coins{ transform:translateY(-3px) rotate(-6deg) scale(1.06); }
+
+    .plan .games{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:34px;
+      color:var(--ivory);
+      line-height:1.1;
+      margin-bottom:2px;
+    }
+    .plan .games small{ font-size:15px; color:var(--muted); font-weight:700; margin-right:6px; }
+    .plan .price{
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:17px;
+      color:var(--gold);
+      margin:10px 0 6px;
+    }
+    .plan .per{
+      color:var(--muted);
+      font-size:12.5px;
+      font-weight:600;
+    }
+
+    .plan .tick{
+      position:absolute;
+      top:14px; left:14px;
+      width:30px; height:30px;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      border:1.5px solid rgba(255,255,255,.2);
+      background:rgba(0,0,0,.3);
+      color:transparent;
+      font-size:13px;
+      transition:all .25s cubic-bezier(.2,.9,.3,1.5);
+    }
+    .plan input:checked ~ .tick{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      border-color:#fff;
+      color:var(--ink-deep);
+      transform:scale(1.12);
+      box-shadow:0 6px 18px rgba(231,183,64,.5);
+    }
+    .plan:has(input:checked){
+      border-color:var(--gold);
+      box-shadow:0 0 0 1px rgba(231,183,64,.35), 0 26px 56px rgba(231,183,64,.18);
+      transform:translateY(-5px);
+    }
+
+    .badge-best{
+      position:absolute;
+      top:14px; right:14px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:10.5px;
+      color:#fff;
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      border-radius:999px;
+      padding:5px 12px;
+      box-shadow:0 8px 18px rgba(255,107,77,.45);
+    }
+
+    /* ---------- summary bar ---------- */
+    .checkout{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px 26px;
+      background:linear-gradient(150deg, rgba(21,74,65,.55), rgba(6,24,20,.7));
+      backdrop-filter:blur(14px);
+      box-shadow:0 24px 56px rgba(0,0,0,.45);
+    }
+    .checkout .sum{ text-align:right; }
+    .checkout .sum span{ display:block; color:var(--muted); font-size:13px; font-weight:700; margin-bottom:4px; }
+    .checkout .sum b{
+      font-family:'Cairo', sans-serif;
+      font-weight:900; font-size:22px;
+      color:var(--ivory);
+    }
+    .checkout .sum b em{ font-style:normal; color:var(--gold); }
+
+    #purchase-button{
+      position:relative;
+      overflow:hidden;
+      display:inline-flex; align-items:center; gap:11px;
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      color:#fff;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:17px;
+      padding:16px 40px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 16px 34px rgba(255,107,77,.35), inset 0 1px 0 rgba(255,255,255,.25);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    #purchase-button::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:60px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+      transform:skewX(-20deg);
+      animation:shine 3.4s ease-in-out infinite;
+    }
+    @keyframes shine{ 0%{ right:-80px; } 55%,100%{ right:120%; } }
+    #purchase-button:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 22px 44px rgba(255,107,77,.5); }
+    #purchase-button:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+    @media (prefers-reduced-motion: reduce){ #purchase-button::after{ animation:none; } }
+
+    .note{
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:22px;
+      line-height:1.9;
+    }
+    .note i{ color:var(--gold); }
+
+    /* ---------- متجر المساعدات ---------- */
+    .shop{
+      margin-top:40px; padding:28px 26px; border-radius:26px;
+      background:linear-gradient(150deg, rgba(21,74,65,.42), rgba(6,24,20,.58));
+      border:1px solid var(--line);
+    }
+    .shop-head{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:20px; flex-wrap:wrap; margin-bottom:24px;
+    }
+    .shop-head h2{
+      font-family:'Cairo',sans-serif; font-size:clamp(22px,3.2vw,28px);
+      font-weight:900; margin:8px 0 8px; color:var(--gold-soft);
+    }
+    .shop-head p{ color:var(--muted); font-size:14.5px; margin:0; max-width:520px; }
+    .shop-head p b{ color:var(--gold-soft); }
+
+    .pts-box{
+      flex:none; min-width:118px; text-align:center;
+      padding:14px 20px; border-radius:20px;
+      background:rgba(4,18,15,.5); border:1px solid var(--line-strong);
+    }
+    .pts-box b{
+      display:block; font-family:'Cairo',sans-serif; font-weight:900;
+      font-size:34px; color:var(--gold); line-height:1.1;
+      text-shadow:0 0 26px rgba(231,183,64,.35);
+    }
+    .pts-box small{ color:var(--muted); font-size:12.5px; }
+
+    .shop-grid{
+      display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    }
+    .shop-item{
+      display:flex; flex-direction:column; gap:12px;
+      padding:20px 20px 18px; border-radius:20px; text-align:start;
+      background:rgba(4,18,15,.45); border:1px solid var(--line);
+      transition:border-color .2s ease, transform .2s ease;
+    }
+    .shop-item:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
+    .shop-item .top{ display:flex; align-items:center; gap:11px; }
+    .shop-item .em{ font-size:28px; line-height:1; }
+    .shop-item .nm{
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:16px; color:var(--gold-soft);
+    }
+    .shop-item .ds{ color:var(--muted); font-size:13.5px; line-height:1.7; flex:1; }
+    .shop-item .owned{
+      display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
+      background:rgba(231,183,64,.14); border:1px solid var(--line);
+      border-radius:10px; padding:4px 10px; font-size:12px; font-weight:700;
+      color:var(--gold-soft);
+    }
+    .shop-item .buy{
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      width:100%; padding:12px 16px; border-radius:14px; cursor:pointer;
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:14.5px;
+      border:1px solid var(--line-strong);
+      background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+      color:#04120f;
+      transition:transform .18s ease, filter .18s ease;
+    }
+    .shop-item .buy:hover:not(:disabled){ transform:translateY(-2px); filter:brightness(1.07); }
+    .shop-item .buy:disabled{
+      background:transparent; color:var(--muted);
+      border-color:var(--line); cursor:not-allowed;
+    }
+
+    .foot-actions{ display:flex; justify-content:center; margin-top:24px; }
+
+    /* ---------- toast ---------- */
+    #toastBox{
+      position:fixed; bottom:26px; left:50%;
+      transform:translateX(-50%);
+      z-index:999;
+      display:flex; flex-direction:column; gap:10px; align-items:center;
+      pointer-events:none;
+    }
+    .toast{
+      background:linear-gradient(135deg, rgba(13,51,45,.97), rgba(4,18,15,.97));
+      border:1px solid var(--line-strong);
+      color:var(--ivory);
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:14.5px;
+      padding:14px 22px;
+      border-radius:14px;
+      box-shadow:var(--shadow-lg);
+      display:flex; align-items:center; gap:10px;
+      animation:toastIn .3s ease;
+    }
+    .toast i{ color:var(--gold); }
+    @keyframes toastIn{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:none; } }
+    .toast.out{ animation:toastOut .3s ease forwards; }
+    @keyframes toastOut{ to{ opacity:0; transform:translateY(14px); } }
+
+    @media (max-width:600px){
+      .checkout{ flex-direction:column; align-items:stretch; text-align:center; }
+      .checkout .sum{ text-align:center; }
+      #purchase-button{ justify-content:center; width:100%; }
+    }
+  </style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+<div class="bg-fx">
+  <span class="orb a"></span>
+  <span class="orb b"></span>
+</div>
+
+<div class="lightbar"></div>
+
+<header>
+  <div class="head-brand">
+    <img class="logo" src="image/jawbnny.png" alt="جاوبني">
+    <b>جاوبني</b>
+  </div>
+  <div class="head-right">
+    <span class="chip">
+      <i class="fa-solid fa-wallet"></i>
+      رصيدك <span class="value" id="current-balance">0</span>
+    </span>
+    <a class="ghost-link" href="main-page.html"><i class="fa-solid fa-arrow-right-long"></i> الرئيسية</a>
+  </div>
+</header>
+
+<div class="lightbar"></div>
+
+<div class="page-head">
+  <span class="eyebrow-line">المحفظة</span>
+  <h1>شحن رصيد اللعبة</h1>
+  <p>كل رصيد = جولة كاملة من ٦ فئات — اختر الباقة التي تناسبك</p>
+</div>
+
+<div class="wrap">
+
+  <!-- الباقات (تُحدّث القيمة في القائمة المخفية أدناه) -->
+  <div class="plans">
+    <label class="plan">
+      <input type="radio" name="plan" value="1" data-price="1" checked>
+      <span class="tick"><i class="fa-solid fa-check"></i></span>
+      <div class="coins"><i class="fa-solid fa-coins"></i></div>
+      <div class="games">1 <small>لعبة</small></div>
+      <div class="price">1 دينار</div>
+      <div class="per">جولة واحدة للتجربة</div>
+    </label>
+
+    <label class="plan">
+      <input type="radio" name="plan" value="2" data-price="2">
+      <span class="tick"><i class="fa-solid fa-check"></i></span>
+      <div class="coins"><i class="fa-solid fa-sack-dollar"></i></div>
+      <div class="games">2 <small>ألعاب</small></div>
+      <div class="price">2 دينار</div>
+      <div class="per">مناسبة لسهرة قصيرة</div>
+    </label>
+
+    <label class="plan">
+      <span class="badge-best">الأوفر</span>
+      <input type="radio" name="plan" value="7" data-price="5">
+      <span class="tick"><i class="fa-solid fa-check"></i></span>
+      <div class="coins"><i class="fa-solid fa-gem"></i></div>
+      <div class="games">7 <small>ألعاب</small></div>
+      <div class="price">5 دينار</div>
+      <div class="per">توفير حتى ٣٠٪ لكل جولة</div>
+    </label>
+  </div>
+
+  <!-- القائمة الأصلية محفوظة لتوافق الكود -->
+  <select id="game-count" style="display:none">
+    <option value="1">1 لعبة - 1 دينار</option>
+    <option value="2">2 ألعاب - 2 دينار</option>
+    <option value="7">7 ألعاب - 5 دينار</option>
+  </select>
+
+  <div class="checkout">
+    <div class="sum">
+      <span>ملخّص الطلب</span>
+      <b><em id="sumGames">1</em> لعبة مقابل <em id="sumPrice">1</em> دينار</b>
+    </div>
+    <button id="purchase-button">
+      <i class="fa-solid fa-bolt"></i> شراء الرصيد
+    </button>
+  </div>
+
+  <p class="note">
+    <i class="fa-solid fa-circle-info"></i>
+    الرصيد يُخصم بمقدار واحد عند بدء كل لعبة جديدة، وكل ٢٠ نقطة تربحها تتحوّل تلقائياً إلى رصيد إضافي.
+  </p>
+
+  <!-- ============ متجر المساعدات ============ -->
+  <div class="shop" id="shop">
+    <div class="shop-head">
+      <div>
+        <span class="eyebrow-line">اشترِ بنقاطك</span>
+        <h2>متجر المساعدات</h2>
+        <p>كل مساعدة تشتريها تصير <b>ملكاً دائماً</b> وتبدأ معك في كل جولة جديدة.</p>
+      </div>
+      <div class="pts-box">
+        <b id="shopPoints">0</b>
+        <small>نقاطك</small>
+      </div>
+    </div>
+
+    <div class="shop-grid" id="shopGrid"></div>
+
+    <p class="note" style="margin-top:20px">
+      <i class="fa-solid fa-circle-info"></i>
+      تربح <b>نقطة حساب واحدة</b> عن كل إجابة صحيحة. المساعدات المشتراة تُضاف
+      لمخزون <b>الفريقين</b> في بداية كل جولة، إلى جانب المساعدة الافتراضية من كل نوع.
+    </p>
+  </div>
+
+  <div class="foot-actions">
+    <a class="ghost-link" href="main-page.html"><i class="fa-solid fa-house"></i> العودة للصفحة الرئيسية</a>
+  </div>
+
+</div>
+
+<div id="toastBox"></div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+  function showToast(msg){
+    const box = document.getElementById('toastBox');
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = '<i class="fa-solid fa-circle-check"></i><span></span>';
+    t.querySelector('span').textContent = msg;
+    box.appendChild(t);
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2400);
+  }
+
+  const select = document.getElementById("game-count");
+  const balanceEl = document.getElementById("current-balance");
+
+  function refreshBalance(){
+    balanceEl.textContent = parseInt(localStorage.getItem("balance")) || 0;
+  }
+  refreshBalance();
+
+  /* ================= متجر المساعدات ================= */
+  /* اللاعب يشتري بنقاط حسابه، وما يشتريه يصير ملكاً دائماً
+     يُضاف لمخزون الفريقين في بداية كل جولة. */
+  function renderShop(){
+    if (!window.Powerups) return;
+
+    const grid  = document.getElementById('shopGrid');
+    const owned = Powerups.owned();
+    const pts   = Powerups.points();
+
+    document.getElementById('shopPoints').textContent = pts;
+    grid.innerHTML = '';
+
+    const start = Powerups.startingHelps();
+    Powerups.HELPS.forEach(def => {
+      const have  = owned[def.key] || 0;
+      const total = start[def.key] || 0;      // الافتراضية + المشتراة
+      /* «مرة واحدة» في الجولة — لا فائدة من شراء نسخة ثانية */
+      const maxed = def.once && have >= 1;
+      const can   = !maxed && pts >= def.price;
+
+      const card = document.createElement('div');
+      card.className = 'shop-item';
+      card.innerHTML =
+        '<div class="top"><span class="em"></span><span class="nm"></span></div>' +
+        '<p class="ds"></p>' +
+        '<span class="owned"><i class="fa-solid fa-layer-group"></i> <span class="cnt"></span></span>' +
+        '<button class="buy" type="button"></button>';
+
+      card.querySelector('.em').textContent = def.emoji;
+      card.querySelector('.nm').textContent = def.name;
+      card.querySelector('.ds').textContent = def.desc;
+      card.querySelector('.cnt').textContent =
+        (total
+          ? 'معك ' + total + ' في كل جولة' + (have && !def.once ? ' (' + have + ' مشتراة)' : '')
+          : 'من المتجر فقط — لم تشترها بعد') +
+        (def.once ? ' · مرة واحدة في الجولة' : '');
+
+      const btn = card.querySelector('.buy');
+      btn.disabled = !can;
+      btn.innerHTML = maxed
+        ? '<i class="fa-solid fa-check"></i> مملوكة'
+        : can
+          ? '<i class="fa-solid fa-cart-plus"></i> اشترِ بـ ' + def.price + ' نقطة'
+          : '<i class="fa-solid fa-lock"></i> تحتاج ' + def.price + ' نقطة';
+      btn.onclick = () => buyHelp(def.key);
+
+      grid.appendChild(card);
+    });
+
+    if (window.I18N) I18N.apply(document.querySelector('.shop'));
+  }
+
+  function buyHelp(key){
+    const res = Powerups.buyHelp(key);
+    const def = Powerups.helpDef(key);
+
+    if (!res.ok) {
+      if (window.SFX) SFX.wrong();
+      showToast(res.reason === 'once'
+        ? 'تملك «' + def.name + '» أصلاً — تُستعمل مرة واحدة في كل جولة'
+        : 'نقاطك لا تكفي — تحتاج ' + res.need + ' نقطة ولديك ' + res.points);
+      return;
+    }
+
+    if (window.SFX) SFX.coin();
+    showToast(def.emoji + ' اشتريت «' + def.name + '» — صارت ملكاً دائماً في كل جولة');
+    renderShop();
+  }
+
+  renderShop();
+
+  // ربط بطاقات الباقات بالقائمة المخفية + تحديث الملخّص
+  const radios = document.querySelectorAll('input[name="plan"]');
+  function syncPlan(){
+    const picked = document.querySelector('input[name="plan"]:checked');
+    if (!picked) return;
+    select.value = picked.value;
+    document.getElementById("sumGames").textContent = picked.value;
+    document.getElementById("sumPrice").textContent = picked.dataset.price;
+  }
+  radios.forEach(r => r.addEventListener('change', () => { SFX.select(); syncPlan(); }));
+  syncPlan();
+  SFX.mountControls();
+
+  document.getElementById("purchase-button").addEventListener("click", function () {
+    const selected = document.getElementById("game-count").value;
+    const cost = parseInt(selected);
+    let balance = parseInt(localStorage.getItem("balance")) || 0;
+    balance += cost;
+    localStorage.setItem("balance", balance);
+
+    balanceEl.textContent = balance;
+    balanceEl.classList.add("pop");
+    setTimeout(() => balanceEl.classList.remove("pop"), 520);
+
+    SFX.coin();
+    showToast("تمت إضافة " + cost + " رصيد بنجاح! رصيدك الآن: " + balance);
+
+    setTimeout(() => {
+      window.location.href = "main-page.html"; // العودة إلى الصفحة الرئيسية بعد الشراء
+    }, 1500);
+  });
+</script>
+</body>
+</html>

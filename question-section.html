@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>اختر الفئات — جاوبني</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --ink-deep:#020b09;
+      --surface:#0d332d;
+      --surface-light:#154a41;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body {
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      text-align:center;
+      min-height:100vh;
+      overflow-x:hidden;
+      padding-bottom:120px;
+    }
+
+    /* ---------- animated background ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+        radial-gradient(900px 620px at 10% 5%,  #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 50% 110%, #1a5b4d 0%, transparent 60%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.34; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:420px; height:420px; background:#1f7d68; top:-90px; right:-60px; }
+    .bg-fx .orb.b{ width:380px; height:380px; background:#c9962f; bottom:-120px; left:-80px; opacity:.18; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-40px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb{ animation:none; } }
+
+    .lightbar{
+      height:6px;
+      background:radial-gradient(circle, var(--gold-soft) 38%, transparent 42%) 0 0 / 24px 24px repeat-x;
+      filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+      animation:twinkle 1.8s linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ filter:drop-shadow(0 0 4px rgba(231,183,64,.6)); background-position-x:0; }
+      50%{ filter:drop-shadow(0 0 12px rgba(231,183,64,1)); background-position-x:12px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .lightbar{ animation:none; } }
+
+    /* ---------- header ---------- */
+    header {
+      position:sticky; top:0; z-index:40;
+      background:linear-gradient(180deg, rgba(13,51,45,.92), rgba(4,18,15,.82));
+      backdrop-filter:blur(16px) saturate(140%);
+      -webkit-backdrop-filter:blur(16px) saturate(140%);
+      color:var(--ivory);
+      padding:12px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 12px 40px rgba(0,0,0,.4);
+      flex-wrap:wrap;
+    }
+    .head-brand{ display:flex; align-items:center; gap:12px; }
+    .logo { width:52px; height:52px; border-radius:16px; object-fit:cover;
+      box-shadow:0 0 0 2px var(--gold), 0 8px 22px rgba(0,0,0,.45); }
+    .head-brand b{
+      font-family:'Cairo', sans-serif; font-weight:900; font-size:21px;
+      background:linear-gradient(120deg, var(--gold-soft), var(--gold) 50%, #fff6dd 65%, var(--gold));
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+
+    nav{ display:flex; gap:10px; flex-wrap:wrap; }
+    nav a {
+      color:var(--ivory);
+      text-decoration:none;
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:13.5px;
+      background:var(--glass);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 16px;
+      display:inline-flex; align-items:center; gap:8px;
+      backdrop-filter:blur(8px);
+      transition:border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    nav a i{ color:var(--gold); }
+    nav a:hover{ border-color:var(--line-strong); transform:translateY(-2px); background:rgba(231,183,64,.1); }
+    nav a.danger{ color:#ff9c89; }
+    nav a.danger i{ color:#ff9c89; }
+
+    /* ---------- title ---------- */
+    .page-head{ max-width:900px; margin:44px auto 8px; padding:0 20px; }
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12.5px; letter-spacing:2px;
+      margin-bottom:10px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+    .section1 {
+      font-family:'Cairo', sans-serif;
+      font-size:clamp(30px, 5vw, 46px);
+      font-weight:900;
+      margin:0 0 10px;
+      background:linear-gradient(120deg, var(--gold) 0%, #fff3d0 45%, var(--gold) 70%);
+      background-size:220% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 4.5s linear infinite;
+    }
+    .page-head .sub{ color:var(--muted); font-size:15.5px; margin:0; }
+
+    /* ---------- counter + progress ---------- */
+    .counter-wrap{
+      max-width:520px;
+      margin:26px auto 34px;
+      padding:18px 22px;
+      background:linear-gradient(150deg, rgba(21,74,65,.5), rgba(6,24,20,.6));
+      border:1px solid var(--line);
+      border-radius:20px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 18px 44px rgba(0,0,0,.35);
+    }
+    #counter{
+      font-family:'Cairo', sans-serif;
+      font-size:18px; font-weight:800;
+      margin:0 0 12px;
+      color:var(--ivory);
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    #counter i{ color:var(--gold); }
+    #counter b{ color:var(--gold); }
+    .progress-track{
+      height:10px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .progress-fill{
+      height:100%; width:0%;
+      background:linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-soft));
+      box-shadow:0 0 18px rgba(231,183,64,.6);
+      border-radius:999px;
+      transition:width .45s cubic-bezier(.2,.8,.3,1);
+    }
+    .counter-wrap.full{ border-color:var(--line-strong); box-shadow:0 18px 44px rgba(231,183,64,.18); }
+
+    /* ---------- filter bar ---------- */
+    .filter-bar{
+      max-width:1200px; margin:0 auto 26px; padding:0 18px;
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+    }
+    .search-wrap{
+      position:relative; width:min(460px,100%);
+    }
+    .search-wrap i{
+      position:absolute; inset-inline-start:16px; top:50%; transform:translateY(-50%);
+      color:var(--gold); opacity:.7; font-size:14px; pointer-events:none;
+    }
+    .search-wrap input{
+      width:100%; height:48px; padding:0 44px; border-radius:26px;
+      border:1px solid var(--line); background:var(--glass); color:var(--ivory);
+      font-family:inherit; font-size:15px; outline:none; backdrop-filter:blur(10px);
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+    .search-wrap input::placeholder{ color:var(--muted); }
+    .search-wrap input:focus{ border-color:var(--line-strong); box-shadow:0 0 0 4px rgba(231,183,64,.12); }
+    .search-wrap input::-webkit-search-cancel-button{ filter:invert(.8); }
+
+    /* ---------- شريط التنقّل بين المجموعات ----------
+       يلتصق أسفل الترويسة، والضغط على مجموعة يقفز إلى موضعها،
+       والمجموعة التي تمرّ أمام عينك تُبرَز تلقائياً. */
+    .filter-bar{
+      position:sticky; top:var(--hdr, 76px); z-index:30;
+      background:linear-gradient(180deg, rgba(4,18,15,.94), rgba(4,18,15,.72));
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:12px 0 14px;
+      border-bottom:1px solid rgba(231,183,64,.12);
+    }
+    /* على الجوال يُمرَّر الشريط أفقياً بدل أن يلتف على أسطر */
+    .chips{
+      display:flex; justify-content:center; gap:8px;
+      flex-wrap:wrap; padding:0 14px;
+    }
+    @media (max-width:760px){
+      .chips{
+        flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start;
+        scroll-snap-type:x proximity; scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .chips::-webkit-scrollbar{ display:none; }
+      .chip-btn{ flex:0 0 auto; scroll-snap-align:center; }
+    }
+
+    /* عنوان المجموعة فوق بطاقاتها */
+    .grp-head{
+      width:100%; max-width:1200px; margin:26px auto 4px; padding:0 18px;
+      display:flex; align-items:center; gap:12px;
+      scroll-margin-top:150px;                 /* حتى لا يختفي تحت الشريط اللاصق */
+    }
+    .grp-head .ttl{
+      display:inline-flex; align-items:center; gap:9px;
+      font-family:'Cairo', sans-serif; font-weight:900; font-size:19px;
+      color:var(--gold-soft); white-space:nowrap;
+    }
+    .grp-head .cnt{
+      font-size:12.5px; font-weight:700; color:var(--ink-deep);
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      border-radius:999px; padding:3px 11px;
+    }
+    /* على الشاشات العريضة تكفي بقيةُ الصفحة، وعلى الجوال تحتاج آخرُ مجموعة
+       مساحةً تحتها لتستطيع الصعود إلى أعلى الشاشة عند القفز إليها. */
+    .grid-tail{ width:100%; height:0; pointer-events:none; }
+    @media (max-width:760px){ .grid-tail{ height:70vh; } }
+    .grp-head .rule{ flex:1; height:1px; background:linear-gradient(90deg, var(--line-strong), transparent); }
+    html[dir=ltr] .grp-head .rule{ background:linear-gradient(270deg, var(--line-strong), transparent); }
+
+    .chip-btn{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 15px; border-radius:20px; cursor:pointer;
+      border:1px solid var(--line); background:rgba(21,74,65,.35);
+      color:var(--ivory); font-family:inherit; font-size:13.5px; font-weight:600;
+      transition:border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+    .chip-btn:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
+    .chip-btn.on{ border-color:var(--gold); background:rgba(231,183,64,.16); color:var(--gold-soft); }
+    .chip-btn .n{ opacity:.55; font-size:11.5px; }
+    /* شارة عدد الفئات المختارة داخل شريحة «كل الفئات» */
+    .chip-btn .sel{
+      display:inline-flex; align-items:center;
+      padding:1px 8px; border-radius:12px; line-height:1.7;
+      font-size:11.5px; font-weight:800; letter-spacing:.2px;
+      background:rgba(231,183,64,.18); border:1px solid var(--gold);
+      color:var(--gold-soft);
+    }
+    .chip-btn .sel[hidden]{ display:none; }
+
+    .empty-note{ color:var(--muted); margin:40px 0; font-size:15px; }
+
+    /* ---------- cards ---------- */
+    .container {
+      display:flex; flex-wrap:wrap; justify-content:center;
+      gap:18px;
+      max-width:1200px;
+      margin:auto;
+      padding:0 18px;
+    }
+
+    .card {
+      position:relative;
+      width:220px;
+      height:290px;
+      border-radius:20px;
+      overflow:hidden;
+      cursor:pointer;
+      background:transparent;
+      border:none;
+      box-shadow:0 16px 36px rgba(0,0,0,.45);
+      transition:transform .28s cubic-bezier(.2,.9,.3,1.3), box-shadow .28s ease;
+      animation:cardIn .5s ease backwards;
+    }
+    @keyframes cardIn{ from{ opacity:0; transform:translateY(22px) scale(.96);} to{ opacity:1; transform:none; } }
+    .card:hover{ transform:translateY(-8px); box-shadow:0 26px 54px rgba(0,0,0,.55); }
+
+    .card input { display:none; }
+
+    .card-content {
+      position:relative;
+      height:100%;
+      border-radius:20px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.14);
+      transition:border-color .28s ease, box-shadow .28s ease;
+    }
+    .card-content::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(4,18,15,.05) 30%, rgba(4,18,15,.55) 62%, rgba(4,18,15,.95) 100%);
+      pointer-events:none;
+    }
+
+    .card img {
+      width:100%; height:100%;
+      object-fit:cover;
+      transition:transform .5s ease, filter .3s ease;
+      filter:saturate(.92) brightness(.92);
+    }
+    .card:hover img{ transform:scale(1.08); filter:saturate(1.05) brightness(1); }
+
+    .content {
+      position:absolute;
+      bottom:0; right:0; left:0;
+      z-index:2;
+      background:transparent;
+      color:#fff;
+      padding:14px 12px 16px;
+    }
+    .content h4{
+      margin:0;
+      font-family:'Cairo', sans-serif;
+      font-weight:800;
+      font-size:17px;
+      text-shadow:0 2px 12px rgba(0,0,0,.8);
+    }
+    .content .question-count{
+      display:block; margin-top:4px;
+      font-size:12px; color:var(--gold-soft); font-weight:700;
+    }
+
+    /* selected badge */
+    .pick-badge{
+      position:absolute;
+      top:12px; left:12px; z-index:3;
+      width:34px; height:34px;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(4,18,15,.6);
+      border:1.5px solid rgba(255,255,255,.28);
+      color:transparent;
+      font-size:14px;
+      backdrop-filter:blur(6px);
+      transition:all .25s cubic-bezier(.2,.9,.3,1.5);
+    }
+    .card input:checked ~ .card-content .pick-badge,
+    .card input:checked + .card-content .pick-badge{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      border-color:#fff;
+      color:var(--ink-deep);
+      transform:scale(1.12);
+      box-shadow:0 6px 18px rgba(231,183,64,.55);
+    }
+
+    .card input:checked + .card-content {
+      border-color:var(--gold);
+      box-shadow:inset 0 0 0 2px rgba(231,183,64,.5), 0 0 34px rgba(231,183,64,.35);
+    }
+    .card:has(input:checked){ transform:translateY(-6px); }
+    .card:has(input:checked) img{ filter:saturate(1.1) brightness(1.05); }
+
+    .card:has(input:disabled){ opacity:.42; filter:grayscale(.5); cursor:not-allowed; }
+    .card:has(input:disabled):hover{ transform:none; box-shadow:0 16px 36px rgba(0,0,0,.45); }
+
+    /* ---------- team panel ---------- */
+    .team-panel{
+      max-width:640px;
+      margin:52px auto 0;
+      padding:26px 24px;
+      background:linear-gradient(150deg, rgba(21,74,65,.5), rgba(6,24,20,.62));
+      border:1px solid var(--line);
+      border-radius:24px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 22px 54px rgba(0,0,0,.4);
+    }
+    .team-panel h3{
+      font-family:'Cairo', sans-serif;
+      font-weight:900; font-size:20px;
+      margin:0 0 18px;
+      color:var(--ivory);
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    .team-panel h3 i{ color:var(--gold); }
+
+    .form-control{
+      display:block;
+      width:100%;
+      padding:12px 16px;
+      font-family:'Cairo', sans-serif;
+      font-size:1rem; font-weight:700;
+      line-height:1.5;
+      color:var(--ivory);
+      background-color:rgba(0,0,0,.28);
+      background-clip:padding-box;
+      border:1.5px solid rgba(255,255,255,.1);
+      border-radius:14px;
+      text-align:center;
+      transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .form-control::placeholder{ color:rgba(159,194,187,.65); font-weight:500; }
+    .form-control:focus{
+      outline:none;
+      background-color:rgba(0,0,0,.36);
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(231,183,64,.14);
+      color:var(--ivory);
+    }
+    #gameName{ font-size:19px; }
+    .team-grid{ display:flex; gap:16px; flex-wrap:wrap; }
+    .team-col{ flex:1 1 220px; }
+    .team-label{
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:14px;
+      margin-bottom:8px;
+    }
+    .team-label .dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .t1-label{ color:#8ec5ff; }
+    .t1-label .dot{ background:#4a9bff; box-shadow:0 0 10px rgba(74,155,255,.8); }
+    .t2-label{ color:#ff9c89; }
+    .t2-label .dot{ background:var(--coral); box-shadow:0 0 10px rgba(255,107,77,.8); }
+    #team1:focus{ border-color:#4a9bff; box-shadow:0 0 0 4px rgba(74,155,255,.16); }
+    #team2:focus{ border-color:var(--coral); box-shadow:0 0 0 4px rgba(255,107,77,.16); }
+
+
+    /* ---------- start bar ---------- */
+    .start-dock{
+      position:fixed;
+      bottom:0; left:0; right:0;
+      z-index:50;
+      padding:14px 20px 20px;
+      background:linear-gradient(180deg, transparent, rgba(2,11,9,.9) 45%);
+      display:flex; justify-content:center;
+      pointer-events:none;
+    }
+    button.start-btn {
+      pointer-events:auto;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      color:#fff;
+      border:none;
+      border-radius:999px;
+      padding:16px 46px;
+      font-family:'Cairo', sans-serif;
+      font-size:20px; font-weight:800;
+      display:none;
+      align-items:center; gap:12px;
+      box-shadow:0 18px 40px rgba(255,107,77,.4), inset 0 1px 0 rgba(255,255,255,.25);
+      cursor:pointer;
+      animation:riseUp .4s ease;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    @keyframes riseUp{ from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none; } }
+    button.start-btn::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:60px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+      transform:skewX(-20deg);
+      animation:shine 3.2s ease-in-out infinite;
+    }
+    @keyframes shine{ 0%{ right:-80px; } 55%,100%{ right:120%; } }
+    button.start-btn:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 24px 50px rgba(255,107,77,.55); }
+    button.start-btn:focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+
+    /* ---------- toast ---------- */
+    #toastBox{
+      position:fixed; bottom:100px; left:50%;
+      transform:translateX(-50%);
+      z-index:999;
+      display:flex; flex-direction:column; gap:10px; align-items:center;
+      pointer-events:none;
+    }
+    .toast{
+      background:linear-gradient(135deg, rgba(13,51,45,.97), rgba(4,18,15,.97));
+      border:1px solid var(--line-strong);
+      color:var(--ivory);
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:14.5px;
+      padding:14px 22px;
+      border-radius:14px;
+      box-shadow:var(--shadow-lg);
+      display:flex; align-items:center; gap:10px;
+      animation:toastIn .3s ease;
+    }
+    .toast i{ color:var(--gold); }
+    .toast.err{ border-color:rgba(255,107,77,.6); }
+    .toast.err i{ color:var(--coral); }
+    @keyframes toastIn{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:none; } }
+    .toast.out{ animation:toastOut .3s ease forwards; }
+    @keyframes toastOut{ to{ opacity:0; transform:translateY(14px); } }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 768px) {
+      .card { width:calc(50% - 12px); height:230px; }
+      .section1 { font-size:30px; }
+      button.start-btn { font-size:17px; padding:14px 34px; }
+    }
+    @media (max-width: 340px) {
+      .card { width:100%; height:210px; }
+    }
+  </style>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+  <script>
+    /* سقف الفئات: 6 أو 8 — يُضبط من صفحة الإعدادات ويُحفظ في المتصفح */
+    const MAX_SELECTIONS = (function () {
+      const v = parseInt(localStorage.getItem("maxCategories"), 10);
+      return (v === 8) ? 8 : 6;
+    })();
+
+    function showToast(msg, type){
+      const box = document.getElementById('toastBox');
+      if (!box) return;
+      const t = document.createElement('div');
+      t.className = 'toast' + (type === 'err' ? ' err' : '');
+      t.innerHTML = '<i class="fa-solid ' + (type === 'err' ? 'fa-triangle-exclamation' : 'fa-circle-check') + '"></i><span></span>';
+      t.querySelector('span').textContent = msg;
+      box.appendChild(t);
+      setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2400);
+    }
+
+
+    function goToSelectSections() {
+      const selectedCards = [...picked].map(name => {
+        const cat = CategoryLib.find(name) || { name: name };
+        return { title: name, imgSrc: CategoryLib.image(cat), imgAlt: name };
+      });
+
+      if (selectedCards.length === 0) {
+        SFX.wrong();
+        showToast("يرجى اختيار بطاقة واحدة على الأقل", "err");
+        return;
+      }
+      SFX.coin();
+
+      // بداية جولة جديدة: تصفير نتائج وأسئلة الجولة السابقة
+      localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
+
+      // اختيار أسئلة هذه الجولة عشوائياً من المخزون (سؤال لكل قيمة نقاط)
+      if (typeof buildRoundQuestions === 'function') {
+        const titles = selectedCards.map(c => c.title);
+        localStorage.setItem('roundQuestions', JSON.stringify(buildRoundQuestions(titles)));
+      } else {
+        localStorage.removeItem('roundQuestions');
+      }
+      localStorage.setItem('answeredQuestions', JSON.stringify([]));
+      localStorage.setItem('teamScores', JSON.stringify({ team1: 0, team2: 0 }));
+      localStorage.setItem('currentTurn', 'team1');
+
+      // نمط الجولة: عادي أو بالمفاجآت
+      const mode = (localStorage.getItem('gameMode') === 'surprises') ? 'surprises' : 'normal';
+      localStorage.setItem('gameMode', mode);
+
+      /* المساعدات (جوابين/مكالمة/اسرق الدور) تُصفَّر في النمطين،
+         أمّا المفاجآت فلا تُوزَّع على اللوحة إلا في نمط المفاجآت. */
+      if (window.Powerups) {
+        Powerups.reset();
+        if (mode === 'surprises') Powerups.scatter(selectedCards.map(c => c.title));
+      }
+
+      // تسجيل اللعبة في سجل الألعاب
+      const gName = (document.getElementById('gameName').value || '').trim() || 'لعبة بدون اسم';
+      const t1 = (document.getElementById('team1').value || '').trim() || 'الفريق 1';
+      const t2 = (document.getElementById('team2').value || '').trim() || 'الفريق 2';
+      const log = JSON.parse(localStorage.getItem('gameLog') || '[]');
+      log.push({
+        description: gName + ' — ' + t1 + ' ضد ' + t2 + ' (' + selectedCards.length + ' فئات)',
+        time: new Date().toLocaleString('ar-EG', { dateStyle: 'medium', timeStyle: 'short' })
+      });
+      localStorage.setItem('gameLog', JSON.stringify(log));
+
+      window.location.href = 'SelectSections.html';
+    }
+  </script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+
+<body>
+
+  <div class="bg-fx">
+    <span class="orb a"></span>
+    <span class="orb b"></span>
+  </div>
+
+  <div class="lightbar"></div>
+
+  <header>
+    <div class="head-brand">
+      <a><img src="image/jawbnny.png" alt="Logo" class="logo" /></a>
+      <b>جاوبني</b>
+    </div>
+    <nav>
+      <a href="main-page.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a>
+      <a class="danger" href="main-page.html"><i class="fa-solid fa-right-from-bracket"></i> الخروج من اللعبة</a>
+    </nav>
+  </header>
+
+  <div class="lightbar"></div>
+
+  <div class="page-head">
+    <span class="eyebrow-line">الخطوة الأولى</span>
+    <h1 class="section1">اختر فئاتك</h1>
+    <p class="sub">اختر حتى ٦ فئات لتبدأ الجولة — كل فئة تحمل ٥ أسئلة بقيم مختلفة</p>
+  </div>
+
+  <div class="counter-wrap" id="counterWrap">
+    <h2 id="counter"><i class="fa-solid fa-layer-group"></i> الفئات المختارة: <b>0 من 6</b></h2>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" id="catSearch" placeholder="ابحث عن فئة…" autocomplete="off" />
+    </div>
+    <div class="chips" id="groupChips"></div>
+  </div>
+
+  <section>
+    <div class="container" id="catGrid"></div>
+    <p class="empty-note" id="emptyNote" hidden>لا توجد فئة بهذا الاسم</p>
+  </section>
+
+
+  <!-- Team Name -->
+  <div class="team-panel">
+    <h3><i class="fa-solid fa-flag"></i> أسماء اللعبة والفريقين</h3>
+
+    <div style="margin-bottom:18px">
+      <input type="text" id="gameName" class="form-control" placeholder="اسم اللعبة" oninput="autoSaveGameInfo()" />
+    </div>
+
+    <div class="team-grid">
+      <div class="team-col">
+        <label for="team1" class="team-label t1-label"><span class="dot"></span> فريق 1</label>
+        <input type="text" id="team1" class="form-control" placeholder="اسم الفريق الأول" oninput="autoSaveGameInfo()" />
+      </div>
+      <div class="team-col">
+        <label for="team2" class="team-label t2-label"><span class="dot"></span> فريق 2</label>
+        <input type="text" id="team2" class="form-control" placeholder="اسم الفريق الثاني" oninput="autoSaveGameInfo()" />
+      </div>
+    </div>
+  </div>
+
+  <div class="start-dock">
+    <button onclick="goToSelectSections()" class="start-btn">
+      <i class="fa-solid fa-play"></i> ابدأ اللعبة
+    </button>
+  </div>
+
+  <div id="toastBox"></div>
+
+  <script>
+    // حفظ الاسماء
+    function autoSaveGameInfo() {
+      const gameName = document.getElementById('gameName').value.trim();
+      const team1 = document.getElementById('team1').value.trim();
+      const team2 = document.getElementById('team2').value.trim();
+
+      localStorage.setItem("gameName", gameName);
+      localStorage.setItem("team1", team1);
+      localStorage.setItem("team2", team2);
+    }
+
+    /* ================= بناء بطاقات الفئات تلقائياً ================= */
+    /* البطاقات تُولَّد من سجلّ الفئات في categories.js — لإضافة فئة
+       جديدة يكفي سطر واحد هناك وأسئلتها في بنك الأسئلة بالاسم نفسه. */
+
+    let activeGroup = 'all';
+    const picked = new Set();          // الفئات المختارة (تبقى محفوظة عند التصفية)
+
+    function catCard(cat) {
+      const total = CategoryLib.count(cat.name);
+      const label = document.createElement('label');
+      label.className = 'card';
+      label.dataset.group = cat.group || 'all';
+      label.dataset.name  = cat.name;
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = picked.has(cat.name);
+      cb.disabled = !total;
+      cb.addEventListener('click', onPick);
+
+      const body = document.createElement('div');
+      body.className = 'card-content';
+      body.innerHTML =
+        '<span class="pick-badge"><i class="fa-solid fa-check"></i></span>' +
+        '<img alt="" />' +
+        '<div class="content"><h4></h4><span class="question-count"></span></div>';
+
+      const img = body.querySelector('img');
+      img.src = CategoryLib.image(cat);
+      img.alt = cat.name;
+      img.loading = 'lazy';
+      img.onerror = () => { img.onerror = null; img.src = CategoryLib.art(cat); };
+
+      body.querySelector('h4').textContent = cat.name;
+      const count = body.querySelector('.question-count');
+      count.textContent = total ? total + ' أسئلة' : 'قريباً';
+      count.style.opacity = total ? '1' : '.6';
+
+      label.append(cb, body);
+      return label;
+    }
+
+    /* هل تطابق الفئة نصّ البحث؟ نبحث في الاسم العربي وفي ترجمته للّغة الحالية */
+    function matches(c, query) {
+      if (!query) return true;
+      const translated = (window.I18N ? I18N.t(c.name) : c.name).toLowerCase();
+      return c.name.toLowerCase().includes(query) || translated.includes(query);
+    }
+
+    function groupHead(g, n) {
+      const h = document.createElement('div');
+      h.className = 'grp-head';
+      h.id = 'grp-' + g.id;
+      h.innerHTML = '<span class="ttl"><span>' + g.emoji + '</span><span class="lbl"></span></span>' +
+                    '<span class="cnt">' + n + '</span><span class="rule"></span>';
+      h.querySelector('.lbl').textContent = g.label;
+      return h;
+    }
+
+    /* بلا بحث: تُعرض الفئات مقسّمة إلى مجموعات معنونة ليقفز إليها الشريط.
+       مع البحث: قائمة واحدة مسطّحة، فالعناوين لا معنى لها حينئذٍ. */
+    function renderCards() {
+      const grid  = document.getElementById('catGrid');
+      const query = (document.getElementById('catSearch').value || '').trim().toLowerCase();
+      grid.innerHTML = '';
+
+      let shown = 0;
+
+      if (query) {
+        CategoryLib.all.filter(c => matches(c, query)).forEach((c, i) => {
+          const card = catCard(c);
+          card.style.animationDelay = Math.min(i * 35, 600) + 'ms';
+          grid.appendChild(card);
+          shown++;
+        });
+      } else {
+        CAT_GROUPS.forEach(g => {
+          if (g.id === 'all') return;
+          const inGroup = CategoryLib.all.filter(c => c.group === g.id);
+          if (!inGroup.length) return;
+
+          grid.appendChild(groupHead(g, inGroup.length));
+          inGroup.forEach((c, i) => {
+            const card = catCard(c);
+            card.style.animationDelay = Math.min(i * 35, 400) + 'ms';
+            grid.appendChild(card);
+            shown++;
+          });
+        });
+      }
+
+      /* مساحة أسفل آخر مجموعة حتى تستطيع الوصول إلى أعلى الشاشة عند القفز إليها */
+      if (!query && shown) {
+        const tail = document.createElement("div");
+        tail.className = "grid-tail";
+        grid.appendChild(tail);
+      }
+
+      document.getElementById('emptyNote').hidden = shown > 0;
+      if (window.I18N) I18N.apply(grid);
+      syncDisabled();
+      watchGroups();
+    }
+
+    /* الشريط يقفز إلى المجموعة ولا يُخفي البقية */
+    function goToGroup(id) {
+      const search = document.getElementById('catSearch');
+      if (search.value) { search.value = ''; renderCards(); }   /* البحث يُخفي العناوين */
+
+      if (id === 'all') {
+        scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const head = document.getElementById('grp-' + id);
+        if (head) {
+          head.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          /* صور البطاقات تُحمَّل أثناء التمرير فيطول المحتوى وينزاح الهدف،
+             فنعيد المحاذاة بضع مرات حتى يستقرّ موضع العنوان. */
+          let tries = 0;
+          const fix = setInterval(() => {
+            const off = head.getBoundingClientRect().top - SPY_LINE + 4;
+            if (Math.abs(off) > 6) scrollBy({ top: off, behavior: 'auto' });
+            if (++tries >= 8) { clearInterval(fix); markActive(id); }
+          }, 220);
+        }
+      }
+      markActive(id);
+      if (window.SFX) SFX.click();
+    }
+
+    function markActive(id) {
+      if (activeGroup === id) return;
+      activeGroup = id;
+
+      const box = document.getElementById('groupChips');
+      let active = null;
+      box.querySelectorAll('.chip-btn').forEach(b => {
+        const on = b.dataset.group === id;
+        b.classList.toggle('on', on);
+        if (on) active = b;
+      });
+
+      /* على الجوال يُمرَّر الشريط أفقياً ليظهر المُبرَز — نحرّك الشريط نفسه
+         لا عبر scrollIntoView، فذاك يحرّك الصفحة كلها ويفسد حساب التمرير. */
+      if (active && box.scrollWidth > box.clientWidth) {
+        box.scrollTo({
+          left: active.offsetLeft - (box.clientWidth - active.offsetWidth) / 2,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function renderChips() {
+      const box = document.getElementById('groupChips');
+      box.innerHTML = '';
+      CAT_GROUPS.forEach(g => {
+        const n = g.id === 'all'
+          ? CategoryLib.all.length
+          : CategoryLib.all.filter(c => c.group === g.id).length;
+        if (!n) return;
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.dataset.group = g.id;
+        b.className = 'chip-btn' + (g.id === activeGroup ? ' on' : '');
+        b.innerHTML = '<span>' + g.emoji + '</span><span class="lbl"></span><span class="n">' + n + '</span>'
+                    + (g.id === 'all' ? '<span class="sel" hidden></span>' : '');
+        b.querySelector('.lbl').textContent = g.label;
+        b.onclick = () => goToGroup(g.id);
+        box.appendChild(b);
+      });
+      if (window.I18N) I18N.apply(box);
+      updateChipBadge();
+    }
+
+    /* عدد الفئات المختارة يظهر بجانب شريحة «كل الفئات» */
+    function updateChipBadge() {
+      const badge = document.querySelector('#groupChips .chip-btn[data-group="all"] .sel');
+      if (!badge) return;
+      const count = picked.size;
+      badge.hidden = count === 0;
+      badge.textContent = count + ' / ' + MAX_SELECTIONS;
+    }
+
+    /* يبرز في الشريط المجموعةَ التي تمرّ أمام عين اللاعب أثناء التمرير:
+       آخرُ عنوانٍ تجاوز خطَّ الشريط اللاصق هو المجموعة التي نقرأها الآن. */
+    let SPY_LINE = 170;                         /* يُضبط من ارتفاع الترويسة الفعلي */
+    let spyOn = false;
+
+    function updateActiveGroup() {
+      const heads = [...document.querySelectorAll('.grp-head')];
+      if (!heads.length) return;                /* أثناء البحث لا عناوين */
+
+      /* وصلنا آخر الصفحة؟ فالمجموعة الأخيرة هي المقصودة */
+      const atEnd = window.innerHeight + window.scrollY >= document.body.scrollHeight - 40;
+      let current = atEnd ? heads[heads.length - 1] : heads[0];
+
+      if (!atEnd) {
+        for (const h of heads) {
+          if (h.getBoundingClientRect().top <= SPY_LINE) current = h; else break;
+        }
+      }
+      markActive(current.id.replace('grp-', ''));
+    }
+
+    /* شريط التنقّل يلتصق تحت الترويسة — وارتفاعها يتغيّر حين تلتفّ على الجوال،
+       فنقيسها ونمرّرها إلى CSS بدل تثبيت رقم لا يصحّ على كل الشاشات. */
+    function syncHeaderOffset() {
+      const h = document.querySelector('header');
+      if (!h) return;
+      const px = Math.round(h.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--hdr', px + 'px');
+      /* خطّ رصد التمرير وهامش العناوين يتبعان الارتفاع نفسه */
+      SPY_LINE = px + 74;
+      document.querySelectorAll('.grp-head').forEach(g => {
+        g.style.scrollMarginTop = (px + 74) + 'px';
+      });
+    }
+
+    function watchGroups() {
+      syncHeaderOffset();
+      if (spyOn) return;                        /* مستمع واحد يكفي لكل الصفحة */
+      spyOn = true;
+      addEventListener('resize', syncHeaderOffset, { passive: true });
+      let ticking = false;
+      addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { updateActiveGroup(); ticking = false; });
+      }, { passive: true });
+    }
+
+    /* تمكين/تعطيل البطاقات حسب سقف الاختيار */
+    function syncDisabled() {
+      const full = picked.size >= MAX_SELECTIONS;
+      document.querySelectorAll('.card').forEach(card => {
+        const cb = card.querySelector('input');
+        const name = card.dataset.name;
+        const hasQ = CategoryLib.count(name) > 0;
+        cb.checked  = picked.has(name);
+        cb.disabled = !hasQ || (full && !cb.checked);
+      });
+      updateCounter();
+    }
+
+    function updateCounter() {
+      const count = picked.size;
+      const counter = document.getElementById('counter');
+      const fill = document.getElementById('progressFill');
+      const wrap = document.getElementById('counterWrap');
+      const startButton = document.querySelector('.start-btn');
+
+      if (counter) {
+        counter.innerHTML = '<i class="fa-solid fa-layer-group"></i> الفئات المختارة: <b>' +
+                            count + ' من ' + MAX_SELECTIONS + '</b>';
+      }
+      if (fill) fill.style.width = (count / MAX_SELECTIONS * 100) + '%';
+      if (wrap) wrap.classList.toggle('full', count >= MAX_SELECTIONS);
+      if (startButton) startButton.style.display = count > 0 ? 'inline-flex' : 'none';
+      updateChipBadge();
+      if (window.I18N) I18N.apply(document.getElementById('counterWrap'));
+    }
+
+    function onPick(event) {
+      const cb = event.target;
+      const name = cb.closest('.card').dataset.name;
+      if (cb.checked) {
+        if (picked.size >= MAX_SELECTIONS) { cb.checked = false; return; }
+        picked.add(name);
+      } else {
+        picked.delete(name);
+      }
+      if (window.SFX) cb.checked ? SFX.select() : SFX.deselect();
+      syncDisabled();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      SFX.mountControls();
+      renderChips();
+      renderCards();
+
+      const search = document.getElementById('catSearch');
+      let t = null;
+      search.addEventListener('input', () => {
+        clearTimeout(t);
+        t = setTimeout(renderCards, 120);
+      });
+
+      // إعادة الرسم عند تغيير اللغة حتى يعمل البحث بالترجمة الجديدة
+      document.addEventListener('i18n:change', () => { renderChips(); renderCards(); });
+
+      // استرجاع الأسماء المحفوظة
+      const g = localStorage.getItem("gameName");
+      const t1 = localStorage.getItem("team1");
+      const t2 = localStorage.getItem("team2");
+      if (g) document.getElementById("gameName").value = g;
+      if (t1) document.getElementById("team1").value = t1;
+      if (t2) document.getElementById("team2").value = t2;
+    });
+  </script>
+</body>
+</html>

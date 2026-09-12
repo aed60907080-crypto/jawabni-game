@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>الإعدادات — جاوبني</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --surface-light:#154a41;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+      padding-bottom:80px;
+    }
+
+    /* ---------- الخلفية ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+        radial-gradient(900px 620px at 10% 5%,  #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 50% 110%, #1a5b4d 0%, transparent 60%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.32; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:420px; height:420px; background:#1f7d68; top:-90px; right:-60px; }
+    .bg-fx .orb.b{ width:380px; height:380px; background:#c9962f; bottom:-120px; left:-80px; opacity:.18; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-40px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb{ animation:none; } }
+
+    .lightbar{
+      height:6px;
+      background:radial-gradient(circle, var(--gold-soft) 38%, transparent 42%) 0 0 / 24px 24px repeat-x;
+      filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+      animation:twinkle 1.8s linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ filter:drop-shadow(0 0 4px rgba(231,183,64,.6)); background-position-x:0; }
+      50%{ filter:drop-shadow(0 0 12px rgba(231,183,64,1)); background-position-x:12px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .lightbar{ animation:none; } }
+
+    /* ---------- الرأس ---------- */
+    header{
+      position:sticky; top:0; z-index:40;
+      background:linear-gradient(180deg, rgba(13,51,45,.92), rgba(4,18,15,.82));
+      backdrop-filter:blur(16px) saturate(140%);
+      -webkit-backdrop-filter:blur(16px) saturate(140%);
+      padding:12px 24px;
+      display:flex; justify-content:space-between; align-items:center; gap:14px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 12px 40px rgba(0,0,0,.4);
+      flex-wrap:wrap;
+    }
+    .head-brand{ display:flex; align-items:center; gap:12px; }
+    .logo{ width:50px; height:50px; border-radius:16px; object-fit:cover;
+      box-shadow:0 0 0 2px var(--gold), 0 8px 22px rgba(0,0,0,.45); }
+    .head-brand b{
+      font-family:'Cairo', sans-serif; font-weight:900; font-size:21px;
+      background:linear-gradient(120deg, var(--gold-soft), var(--gold) 50%, #fff6dd 65%, var(--gold));
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+
+    .return-page{
+      background:var(--glass);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 18px;
+      color:var(--ivory);
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:13.5px;
+      display:inline-flex; align-items:center; gap:8px;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      transition:border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    .return-page i{ color:var(--gold); }
+    .return-page:hover{ border-color:var(--line-strong); transform:translateY(-2px); background:rgba(231,183,64,.1); }
+
+    /* ---------- عنوان الصفحة ---------- */
+    .page-head{ max-width:1000px; margin:40px auto 24px; padding:0 22px; text-align:center; }
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12.5px; letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+    .page-head h1{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(28px, 4.4vw, 42px);
+      margin:0 0 8px;
+      background:linear-gradient(120deg, var(--gold) 0%, #fff3d0 45%, var(--gold) 70%);
+      background-size:220% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 4.5s linear infinite;
+    }
+    .page-head p{ color:var(--muted); margin:0; font-size:15px; }
+
+    /* ---------- التخطيط ---------- */
+    .wrap{ max-width:1000px; margin:0 auto; padding:0 22px; }
+
+    .cards{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:linear-gradient(150deg, rgba(21,74,65,.5), rgba(6,24,20,.66));
+      backdrop-filter:blur(14px);
+      box-shadow:0 22px 54px rgba(0,0,0,.42);
+      padding:24px 22px;
+      animation:riseIn .5s ease both;
+    }
+    .card.wide{ grid-column:1 / -1; }
+    .card.danger{ border-color:rgba(255,107,77,.32); }
+    @keyframes riseIn{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:none;} }
+    @media (prefers-reduced-motion: reduce){ .card{ animation:none; } }
+
+    .card > h2{
+      font-family:'Cairo', sans-serif;
+      font-weight:900; font-size:18px;
+      margin:0 0 6px;
+      display:flex; align-items:center; gap:10px;
+      color:var(--gold-soft);
+    }
+    .card > h2 i{ color:var(--gold); font-size:16px; }
+    .card.danger > h2, .card.danger > h2 i{ color:#ffb3a1; }
+    .card > .sub{ color:var(--muted); font-size:13.5px; margin:0 0 18px; line-height:1.7; }
+
+    /* ---------- صف إعداد ---------- */
+    .row{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:13px 0;
+      border-top:1px solid rgba(231,183,64,.12);
+    }
+    .row:first-of-type{ border-top:0; }
+    .row .txt{ flex:1; min-width:0; }
+    .row .txt b{ display:block; font-family:'Cairo',sans-serif; font-weight:700; font-size:14.5px; }
+    .row .txt span{ display:block; color:var(--muted); font-size:12.5px; margin-top:3px; line-height:1.6; }
+
+    /* ---------- مفتاح تبديل ---------- */
+    .switch{ display:inline-flex; align-items:center; cursor:pointer; user-select:none; flex:0 0 auto; }
+    .switch input{ display:none; }
+    .switch .track{
+      width:52px; height:29px; border-radius:999px; background:rgba(4,18,15,.75);
+      border:1px solid var(--line); position:relative;
+      transition:background .2s ease, border-color .2s ease;
+    }
+    .switch .track::after{
+      content:""; position:absolute; top:3px; inset-inline-start:3px;
+      width:21px; height:21px; border-radius:50%; background:var(--muted);
+      transition:transform .22s ease, background .22s ease;
+    }
+    .switch input:checked + .track{ background:rgba(231,183,64,.24); border-color:var(--line-strong); }
+    .switch input:checked + .track::after{ background:var(--gold); transform:translateX(-23px); }
+    html[dir="ltr"] .switch input:checked + .track::after{ transform:translateX(23px); }
+
+    /* ---------- حقول ---------- */
+    .field{ margin-top:14px; }
+    .field label{ display:block; font-size:13px; color:var(--gold-soft); margin-bottom:6px; font-weight:700; }
+    .field input[type=text]{
+      width:100%; height:44px; padding:0 14px; border-radius:12px;
+      border:1px solid var(--line); background:rgba(4,18,15,.6);
+      color:var(--ivory); font-family:inherit; font-size:14px; outline:none; direction:ltr;
+    }
+    .field input[type=text]:focus{ border-color:var(--line-strong); }
+
+    /* ---------- أزرار ---------- */
+    .btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+      padding:11px 20px; border-radius:14px; font-family:'Cairo',sans-serif;
+      font-weight:800; font-size:14px; border:1px solid var(--line-strong);
+      background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+      color:#04120f; transition:transform .18s ease, filter .18s ease;
+    }
+    .btn:hover{ transform:translateY(-2px); filter:brightness(1.07); }
+    .btn.ghost{ background:rgba(4,18,15,.5); color:var(--ivory); border-color:var(--line); }
+    .btn.ghost:hover{ border-color:var(--line-strong); background:rgba(231,183,64,.1); }
+    .btn.danger{ background:linear-gradient(150deg,var(--coral-dim),var(--coral)); color:#170603; border-color:rgba(255,107,77,.5); }
+
+    /* شبكة اختيار الخلفية */
+    .bg-grid{
+      display:grid; gap:12px;
+      grid-template-columns:repeat(auto-fill, minmax(132px, 1fr));
+    }
+    .bg-opt{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:0; overflow:hidden;
+      background:transparent; cursor:pointer;
+      font-family:'Cairo', sans-serif;
+      transition:transform .18s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .bg-opt:hover{ transform:translateY(-3px); border-color:var(--line-strong); }
+    .bg-opt .prev{
+      height:74px; display:block;
+      border-bottom:1px solid rgba(0,0,0,.35);
+    }
+    .bg-opt .nm{
+      display:block; padding:9px 8px;
+      font-size:12.5px; font-weight:800; color:var(--muted);
+      background:rgba(4,18,15,.55);
+    }
+    .bg-opt.on{
+      border-color:var(--gold);
+      box-shadow:0 10px 26px rgba(231,183,64,.28), inset 0 0 0 1px rgba(231,183,64,.35);
+    }
+    .bg-opt.on .nm{ color:var(--ink); background:linear-gradient(135deg, var(--gold-soft), var(--gold)); }
+
+    /* مجموعة أزرار للاختيار بين قيمتين (عدد الفئات) */
+    .seg{
+      display:inline-flex; flex:0 0 auto; gap:4px; padding:4px;
+      border-radius:14px; border:1px solid var(--line);
+      background:rgba(4,18,15,.5);
+    }
+    .seg-btn{
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:14px;
+      padding:9px 16px; border-radius:11px; cursor:pointer;
+      border:1px solid transparent; background:transparent; color:var(--muted);
+      transition:background .18s ease, color .18s ease;
+    }
+    .seg-btn:hover{ color:var(--ivory); background:rgba(231,183,64,.1); }
+    .seg-btn.on{
+      background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+      color:#04120f; border-color:var(--line-strong);
+    }
+
+    .status{ font-size:13px; color:var(--muted); min-height:20px; }
+    .status.ok{ color:#7fd6a8; }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(4,18,15,.5); border:1px solid var(--line);
+      border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:700;
+      font-family:'Cairo',sans-serif;
+    }
+    .pill i{ color:var(--gold); }
+
+    .note{
+      margin:16px 0 0;
+      background:rgba(231,183,64,.07);
+      border-inline-start:3px solid var(--gold);
+      border-radius:10px;
+      padding:11px 14px;
+      color:var(--muted); font-size:12.5px; line-height:1.75;
+    }
+    .card.danger .note{ background:rgba(255,107,77,.08); border-inline-start-color:var(--coral); }
+
+    /* ---------- الإشعارات ---------- */
+    #toastBox{
+      position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
+      z-index:1200; display:flex; flex-direction:column; gap:10px; align-items:center;
+      pointer-events:none;
+    }
+    .toast{
+      background:linear-gradient(135deg, rgba(13,51,45,.97), rgba(4,18,15,.97));
+      border:1px solid var(--line-strong);
+      color:var(--ivory);
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:14.5px;
+      padding:14px 22px;
+      border-radius:14px;
+      box-shadow:var(--shadow-lg);
+      display:flex; align-items:center; gap:10px;
+      animation:toastIn .3s ease;
+    }
+    .toast i{ color:var(--gold); }
+    @keyframes toastIn{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:none;} }
+    @keyframes toastOut{ to{ opacity:0; transform:translateY(10px);} }
+    .toast.out{ animation:toastOut .3s ease forwards; }
+
+    @media (max-width:560px){
+      header{ padding:10px 14px; }
+      .wrap{ padding:0 14px; }
+      .card{ padding:20px 16px; border-radius:20px; }
+      .row{ flex-wrap:wrap; }
+    }
+  </style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+<div class="bg-fx">
+  <span class="orb a"></span>
+  <span class="orb b"></span>
+</div>
+
+<div class="lightbar"></div>
+
+<header>
+  <div class="head-brand">
+    <img class="logo" src="image/jawbnny.png" alt="جاوبني">
+    <b>جاوبني</b>
+  </div>
+  <button class="return-page" onclick="location.href='main-page.html'">
+    <i class="fa-solid fa-arrow-right-long"></i> الرجوع
+  </button>
+</header>
+
+<div class="page-head">
+  <span class="eyebrow-line">لوحة التحكم</span>
+  <h1>الإعدادات</h1>
+  <p>كل شيء يُحفظ في متصفحك وحده — لا خادم ولا حساب.</p>
+</div>
+
+<div class="wrap">
+  <div class="cards">
+
+    <!-- ============ اللعب ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-dice"></i> اللعب</h2>
+      <p class="sub">إعدادات الجولة: كم فئة تُختار، وكيف تظهر قيم الأسئلة على اللوحة.</p>
+
+      <div class="row">
+        <div class="txt">
+          <b>عدد الفئات المختارة</b>
+          <span>سقف ما يمكن اختياره في صفحة «اختر فئاتك». ٦ فئات = ٣٠ سؤالاً، ٨ فئات = ٤٠ سؤالاً.</span>
+        </div>
+        <div class="seg" id="maxCatSeg">
+          <button type="button" class="seg-btn" data-val="6">٦ فئات</button>
+          <button type="button" class="seg-btn" data-val="8">٨ فئات</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>نمط الجولة</b>
+          <span><b>عادي</b>: النقاط من الأسئلة وحدها، ولا تُوزَّع أي مفاجأة، ولوحة المفاجآت
+                تختفي من شاشة اللعب. <b>بالمفاجآت</b>: عشر مفاجآت تُخبَّأ عشوائياً بين
+                البطاقات (فخ، حفرة، قنبلة، تجميد، كنز، مضاعفات). المساعدات تعمل في النمطين.</span>
+        </div>
+        <div class="seg" id="modeSeg">
+          <button type="button" class="seg-btn" data-val="normal">عادي</button>
+          <button type="button" class="seg-btn" data-val="surprises">بالمفاجآت</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>مدة السؤال</b>
+          <span>الوقت المتاح للإجابة قبل أن تظهر تلقائياً. يمكن إيقاف المؤقّت ومتابعته أثناء السؤال.</span>
+        </div>
+        <div class="seg" id="timeSeg">
+          <button type="button" class="seg-btn" data-val="60">٦٠</button>
+          <button type="button" class="seg-btn" data-val="80">٨٠</button>
+          <button type="button" class="seg-btn" data-val="120">١٢٠</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>وقت الفريق الآخر</b>
+          <span>حين ينتهي وقت السؤال (أو يُخطئ الفريق) ينتقل السؤال للفريق الآخر بهذا الوقت،
+                ثم تُكشف الإجابة إن لم يجب.</span>
+        </div>
+        <div class="seg" id="otherTimeSeg">
+          <button type="button" class="seg-btn" data-val="30">٣٠</button>
+          <button type="button" class="seg-btn" data-val="60">٦٠</button>
+          <button type="button" class="seg-btn" data-val="80">٨٠</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>نقاط مخفية وعشوائية</b>
+          <span>في الوضع العادي تظهر قيمة كل سؤال على زره (١٠٠ … ٥٠٠). فعّل هذا الخيار
+                ليظهر «؟» بدل الرقم وتُوزَّع القيم عشوائياً على أزرار كل فئة — فلا يعرف
+                الفريق قيمة السؤال إلا بعد فتحه.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="hiddenPointsToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <p class="note" id="playNote">الخلط يحدث مرة واحدة لكل فئة ويبقى ثابتاً حتى نهاية الجولة.</p>
+    </div>
+
+    <!-- ============ الصوت ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-volume-high"></i> الصوت</h2>
+      <p class="sub">كل المؤثرات مولّدة داخل المتصفح — بلا أي ملفات صوتية.</p>
+
+      <div class="row">
+        <div class="txt">
+          <b>المؤثرات الصوتية</b>
+          <span>أصوات النقر والإجابة الصحيحة والمؤقّت.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="sfxToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>الموسيقى الخلفية</b>
+          <span>لحن هادئ يعمل أثناء اللعب.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="musicToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <p class="note">المتصفحات لا تسمح بالصوت قبل أول نقرة منك — إن لم تسمع شيئاً فانقر أي مكان في الصفحة أولاً.</p>
+    </div>
+
+    <!-- ============ الخلفيات ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-palette"></i> الخلفية</h2>
+      <p class="sub">تُطبَّق على كل صفحات اللعبة فوراً، وتُحفظ في متصفحك.</p>
+      <div class="bg-grid" id="bgGrid"></div>
+    </div>
+
+    <!-- ============ اللغة ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-earth-americas"></i> اللغة</h2>
+      <p class="sub">الواجهة وأسماء الفئات مترجمة يدوياً إلى ٣٨ لغة.</p>
+
+      <div class="row">
+        <div class="txt">
+          <b>لغة الواجهة</b>
+          <span>تُطبَّق على كل صفحات اللعبة.</span>
+        </div>
+        <span class="pill" id="langPill"><i class="fa-solid fa-globe"></i> العربية</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" type="button" id="openLangs"><i class="fa-solid fa-language"></i> تغيير اللغة</button>
+      </div>
+
+      <p class="note">اللغة المختارة تُحفظ وتبقى معك في كل مرة تفتح فيها اللعبة.</p>
+    </div>
+
+    <!-- ============ صور الأسئلة ============ -->
+    <div class="card wide">
+      <h2><i class="fa-solid fa-image"></i> صور الأسئلة</h2>
+      <p class="sub">
+        معظم الأسئلة رابط صورتها مكتوب داخل بنك الأسئلة فتظهر فوراً. الباقي يبحث عنه
+        المحرّك تلقائياً في ويكيبيديا وكومنز، وإن فشل ظهرت صورة الفئة.
+      </p>
+
+      <div class="row">
+        <div class="txt">
+          <b>البحث التلقائي عن الصور</b>
+          <span>أطفئه إذا كنت تلعب بلا إنترنت أو تريد سرعة قصوى — ستظهر عندها بطاقات مولّدة داخل المتصفح.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="autoImgToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>ذاكرة الصور</b>
+          <span id="cacheStatus">…</span>
+        </div>
+        <button class="btn ghost" type="button" id="clearCache"><i class="fa-solid fa-broom"></i> تفريغ</button>
+      </div>
+
+      <div class="row" style="display:block">
+        <div class="txt" style="margin-bottom:4px">
+          <b><i class="fa-brands fa-google" style="color:var(--gold)"></i> ربط بحث صور جوجل (اختياري)</b>
+          <span>لأدق النتائج. أنشئ محرك بحث مخصصاً مفعّلاً فيه «بحث الصور» و«البحث في كل الويب»، ثم ضع المفتاح ومعرّف المحرك هنا. يُحفظان في متصفحك فقط.</span>
+        </div>
+        <div class="field">
+          <label for="gKey">مفتاح API</label>
+          <input type="text" id="gKey" placeholder="AIza..." autocomplete="off" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="gCx">معرّف محرك البحث (CX)</label>
+          <input type="text" id="gCx" placeholder="a1b2c3d4e5f6g7h8i" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="btn-row">
+          <button class="btn" type="button" id="saveGoogle"><i class="fa-solid fa-floppy-disk"></i> حفظ</button>
+          <button class="btn ghost" type="button" id="clearGoogle"><i class="fa-solid fa-eraser"></i> مسح المفاتيح</button>
+          <span class="status" id="googleStatus"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ترجمة الأسئلة ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-language"></i> ترجمة الأسئلة</h2>
+      <p class="sub">نصوص الأسئلة تُترجم آلياً عند اختيار لغة غير العربية.</p>
+
+      <div class="row">
+        <div class="txt">
+          <b>الترجمة الآلية</b>
+          <span>أطفئها لتبقى الأسئلة بالعربية مهما كانت لغة الواجهة.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="autoTrToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>ذاكرة الترجمة</b>
+          <span id="trStatus">…</span>
+        </div>
+        <button class="btn ghost" type="button" id="clearTr"><i class="fa-solid fa-broom"></i> تفريغ</button>
+      </div>
+
+      <div class="field">
+        <label for="trEmail">بريد إلكتروني للتعريف بخدمة الترجمة (اختياري)</label>
+        <input type="text" id="trEmail" placeholder="you@example.com" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="btn-row">
+        <button class="btn" type="button" id="saveTr"><i class="fa-solid fa-floppy-disk"></i> حفظ</button>
+      </div>
+    </div>
+
+    <!-- ============ البيانات ============ -->
+    <div class="card danger">
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> البيانات</h2>
+      <p class="sub">كل شيء محفوظ في <code>localStorage</code> داخل متصفحك — لا يُرسل شيء خارج جهازك.</p>
+
+      <div class="row">
+        <div class="txt">
+          <b>اللعبة الحالية</b>
+          <span id="gameStatus">…</span>
+        </div>
+        <button class="btn ghost" type="button" id="clearRound"><i class="fa-solid fa-rotate-left"></i> إلغاء</button>
+      </div>
+
+      <div class="row">
+        <div class="txt">
+          <b>سجل الألعاب</b>
+          <span id="logStatus">…</span>
+        </div>
+        <button class="btn ghost" type="button" id="clearLog"><i class="fa-solid fa-trash"></i> مسح</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn danger" type="button" id="resetAll"><i class="fa-solid fa-bomb"></i> إعادة ضبط كل شيء</button>
+      </div>
+
+      <p class="note">
+        «إعادة ضبط كل شيء» تمسح حسابك ورصيدك ونقاطك وسجلّك وكل الإعدادات، ولا يمكن التراجع عنها.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div id="toastBox"></div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="translate.js"></script>
+
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+  /* ---------- إشعار ---------- */
+  function toast(msg, icon){
+    const box = document.getElementById('toastBox');
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = '<i class="fa-solid ' + (icon || 'fa-circle-check') + '"></i><span></span>';
+    t.querySelector('span').textContent = msg;
+    box.appendChild(t);
+    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2400);
+  }
+
+  function click(){ if (window.SFX) SFX.click(); }
+
+  /* ---------- أرقام عربية وصيغ الجمع ----------
+     العربية تميّز المفرد والمثنى وجمع القلّة (٣–١٠) والتمييز المفرد (١١+)،
+     فـ«٥ صور» و«٢٥ صورة» كلاهما صحيح في موضعه. */
+  function num(n){
+    const ar = !window.I18N || I18N.get() === 'ar';
+    return ar ? String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : String(n);
+  }
+  function count(n, one, two, few, many){
+    if (n === 0) return 'لا ' + one;
+    if (n === 1) return one;
+    if (n === 2) return two;
+    const r = n % 100;
+    return num(n) + ' ' + ((r >= 3 && r <= 10) ? few : many);
+  }
+
+  /* ============ الخلفية ============ */
+  (function () {
+    const grid = document.getElementById('bgGrid');
+    if (!grid || !window.Theme) return;
+
+    function paint() {
+      const cur = Theme.get();
+      grid.querySelectorAll('.bg-opt').forEach(b => b.classList.toggle('on', b.dataset.id === cur));
+    }
+
+    Theme.list().forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'bg-opt';
+      b.dataset.id = t.id;
+      /* معاينة مصغّرة بنفس ألوان الخلفية الحقيقية */
+      b.innerHTML =
+        '<span class="prev" style="background:' +
+          'radial-gradient(60px 40px at 80% 10%, ' + t.orbA + ' 0%, transparent 62%),' +
+          'radial-gradient(56px 40px at 15% 90%, ' + t.orbB + ' 0%, transparent 60%),' +
+          'linear-gradient(180deg, ' + t.swatch[0] + ' 0%, ' + t.swatch[1] + ' 100%)"></span>' +
+        '<span class="nm">' + t.name + '</span>';
+      b.onclick = () => {
+        Theme.set(t.id);
+        paint();
+        click();
+        toast('صارت الخلفية: ' + t.name, 'fa-palette');
+      };
+      grid.appendChild(b);
+    });
+
+    paint();
+  })();
+
+  /* ============ اللعب ============ */
+  (function () {
+    /* --- مجموعة أزرار عامة: تحفظ القيمة وتلوّن المختار --- */
+    function wireSeg(id, key, def, onPick) {
+      const box = document.getElementById(id);
+      if (!box) return;
+      const list = [...box.querySelectorAll('.seg-btn')];
+      const cur = () => localStorage.getItem(key) || def;
+      const paint = () => list.forEach(b => b.classList.toggle('on', b.dataset.val === cur()));
+      list.forEach(b => {
+        b.onclick = () => {
+          localStorage.setItem(key, b.dataset.val);
+          paint();
+          click();
+          if (onPick) onPick(b.dataset.val);
+        };
+      });
+      paint();
+    }
+
+    /* --- عدد الفئات المختارة: 6 أو 8 --- */
+    wireSeg('maxCatSeg', 'maxCategories', '6', v => {
+      toast('صار سقف الاختيار ' + v + ' فئات', 'fa-layer-group');
+    });
+
+    /* --- نمط الجولة: عادي أو بالمفاجآت --- */
+    wireSeg('modeSeg', 'gameMode', 'normal', v => {
+      toast(v === 'surprises' ? 'الجولة القادمة بالمفاجآت' : 'الجولة القادمة لعب عادي',
+            v === 'surprises' ? 'fa-wand-magic-sparkles' : 'fa-circle-play');
+    });
+
+    /* --- مدة السؤال --- */
+    wireSeg('timeSeg', 'questionSeconds', '60', v => {
+      toast('مدة السؤال صارت ' + v + ' ثانية', 'fa-stopwatch');
+    });
+
+    /* --- وقت الفريق الآخر بعد انتهاء الوقت أو الخطأ --- */
+    wireSeg('otherTimeSeg', 'otherTeamSeconds', '30', v => {
+      toast('وقت الفريق الآخر صار ' + v + ' ثانية', 'fa-right-left');
+    });
+
+    /* --- النقاط المخفية والعشوائية --- */
+    const hp = document.getElementById('hiddenPointsToggle');
+    if (hp) {
+      hp.checked = localStorage.getItem('hiddenPoints') === '1';
+      hp.onchange = () => {
+        localStorage.setItem('hiddenPoints', hp.checked ? '1' : '0');
+        /* أي خلط قديم يُلغى حتى تبدأ الجولة التالية بترتيب جديد */
+        localStorage.removeItem('pointsShuffle');
+        toast(hp.checked ? 'النقاط مخفية وعشوائية الآن' : 'قيم النقاط ظاهرة على الأزرار',
+              hp.checked ? 'fa-eye-slash' : 'fa-eye');
+        click();
+      };
+    }
+  })();
+
+  /* ============ الصوت ============ */
+  (function () {
+    const sfxT   = document.getElementById('sfxToggle');
+    const musicT = document.getElementById('musicToggle');
+    if (!window.SFX) {
+      sfxT.disabled = musicT.disabled = true;
+      return;
+    }
+
+    sfxT.checked   = SFX.sfxOn;
+    musicT.checked = SFX.music.on;
+
+    sfxT.onchange = () => {
+      SFX.setSfx(sfxT.checked);
+      toast(sfxT.checked ? 'المؤثرات الصوتية مفعّلة' : 'المؤثرات الصوتية مطفأة',
+            sfxT.checked ? 'fa-volume-high' : 'fa-volume-xmark');
+    };
+
+    musicT.onchange = () => {
+      /* toggle يقرأ الحالة الحقيقية من SFX، فنمرّرها بما يطابق المفتاح */
+      if (musicT.checked !== SFX.music.on) SFX.music.toggle();
+      musicT.checked = SFX.music.on;
+      toast(SFX.music.on ? 'الموسيقى الخلفية تعمل' : 'الموسيقى الخلفية متوقفة', 'fa-music');
+      click();
+    };
+  })();
+
+  /* ============ اللغة ============ */
+  (function () {
+    const pill = document.getElementById('langPill');
+    const btn  = document.getElementById('openLangs');
+
+    function refresh(){
+      if (!window.I18N || !I18N.meta) return;
+      const m = I18N.meta();
+      pill.innerHTML = '<i class="fa-solid fa-globe"></i> ' + (m.native || m.name || 'العربية');
+    }
+    refresh();
+
+    btn.onclick = () => {
+      if (window.I18N && I18N.openPicker) { I18N.openPicker(); click(); }
+      else toast('منتقي اللغة غير متاح', 'fa-circle-exclamation');
+    };
+
+    /* اللغة قد تتغير من داخل المنتقي، فنتابع التغيير */
+    document.addEventListener('i18n:change', refresh);
+    setInterval(refresh, 1200);
+  })();
+
+  /* ============ صور الأسئلة ============ */
+  (function () {
+    const autoT  = document.getElementById('autoImgToggle');
+    const gKey   = document.getElementById('gKey');
+    const gCx    = document.getElementById('gCx');
+    const gStat  = document.getElementById('googleStatus');
+    const cStat  = document.getElementById('cacheStatus');
+
+    if (!window.Images) {
+      autoT.disabled = gKey.disabled = gCx.disabled = true;
+      cStat.textContent = 'محرّك الصور غير محمَّل';
+      return;
+    }
+
+    function refreshCache(){
+      cStat.textContent = 'محفوظ في متصفحك: ' +
+        count(Images.cacheSize(), 'صورة واحدة', 'صورتان', 'صور', 'صورة');
+    }
+
+    const saved = Images.getGoogle();
+    gKey.value = saved.key;
+    gCx.value  = saved.cx;
+    gStat.textContent = (saved.key && saved.cx)
+      ? 'بحث جوجل مفعّل ✓' : 'غير مفعّل — ستُستخدم ويكيبيديا وكومنز.';
+    gStat.classList.toggle('ok', !!(saved.key && saved.cx));
+
+    autoT.checked = Images.getAuto();
+    refreshCache();
+
+    autoT.onchange = () => {
+      Images.setAuto(autoT.checked);
+      toast(autoT.checked ? 'البحث التلقائي عن الصور مفعّل' : 'البحث التلقائي مطفأ', 'fa-image');
+      click();
+    };
+
+    document.getElementById('saveGoogle').onclick = () => {
+      Images.setGoogle(gKey.value, gCx.value);
+      const ok = gKey.value.trim() && gCx.value.trim();
+      gStat.textContent = ok ? 'تم الحفظ — بحث جوجل مفعّل ✓' : 'تم الحفظ — أدخل الحقلين لتفعيل جوجل.';
+      gStat.classList.toggle('ok', !!ok);
+      toast('تم حفظ مفاتيح جوجل');
+      click();
+    };
+
+    document.getElementById('clearGoogle').onclick = () => {
+      Images.setGoogle('', '');
+      gKey.value = ''; gCx.value = '';
+      gStat.textContent = 'تم مسح المفاتيح.';
+      gStat.classList.remove('ok');
+      toast('مُسحت مفاتيح جوجل', 'fa-eraser');
+      click();
+    };
+
+    document.getElementById('clearCache').onclick = () => {
+      const n = Images.cacheSize();
+      Images.clearCache();
+      refreshCache();
+      toast('فُرّغت ذاكرة الصور — ' + count(n, 'صورة واحدة', 'صورتان', 'صور', 'صورة'), 'fa-broom');
+      click();
+    };
+  })();
+
+  /* ============ ترجمة الأسئلة ============ */
+  (function () {
+    const trT     = document.getElementById('autoTrToggle');
+    const trEmail = document.getElementById('trEmail');
+    const trStat  = document.getElementById('trStatus');
+
+    if (!window.Translate) {
+      trT.disabled = trEmail.disabled = true;
+      trStat.textContent = 'محرّك الترجمة غير محمَّل';
+      return;
+    }
+
+    function refresh(){
+      trStat.textContent = 'محفوظ في متصفحك: ' +
+        count(Translate.cacheSize(), 'ترجمة واحدة', 'ترجمتان', 'ترجمات', 'ترجمة');
+    }
+
+    trT.checked = Translate.enabled();
+    trEmail.value = Translate.getEmail();
+    refresh();
+
+    trT.onchange = () => {
+      Translate.setEnabled(trT.checked);
+      toast(trT.checked ? 'الترجمة الآلية مفعّلة' : 'الترجمة الآلية مطفأة', 'fa-language');
+      click();
+    };
+
+    document.getElementById('saveTr').onclick = () => {
+      Translate.setEmail(trEmail.value);
+      toast('تم الحفظ');
+      click();
+    };
+
+    document.getElementById('clearTr').onclick = () => {
+      const n = Translate.cacheSize();
+      Translate.clearCache();
+      refresh();
+      toast('فُرّغت ذاكرة الترجمة — ' + count(n, 'ترجمة واحدة', 'ترجمتان', 'ترجمات', 'ترجمة'), 'fa-broom');
+      click();
+    };
+  })();
+
+  /* ============ البيانات ============ */
+  (function () {
+    /* مفاتيح الجولة الجارية وحدها — لا تمسّ الحساب ولا الإعدادات */
+    const ROUND_KEYS = [
+      'gameStarted', 'roundQuestions', 'answeredQuestions', 'teamScores',
+      'selectedCategories', 'selectedCards', 'selectedQuestions',
+      'currentTurn', 'currentQuestion', 'team1', 'team2', 'gameName', 'onlineRoom'
+    ];
+
+    const gameStat = document.getElementById('gameStatus');
+    const logStat  = document.getElementById('logStatus');
+
+    function readLog(){
+      try { const v = JSON.parse(localStorage.getItem('gameLog') || '[]'); return Array.isArray(v) ? v : []; }
+      catch (e) { return []; }
+    }
+
+    function refresh(){
+      const running = localStorage.getItem('gameStarted') === 'true'
+                   || localStorage.getItem('gameStarted') === '1';
+      const t1 = localStorage.getItem('team1'), t2 = localStorage.getItem('team2');
+      gameStat.textContent = running
+        ? ('جولة جارية' + (t1 && t2 ? ' — ' + t1 + ' × ' + t2 : ''))
+        : 'لا توجد جولة جارية';
+
+      const n = readLog().length;
+      logStat.textContent = n
+        ? (count(n, 'لعبة واحدة', 'لعبتان', 'ألعاب', 'لعبة') + ' محفوظة')
+        : 'السجل فارغ';
+    }
+    refresh();
+
+    document.getElementById('clearRound').onclick = () => {
+      if (!confirm('إلغاء الجولة الحالية؟ تُمسح الأسئلة المجاب عنها ونقاط الفريقين.')) return;
+      ROUND_KEYS.forEach(k => localStorage.removeItem(k));
+      refresh();
+      toast('أُلغيت الجولة الحالية', 'fa-rotate-left');
+      click();
+    };
+
+    document.getElementById('clearLog').onclick = () => {
+      const n = readLog().length;
+      if (!n) { toast('السجل فارغ أصلاً', 'fa-circle-info'); return; }
+      if (!confirm('مسح سجل الألعاب — ' + count(n, 'لعبة واحدة', 'لعبتان', 'ألعاب', 'لعبة') + '؟ لا يمكن التراجع.')) return;
+      localStorage.removeItem('gameLog');
+      refresh();
+      toast('مُسح سجل الألعاب', 'fa-trash');
+      click();
+    };
+
+    document.getElementById('resetAll').onclick = () => {
+      if (!confirm('إعادة ضبط كل شيء؟\n\nيُمسح حسابك ورصيدك ونقاطك وسجلّك وكل الإعدادات.')) return;
+      if (!confirm('تأكيد أخير — لا يمكن التراجع عن هذه الخطوة.')) return;
+      try { localStorage.clear(); } catch (e) {}
+      toast('أُعيد ضبط كل شيء', 'fa-bomb');
+      setTimeout(() => { location.href = 'main-page.html'; }, 900);
+    };
+  })();
+
+  if (window.SFX) SFX.mountControls();
+</script>
+</body>
+</html>

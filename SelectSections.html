@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+  <title>لوحة اللعب — جاوبني</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --ink:#04120f;
+      --ink-deep:#020b09;
+      --surface:#0d332d;
+      --surface-light:#154a41;
+      --glass:rgba(21,74,65,.45);
+      --gold:#e7b740;
+      --gold-soft:#f7dd9c;
+      --gold-deep:#b6851d;
+      --coral:#ff6b4d;
+      --coral-dim:#e04a2c;
+      --blue:#4a9bff;
+      --ivory:#f5f1e6;
+      --muted:#9fc2bb;
+      --line:rgba(231,183,64,.22);
+      --line-strong:rgba(231,183,64,.5);
+      --shadow-lg:0 30px 70px rgba(0,0,0,.55);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body {
+      margin:0;
+      background:var(--ink);
+      color:var(--ivory);
+      font-family:'Tajawal', sans-serif;
+      text-align:center;
+      min-height:100vh;
+      overflow-x:hidden;
+      padding-bottom:50px;
+    }
+
+    /* ---------- background ---------- */
+    .bg-fx{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:
+        radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+        radial-gradient(900px 620px at 10% 5%,  #123f37 0%, transparent 58%),
+        radial-gradient(700px 700px at 50% 110%, #1a5b4d 0%, transparent 60%),
+        linear-gradient(180deg, #061814 0%, var(--ink) 55%, #030d0b 100%);
+    }
+    .bg-fx .orb{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.32; animation:float 18s ease-in-out infinite; }
+    .bg-fx .orb.a{ width:420px; height:420px; background:#1f7d68; top:-90px; right:-60px; }
+    .bg-fx .orb.b{ width:380px; height:380px; background:#c9962f; bottom:-120px; left:-80px; opacity:.18; animation-delay:-6s; }
+    @keyframes float{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(0,-40px,0) scale(1.12);} }
+    .bg-fx::after{
+      content:""; position:absolute; inset:0;
+      background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:3px 3px; opacity:.5;
+    }
+    @media (prefers-reduced-motion: reduce){ .bg-fx .orb{ animation:none; } }
+
+    .lightbar{
+      height:6px;
+      background:radial-gradient(circle, var(--gold-soft) 38%, transparent 42%) 0 0 / 24px 24px repeat-x;
+      filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+      animation:twinkle 1.8s linear infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{ filter:drop-shadow(0 0 4px rgba(231,183,64,.6)); background-position-x:0; }
+      50%{ filter:drop-shadow(0 0 12px rgba(231,183,64,1)); background-position-x:12px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .lightbar{ animation:none; } }
+
+    /* ---------- header ---------- */
+    header {
+      position:sticky; top:0; z-index:40;
+      background:linear-gradient(180deg, rgba(13,51,45,.92), rgba(4,18,15,.82));
+      backdrop-filter:blur(16px) saturate(140%);
+      -webkit-backdrop-filter:blur(16px) saturate(140%);
+      color:var(--ivory);
+      padding:12px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 12px 40px rgba(0,0,0,.4);
+      flex-wrap:wrap;
+    }
+    .logo { width:52px; height:52px; border-radius:16px; object-fit:cover;
+      box-shadow:0 0 0 2px var(--gold), 0 8px 22px rgba(0,0,0,.45); }
+    header #displayGameName{
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:clamp(18px, 3vw, 26px);
+      margin:0;
+      background:linear-gradient(120deg, var(--gold-soft), var(--gold) 50%, #fff6dd 65%, var(--gold));
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shineText 5s linear infinite;
+    }
+    @keyframes shineText{ to{ background-position:200% center; } }
+
+    nav a {
+      color:#ff9c89;
+      text-decoration:none;
+      font-family:'Cairo', sans-serif;
+      font-weight:700; font-size:13.5px;
+      background:rgba(255,107,77,.1);
+      border:1px solid rgba(255,107,77,.35);
+      border-radius:999px;
+      padding:9px 16px;
+      display:inline-flex; align-items:center; gap:8px;
+      transition:background .2s ease, transform .2s ease;
+    }
+    nav a:hover{ background:rgba(255,107,77,.22); transform:translateY(-2px); }
+
+    /* ---------- page head ---------- */
+    .page-head{ max-width:900px; margin:38px auto 0; padding:0 20px; }
+    .eyebrow-line{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--gold);
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:12.5px; letter-spacing:2px;
+      margin-bottom:8px;
+    }
+    .eyebrow-line::before, .eyebrow-line::after{
+      content:""; width:34px; height:1px; background:linear-gradient(90deg, transparent, var(--gold));
+    }
+    h1.title {
+      font-family:'Cairo', sans-serif;
+      font-size:clamp(28px, 4.4vw, 42px);
+      font-weight:900;
+      margin:0 0 18px;
+      color:var(--ivory);
+      text-shadow:0 0 40px rgba(231,183,64,.18);
+    }
+
+    /* ---------- turn bar ---------- */
+    .turn-bar{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      background:linear-gradient(150deg, rgba(21,74,65,.55), rgba(6,24,20,.65));
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 10px 8px 22px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 18px 44px rgba(0,0,0,.4);
+      margin-bottom:34px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    #turnIndicator{
+      font-family:'Cairo', sans-serif;
+      font-weight:800;
+      font-size:1.05rem;
+      margin:0;
+      color:var(--ivory);
+      display:flex; align-items:center; gap:9px;
+    }
+    #turnIndicator .who{ color:var(--gold); }
+    #turnIndicator .live-dot{
+      width:9px; height:9px; border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 0 rgba(231,183,64,.7);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{
+      70%{ box-shadow:0 0 0 10px rgba(231,183,64,0); }
+      100%{ box-shadow:0 0 0 0 rgba(231,183,64,0); }
+    }
+    .btn-switch{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:var(--ink-deep);
+      border:none;
+      border-radius:999px;
+      padding:11px 22px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:14.5px;
+      display:inline-flex; align-items:center; gap:8px;
+      box-shadow:0 10px 26px rgba(231,183,64,.35);
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-switch:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(231,183,64,.5); }
+    .btn-switch i{ transition:transform .4s ease; }
+    .btn-switch:hover i{ transform:rotate(180deg); }
+
+    /* ---------- section label ---------- */
+    h4.sec-label {
+      font-family:'Cairo', sans-serif;
+      font-weight:900;
+      font-size:20px;
+      color:var(--ivory);
+      margin:0 0 22px;
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    h4.sec-label i{ color:var(--gold); }
+
+    /* ---------- category cards ---------- */
+    .categories-container {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:20px;
+      max-width:1200px;
+      margin:0 auto 50px;
+      padding:0 18px;
+    }
+    .category-card {
+      width:230px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      overflow:hidden;
+      background:linear-gradient(160deg, rgba(21,74,65,.5), rgba(6,24,20,.68));
+      backdrop-filter:blur(12px);
+      box-shadow:0 18px 42px rgba(0,0,0,.45);
+      transition:transform .25s cubic-bezier(.2,.9,.3,1.3), border-color .25s ease, box-shadow .25s ease;
+      animation:cardIn .5s ease backwards;
+    }
+    @keyframes cardIn{ from{ opacity:0; transform:translateY(20px) scale(.97);} to{ opacity:1; transform:none;} }
+    .category-card:hover{
+      transform:translateY(-6px);
+      border-color:var(--line-strong);
+      box-shadow:0 26px 54px rgba(0,0,0,.55), 0 0 0 1px rgba(231,183,64,.18);
+    }
+    .cat-thumb{ position:relative; overflow:hidden; }
+    .category-card img {
+      width:100%;
+      height:130px;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.95) brightness(.9);
+      transition:transform .5s ease, filter .3s ease;
+    }
+    .category-card:hover img{ transform:scale(1.07); filter:saturate(1.05) brightness(1); }
+    .cat-thumb::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent 40%, rgba(4,18,15,.85) 100%);
+    }
+    .category-card h4 {
+      position:relative;
+      background:transparent;
+      color:var(--ivory);
+      margin:-34px 0 0;
+      padding:0 12px 12px;
+      font-family:'Cairo', sans-serif;
+      font-weight:800;
+      font-size:17px;
+      z-index:2;
+      text-shadow:0 2px 12px rgba(0,0,0,.85);
+    }
+    .points-grid{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:6px;
+      padding:12px 12px 16px;
+    }
+    .category-card .btn {
+      display:inline-block;
+      text-align:center;
+      text-decoration:none;
+      line-height:1.4;
+      cursor:pointer;
+      font-family:'Cairo', sans-serif;
+      font-size:13px;
+      font-weight:800;
+      padding:9px 2px;
+      width:auto;
+      border-radius:11px;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn-outline-primary{
+      color:var(--gold-soft) !important;
+      border:1.5px solid var(--line-strong) !important;
+      background:rgba(231,183,64,.06) !important;
+    }
+    .btn-outline-primary:hover{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold)) !important;
+      color:var(--ink-deep) !important;
+      border-color:var(--gold) !important;
+      transform:translateY(-3px);
+      box-shadow:0 10px 22px rgba(231,183,64,.4);
+    }
+    .btn-success.disabled{
+      background:rgba(255,255,255,.06) !important;
+      border:1.5px solid rgba(255,255,255,.1) !important;
+      color:rgba(159,194,187,.55) !important;
+      text-decoration:line-through;
+      opacity:1 !important;
+      box-shadow:none;
+    }
+
+    /* ---------- scores ---------- */
+    .Scores {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:22px;
+      padding:0 18px;
+      margin-bottom:20px;
+    }
+    .score-card {
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:26px 24px;
+      width:320px;
+      background:linear-gradient(160deg, rgba(21,74,65,.5), rgba(6,24,20,.7));
+      backdrop-filter:blur(12px);
+      box-shadow:0 22px 54px rgba(0,0,0,.45);
+      transition:transform .25s ease, box-shadow .3s ease, border-color .3s ease;
+      overflow:hidden;
+    }
+    .score-card::before{
+      content:"";
+      position:absolute; top:0; right:0; left:0; height:4px;
+      background:linear-gradient(90deg, transparent, var(--muted), transparent);
+      opacity:.5;
+    }
+    #team1Card::before{ background:linear-gradient(90deg, transparent, var(--blue), transparent); }
+    #team2Card::before{ background:linear-gradient(90deg, transparent, var(--coral), transparent); }
+
+
+    .score-card h2 {
+      font-family:'Cairo', sans-serif;
+      font-size:22px;
+      font-weight:900;
+      margin:0 0 6px;
+      color:var(--ivory);
+      display:flex; align-items:center; justify-content:center; gap:9px;
+    }
+    #team1Card h2 i{ color:var(--blue); }
+    #team2Card h2 i{ color:var(--coral); }
+
+    .score-card p {
+      font-family:'Cairo', sans-serif;
+      font-size:44px;
+      font-weight:900;
+      margin:0 0 16px;
+      color:var(--gold);
+      text-shadow:0 0 30px rgba(231,183,64,.35);
+      transition:transform .3s ease;
+    }
+    .score-card p.bump{ animation:bump .45s ease; }
+    @keyframes bump{ 0%{transform:scale(1);} 45%{transform:scale(1.22);} 100%{transform:scale(1);} }
+
+    .card-btns{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+    .btn-reset {
+      font-family:'Cairo', sans-serif;
+      font-size:13.5px;
+      font-weight:800;
+      padding:9px 16px;
+      border-radius:12px;
+      border:none;
+      display:inline-flex; align-items:center; gap:7px;
+      transition:transform .18s ease, box-shadow .18s ease;
+      cursor:pointer;
+    }
+    .btn-reset:hover{ transform:translateY(-2px); }
+    /* ---------- المفاجآت ---------- */
+    .powers-wrap{ max-width:1100px; margin:0 auto 34px; padding:0 18px; }
+    .powers-hint{ color:var(--muted); font-size:14px; margin:0 0 16px; }
+
+    /* عدّاد المفاجآت المتبقّية */
+    .powers-counter{
+      display:inline-flex; align-items:center; gap:14px;
+      padding:14px 24px; margin-bottom:18px; border-radius:20px;
+      background:linear-gradient(150deg, rgba(21,74,65,.5), rgba(6,24,20,.62));
+      border:1px solid var(--line-strong);
+    }
+    .powers-counter .big{
+      font-family:'Cairo',sans-serif; font-weight:900; font-size:34px;
+      color:var(--gold); line-height:1; min-width:42px;
+      text-shadow:0 0 26px rgba(231,183,64,.4);
+    }
+    .powers-counter .lbl{ color:var(--muted); font-size:14px; text-align:start; }
+    .powers-counter.empty{ opacity:.6; }
+    .powers-counter.empty .big{ color:var(--muted); text-shadow:none; }
+
+    .power-chips{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+
+    .power-chip{
+      display:inline-flex; align-items:center; gap:7px;
+      padding:8px 13px; border-radius:14px;
+      border:1px solid var(--line); background:rgba(4,18,15,.5);
+      color:var(--ivory); font-family:inherit; font-size:13px; font-weight:600;
+    }
+    .power-chip .em{ font-size:16px; line-height:1; }
+    .power-chip.bad{ border-color:rgba(255,107,77,.3); }
+    .power-chip.good{ border-color:rgba(231,183,64,.4); }
+
+    .points-grid .btn{ position:relative; }
+
+    .btn-yellow{
+      background:linear-gradient(135deg, #ffd465, #e0a920);
+      color:#3a2a00;
+      box-shadow:0 8px 20px rgba(224,169,32,.35);
+    }
+    .btn-red{
+      background:linear-gradient(135deg, var(--coral), var(--coral-dim));
+      color:#fff;
+      box-shadow:0 8px 20px rgba(255,107,77,.4);
+    }
+    /* زر المكافأة +50 — أخضر ليتميّز عن بطاقتي الخصم */
+    .btn-bonus{
+      background:linear-gradient(135deg, #5fe0a8, #1f9d6b);
+      color:#04281a;
+      box-shadow:0 8px 20px rgba(31,157,107,.38);
+    }
+
+    .active-turn {
+      border-color:var(--gold) !important;
+      box-shadow:0 0 0 2px rgba(231,183,64,.4), 0 26px 60px rgba(231,183,64,.2) !important;
+      transform:translateY(-6px);
+    }
+    .active-turn::after{
+      content:"الدور الآن";
+      position:absolute;
+      top:14px; left:14px;
+      font-family:'Cairo', sans-serif;
+      font-size:10.5px; font-weight:800;
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:var(--ink-deep);
+      padding:4px 10px;
+      border-radius:999px;
+      box-shadow:0 6px 16px rgba(231,183,64,.4);
+    }
+
+    /* ---------- empty state ---------- */
+    .empty-state{
+      max-width:460px;
+      margin:0 auto 40px;
+      padding:34px 26px;
+      background:linear-gradient(150deg, rgba(21,74,65,.45), rgba(6,24,20,.6));
+      border:1px dashed var(--line-strong);
+      border-radius:22px;
+      color:var(--muted);
+    }
+    .empty-state i{ font-size:34px; color:var(--gold); margin-bottom:12px; display:block; }
+    .empty-state a{
+      display:inline-block; margin-top:14px;
+      color:var(--ink-deep);
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      font-family:'Cairo', sans-serif; font-weight:800;
+      padding:10px 22px; border-radius:999px; text-decoration:none;
+    }
+
+    @media (max-width: 768px) {
+      .category-card { width:calc(50% - 12px); }
+      .score-card { width:100%; max-width:360px; }
+    }
+    @media (max-width: 420px) {
+      .category-card { width:100%; }
+      .category-card .btn{ font-size:12px; }
+    }
+  </style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+  <div class="bg-fx">
+    <span class="orb a"></span>
+    <span class="orb b"></span>
+  </div>
+
+  <div class="lightbar"></div>
+
+  <header>
+    <a><img src="image/jawbnny.png" alt="Logo" class="logo" /></a>
+    <h1 id="displayGameName"></h1>
+    <nav>
+      <a href="#" onclick="endGame(); return false;"><i class="fa-solid fa-flag-checkered"></i> إنهاء اللعبة</a>
+    </nav>
+  </header>
+
+  <div class="lightbar"></div>
+
+  <div class="page-head">
+    <span class="eyebrow-line">جولة مباشرة</span>
+    <h1 class="title">لعبتنا الثقافية</h1>
+
+    <div class="turn-bar">
+      <p id="turnIndicator"></p>
+      <button class="btn-switch" onclick="switchTurn()">
+        <i class="fa-solid fa-rotate"></i> تبديل الدور
+      </button>
+    </div>
+  </div>
+
+  <h4 class="sec-label"><i class="fa-solid fa-layer-group"></i> الفئات التي قمت باختيارها</h4>
+
+  <div class="categories-container" id="selectedCategories"></div>
+
+  <!-- ============ المفاجآت (تظهر في نمط «لعب بالمفاجآت» فقط) ============ -->
+  <h4 class="sec-label" id="powersLabel"><i class="fa-solid fa-wand-magic-sparkles"></i> المفاجآت — موزّعة عشوائياً على اللوحة</h4>
+
+  <div class="powers-wrap" id="powersWrap">
+    <div class="powers-counter" id="powersCounter">
+      <span class="big" id="powersLeft">0</span>
+      <span class="lbl" id="powersHint">مفاجأة ما زالت مخبّأة بين البطاقات — لا أحد يعرف أين.</span>
+    </div>
+
+    <div class="power-chips" id="powersLegend"></div>
+  </div>
+
+  <div class="Scores">
+    <div class="score-card" id="team1Card">
+      <h2><i class="fa-solid fa-shield-halved"></i> <span id="displayTeam1"></span></h2>
+      <p id="team1Score">0</p>
+      <div class="card-btns">
+        <button class="btn-reset btn-bonus" onclick="applyBonus('team1', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>
+        <button class="btn-reset btn-yellow" onclick="applyPenalty('team1', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>
+        <button class="btn-reset btn-red" onclick="applyPenalty('team1', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>
+      </div>
+    </div>
+
+    <div class="score-card" id="team2Card">
+      <h2><i class="fa-solid fa-shield-halved"></i> <span id="displayTeam2"></span></h2>
+      <p id="team2Score">0</p>
+      <div class="card-btns">
+        <button class="btn-reset btn-bonus" onclick="applyBonus('team2', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>
+        <button class="btn-reset btn-yellow" onclick="applyPenalty('team2', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>
+        <button class="btn-reset btn-red" onclick="applyPenalty('team2', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>
+      </div>
+    </div>
+  </div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+<!-- عجلة السؤال الإضافي: كل 1500 نقطة، وعند التعادل في النهاية -->
+<script src="wheel.js"></script>
+
+<script>
+  const selected = JSON.parse(localStorage.getItem('selectedCards')) || [];
+  const container = document.getElementById('selectedCategories');
+  const answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions')) || [];
+  const points = [100, 200, 300, 400, 500];
+
+  /* ===== وضع النقاط =====
+     الوضع العادي: قيمة كل زر مكتوبة عليه (100 … 500).
+     الوضع المخفي (اختياري من الإعدادات): ترتيب القيم يُخلط عشوائياً لكل فئة
+     ويظهر «؟» بدل الرقم، فلا يعرف الفريق قيمة السؤال حتى يفتحه.
+     الخلط يُحفظ في المتصفح ليبقى ثابتاً طوال الجولة. */
+  const hiddenPoints = localStorage.getItem("hiddenPoints") === "1";
+
+  function pointsOrderFor(title) {
+    if (!hiddenPoints) return points.slice();
+    let store = {};
+    try { store = JSON.parse(localStorage.getItem("pointsShuffle") || "{}") || {}; } catch (e) { store = {}; }
+    if (Array.isArray(store[title]) && store[title].length === points.length) return store[title];
+    const arr = points.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    store[title] = arr;
+    localStorage.setItem("pointsShuffle", JSON.stringify(store));
+    return arr;
+  }
+
+  if (selected.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fa-regular fa-folder-open"></i>
+        لم يتم اختيار أي فئة بعد.
+        <br><a href="question-section.html">اختر الفئات الآن</a>
+      </div>`;
+  }
+
+  selected.forEach((cat, idx) => {
+    const card = document.createElement('div');
+    card.className = 'category-card';
+    card.style.animationDelay = Math.min(idx * 70, 600) + 'ms';
+
+    let pointsButtons = '';
+    pointsOrderFor(cat.title).forEach(p => {
+      const questionKey = `${cat.title}_${p}`;
+      const answered = answeredQuestions.includes(questionKey);
+      /* في الوضع المخفي يظهر «؟» حتى يُفتح السؤال، ثم تنكشف قيمته */
+      const label = (hiddenPoints && !answered) ? '؟' : p;
+
+      pointsButtons += `<a href="question.html?category=${encodeURIComponent(cat.title)}&points=${p}"
+                        class="btn m-0 ${answered ? 'btn-success disabled' : 'btn-outline-primary'}"
+                        data-cat="${cat.title}" data-points="${p}"
+                        ${answered ? 'tabindex="-1" aria-disabled="true"' : ''}>${label}</a>`;
+    });
+
+    /* إن غابت صورة الفئة (مستثناة من المستودع مثلاً) نرسم بطاقة الفئة المولّدة */
+    card.innerHTML = `
+      <div class="cat-thumb"><img src="${cat.imgSrc}" alt="${cat.imgAlt}"
+        onerror="this.onerror=null; this.src=CategoryLib.art(CategoryLib.find(this.alt) || { name: this.alt });" /></div>
+      <h4>${cat.title}</h4>
+      <div class="points-grid">
+        ${pointsButtons}
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  /* ================= المفاجآت ================= */
+  /* تُوزَّع عشوائياً عند بدء الجولة — لا يزرعها أحد ولا يعرف مكانها.
+     هنا نعرض فقط كم بقي منها مخبّأً، ودليل أنواعها. */
+
+  function teamLabel(team) {
+    return localStorage.getItem(team) || (team === "team1" ? "الفريق 1" : "الفريق 2");
+  }
+
+  function renderPowersPanel() {
+    if (!window.Powerups) return;
+
+    /* في نمط «لعب عادي» لا مفاجآت على اللوحة، فنخفي اللوحة كلها */
+    const withSurprises = localStorage.getItem("gameMode") === "surprises";
+    const label = document.getElementById("powersLabel");
+    const wrap  = document.getElementById("powersWrap");
+    if (label) label.hidden = !withSurprises;
+    if (wrap)  wrap.hidden  = !withSurprises;
+    if (!withSurprises) return;
+
+    const answered = JSON.parse(localStorage.getItem("answeredQuestions") || "[]");
+    const left = Powerups.remaining(answered);
+
+    const counter = document.getElementById("powersCounter");
+    document.getElementById("powersLeft").textContent = left;
+    counter.classList.toggle("empty", left === 0);
+    document.getElementById("powersHint").textContent = left
+      ? "مفاجأة ما زالت مخبّأة بين البطاقات — لا أحد يعرف أين."
+      : "انكشفت كل المفاجآت.";
+
+    const legend = document.getElementById("powersLegend");
+    if (!legend.childElementCount) {
+      Powerups.POWERS.forEach(def => {
+        const el = document.createElement("span");
+        el.className = "power-chip " + def.tone;
+        el.title = def.desc;
+        el.innerHTML = '<span class="em"></span><span class="nm"></span>';
+        el.querySelector(".em").textContent = def.emoji;
+        el.querySelector(".nm").textContent = def.name;
+        legend.appendChild(el);
+      });
+    }
+
+    if (window.I18N) I18N.apply(document.querySelector(".powers-wrap"));
+  }
+
+  function showBoardToast(msg) {
+    let box = document.getElementById('boardToast');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'boardToast';
+      box.setAttribute('data-no-i18n', '');
+      box.style.cssText = 'position:fixed;bottom:76px;left:50%;transform:translateX(-50%);' +
+        'z-index:1200;background:linear-gradient(150deg,#154a41,#04120f);color:#f7dd9c;' +
+        'border:1px solid rgba(231,183,64,.5);border-radius:14px;padding:11px 20px;' +
+        'font-family:Cairo,sans-serif;font-weight:700;font-size:14px;' +
+        'box-shadow:0 16px 40px rgba(0,0,0,.5);transition:opacity .3s ease;';
+      document.body.appendChild(box);
+    }
+    box.textContent = msg;
+    box.style.opacity = '1';
+    clearTimeout(box._t);
+    box._t = setTimeout(() => { box.style.opacity = '0'; }, 2600);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const gameName = localStorage.getItem("gameName") || "لعبتنا الثقافية";
+    const team1 = localStorage.getItem("team1") || "الفريق 1";
+    const team2 = localStorage.getItem("team2") || "الفريق 2";
+
+    document.getElementById("displayGameName").textContent = gameName;
+    document.getElementById("displayTeam1").textContent = team1;
+    document.getElementById("displayTeam2").textContent = team2;
+
+    if (!localStorage.getItem('currentTurn')) localStorage.setItem('currentTurn', 'team1');
+
+    updateTurnUI();
+  });
+
+  function loadScores() {
+    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    document.getElementById('team1Score').textContent = scores.team1;
+    document.getElementById('team2Score').textContent = scores.team2;
+  }
+
+  function applyPenalty(team, amount) {
+    SFX.penalty();
+    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    scores[team] = Math.max(0, scores[team] - amount);
+    localStorage.setItem('teamScores', JSON.stringify(scores));
+    loadScores();
+
+    const el = document.getElementById(team + 'Score');
+    el.classList.add('bump');
+    setTimeout(() => el.classList.remove('bump'), 480);
+  }
+
+  /* مكافأة من المقدّم — عكس البطاقتين: تضيف نقاطاً للفريق */
+  function applyBonus(team, amount) {
+    SFX.coin();
+    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    scores[team] = (scores[team] || 0) + amount;
+    localStorage.setItem('teamScores', JSON.stringify(scores));
+    loadScores();
+    /* قد تتجاوز الزيادة محطة 1500 — فتظهر العجلة فوراً */
+    checkBonusWheel();
+
+    const el = document.getElementById(team + 'Score');
+    el.classList.add('bump');
+    setTimeout(() => el.classList.remove('bump'), 480);
+  }
+
+  function updateTurnUI() {
+    const team1 = localStorage.getItem("team1") || "الفريق 1";
+    const team2 = localStorage.getItem("team2") || "الفريق 2";
+    const currentTurn = localStorage.getItem("currentTurn") || "team1";
+    const who = currentTurn === 'team1' ? team1 : team2;
+
+    const ind = document.getElementById("turnIndicator");
+    ind.innerHTML = '<span class="live-dot"></span> الدور الآن على: <span class="who"></span>';
+    ind.querySelector('.who').textContent = who;
+
+    document.getElementById("team1Card").classList.toggle("active-turn", currentTurn === "team1");
+    document.getElementById("team2Card").classList.toggle("active-turn", currentTurn === "team2");
+
+    renderPowersPanel();
+
+    /* تنبيه التجميد يعلو على نصّ العدّاد */
+    const hint = document.getElementById('powersHint');
+    if (hint && window.Powerups) {
+      const froz = ['team1', 'team2'].filter(t => Powerups.isFrozen(t));
+      if (froz.length) {
+        hint.textContent = '🧊 ' + froz.map(teamLabel).join(' و') + ' سيفوت دوره القادم بسبب التجميد.';
+      }
+    }
+  }
+
+  function switchTurn() {
+    SFX.turn();
+    const currentTurn = localStorage.getItem("currentTurn") || "team1";
+    /* nextTurn يتخطّى الفريق المجمّد ويستهلك تجميده */
+    const nextTurn = window.Powerups
+      ? Powerups.nextTurn(currentTurn)
+      : (currentTurn === "team1" ? "team2" : "team1");
+
+    if (nextTurn === currentTurn) {
+      showBoardToast('🧊 الخصم مجمّد — الدور يبقى معك');
+    }
+    localStorage.setItem("currentTurn", nextTurn);
+    updateTurnUI();
+  }
+
+  function checkIfGameEnded() {
+    let totalQuestions = selected.length * points.length;
+    if (selected.length > 0 && answeredQuestions.length >= totalQuestions) {
+      /* 🤝 تعادل في نهاية الجولة — سؤال فاصل من العجلة من فئة أخرى */
+      const s = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+      if ((s.team1 || 0) === (s.team2 || 0) && window.BonusWheel &&
+          BonusWheel.open({ reason: 'tie', exclude: selected.map(c => c.title) })) {
+        return;
+      }
+      window.location.href = 'result.html';
+    }
+  }
+
+  /* 🎡 كل 1500 نقطة لفريق = سؤال إضافي من فئة خارج الجولة بعجلة المضاعف */
+  function checkBonusWheel() {
+    if (!window.BonusWheel || !selected.length) return false;
+    const team = BonusWheel.pendingMilestone();
+    if (!team) return false;
+    return BonusWheel.open({
+      reason: 'milestone',
+      team: team,
+      teamName: teamLabel(team),
+      exclude: selected.map(c => c.title),
+      /* بعد التخطّي: قد تنتظر محطة أخرى، أو تكون الجولة انتهت */
+      onSkip: () => { if (!checkBonusWheel()) checkIfGameEnded(); }
+    });
+  }
+
+  loadScores();
+  if (!checkBonusWheel()) checkIfGameEnded();
+
+  SFX.mountControls();
+  document.querySelectorAll('.category-card .btn').forEach(el =>
+    el.addEventListener('click', () => SFX.click()));
+
+  /* تحميل مسبق لصور أسئلة هذه الجولة أثناء وجود اللاعبين على اللوحة،
+     فتظهر الصورة فوراً عند فتح أي سؤال بدل انتظار البحث. */
+  if (window.Images || window.Translate) {
+    try {
+      const round = JSON.parse(localStorage.getItem('roundQuestions') || '{}');
+      if (window.Images) Images.prefetchRound(round);
+      /* وترجمة نصوص الجولة مسبقاً إن كانت اللغة غير العربية */
+      if (window.Translate && window.I18N) Translate.prefetchRound(round, I18N.get());
+    } catch (e) { /* لا شيء — سيُجلب كل شيء عند فتح السؤال */ }
+  }
+
+  function endGame() {
+    // حذف بيانات اللعبة
+    localStorage.removeItem("selectedCards");
+    localStorage.removeItem("roundQuestions");
+    localStorage.removeItem("selectedQuestions");
+    localStorage.removeItem("answeredQuestions");
+    localStorage.removeItem("currentTurn");
+    localStorage.removeItem("teamScores");
+    localStorage.removeItem("gameStarted");
+    localStorage.removeItem("bonusMilestones");
+
+    // تصفير المفاجآت والمساعدات
+    if (window.Powerups) Powerups.reset();
+
+    // إعادة تعيين الرصيد إذا رغبت بذلك:
+    // localStorage.setItem("balance", 5);
+
+    // العودة إلى الصفحة الرئيسية
+    window.location.href = "main-page.html";
+  }
+</script>
+</body>
+</html>

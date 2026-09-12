@@ -1,0 +1,22 @@
+{
+  "name": "jawabni",
+  "version": "1.0.0",
+  "private": true,
+  "description": "جاوبني — لعبة أسئلة ثقافية: موقع ويب وتطبيق أندرويد و iOS (Capacitor)",
+  "scripts": {
+    "build": "node scripts/build-www.mjs",
+    "cap:add:android": "npm run build && npx cap add android",
+    "cap:add:ios": "npm run build && npx cap add ios",
+    "sync": "npm run build && npx cap sync",
+    "android": "npm run sync && npx cap open android",
+    "ios": "npm run sync && npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
+}

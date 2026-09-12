@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+<title>اللعب أونلاين — جاوبني</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root{
+    --ink:#04120f; --glass:rgba(21,74,65,.45);
+    --gold:#e7b740; --gold-soft:#f7dd9c; --gold-deep:#b6851d;
+    --coral:#ff6b4d; --ivory:#f5f1e6; --muted:#9fc2bb;
+    --line:rgba(231,183,64,.22); --line-strong:rgba(231,183,64,.5);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--ink); color:var(--ivory);
+    font-family:'Tajawal',sans-serif; min-height:100vh;
+    padding-bottom:120px; overflow-x:hidden; text-align:center;
+  }
+  .bg-fx{
+    position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+      radial-gradient(900px 620px at 10% 5%, #123f37 0%, transparent 58%),
+      linear-gradient(180deg,#061814 0%, var(--ink) 55%, #030d0b 100%);
+  }
+  .lightbar{
+    height:6px;
+    background:radial-gradient(circle,var(--gold-soft) 38%,transparent 42%) 0 0/24px 24px repeat-x;
+    filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+  }
+
+  header{
+    position:sticky; top:0; z-index:40;
+    background:linear-gradient(180deg,rgba(13,51,45,.94),rgba(4,18,15,.86));
+    backdrop-filter:blur(16px) saturate(140%);
+    padding:12px 24px; display:flex; justify-content:space-between;
+    align-items:center; gap:14px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+  }
+  .head-brand{ display:flex; align-items:center; gap:12px; }
+  .head-brand img{ width:50px; height:50px; border-radius:15px; object-fit:cover;
+    box-shadow:0 0 0 2px var(--gold),0 8px 22px rgba(0,0,0,.45); }
+  .head-brand b{ font-family:'Cairo',sans-serif; font-weight:900; font-size:21px; color:var(--gold-soft); }
+  nav a{
+    color:var(--ivory); text-decoration:none; font-family:'Cairo',sans-serif;
+    font-weight:700; font-size:13.5px; background:var(--glass);
+    border:1px solid var(--line); border-radius:999px; padding:9px 16px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  nav a i{ color:var(--gold); }
+  nav a:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
+
+  .page-head{ max-width:820px; margin:46px auto 10px; padding:0 22px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px; color:var(--gold);
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; letter-spacing:2px;
+  }
+  .eyebrow::before,.eyebrow::after{ content:""; width:34px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold)); }
+  h1{
+    font-family:'Cairo',sans-serif; font-size:clamp(30px,5vw,46px); font-weight:900;
+    margin:14px 0 12px;
+    background:linear-gradient(120deg,var(--gold) 0%,#fff3d0 45%,var(--gold) 70%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .page-head p{ color:var(--muted); font-size:16px; margin:0; }
+
+  .cards{
+    max-width:980px; margin:38px auto; padding:0 22px;
+    display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  }
+  .card{
+    background:linear-gradient(150deg,rgba(21,74,65,.5),rgba(6,24,20,.62));
+    border:1px solid var(--line); border-radius:22px; padding:26px 24px;
+    text-align:start;
+  }
+  .card .ic{
+    width:52px; height:52px; border-radius:16px; display:grid; place-items:center;
+    background:rgba(231,183,64,.14); border:1px solid var(--line-strong);
+    color:var(--gold); font-size:22px; margin-bottom:14px;
+  }
+  .card h3{ font-family:'Cairo',sans-serif; font-size:19px; margin:0 0 8px; color:var(--gold-soft); }
+  .card p{ color:var(--muted); font-size:14.5px; margin:0 0 18px; line-height:1.8; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    padding:13px 22px; border-radius:15px; cursor:pointer; width:100%;
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:15px;
+    border:1px solid var(--line-strong);
+    background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+    color:#04120f; transition:transform .18s ease, filter .18s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); filter:brightness(1.07); }
+  .btn.ghost{ background:transparent; color:var(--ivory); }
+  .btn.ghost:hover{ background:rgba(231,183,64,.1); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; transform:none; }
+
+  input[type=text]{
+    width:100%; height:50px; padding:0 16px; border-radius:15px; margin-bottom:12px;
+    border:1px solid var(--line); background:rgba(4,18,15,.6);
+    color:var(--ivory); font-family:inherit; font-size:16px; outline:none; text-align:center;
+    letter-spacing:2px; font-weight:800;
+  }
+  input[type=text]:focus{ border-color:var(--line-strong); }
+  input[type=text]::placeholder{ letter-spacing:0; font-weight:400; color:var(--muted); }
+
+  /* ---------- غرفة ---------- */
+  .room{
+    max-width:820px; margin:0 auto 40px; padding:28px 24px;
+    background:linear-gradient(150deg,rgba(21,74,65,.5),rgba(6,24,20,.62));
+    border:1px solid var(--line-strong); border-radius:24px;
+  }
+  .room-code{
+    font-family:'Cairo',sans-serif; font-size:clamp(36px,8vw,56px); font-weight:900;
+    letter-spacing:10px; color:var(--gold); margin:8px 0 4px;
+    text-shadow:0 0 40px rgba(231,183,64,.35);
+  }
+  .room small{ display:block; color:var(--muted); font-size:13.5px; margin-bottom:20px; }
+
+  .link-row{ display:flex; gap:9px; flex-wrap:wrap; margin-bottom:18px; }
+  .link-row input{
+    flex:1 1 240px; height:46px; margin:0; font-size:12.5px; letter-spacing:0;
+    font-weight:400; text-align:start; direction:ltr;
+  }
+  .link-row .btn{ width:auto; padding:0 20px; height:46px; }
+
+  .summary{
+    display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    margin-bottom:20px;
+  }
+  .summary div{
+    background:rgba(4,18,15,.45); border:1px solid var(--line);
+    border-radius:14px; padding:12px;
+  }
+  .summary b{ display:block; color:var(--gold); font-family:'Cairo',sans-serif; font-size:19px; }
+  .summary small{ color:var(--muted); font-size:12px; }
+
+  .cat-list{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:20px; }
+  .cat-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(4,18,15,.5); border:1px solid var(--line);
+    border-radius:12px; padding:8px 13px; font-size:13.5px;
+  }
+
+  .note{
+    border-inline-start:3px solid var(--gold);
+    background:rgba(231,183,64,.07); border-radius:0 14px 14px 0;
+    padding:14px 18px; font-size:14px; color:var(--gold-soft);
+    text-align:start; margin:20px auto 0; max-width:820px; line-height:1.85;
+  }
+  html[dir=ltr] .note{ border-radius:14px 0 0 14px; }
+  .note b{ color:var(--gold); }
+
+  .status{ color:var(--muted); font-size:13.5px; min-height:20px; margin-top:10px; }
+  .status.ok{ color:#7fd6a8; }
+  .status.err{ color:#ff9c89; }
+
+  .steps{ text-align:start; color:var(--muted); font-size:14.5px; line-height:2; margin:0; padding-inline-start:20px; }
+  .steps li::marker{ color:var(--gold); }
+</style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+
+<body>
+
+<div class="bg-fx"></div>
+<div class="lightbar"></div>
+
+<header>
+  <div class="head-brand">
+    <img src="image/jawbnny.png" alt="جاوبني">
+    <b>جاوبني</b>
+  </div>
+  <nav>
+    <a href="main-page.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a>
+    <a href="guide.html"><i class="fa-solid fa-book-open"></i> كتيب اللعبة</a>
+  </nav>
+</header>
+
+<div class="lightbar"></div>
+
+<div class="page-head">
+  <span class="eyebrow">اللعب عن بُعد</span>
+  <h1>أونلاين</h1>
+  <p>العبوا نفس الجولة من أجهزة مختلفة — أنشئ غرفة وشارك رمزها، ويحصل الجميع على الفئات والأسئلة نفسها بالترتيب نفسه.</p>
+</div>
+
+<!-- ====== إنشاء / انضمام ====== -->
+<div class="cards" id="entryCards">
+  <div class="card">
+    <div class="ic"><i class="fa-solid fa-tower-broadcast"></i></div>
+    <h3>أنشئ غرفة</h3>
+    <p>اختر فئاتك أولاً من صفحة «إنشاء لعبة»، ثم أنشئ غرفة هنا واحصل على رمز ورابط للمشاركة.</p>
+    <button class="btn" id="createBtn"><i class="fa-solid fa-plus"></i> إنشاء غرفة</button>
+    <p class="status" id="createStatus"></p>
+  </div>
+
+  <div class="card">
+    <div class="ic"><i class="fa-solid fa-right-to-bracket"></i></div>
+    <h3>انضم لغرفة</h3>
+    <p>أدخل رمز الغرفة الذي وصلك، أو الصق الرابط كاملاً وستُفتح الجولة نفسها عندك.</p>
+    <input type="text" id="joinCode" placeholder="رمز الغرفة أو الرابط" autocomplete="off" spellcheck="false" />
+    <button class="btn ghost" id="joinBtn"><i class="fa-solid fa-arrow-right-to-bracket"></i> انضمام</button>
+    <p class="status" id="joinStatus"></p>
+  </div>
+</div>
+
+<!-- ====== الغرفة الجاهزة ====== -->
+<div class="room" id="roomBox" hidden>
+  <span class="eyebrow">رمز الغرفة</span>
+  <div class="room-code" id="roomCode">------</div>
+  <small>شارك هذا الرمز مع بقية اللاعبين</small>
+
+  <div class="link-row">
+    <input type="text" id="roomLink" readonly />
+    <button class="btn" id="copyLink"><i class="fa-solid fa-copy"></i> نسخ الرابط</button>
+  </div>
+
+  <div class="summary">
+    <div><b id="sumCats">0</b><small>فئة</small></div>
+    <div><b id="sumQs">0</b><small>سؤال</small></div>
+    <div><b id="sumT1">—</b><small>الفريق الأول</small></div>
+    <div><b id="sumT2">—</b><small>الفريق الثاني</small></div>
+  </div>
+
+  <div class="cat-list" id="roomCats"></div>
+
+  <button class="btn" id="startRoom"><i class="fa-solid fa-play"></i> ابدأ اللعب</button>
+  <p class="status" id="roomStatus"></p>
+</div>
+
+<div class="note">
+  <b>كيف يعمل الأونلاين هنا؟</b><br>
+  جاوبني لعبة تعمل داخل المتصفح بلا خادم، فالغرفة تُشفَّر داخل الرابط نفسه:
+  الفئات وأسماء الفريقين وبذرة الاختيار العشوائي. من يفتح الرابط تُبنى عنده
+  <b>نفس الجولة بنفس الأسئلة والترتيب</b>، فتلعبون معاً عبر مكالمة مرئية أو صوتية
+  بينما يدير كل فريق شاشته.<br><br>
+  <b>ما لا يفعله:</b> لا تُزامَن النقاط لحظياً بين الأجهزة — يحتسب المضيف النتيجة على شاشته.
+  المزامنة الحيّة تحتاج خادماً، وهو خارج نطاق هذه النسخة التي تعمل بلا إنترنت.
+</div>
+
+<div class="note" style="margin-top:14px">
+  <b>خطوات سريعة</b>
+  <ol class="steps">
+    <li>المضيف يختار الفئات وأسماء الفريقين من صفحة «إنشاء لعبة».</li>
+    <li>يعود إلى هنا ويضغط «إنشاء غرفة» فيحصل على رمز ورابط.</li>
+    <li>يرسل الرابط للبقية عبر أي تطبيق محادثة.</li>
+    <li>كل من يفتح الرابط يضغط «ابدأ اللعب» فتظهر عنده اللوحة نفسها.</li>
+  </ol>
+</div>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+/* ============================================================
+   الغرفة = حزمة صغيرة مضغوطة داخل الرابط:
+     v  إصدار
+     s  البذرة (seed) لتوليد نفس الأسئلة عند الجميع
+     c  أرقام الفئات المختارة داخل سجل الفئات
+     n  اسم اللعبة
+     a  اسم الفريق الأول
+     b  اسم الفريق الثاني
+   ============================================================ */
+
+const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   /* بلا أحرف ملتبسة */
+
+function randomCode(n){
+  let s = "";
+  const buf = new Uint32Array(n);
+  (window.crypto || window.msCrypto).getRandomValues(buf);
+  for (let i = 0; i < n; i++) s += CODE_ALPHABET[buf[i] % CODE_ALPHABET.length];
+  return s;
+}
+
+/* ترميز يدعم العربية داخل الرابط */
+function packRoom(obj){
+  const json = JSON.stringify(obj);
+  const bytes = new TextEncoder().encode(json);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function unpackRoom(str){
+  try {
+    let b64 = str.replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    const bin = atob(b64);
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  } catch (e) { return null; }
+}
+
+/* مولّد عشوائي ثابت البذرة — ليحصل الجميع على نفس الأسئلة */
+function seededRandom(seed){
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < seed.length; i++){
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return function(){
+    h ^= h << 13; h >>>= 0;
+    h ^= h >> 17;
+    h ^= h << 5;  h >>>= 0;
+    return h / 4294967296;
+  };
+}
+
+/* نفس منطق buildRoundQuestions لكن بعشوائية مرتبطة بالبذرة */
+function buildSeededRound(categoryTitles, seed){
+  const rand = seededRandom(seed);
+  const levels = { 100:1, 200:2, 300:3, 400:4, 500:5 };
+  const round = {};
+
+  categoryTitles.forEach(cat => {
+    const pool = (window.questionsData || {})[cat] || [];
+    Object.keys(levels).forEach(pts => {
+      let cand = pool.filter(x => x.l === levels[pts]);
+      if (!cand.length) cand = pool;
+      if (!cand.length) return;
+      round[cat + "_" + pts] = cand[Math.floor(rand() * cand.length)];
+    });
+  });
+  return round;
+}
+
+/* ---------- الحالة ---------- */
+let room = null;
+
+function catIndex(name){ return CategoryLib.all.findIndex(c => c.name === name); }
+function catByIndex(i){ return CategoryLib.all[i]; }
+
+function setStatus(id, msg, kind){
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = "status" + (kind ? " " + kind : "");
+}
+
+/* ---------- إنشاء ---------- */
+document.getElementById("createBtn").onclick = () => {
+  const selected = JSON.parse(localStorage.getItem("selectedCards") || "[]");
+
+  if (!selected.length){
+    setStatus("createStatus", "اختر فئاتك أولاً من صفحة «إنشاء لعبة».", "err");
+    setTimeout(() => { window.location.href = "question-section.html"; }, 1600);
+    return;
+  }
+
+  const idx = selected.map(c => catIndex(c.title)).filter(i => i >= 0);
+
+  room = {
+    v: 1,
+    s: randomCode(8),
+    c: idx,
+    n: (localStorage.getItem("gameName") || "").slice(0, 40),
+    a: (localStorage.getItem("team1") || "").slice(0, 24),
+    b: (localStorage.getItem("team2") || "").slice(0, 24)
+  };
+
+  if (window.SFX) SFX.coin();
+  showRoom();
+};
+
+/* ---------- انضمام ---------- */
+document.getElementById("joinBtn").onclick = () => {
+  const raw = document.getElementById("joinCode").value.trim();
+  if (!raw) return setStatus("joinStatus", "أدخل رمز الغرفة أو الرابط.", "err");
+
+  /* يقبل الرابط الكامل أو الحزمة وحدها */
+  let packed = raw;
+  const m = raw.match(/[#?]r=([A-Za-z0-9_-]+)/);
+  if (m) packed = m[1];
+
+  const data = unpackRoom(packed);
+  if (!data || !Array.isArray(data.c) || !data.c.length){
+    return setStatus("joinStatus", "الرمز غير صالح — تأكد من نسخ الرابط كاملاً.", "err");
+  }
+
+  room = data;
+  if (window.SFX) SFX.select();
+  setStatus("joinStatus", "تم الانضمام ✓", "ok");
+  showRoom();
+};
+
+/* ---------- عرض الغرفة ---------- */
+function showRoom(){
+  const packed = packRoom(room);
+  const link = location.origin + location.pathname + "#r=" + packed;
+
+  document.getElementById("entryCards").hidden = true;
+  document.getElementById("roomBox").hidden = false;
+
+  /* الرمز القصير للعرض — الرابط هو ما يحمل البيانات فعلياً */
+  document.getElementById("roomCode").textContent = room.s.slice(0, 6);
+  document.getElementById("roomLink").value = link;
+
+  const names = room.c.map(i => catByIndex(i)).filter(Boolean);
+  const totalQs = names.length * 5;
+
+  document.getElementById("sumCats").textContent = names.length;
+  document.getElementById("sumQs").textContent = totalQs;
+  document.getElementById("sumT1").textContent = room.a || "الفريق 1";
+  document.getElementById("sumT2").textContent = room.b || "الفريق 2";
+
+  const box = document.getElementById("roomCats");
+  box.innerHTML = "";
+  names.forEach(c => {
+    const el = document.createElement("span");
+    el.className = "cat-pill";
+    el.innerHTML = '<span class="em"></span><span class="nm"></span>';
+    el.querySelector(".em").textContent = c.emoji || "🎲";
+    el.querySelector(".nm").textContent = c.name;
+    box.appendChild(el);
+  });
+
+  history.replaceState(null, "", "#r=" + packed);
+  if (window.I18N) I18N.apply(document.getElementById("roomBox"));
+}
+
+/* ---------- نسخ الرابط ---------- */
+document.getElementById("copyLink").onclick = async () => {
+  const input = document.getElementById("roomLink");
+  try {
+    await navigator.clipboard.writeText(input.value);
+    setStatus("roomStatus", "نُسخ الرابط ✓ أرسله لبقية اللاعبين", "ok");
+  } catch (e) {
+    input.select();
+    setStatus("roomStatus", "اضغط Ctrl+C لنسخ الرابط المحدَّد", "");
+  }
+};
+
+/* ---------- بدء اللعب ---------- */
+document.getElementById("startRoom").onclick = () => {
+  const names = room.c.map(i => catByIndex(i)).filter(Boolean);
+  if (!names.length) return setStatus("roomStatus", "لا توجد فئات في هذه الغرفة.", "err");
+
+  const cards = names.map(c => ({
+    title: c.name,
+    imgSrc: CategoryLib.image(c),
+    imgAlt: c.name
+  }));
+
+  localStorage.setItem("selectedCards", JSON.stringify(cards));
+  localStorage.setItem("roundQuestions", JSON.stringify(buildSeededRound(names.map(c => c.name), room.s)));
+  localStorage.setItem("answeredQuestions", "[]");
+  localStorage.setItem("teamScores", JSON.stringify({ team1: 0, team2: 0 }));
+  localStorage.setItem("currentTurn", "team1");
+  localStorage.setItem("gameName", room.n || "جولة أونلاين");
+  localStorage.setItem("team1", room.a || "الفريق 1");
+  localStorage.setItem("team2", room.b || "الفريق 2");
+  localStorage.setItem("onlineRoom", room.s);
+  if (window.Powerups) {
+    Powerups.reset();
+    Powerups.scatter(names.map(c => c.name));
+  }
+
+  if (window.SFX) SFX.coin();
+  window.location.href = "SelectSections.html";
+};
+
+/* ---------- فتح رابط غرفة مباشرة ---------- */
+(function initFromHash(){
+  const m = location.hash.match(/r=([A-Za-z0-9_-]+)/);
+  if (!m) return;
+  const data = unpackRoom(m[1]);
+  if (data && Array.isArray(data.c) && data.c.length){
+    room = data;
+    showRoom();
+    setStatus("roomStatus", "أنت في غرفة — اضغط «ابدأ اللعب»", "ok");
+  }
+})();
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.SFX) SFX.mountControls();
+});
+</script>
+</body>
+</html>

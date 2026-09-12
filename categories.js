@@ -1,0 +1,176 @@
+/* ============================================================
+   جاوبني — سجلّ الفئات
+   ------------------------------------------------------------
+   مصدر واحد لكل فئات اللعبة: الاسم، الصورة، المجموعة، الرمز.
+   صفحة اختيار الفئات تبني بطاقاتها من هنا تلقائياً،
+   فإضافة فئة جديدة = سطر واحد هنا + أسئلتها في questions.js
+   أو questions-extra.js بنفس الاسم تماماً.
+
+   الحقول:
+     name  : اسم الفئة (يجب أن يطابق مفتاح الفئة في بنك الأسئلة حرفياً)
+     img   : مسار صورة البطاقة — إن غاب تُولَّد بطاقة رمزية من الإيموجي
+     emoji : رمز الفئة (يُستعمل في البطاقة المولّدة وفي الكتيّب)
+     tint  : لون البطاقة المولّدة
+     group : مجموعة التصنيف لأزرار التصفية
+   ============================================================ */
+
+(function (global) {
+  "use strict";
+
+  /* مجموعات التصنيف */
+  var GROUPS = [
+    { id: "all",     label: "كل الفئات",     emoji: "🗂️" },
+    { id: "islam",   label: "إسلاميات",      emoji: "🕌" },
+    { id: "world",   label: "العالم",        emoji: "🌍" },
+    { id: "science", label: "علوم",          emoji: "🔬" },
+    { id: "nature",  label: "طبيعة وحياة",   emoji: "🌿" },
+    { id: "sport",   label: "رياضة",         emoji: "⚽" },
+    { id: "culture", label: "ثقافة وفنون",   emoji: "🎭" },
+    { id: "media",   label: "ترفيه",         emoji: "🎬" },
+    { id: "tech",    label: "تقنية",         emoji: "💻" },
+    { id: "gulf",    label: "الخليج",        emoji: "🕌" },
+    { id: "kuwait",  label: "الكويت",        emoji: "⛵" }
+  ];
+
+  var CATEGORIES = [
+    /* ===== الفئات الأصلية ===== */
+    { name: "اسلامي",          img: "image/islamic.jpg",         emoji: "🕌", tint: "#1f7d68", group: "islam" },
+    { name: "قرآن وسيرة",      img: "image/قران و السيرة.jpg",    emoji: "📖", tint: "#1f7d68", group: "islam" },
+    { name: "التاريخ",          img: "image/hist.jpg",            emoji: "🏺", tint: "#a06a2c", group: "world" },
+    { name: "لغة عربية",       img: "image/لغة العربية.jpg",      emoji: "🔤", tint: "#3d6ea5", group: "culture" },
+    { name: "دول و عواصم",     img: "image/cca.jpg",             emoji: "🏛️", tint: "#2b7d9c", group: "world" },
+    { name: "خمن اسم الدولة",  img: "image/Guess-the-country.png", emoji: "🗺️", tint: "#2b7d9c", group: "world" },
+    { name: "اعلام",            img: "image/flags.webp",           emoji: "🚩", tint: "#b5453b", group: "world" },
+    { name: "خرائط",            img: "image/mapPointer.jpg",      emoji: "🧭", tint: "#2b7d9c", group: "world" },
+    { name: "جغرافيا العالم",   img: "image/جغرافيا.jpg",          emoji: "🌍", tint: "#2b7d9c", group: "world" },
+    { name: "علوم",             img: "image/علوم.jpg",             emoji: "🔬", tint: "#4a5fb5", group: "science" },
+    { name: "حيوانات",          img: "image/حيوانات.jpg",          emoji: "🦁", tint: "#a8792a", group: "nature" },
+    { name: "رياضة",            img: "image/رياضة.jpg",            emoji: "🏅", tint: "#2f8f52", group: "sport" },
+    { name: "تخمين اللاعب",     img: "image/who is the player.jpg", emoji: "⚽", tint: "#2f8f52", group: "sport" },
+    { name: "سيارات",           img: "image/cars.jpg",            emoji: "🚗", tint: "#8a3d3d", group: "tech" },
+    { name: "تقنية",            img: "image/تقنية.jpg",            emoji: "💻", tint: "#3b6fb5", group: "tech" },
+    { name: "ألعاب فيديو",      img: "image/العاب فيديو.jpg",      emoji: "🎮", tint: "#6a3fa0", group: "media" },
+    { name: "أفلام وأنمي",      img: "image/افلام و انمي.jpg",     emoji: "🎬", tint: "#8a3570", group: "media" },
+    { name: "البوكيمون",        img: "image/pokemons.png",        emoji: "⚡", tint: "#c49a24", group: "media" },
+    { name: "ارطغرل",           img: "image/ErtugurlBey.png",     emoji: "🗡️", tint: "#8a5a2a", group: "media" },
+    { name: "الحفره",           img: "image/cukur1.png",          emoji: "🎥", tint: "#6b3030", group: "media" },
+    { name: "خمن اسم المسلسل",  img: "image/KWS.png",             emoji: "📺", tint: "#6b3030", group: "media" },
+    { name: "من القارئ",        img: "image/Quraan.png",          emoji: "🎧", tint: "#1f7d68", group: "islam" },
+    { name: "عدنيات",           img: "image/oud3.png",            emoji: "🪘", tint: "#a06a2c", group: "culture" },
+    { name: "طعام ومطبخ",       img: "image/طعام و مطبخ.jpg",      emoji: "🍽️", tint: "#b5652c", group: "culture" },
+    { name: "مشاهير عرب",       img: "image/مشاهير عرب.jpg",       emoji: "⭐", tint: "#8a3570", group: "culture" },
+    { name: "أمثال وألغاز",     img: "image/امثال و الغاز.jpg",    emoji: "🧩", tint: "#4a5fb5", group: "culture" },
+    { name: "الصيادون",         img: "image/fishing.png",         emoji: "🎣", tint: "#2b7d9c", group: "kuwait" },
+    { name: "مجمعات الكويت",    img: "image/Kuwait.png",          emoji: "🏬", tint: "#2f8f7d", group: "kuwait" },
+    { name: "مناطق الكويت",     img: "image/Kuwait.png",          emoji: "📍", tint: "#2f8f7d", group: "kuwait" },
+
+    /* ===== الفئات الجديدة ===== */
+    { name: "الفضاء والفلك",         img: "image/الفضاء والفلك.jpg", emoji: "🪐", tint: "#3b3f8f", group: "science" },
+    { name: "جسم الإنسان",           img: "image/جسم الانسان.jpg", emoji: "🫀", tint: "#a63b4a", group: "science" },
+    { name: "الكيمياء",              img: "image/الكيمياء.jpg", emoji: "⚗️", tint: "#2f7f6a", group: "science" },
+    { name: "الفيزياء",              img: "image/الفيزياء.jpg", emoji: "🧲", tint: "#3b6fb5", group: "science" },
+    { name: "ألغاز رياضية",          img: "image/الغاز رياضية.jpg", emoji: "🔢", tint: "#4a5fb5", group: "science" },
+    { name: "الاختراعات والمخترعون", img: "image/الاختراعات والمخترعون.jpg", emoji: "💡", tint: "#b58a24", group: "science" },
+    { name: "الديناصورات",           img: "image/الديناصورات.jpg", emoji: "🦕", tint: "#5d7a2f", group: "nature" },
+    { name: "الطيور",                img: "image/الطيور.jpg", emoji: "🦅", tint: "#2f7f9c", group: "nature" },
+    { name: "البحار والمحيطات",      img: "image/البحار و المحيطات.jpg", emoji: "🌊", tint: "#1f6fa5", group: "nature" },
+    { name: "النباتات والأشجار",     img: "image/النباتات و الاشجار.jpg", emoji: "🌳", tint: "#2f8f52", group: "nature" },
+    { name: "كرة القدم العالمية",    img: "image/كرة القدم العالمية.jpg", emoji: "⚽", tint: "#2f8f52", group: "sport" },
+    { name: "كأس العالم",            img: "image/كاس العالم.jpg", emoji: "🏆", tint: "#c49a24", group: "sport" },
+    { name: "الألعاب الأولمبية",     img: "image/الالعاب الاولمبية.jpg", emoji: "🥇", tint: "#c49a24", group: "sport" },
+    { name: "الحضارات القديمة",      img: "image/الحضارات القديمة.jpg", emoji: "🏛️", tint: "#a06a2c", group: "world" },
+    { name: "معالم العالم",          img: "image/معالم العالم.jpg", emoji: "🗽", tint: "#2b7d9c", group: "world" },
+    { name: "الطيران والطائرات",     img: "image/الطيران و الطائرات.jpg", emoji: "✈️", tint: "#3b6fb5", group: "tech" },
+    { name: "الحاسوب والبرمجة",      img: "image/الحاسوب والبرمجة.jpg", emoji: "🖥️", tint: "#3b6fb5", group: "tech" },
+    { name: "العملات والاقتصاد",     img: "image/العملات والاقتصاد.jpg", emoji: "💰", tint: "#8a7a24", group: "world" },
+    { name: "المنظمات الدولية",      img: "image/المنظمة الدولية.jpg", emoji: "🌐", tint: "#2b7d9c", group: "world" },
+    { name: "الشعر العربي",          img: "image/الشعر العربي.jpg", emoji: "🪶", tint: "#8a5a2a", group: "culture" },
+    { name: "الموسيقى والآلات",      img: "image/الموسيقى و الالات.jpg", emoji: "🎼", tint: "#8a3570", group: "culture" },
+    { name: "السينما العالمية",      img: "image/السينما العالمية.jpg", emoji: "🎞️", tint: "#6a3fa0", group: "media" },
+    /* الصورة لوحة خطّية «الأنبياء والرسل — عليهم الصلاة والسلام» بلا أي تجسيد */
+    { name: "الأنبياء والرسل",       img: "image/الانبياء و الرسل.jpg", emoji: "📜", tint: "#1f7d68", group: "islam" },
+    { name: "قصص الأنبياء",          img: "image/قصص الانبياء.jpg", emoji: "📖", tint: "#2a6f5e", group: "islam" },
+    { name: "الحج والعمرة",          img: "image/الحج و العمره.jpg", emoji: "🕋", tint: "#1f7d68", group: "islam" },
+
+    /* ===== الدفعة الثالثة ===== */
+    { name: "دراغون بول",              img: "image/دراغون بول.jpg", emoji: "🐉", tint: "#c4622a", group: "media" },
+    { name: "المحقق كونان",            img: "image/المحقق كونان.jpg", emoji: "🔍", tint: "#3b4fa0", group: "media" },
+    { name: "سترينجر ثينجز",           img: "image/سترينجر ثنجز.jpg", emoji: "🔦", tint: "#8a2b2b", group: "media" },
+    { name: "لورد أوف ذا رينغز",       img: "image/لورد اوف ذا رينق.jpg", emoji: "💍", tint: "#7a6320", group: "media" },
+    { name: "المملكة العربية السعودية", img: "image/المملكه العربية السعوية.jpg", emoji: "🐪", tint: "#1f7d4a", group: "gulf" },
+    { name: "البحرين",                 img: "image/البحرين.jpg", emoji: "🦪", tint: "#a83232", group: "gulf" },
+    { name: "الإمارات",                img: "image/الامارات.jpg", emoji: "🏙️", tint: "#2f7f52", group: "gulf" },
+    { name: "عُمان",                   img: "image/عمان.jpg", emoji: "🪔", tint: "#a13a3a", group: "gulf" },
+    { name: "دول الخليج",              img: "image/دول الخليج.jpg", emoji: "🛢️", tint: "#2b7d9c", group: "gulf" },
+    { name: "تركيا",                   img: "image/تركيا.jpg", emoji: "🌙", tint: "#a12a2a", group: "world" },
+    { name: "مناطق تركيا",             img: "image/مناطق تركيا.jpg", emoji: "🎈", tint: "#8a3a3a", group: "world" }
+  ];
+
+  /* ---------- بطاقة مولّدة من الإيموجي (SVG بلا أي ملفات خارجية) ---------- */
+  function artFor(cat) {
+    var tint = cat.tint || "#1f7d68";
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">' +
+        '<defs>' +
+          '<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0%" stop-color="' + tint + '"/>' +
+            '<stop offset="100%" stop-color="#04120f"/>' +
+          '</linearGradient>' +
+          '<radialGradient id="h" cx="50%" cy="42%" r="46%">' +
+            '<stop offset="0%" stop-color="#ffffff" stop-opacity=".26"/>' +
+            '<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>' +
+          '</radialGradient>' +
+        '</defs>' +
+        '<rect width="400" height="300" fill="url(#g)"/>' +
+        '<rect width="400" height="300" fill="url(#h)"/>' +
+        '<circle cx="200" cy="132" r="86" fill="#04120f" fill-opacity=".28"/>' +
+        '<circle cx="200" cy="132" r="86" fill="none" stroke="#e7b740" stroke-opacity=".45" stroke-width="2"/>' +
+        '<text x="200" y="132" font-size="96" text-anchor="middle" dominant-baseline="central">' +
+          esc(cat.emoji || "🎲") +
+        '</text>' +
+      '</svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* صورة البطاقة النهائية */
+  function imageFor(cat) {
+    return cat.img || artFor(cat);
+  }
+
+  /* البحث عن فئة بالاسم */
+  function find(name) {
+    var n = String(name || "").trim();
+    for (var i = 0; i < CATEGORIES.length; i++) {
+      if (CATEGORIES[i].name === n) return CATEGORIES[i];
+    }
+    return null;
+  }
+
+  /* عدد أسئلة الفئة من بنك الأسئلة */
+  function countFor(name) {
+    var data = global.questionsData || {};
+    return (data[name] || []).length;
+  }
+
+  /* الفئات الجاهزة للّعب فقط (لها أسئلة) */
+  function playable() {
+    return CATEGORIES.filter(function (c) { return countFor(c.name) > 0; });
+  }
+
+  global.CATEGORIES  = CATEGORIES;
+  global.CAT_GROUPS  = GROUPS;
+  global.CategoryLib = {
+    all: CATEGORIES,
+    groups: GROUPS,
+    find: find,
+    art: artFor,
+    image: imageFor,
+    count: countFor,
+    playable: playable
+  };
+
+})(typeof window !== "undefined" ? window : this);

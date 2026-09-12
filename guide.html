@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<link rel="icon" href="image/jawbnny.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2a25">
+<link rel="apple-touch-icon" href="image/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
+<script src="pwa.js" defer></script>
+<title>كتيب اللعبة — جاوبني</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root{
+    --ink:#04120f; --surface:#0d332d; --surface-light:#154a41;
+    --glass:rgba(21,74,65,.45);
+    --gold:#e7b740; --gold-soft:#f7dd9c; --gold-deep:#b6851d;
+    --coral:#ff6b4d; --ivory:#f5f1e6; --muted:#9fc2bb;
+    --line:rgba(231,183,64,.22); --line-strong:rgba(231,183,64,.5);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--ink); color:var(--ivory);
+    font-family:'Tajawal',sans-serif; min-height:100vh;
+    padding-bottom:120px; overflow-x:hidden; line-height:1.85;
+  }
+
+  .bg-fx{
+    position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(1000px 600px at 85% -10%, #145145 0%, transparent 60%),
+      radial-gradient(900px 620px at 10% 5%, #123f37 0%, transparent 58%),
+      linear-gradient(180deg,#061814 0%, var(--ink) 55%, #030d0b 100%);
+  }
+  .lightbar{
+    height:6px;
+    background:radial-gradient(circle,var(--gold-soft) 38%,transparent 42%) 0 0/24px 24px repeat-x;
+    filter:drop-shadow(0 0 6px rgba(231,183,64,.8));
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:linear-gradient(180deg,rgba(13,51,45,.94),rgba(4,18,15,.86));
+    backdrop-filter:blur(16px) saturate(140%);
+    padding:12px 24px; display:flex; justify-content:space-between;
+    align-items:center; gap:14px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+  }
+  .head-brand{ display:flex; align-items:center; gap:12px; }
+  .head-brand img{ width:50px; height:50px; border-radius:15px; object-fit:cover;
+    box-shadow:0 0 0 2px var(--gold),0 8px 22px rgba(0,0,0,.45); }
+  .head-brand b{
+    font-family:'Cairo',sans-serif; font-weight:900; font-size:21px; color:var(--gold-soft);
+  }
+  nav{ display:flex; gap:10px; flex-wrap:wrap; }
+  nav a, nav button{
+    color:var(--ivory); text-decoration:none; font-family:'Cairo',sans-serif;
+    font-weight:700; font-size:13.5px; background:var(--glass);
+    border:1px solid var(--line); border-radius:999px; padding:9px 16px;
+    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    transition:border-color .2s ease, transform .2s ease, background .2s ease;
+  }
+  nav a i, nav button i{ color:var(--gold); }
+  nav a:hover, nav button:hover{ border-color:var(--line-strong); transform:translateY(-2px); background:rgba(231,183,64,.1); }
+
+  /* ---------- cover ---------- */
+  .cover{
+    max-width:1000px; margin:52px auto 10px; padding:0 22px; text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px; color:var(--gold);
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; letter-spacing:2px;
+  }
+  .eyebrow::before,.eyebrow::after{ content:""; width:34px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold)); }
+  .cover h1{
+    font-family:'Cairo',sans-serif; font-size:clamp(32px,6vw,54px); font-weight:900;
+    margin:14px 0 12px;
+    background:linear-gradient(120deg,var(--gold) 0%,#fff3d0 45%,var(--gold) 70%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .cover p{ color:var(--muted); font-size:17px; max-width:640px; margin:0 auto; }
+
+  .quickfacts{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin:34px 0 10px;
+  }
+  .fact{
+    min-width:140px; padding:16px 22px; border-radius:18px;
+    background:linear-gradient(150deg,rgba(21,74,65,.5),rgba(6,24,20,.6));
+    border:1px solid var(--line);
+  }
+  .fact b{ display:block; font-family:'Cairo',sans-serif; font-size:27px; color:var(--gold); }
+  .fact small{ color:var(--muted); font-size:12.5px; }
+
+  /* ---------- table of contents ---------- */
+  .toc{
+    max-width:1000px; margin:34px auto; padding:22px;
+    background:var(--glass); border:1px solid var(--line); border-radius:20px;
+  }
+  .toc h3{ margin:0 0 14px; font-family:'Cairo',sans-serif; font-size:17px; color:var(--gold-soft); }
+  .toc ol{ margin:0; padding-inline-start:22px; columns:2; column-gap:28px; }
+  .toc a{ color:var(--ivory); text-decoration:none; font-size:14.5px; }
+  .toc a:hover{ color:var(--gold); }
+  @media (max-width:640px){ .toc ol{ columns:1; } }
+
+  /* ---------- sections ---------- */
+  section.chapter{ max-width:1000px; margin:0 auto 46px; padding:0 22px; }
+  .chapter h2{
+    font-family:'Cairo',sans-serif; font-size:clamp(22px,3.4vw,30px); font-weight:900;
+    color:var(--gold-soft); margin:0 0 6px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .chapter h2 .num{
+    width:38px; height:38px; flex:none; border-radius:12px;
+    background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+    color:#04120f; font-size:17px; display:grid; place-items:center;
+  }
+  .chapter > p.lead{ color:var(--muted); margin:0 0 20px; font-size:15.5px; }
+
+  .panel{
+    background:linear-gradient(150deg,rgba(21,74,65,.42),rgba(6,24,20,.55));
+    border:1px solid var(--line); border-radius:20px; padding:22px 24px; margin-bottom:16px;
+  }
+  .panel h4{ margin:0 0 10px; font-family:'Cairo',sans-serif; font-size:16.5px; color:var(--gold); }
+  .panel p:last-child, .panel ul:last-child{ margin-bottom:0; }
+  .panel ul{ margin:0; padding-inline-start:22px; }
+  .panel li{ margin-bottom:7px; }
+  .panel li::marker{ color:var(--gold); }
+
+  /* steps */
+  .steps{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .step{
+    background:rgba(4,18,15,.45); border:1px solid var(--line);
+    border-radius:16px; padding:18px 18px 16px; position:relative;
+  }
+  .step .n{
+    width:32px; height:32px; border-radius:10px; display:grid; place-items:center;
+    background:rgba(231,183,64,.16); border:1px solid var(--line-strong);
+    color:var(--gold); font-family:'Cairo',sans-serif; font-weight:900; margin-bottom:10px;
+  }
+  .step b{ display:block; font-family:'Cairo',sans-serif; font-size:15px; margin-bottom:5px; }
+  .step span{ color:var(--muted); font-size:13.5px; }
+
+  /* tables */
+  table{ width:100%; border-collapse:collapse; font-size:14.5px; }
+  th,td{ padding:11px 13px; text-align:start; border-bottom:1px solid rgba(231,183,64,.14); }
+  th{ color:var(--gold); font-family:'Cairo',sans-serif; font-size:13.5px; }
+  tr:last-child td{ border-bottom:none; }
+  .tbl-wrap{ overflow-x:auto; }
+
+  kbd{
+    display:inline-block; padding:2px 9px; border-radius:7px; font-size:12.5px;
+    background:rgba(4,18,15,.7); border:1px solid var(--line-strong);
+    color:var(--gold-soft); font-family:'Cairo',sans-serif;
+  }
+  code{
+    background:rgba(4,18,15,.6); border:1px solid var(--line);
+    padding:2px 7px; border-radius:7px; color:var(--gold-soft);
+    font-size:13px; direction:ltr; display:inline-block;
+  }
+  pre{
+    background:rgba(4,18,15,.7); border:1px solid var(--line); border-radius:14px;
+    padding:16px 18px; overflow-x:auto; direction:ltr; text-align:left;
+    font-size:13px; line-height:1.7; color:var(--gold-soft); margin:0;
+  }
+
+  /* category chips */
+  .cat-grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); }
+  .cat-item{
+    display:flex; align-items:center; gap:11px; padding:11px 13px;
+    background:rgba(4,18,15,.42); border:1px solid var(--line); border-radius:14px;
+  }
+  .cat-item .em{ font-size:22px; line-height:1; }
+  .cat-item .tx{ display:flex; flex-direction:column; line-height:1.35; min-width:0; }
+  .cat-item .tx b{ font-size:14px; font-weight:700; }
+  .cat-item .tx small{ color:var(--muted); font-size:11.5px; }
+
+  /* settings form */
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:13.5px; color:var(--gold-soft); margin-bottom:6px; font-weight:700; }
+  .field input[type=text]{
+    width:100%; height:44px; padding:0 14px; border-radius:12px;
+    border:1px solid var(--line); background:rgba(4,18,15,.6);
+    color:var(--ivory); font-family:inherit; font-size:14px; outline:none; direction:ltr;
+  }
+  .field input:focus{ border-color:var(--line-strong); }
+  .field small{ display:block; color:var(--muted); font-size:12.5px; margin-top:5px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    padding:11px 20px; border-radius:14px; font-family:'Cairo',sans-serif;
+    font-weight:800; font-size:14px; border:1px solid var(--line-strong);
+    background:linear-gradient(150deg,var(--gold-deep),var(--gold));
+    color:#04120f; transition:transform .18s ease, filter .18s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); filter:brightness(1.06); }
+  .btn.ghost{ background:transparent; color:var(--ivory); }
+  .btn.ghost:hover{ background:rgba(231,183,64,.1); }
+  .btn-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+
+  .switch{ display:flex; align-items:center; gap:11px; cursor:pointer; user-select:none; }
+  .switch input{ display:none; }
+  .switch .track{
+    width:50px; height:28px; border-radius:999px; background:rgba(4,18,15,.75);
+    border:1px solid var(--line); position:relative; transition:background .2s ease, border-color .2s ease;
+  }
+  .switch .track::after{
+    content:""; position:absolute; top:3px; inset-inline-start:3px;
+    width:20px; height:20px; border-radius:50%; background:var(--muted);
+    transition:transform .22s ease, background .22s ease;
+  }
+  .switch input:checked + .track{ background:rgba(231,183,64,.22); border-color:var(--line-strong); }
+  .switch input:checked + .track::after{ background:var(--gold); transform:translateX(-22px); }
+  html[dir=ltr] .switch input:checked + .track::after{ transform:translateX(22px); }
+
+  .note{
+    border-inline-start:3px solid var(--gold);
+    background:rgba(231,183,64,.07); border-radius:0 14px 14px 0;
+    padding:13px 17px; font-size:14px; color:var(--gold-soft); margin:14px 0 0;
+  }
+  html[dir=ltr] .note{ border-radius:14px 0 0 14px; }
+
+  .status{ font-size:13.5px; color:var(--muted); margin-top:10px; min-height:20px; }
+  .status.ok{ color:#7fd6a8; }
+
+  /* language list */
+  .lang-grid{ display:grid; gap:8px; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+  .lang-item{
+    display:flex; align-items:center; gap:9px; padding:9px 12px;
+    background:rgba(4,18,15,.42); border:1px solid var(--line); border-radius:12px; font-size:13.5px;
+  }
+  .lang-item .fl{ font-size:17px; }
+  .lang-item small{ color:var(--muted); font-size:11px; display:block; }
+
+  /* faq */
+  details{
+    background:rgba(4,18,15,.42); border:1px solid var(--line);
+    border-radius:14px; padding:14px 18px; margin-bottom:10px;
+  }
+  details summary{
+    cursor:pointer; font-family:'Cairo',sans-serif; font-weight:700;
+    font-size:15px; color:var(--gold-soft); list-style:none;
+  }
+  details summary::-webkit-details-marker{ display:none; }
+  details summary::before{ content:"›"; color:var(--gold); margin-inline-end:9px; display:inline-block; transition:transform .2s ease; }
+  details[open] summary::before{ transform:rotate(90deg); }
+  details p{ margin:10px 0 0; color:var(--muted); font-size:14px; }
+
+  footer.book-end{
+    max-width:1000px; margin:0 auto; padding:30px 22px; text-align:center;
+    color:var(--muted); font-size:13.5px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{ background:#fff; color:#111; padding:0; }
+    .bg-fx,.lightbar,header,#i18nDock,#sfxControls,.no-print{ display:none !important; }
+    .panel,.step,.cat-item,.lang-item,details,.fact,.toc{
+      background:#fff !important; border:1px solid #ccc !important; break-inside:avoid;
+    }
+    .cover h1,.chapter h2,.panel h4,details summary{ color:#111 !important;
+      -webkit-text-fill-color:#111 !important; }
+    .fact b{ color:#8a6a10 !important; }
+    .chapter{ break-inside:avoid-page; }
+    code,pre,kbd{ background:#f4f4f4 !important; color:#111 !important; border-color:#ccc !important; }
+    a{ color:#111 !important; }
+  }
+</style>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="mobile.css">
+</head>
+
+<body>
+
+<div class="bg-fx"></div>
+<div class="lightbar"></div>
+
+<header>
+  <div class="head-brand">
+    <img src="image/jawbnny.png" alt="جاوبني">
+    <b>جاوبني</b>
+  </div>
+  <nav class="no-print">
+    <a href="main-page.html"><i class="fa-solid fa-house"></i> الصفحة الرئيسية</a>
+    <a href="online.html"><i class="fa-solid fa-wifi"></i> أونلاين</a>
+    <a href="question-section.html"><i class="fa-solid fa-play"></i> ابدأ لعبة جديدة</a>
+    <button type="button" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة</button>
+  </nav>
+</header>
+
+<div class="lightbar"></div>
+
+<div class="cover">
+  <span class="eyebrow">دليل اللاعب</span>
+  <h1>كتيب اللعبة</h1>
+  <p>كل ما تحتاج معرفته عن جاوبني: القواعد، النقاط، الفئات، الصور التلقائية واللغات — في صفحة واحدة قابلة للطباعة.</p>
+
+  <div class="quickfacts">
+    <div class="fact"><b id="factCats">—</b><small>فئة متنوعة</small></div>
+    <div class="fact"><b id="factQs">—</b><small>سؤال في البنك</small></div>
+    <div class="fact"><b id="factLangs">—</b><small>لغة مدعومة</small></div>
+    <div class="fact"><b>٦٠</b><small>ثانية لكل سؤال</small></div>
+    <div class="fact"><b>٥٠٠</b><small>أعلى نقاط للسؤال</small></div>
+  </div>
+</div>
+
+<div class="toc no-print">
+  <h3><i class="fa-solid fa-list"></i> المحتويات</h3>
+  <ol>
+    <li><a href="#about">ما هي جاوبني؟</a></li>
+    <li><a href="#start">البدء في خمس خطوات</a></li>
+    <li><a href="#rules">قواعد اللعبة</a></li>
+    <li><a href="#points">النقاط والرصيد</a></li>
+    <li><a href="#screen">شاشة السؤال</a></li>
+    <li><a href="#powers">المفاجآت</a></li>
+    <li><a href="#helps">المساعدات</a></li>
+    <li><a href="#cats">الفئات المتاحة</a></li>
+    <li><a href="#images">صور الأسئلة التلقائية</a></li>
+    <li><a href="#online">اللعب أونلاين</a></li>
+    <li><a href="#langs">اللغات</a></li>
+    <li><a href="#sound">الصوت والمؤثرات</a></li>
+    <li><a href="#editing">إضافة أسئلة وفئات</a></li>
+    <li><a href="#faq">أسئلة شائعة</a></li>
+  </ol>
+</div>
+
+<!-- ============ 1 ============ -->
+<section class="chapter" id="about">
+  <h2><span class="num">١</span> ما هي جاوبني؟</h2>
+  <p class="lead">لعبة مسابقات ثقافية لفريقين، تعمل بالكامل داخل المتصفح بلا خادم ولا تثبيت.</p>
+
+  <div class="panel">
+    <p>تختار في كل جولة <b>٦ فئات</b>، وكل فئة تحمل <b>٥ أسئلة</b> بقيم مختلفة من ١٠٠ إلى ٥٠٠ نقطة —
+       أي <b>٣٠ سؤالاً</b> في الجولة الواحدة. يتناوب الفريقان على الأسئلة، ومن يجمع نقاطاً أكثر يفوز.</p>
+    <p>كل بياناتك (الحساب، النقاط، الرصيد، سجل الألعاب) محفوظة داخل متصفحك أنت،
+       فلا شيء يُرسل إلى أي خادم.</p>
+  </div>
+
+  <div class="panel">
+    <h4>ما تحتاجه للعب</h4>
+    <ul>
+      <li>متصفح حديث على حاسوب أو جوال أو شاشة تلفاز.</li>
+      <li>فريقان — أو لاعبان — ومقدّم يدير الشاشة.</li>
+      <li>الإنترنت اختياري: اللعبة تعمل بلا اتصال، والاتصال يُستخدم فقط لجلب صور الأسئلة تلقائياً.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="chapter" id="start">
+  <h2><span class="num">٢</span> البدء في خمس خطوات</h2>
+
+  <div class="steps">
+    <div class="step"><div class="n">١</div><b>أنشئ حساباً</b>
+      <span>من صفحة «حساب جديد» — دقيقة واحدة وتصير جاهزاً.</span></div>
+    <div class="step"><div class="n">٢</div><b>اشحن رصيدك</b>
+      <span>كل رصيد = جولة كاملة. تبدأ بحزمة صغيرة أو باقة أوفر.</span></div>
+    <div class="step"><div class="n">٣</div><b>اختر ٦ فئات</b>
+      <span>ابحث أو صفِّ حسب المجموعة، واكتب اسم اللعبة والفريقين.</span></div>
+    <div class="step"><div class="n">٤</div><b>العبوا الجولة</b>
+      <span>اضغط على قيمة النقاط لفتح السؤال، ثم اختر من أجاب صحيحاً.</span></div>
+    <div class="step"><div class="n">٥</div><b>شاهدوا النتيجة</b>
+      <span>بعد الأسئلة الثلاثين تظهر شاشة الفائز، وتُحفظ الجولة في سجلك.</span></div>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="chapter" id="rules">
+  <h2><span class="num">٣</span> قواعد اللعبة</h2>
+
+  <div class="panel">
+    <h4>تركيب الجولة</h4>
+    <ul>
+      <li>٦ فئات × ٥ أسئلة = <b>٣٠ سؤالاً</b> في الجولة.</li>
+      <li>قيم الأسئلة: ١٠٠ · ٢٠٠ · ٣٠٠ · ٤٠٠ · ٥٠٠ — كلما زادت القيمة صَعُب السؤال.</li>
+      <li>تختار اللعبة سؤالاً <b>عشوائياً</b> من مخزون كل مستوى، فلا تتكرر الأسئلة بين الجولات.</li>
+      <li>بدء أي جولة يخصم <b>رصيداً واحداً</b> من محفظتك.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h4>أثناء السؤال</h4>
+    <ul>
+      <li>مدة السؤال <b>٦٠ ثانية</b> افتراضياً (أو ٨٠ أو ١٢٠ من الإعدادات)، وتبدأ التكتكة في آخر ١٠ ثوانٍ وتتسارع في آخر ٥.</li>
+      <li>عند انتهاء الوقت <b>تظهر الإجابة تلقائياً</b>.</li>
+      <li>إذا انتهى الوقت ينتقل السؤال <b>للفريق الآخر</b> بعدّاد جديد (<b>٣٠ أو ٦٠ أو ٨٠ ثانية</b> من الإعدادات)، ولا تُكشف الإجابة إلا بعده. وزر «للفريق الآخر» يفعل ذلك مبكراً إن أخطأ الفريق — مرة واحدة لكل سؤال.</li>
+      <li>يمكنك إظهار الإجابة يدوياً في أي لحظة، أو إيقاف المؤقّت مؤقتاً.</li>
+      <li>بعد كشف الإجابة تختار الفريق الذي أجاب صحيحاً — أو «لا أحد».</li>
+      <li>ينتقل الدور تلقائياً للفريق الآخر وتعود اللوحة.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h4>بطاقات الجزاء</h4>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>البطاقة</th><th>النقاط</th><th>متى تُستخدم</th></tr>
+        <tr><td>زيادة ٥٠</td><td>+٥٠ نقطة</td><td>مكافأة من المقدّم: إجابة مميّزة، أو روح رياضية، أو تحدٍّ جانبي</td></tr>
+        <tr><td>بطاقة صفراء</td><td>−١٠٠ نقطة</td><td>مقاطعة الفريق الآخر أو تلميح غير مسموح</td></tr>
+        <tr><td>بطاقة حمراء</td><td>−٣٠٠ نقطة</td><td>غش واضح أو تكرار المخالفة</td></tr>
+      </table>
+    </div>
+    <p class="note">البطاقات اختيارية بالكامل — استعملها كما يناسب مجموعتكم، فهي أداة للمقدّم لا قاعدة إجبارية.</p>
+  </div>
+
+  <div class="panel">
+    <h4>🎡 عجلة السؤال الإضافي</h4>
+    <ul>
+      <li>كل <b>١٥٠٠ نقطة</b> يبلغها فريق (١٥٠٠، ٣٠٠٠، ٤٥٠٠…) تظهر له <b>عجلة</b> على اللوحة وسؤال إضافي من <b>فئة خارج الجولة</b>.</li>
+      <li>العجلة تحدد المضاعف: <b>دبل ×١ أو ×٢ أو ×٣</b>، وقيمة السؤال (١٠٠–٥٠٠) حسب مستواه — فالنقاط = القيمة × المضاعف.</li>
+      <li>السؤال الإضافي لا يُحسب من بطاقات اللوحة، ولا يغيّر الدور، ولا تعمل عليه المفاجآت. ويمكن تخطّيه.</li>
+      <li><b>عند التعادل</b> في نهاية الجولة: سؤال فاصل من العجلة للفريقين من فئة أخرى، ومن يجب صحيحاً يأخذ نقاطه. وإن لم يجب أحد تدور العجلة من جديد حتى يُحسم الفوز.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section class="chapter" id="points">
+  <h2><span class="num">٤</span> النقاط والرصيد</h2>
+  <p class="lead">في اللعبة نوعان مختلفان من الأرقام — لا تخلط بينهما.</p>
+
+  <div class="panel">
+    <div class="tbl-wrap">
+      <table>
+        <tr><th></th><th>نقاط الفريق</th><th>نقاط الحساب</th><th>الرصيد</th></tr>
+        <tr><td><b>ما هي؟</b></td><td>نقاط الجولة الحالية</td><td>نقاط تتراكم لك عبر الجولات</td><td>عدد الجولات المتاحة لك</td></tr>
+        <tr><td><b>كيف تزيد؟</b></td><td>بالإجابة الصحيحة على الأسئلة، أو بزر «زيادة ٥٠»</td><td>نقطة واحدة عن كل إجابة صحيحة</td><td>بالشحن، أو كل ٢٠ نقطة حساب</td></tr>
+        <tr><td><b>كيف تنقص؟</b></td><td>بالبطاقة الصفراء أو الحمراء</td><td>لا تنقص</td><td>رصيد واحد عند بدء أي جولة</td></tr>
+        <tr><td><b>أين تظهر؟</b></td><td>لوحة اللعب وشاشة السؤال</td><td>الصفحة الرئيسية وحسابي</td><td>الصفحة الرئيسية والمحفظة</td></tr>
+      </table>
+    </div>
+    <p class="note">كل <b>٢٠ نقطة حساب</b> تتحوّل تلقائياً إلى <b>رصيد لعبة جديد</b> — فكلما لعبت أكثر، لعبت أطول.</p>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section class="chapter" id="screen">
+  <h2><span class="num">٥</span> شاشة السؤال</h2>
+
+  <div class="panel">
+    <h4>ماذا ترى؟</h4>
+    <ul>
+      <li><b>شارة الفئة والنقاط</b> في الأعلى — لتعرف قيمة السؤال دائماً.</li>
+      <li><b>المؤقّت</b> بعدّ تنازلي من ٦٠ أو ٨٠ أو ١٢٠ ثانية (يُضبط من الإعدادات) مع تنبيه بصري وصوتي في آخر ١٠ ثوانٍ.</li>
+      <li><b>تكبير الصورة</b> — اضغط صورة السؤال لتفتح بملء الشاشة، وكبّر حتى ٥٠٠٪ بالأزرار أو عجلة الفأرة، أو بالقرص بإصبعين على الهاتف، واسحبها للتنقّل، وأغلقها بـ <kbd>Esc</kbd>.</li>
+      <li><b>صورة الإجابة</b> — بعد كشف الإجابة تُجلب لها صورة من الإنترنت وتظهر داخل بطاقة الإجابة، وهي قابلة للتكبير أيضاً. لا تظهر قبل الكشف إطلاقاً.</li>
+      <li>في فئتَي <b>دراغون بول</b> و<b>المحقق كونان</b> تكون صورة الإجابة <b>كرتونية</b> — رسم الشخصية الرسمي من بنك الأسئلة، لا صورة من الإنترنت.</li>
+      <li><b>وسائط السؤال</b>: صورة في أغلب الأسئلة، وقد يُضاف مقطع صوتي أو فيديو.
+          أسئلة «استمع وخمّن» بلا صورة عمداً حتى لا تكشف الإجابة.</li>
+      <li><b>نتائج الفريقين</b> والدور الحالي أسفل الشاشة.</li>
+      <li><b>أزرار الاحتساب</b>: الفريق ١ · الفريق ٢ · لا أحد.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h4>اختصارات لوحة المفاتيح</h4>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>الاختصار</th><th>الوظيفة</th></tr>
+        <tr><td><kbd>مسافة</kbd></td><td>إظهار الإجابة</td></tr>
+        <tr><td><kbd>P</kbd></td><td>إيقاف المؤقّت أو متابعته</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>إغلاق شاشة تكبير الصورة</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ المفاجآت ============ -->
+<section class="chapter" id="powers">
+  <h2><span class="num">٦</span> المفاجآت — الحظ على اللوحة</h2>
+  <p class="lead">عشر مفاجآت تُوزَّع <b>عشوائياً</b> على بطاقات الجولة، ولا يعرف أحد أين هي ولا ما هي.</p>
+
+  <div class="panel">
+    <h4>نمطان للجولة — تختارهما قبل البدء</h4>
+    <ul>
+      <li><b>لعب عادي</b> — النقاط من الأسئلة وحدها، ولا تُوزَّع أي مفاجأة، ولوحة المفاجآت تختفي من الشاشة.</li>
+      <li><b>لعب بالمفاجآت</b> — الجولة كما هي موصوفة في هذه الصفحة.</li>
+      <li>الاختيار من <b>الإعدادات ← اللعب ← نمط الجولة</b>، ويُحفظ للجولات القادمة.</li>
+      <li>المساعدات (جوابين، مكالمة، اسرق الدور، ومساعدات المتجر) تعمل في <b>النمطين</b>.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h4>كيف تعمل؟</h4>
+    <ul>
+      <li>عند بدء كل جولة تُوزَّع المفاجآت <b>عشوائياً</b> على البطاقات — لا يزرعها لاعب ولا يختار موضعها.</li>
+      <li><b>لا تظهر أي علامة على البطاقة</b>، فلا أحد يعرف أيّها تخفي مفاجأة.</li>
+      <li>عند فتح البطاقة <b>تنكشف</b> المفاجأة قبل الإجابة — ولا يُطبَّق أثرها بعد.</li>
+      <li>الأثر يُحسم <b>عند الإجابة الصحيحة فقط</b>: المكافأة لمن أجاب، والعقوبة على <b>من لم يجب</b>.</li>
+      <li>إن اختار المقدّم «لا أحد» فلا يحدث شيء إطلاقاً — لا خصم ولا مكافأة ولا تجميد.</li>
+      <li>عدّاد أعلى اللوحة يبيّن كم مفاجأة ما زالت مخبّأة — دون كشف مواضعها.</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h4>الرموز السبعة</h4>
+    <div class="tbl-wrap">
+      <table id="powersTable">
+        <tr><th>الرمز</th><th>الاسم</th><th>الأثر</th></tr>
+      </table>
+    </div>
+    <p class="note">كل نوع يظهر <b>مرة واحدة على الأقل</b> في كل جولة، والبقية تُملأ بأنواع عشوائية.
+       كل المفاجآت — الضارّة والنافعة — <b>مربوطة بالإجابة الصحيحة</b>:
+       فمن يجيب يكسب، ومن يعجز يدفع الثمن.</p>
+  </div>
+</section>
+
+<!-- ============ المساعدات ============ -->
+<section class="chapter" id="helps">
+  <h2><span class="num">٧</span> المساعدات</h2>
+  <p class="lead">ثلاث مساعدات يبدأ بها كل فريق كل جولة، وخمس أقوى منها تُشترى من متجر المساعدات — وكلها تُستعمل من شاشة السؤال قبل كشف الإجابة.</p>
+
+  <div class="panel">
+    <div class="tbl-wrap">
+      <table id="helpsTable">
+        <tr><th>الرمز</th><th>الاسم</th><th>ماذا تفعل؟</th><th>سعرها بالنقاط</th></tr>
+      </table>
+    </div>
+    <p class="note">المساعدات تُقفل تلقائياً بمجرد كشف الإجابة، ولا تعود بعد استعمالها حتى نهاية الجولة.</p>
+  </div>
+
+  <div class="panel">
+    <h4><i class="fa-solid fa-cart-shopping"></i> اشترِ المزيد بنقاطك</h4>
+    <p>تربح <b>نقطة حساب واحدة</b> عن كل إجابة صحيحة، وتستطيع إنفاق هذه النقاط
+       على مساعدات إضافية من <b>متجر المساعدات</b> في صفحة الرصيد.</p>
+    <ul>
+      <li>ما تشتريه يصير <b>ملكاً دائماً</b> — لا يُصرف مرة واحدة.</li>
+      <li>يبدأ معك في <b>كل جولة جديدة</b> إلى جانب المساعدة الافتراضية من كل نوع.</li>
+      <li>مثال: اشترِ «جوابين» مرتين ← تبدأ كل جولة بثلاث منها (١ افتراضية + ٢ مشتراة).</li>
+      <li>يظهر العدد على زر المساعدة في شاشة السؤال حين يكون أكثر من واحد.</li>
+      <li>المشتريات تُضاف لمخزون <b>الفريقين</b> — فالترقية للعبة كلها لا لفريق واحد.</li>
+    </ul>
+    <p class="note">النقاط نفسها التي كل <b>٢٠</b> منها تمنحك رصيد لعبة جديد —
+       فاختر: تدّخرها لجولات إضافية أم تنفقها على مساعدات أقوى؟</p>
+    <div class="btn-row no-print" style="margin-top:16px">
+      <a class="btn" href="balance.html#shop"><i class="fa-solid fa-cart-shopping"></i> افتح متجر المساعدات</a>
+    </div>
+  </div>
+</section>
+<!-- ============ 6 ============ -->
+<section class="chapter" id="cats">
+  <h2><span class="num">٨</span> الفئات المتاحة</h2>
+  <p class="lead" id="catsLead">—</p>
+  <div class="panel">
+    <div class="cat-grid" id="catList"></div>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section class="chapter" id="images">
+  <h2><span class="num">٩</span> صور الأسئلة التلقائية</h2>
+  <p class="lead">كل سؤال في جاوبني يظهر مع صورة — حتى لو لم تُكتب له صورة يدوياً.</p>
+
+  <div class="panel">
+    <h4>روابط مثبّتة مسبقاً</h4>
+    <p id="bakedLead">معظم الأسئلة رابط صورتها مكتوب داخل بنك الأسئلة، فتظهر فوراً بلا أي بحث.</p>
+    <ul id="bakedList"></ul>
+    <p class="note">تعديل نص أي سؤال يُلغي ارتباطه برابطه المثبّت، فيعود للبحث التلقائي.</p>
+  </div>
+
+  <div class="panel">
+    <h4>كيف تعمل؟</h4>
+    <p>الأسئلة التي لا رابط لها يبحث المحرّك عن صورة مناسبة لها بالترتيب التالي، ويتوقف عند أول نتيجة:</p>
+    <ul>
+      <li><b>الصورة المرفقة</b> بالسؤال داخل بنك الأسئلة (أعلام، خرائط، رسوم توضيحية…).</li>
+      <li><b>الذاكرة المؤقتة</b> في متصفحك من بحث سابق — فلا يتكرر البحث.</li>
+      <li><b>بحث صور جوجل</b> — إن أدخلت مفتاحك أدناه.</li>
+      <li><b>ويكيبيديا العربية</b> ثم الإنجليزية.</li>
+      <li><b>ويكيميديا كومنز</b> ثم <b>Openverse</b> (صور حرّة الرخصة).</li>
+      <li><b>صورة الفئة</b> من مجلد <code>image/</code> — لكل الفئات الـ٦٥ صورة محلية.</li>
+      <li><b>بطاقة مولّدة</b> داخل المتصفح — إن لم يكن للفئة صورة أصلاً.</li>
+    </ul>
+    <p class="note">تُجلب صور الجولة مسبقاً وأنتم على لوحة اللعب، فتظهر الصورة فوراً عند فتح السؤال.</p>
+  </div>
+
+  <div class="panel no-print">
+    <h4><i class="fa-brands fa-google"></i> ربط بحث صور جوجل (اختياري)</h4>
+    <p>لأدق النتائج يمكنك استخدام Google Custom Search. أنشئ محرك بحث مخصصاً مفعّلاً فيه
+       «بحث الصور» و«البحث في كل الويب»، ثم ضع المفتاح ومعرّف المحرك هنا. تُحفظ في متصفحك فقط.</p>
+
+    <div class="field">
+      <label for="gKey">مفتاح API</label>
+      <input type="text" id="gKey" placeholder="AIza..." autocomplete="off" spellcheck="false" />
+    </div>
+    <div class="field">
+      <label for="gCx">معرّف محرك البحث (CX)</label>
+      <input type="text" id="gCx" placeholder="a1b2c3d4e5f6g7h8i" autocomplete="off" spellcheck="false" />
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" type="button" id="saveGoogle"><i class="fa-solid fa-floppy-disk"></i> حفظ</button>
+      <button class="btn ghost" type="button" id="clearGoogle"><i class="fa-solid fa-eraser"></i> مسح المفاتيح</button>
+    </div>
+    <p class="status" id="googleStatus"></p>
+  </div>
+
+  <div class="panel no-print">
+    <h4>إعدادات الصور</h4>
+    <label class="switch" style="margin-bottom:16px">
+      <input type="checkbox" id="autoImgToggle" />
+      <span class="track"></span>
+      <span>البحث التلقائي عن الصور عبر الإنترنت</span>
+    </label>
+    <div class="btn-row">
+      <button class="btn ghost" type="button" id="clearCache"><i class="fa-solid fa-broom"></i> تفريغ ذاكرة الصور</button>
+      <span class="status" id="cacheStatus"></span>
+    </div>
+    <p class="note">أطفئ البحث التلقائي إذا كنت تلعب بلا إنترنت أو تريد سرعة قصوى —
+       ستظهر عندها البطاقات المولّدة داخل المتصفح.</p>
+  </div>
+</section>
+
+<!-- ============ أونلاين ============ -->
+<section class="chapter" id="online">
+  <h2><span class="num">١٠</span> اللعب أونلاين</h2>
+  <p class="lead">العبوا نفس الجولة من أجهزة مختلفة عبر رابط غرفة واحد.</p>
+
+  <div class="panel">
+    <h4>كيف يعمل؟</h4>
+    <ul>
+      <li>المضيف يختار الفئات وأسماء الفريقين، ثم يفتح صفحة <b>أونلاين</b> وينشئ غرفة.</li>
+      <li>يحصل على <b>رمز غرفة ورابط</b> يرسله للبقية عبر أي تطبيق محادثة.</li>
+      <li>من يفتح الرابط تُبنى عنده <b>نفس الجولة بنفس الأسئلة وبالترتيب نفسه</b>.</li>
+      <li>الغرفة كلها مُشفَّرة داخل الرابط: الفئات، أسماء الفريقين، وبذرة الاختيار العشوائي.</li>
+    </ul>
+    <p class="note">لا يوجد خادم في هذا المشروع، ولهذا <b>لا تُزامَن النقاط لحظياً</b> بين الأجهزة.
+       تلعبون معاً عبر مكالمة صوتية أو مرئية، ويحتسب المضيف النتيجة على شاشته.
+       المزامنة الحيّة تحتاج خادماً وهي خارج نطاق هذه النسخة.</p>
+  </div>
+
+  <div class="panel no-print">
+    <div class="btn-row">
+      <a class="btn" href="online.html"><i class="fa-solid fa-wifi"></i> افتح صفحة أونلاين</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section class="chapter" id="langs">
+  <h2><span class="num">١١</span> اللغات</h2>
+  <p class="lead" id="langLead">—</p>
+
+  <div class="panel">
+    <p>واجهة اللعبة كاملة تُترجم فوراً — بما فيها أسماء الفئات — ويتبدّل اتجاه الصفحة
+       بين اليمين واليسار تلقائياً حسب اللغة، مع تحميل الخط المناسب لكل نظام كتابة.</p>
+    <div class="btn-row no-print" style="margin:14px 0 18px">
+      <button class="btn" type="button" id="openLangs"><i class="fa-solid fa-globe"></i> تغيير اللغة</button>
+    </div>
+    <div class="lang-grid" id="langList"></div>
+  </div>
+
+  <div class="panel">
+    <h4>ونصوص الأسئلة أيضاً</h4>
+    <p>الواجهة وأسماء الفئات مترجمة يدوياً، أما نصوص الأسئلة والإجابات — وهي أكثر من
+       ٣٤٠٠ سؤال — فتُترجم <b>آلياً</b> عند العرض إلى اللغة المختارة، وتُحفظ الترجمة
+       في متصفحك فلا تتكرر.</p>
+    <ul>
+      <li>يُرسَل السؤال وإجابته <b>معاً</b> في طلب واحد ليفهم المترجم السياق —
+          لولا ذلك لتُرجمت «المشتري» إلى <code>Purchase</code> بدل <code>Jupiter</code>.</li>
+      <li>يظهر <b>النص العربي الأصلي</b> تحت الترجمة ليتمكّن المقدّم من تحكيم الإجابة.</li>
+      <li>شارة باسم اللغة تظهر أعلى السؤال لتنبّه أن النص مترجم آلياً.</li>
+      <li>تُترجم أسئلة الجولة مسبقاً وأنتم على لوحة اللعب، فتظهر فوراً عند فتح السؤال.</li>
+    </ul>
+    <p class="note">الترجمة آلية، وقد تخطئ في الأسماء والمصطلحات الدقيقة —
+       ولهذا يبقى النص العربي معروضاً. الأسئلة تبقى بالعربية إذا كانت اللغة المختارة هي العربية.</p>
+  </div>
+
+  <div class="panel no-print">
+    <h4><i class="fa-solid fa-language"></i> إعدادات ترجمة الأسئلة</h4>
+
+    <label class="switch" style="margin-bottom:16px">
+      <input type="checkbox" id="autoTrToggle" />
+      <span class="track"></span>
+      <span>ترجمة نصوص الأسئلة آلياً</span>
+    </label>
+
+    <div class="field">
+      <label for="trEmail">بريدك الإلكتروني (اختياري)</label>
+      <input type="text" id="trEmail" placeholder="you@example.com" autocomplete="off" spellcheck="false" />
+      <small>يُرسَل لمزوّد الترجمة MyMemory فقط لرفع الحصة اليومية المجانية. لا يُخزَّن إلا في متصفحك.</small>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" type="button" id="saveTr"><i class="fa-solid fa-floppy-disk"></i> حفظ</button>
+      <button class="btn ghost" type="button" id="clearTr"><i class="fa-solid fa-broom"></i> تفريغ ذاكرة الترجمة</button>
+      <span class="status" id="trStatus"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section class="chapter" id="sound">
+  <h2><span class="num">١٢</span> الصوت والمؤثرات</h2>
+
+  <div class="panel">
+    <h4>خلفية الواجهة</h4>
+    <p>من <b>الإعدادات ← الخلفية</b> تختار واحدة من <b>سبع خلفيات</b>:
+       زمردي (الافتراضي)، ليل صافٍ، رمال وذهب، أزرق بحري، بنفسجي ملكي،
+       عنّابي دافئ، رمادي هادئ. تُطبَّق على <b>كل صفحات اللعبة</b> فوراً
+       وتُحفظ في المتصفح (المفتاح <code>bgTheme</code>).</p>
+  </div>
+
+  <div class="panel">
+    <p>كل المؤثرات مولّدة داخل المتصفح عبر Web Audio API — بلا أي ملفات صوتية.
+       في أسفل الشاشة زرّان: 🔊 للمؤثرات و🎵 للموسيقى الخلفية (مطفأة افتراضياً)،
+       واختيارك يُحفظ بين الجلسات.</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>المؤثّر</th><th>متى يعمل</th></tr>
+        <tr><td>تكتكة المؤقّت</td><td>آخر ١٠ ثوانٍ من السؤال</td></tr>
+        <tr><td>جرس انتهاء الوقت</td><td>عند وصول المؤقّت إلى الصفر</td></tr>
+        <tr><td>صوت الكشف</td><td>عند إظهار الإجابة</td></tr>
+        <tr><td>نغمة صاعدة</td><td>عند احتساب إجابة صحيحة</td></tr>
+        <tr><td>نغمة هابطة</td><td>عند اختيار «لا أحد»</td></tr>
+        <tr><td>رنّة عملات</td><td>عند شحن الرصيد وبدء اللعبة</td></tr>
+        <tr><td>فانفير</td><td>عند ظهور الفائز</td></tr>
+      </table>
+    </div>
+    <p class="note">المتصفحات لا تسمح بالصوت قبل أول نقرة من المستخدم — هذا سلوك طبيعي،
+       والصوت يبدأ تلقائياً بعد أول تفاعل مع الصفحة.</p>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="chapter" id="editing">
+  <h2><span class="num">١٣</span> إضافة أسئلة وفئات</h2>
+  <p class="lead">بنك الأسئلة ملفّ نصّي بسيط — تقدر تضيف عليه بنفسك.</p>
+
+  <div class="panel">
+    <h4>إضافة سؤال</h4>
+    <p>افتح <code>questions.js</code> أو <code>questions-extra.js</code> وأضف عنصراً داخل مصفوفة الفئة:</p>
+<pre>{ l: 3, q: "نص السؤال", a: "نص الإجابة" }
+
+// l:1 = 100 نقطة  ...  l:5 = 500 نقطة</pre>
+  </div>
+
+  <div class="panel">
+    <h4>الحقول الاختيارية</h4>
+<pre>img   : "image/x.jpg"        صورة ثابتة للسؤال
+iq    : "عبارة البحث"        يوجّه محرّك الصور لصورة أدقّ
+audio : "audio/x.mp3"        مقطع صوتي بمشغّل مخصص
+t0/t1 : 6  و  24             بداية المقطع ونهايته بالثواني
+video : "video/x.mp4"        مقطع فيديو محلي
+yt    : "dQw4w9WgXcQ"        فيديو يوتيوب (رقمه أو رابطه)
+map   : "سياسية"              نوع الخريطة (فئة الخرائط)
+pin   : [59.6, 45.6]         موضع الدولة على خريطة العالم (٪ من عرض الصورة وارتفاعها)
+shape : "image/maps/so.svg"  شكل الدولة الصمّاء بجانب الخريطة العالمية</pre>
+    <p class="note">استعمل <code>iq</code> حين لا تصلح الإجابة نفسها كعبارة بحث —
+       مثل الإجابات الرقمية («خمسة أركان») أو الجُمل الطويلة.</p>
+  </div>
+
+  <div class="panel">
+    <h4>الفئات الصوتية</h4>
+    <p>فئتان صوتيتان بالكامل — لا سؤال نصّي فيهما:</p>
+    <ul>
+      <li><b>من القارئ</b> — ٤٩ تلاوة قصيرة من شبكة Islamic Network، ويخمّن
+          اللاعبون اسم القارئ. صورتها كلها <code>image/Quraan.png</code> عمداً.</li>
+      <li><b>عدنيات</b> — ٤٥ مقطعاً غنائياً «من المطرب؟» (١٥ مطرباً × ٣ أغانٍ)
+          من معاينات آبل الرسمية، ٣٠ ثانية تُبثّ من خوادم آبل. الفئة صوتية
+          بالكامل بلا صور، والمشغّل لا يُظهر اسم الأغنية فلا تنكشف الإجابة.</li>
+    </ul>
+    <p class="note">أي سؤال فيه <code>audio</code> وليس فيه <code>img</code> لا تُجلب
+       له صورة تلقائية، لأن الصورة تكشف الإجابة. ولاقتطاع مقطع قصير من تسجيل طويل
+       استعمل <code>t0</code> و<code>t1</code> بالثواني — يبدأ المشغّل عند الأولى
+       ويقف عند الثانية ويعرض طول المقطع لا طول الملف.</p>
+  </div>
+
+  <div class="panel">
+    <h4>إضافة فئة جديدة</h4>
+    <ul>
+      <li>أضف سطراً في <code>categories.js</code> فيه الاسم والرمز واللون والمجموعة.</li>
+      <li>أضف الفئة بنفس الاسم تماماً في بنك الأسئلة مع أسئلتها.</li>
+      <li>لترجمة اسمها أضف قيمة في <code>i18n-categories.js</code>.</li>
+    </ul>
+    <p class="note">البطاقة تُبنى تلقائياً — ولا تحتاج صورة، إذ تُولَّد بطاقة أنيقة من الرمز واللون.
+       وعدد الأسئلة يظهر على البطاقة وحده.</p>
+  </div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section class="chapter" id="faq">
+  <h2><span class="num">١٤</span> أسئلة شائعة</h2>
+
+  <details><summary>هل تحتاج اللعبة إنترنت؟</summary>
+    <p>لا في الغالب. القواعد واللوحة والمؤثرات الصوتية تعمل بلا اتصال. الاتصال يُستخدم
+       لجلب صور الأسئلة تلقائياً — وعند غيابه تظهر بطاقات صور مولّدة داخل المتصفح —
+       ولتشغيل <b>٩٩ سؤالاً صوتياً</b> في فئات «من القارئ» و«عدنيات» و«اسلامي»،
+       فهذه وحدها تحتاج إنترنت وتظهر لها رسالة واضحة إن انقطع.</p></details>
+
+  <details><summary>أين تُحفظ بياناتي؟</summary>
+    <p>داخل متصفحك في <code>localStorage</code> فقط — لا يوجد خادم ولا يُرسل شيء خارج جهازك.
+       مسح بيانات المتصفح يمسح حسابك ونقاطك.</p></details>
+
+  <details><summary>هل يمكن اللعب بأكثر من فريقين؟</summary>
+    <p>اللوحة مصمّمة لفريقين. للعب بمجموعات أكثر، وزّعوا اللاعبين على فريقين كبيرين
+       أو العبوا جولات متتالية واجمعوا النقاط يدوياً.</p></details>
+
+  <details><summary>لماذا لا تظهر صورة لبعض الأسئلة؟</summary>
+    <p>تظهر دائماً صورة ما. إن ظهرت البطاقة المولّدة بدل صورة حقيقية، فغالباً البحث التلقائي مطفأ،
+       أو لا يوجد اتصال، أو لم يجد المحرّك صورة مناسبة للعبارة. أضف حقل <code>iq</code> للسؤال
+       بعبارة أوضح، أو اربط مفتاح جوجل.</p></details>
+
+  <details><summary>هل تتكرر الأسئلة بين الجولات؟</summary>
+    <p>نادراً. تُختار الأسئلة عشوائياً من مخزون كل مستوى داخل الفئة، والمخزون كبير —
+       خمسون سؤالاً أو أكثر في أغلب الفئات.</p></details>
+
+  <details><summary>كيف أعيد ضبط اللعبة من الصفر؟</summary>
+    <p>امسح بيانات الموقع من إعدادات المتصفح، أو استخدم «مسح السجل» في صفحة سجل الألعاب
+       لحذف الألعاب السابقة فقط.</p></details>
+
+  <details><summary>هل يمكن ترجمة الأسئلة نفسها؟</summary>
+    <p>حالياً الترجمة تشمل الواجهة وأسماء الفئات. لترجمة الأسئلة أنشئ ملف بنك أسئلة
+       بلغتك بنفس بنية <code>questions-extra.js</code>.</p></details>
+</section>
+
+<footer class="book-end">
+  <p>جاوبني — كتيب اللعبة · حُدِّث تلقائياً من بنك الأسئلة وسجل الفئات في هذا المشروع.</p>
+</footer>
+
+<!-- بنك الأسئلة والفئات ومحرّك الصور -->
+<script src="questions.js"></script>
+<script src="questions-extra.js"></script>
+<script src="questions-extra2.js"></script>
+<script src="categories.js"></script>
+<script src="images.js"></script>
+<script src="powerups.js"></script>
+<script src="translate.js"></script>
+<!-- تعدد اللغات (38 لغة) -->
+<script src="i18n.js"></script>
+<script src="i18n-langs.js"></script>
+<script src="i18n-categories.js"></script>
+<script src="sfx.js"></script>
+
+<script>
+  /* ---------- أرقام الغلاف ---------- */
+  function arabicNum(n){ return String(n).replace(/[0-9]/g, d => "٠١٢٣٤٥٦٧٨٩"[d]); }
+
+  const cats  = (window.CategoryLib ? CategoryLib.all : []);
+  const bank  = window.questionsData || {};
+  const total = Object.keys(bank).reduce((s,k) => s + bank[k].length, 0);
+  const langs = (window.I18N ? I18N.langs : []);
+
+  document.getElementById('factCats').textContent  = arabicNum(cats.length);
+  document.getElementById('factQs').textContent    = arabicNum(total);
+  document.getElementById('factLangs').textContent = arabicNum(langs.length);
+
+  /* ---------- تغطية صور الأسئلة (تُحسب من بنك الأسئلة مباشرة) ---------- */
+  (function () {
+    let net = 0, loc = 0, none = 0;
+    Object.keys(bank).forEach(k => bank[k].forEach(q => {
+      if (q.img && /^https?:/.test(q.img)) net++;
+      else if (q.img) loc++;
+      else none++;
+    }));
+    const have = net + loc;
+    const pct  = total ? Math.round(have / total * 100) : 0;
+
+    document.getElementById('bakedLead').textContent =
+      `${arabicNum(have)} سؤالاً من ${arabicNum(total)} (${arabicNum(pct)}٪) رابط صورته مكتوب ` +
+      `داخل بنك الأسئلة، فتظهر فوراً بلا أي بحث على الإنترنت.`;
+
+    const rows = [
+      ['رابط ثابت من ويكيميديا', net,  'يحتاج اتصالاً'],
+      ['ملف داخل مجلد image/',   loc,  'يعمل بلا اتصال'],
+      ['بلا رابط — تظهر صورة الفئة', none, 'يُجرَّب البحث التلقائي أولاً']
+    ];
+    const ul = document.getElementById('bakedList');
+    rows.forEach(([label, n, note]) => {
+      const li = document.createElement('li');
+      li.innerHTML = '<b></b> — <span></span> <small></small>';
+      li.querySelector('b').textContent     = arabicNum(n) + ' سؤالاً';
+      li.querySelector('span').textContent  = label;
+      li.querySelector('small').textContent = '(' + note + ')';
+      ul.appendChild(li);
+    });
+  })();
+
+  /* ---------- قائمة الفئات ---------- */
+  const playable = cats.filter(c => CategoryLib.count(c.name) > 0);
+  document.getElementById('catsLead').textContent =
+    `${playable.length} فئة جاهزة للّعب، وفيها ${total} سؤالاً موزّعة على خمسة مستويات صعوبة.`;
+
+  const catList = document.getElementById('catList');
+  cats.forEach(c => {
+    const n = CategoryLib.count(c.name);
+    const el = document.createElement('div');
+    el.className = 'cat-item';
+    el.innerHTML = '<span class="em"></span><span class="tx"><b></b><small></small></span>';
+    el.querySelector('.em').textContent = c.emoji || '🎲';
+    el.querySelector('b').textContent   = c.name;
+    el.querySelector('small').textContent = n ? n + ' أسئلة' : 'قريباً';
+    catList.appendChild(el);
+  });
+
+  /* ---------- جداول المفاجآت والمساعدات ---------- */
+  if (window.Powerups) {
+    const pt = document.getElementById('powersTable');
+    Powerups.POWERS.forEach(d => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td class="em"></td><td><b></b></td><td class="ds"></td>';
+      tr.querySelector('.em').textContent = d.emoji;
+      tr.querySelector('b').textContent   = d.name;
+      tr.querySelector('.ds').textContent = d.desc;
+      pt.appendChild(tr);
+    });
+
+    const ht = document.getElementById("helpsTable");
+    Powerups.HELPS.forEach(d => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = '<td class="em"></td><td><b></b></td><td class="ds"></td><td class="pr"></td>';
+      tr.querySelector(".em").textContent = d.emoji;
+      tr.querySelector("b").textContent   = d.name;
+      tr.querySelector(".ds").textContent = d.desc + (d.shop ? " — من المتجر فقط" : "");
+      tr.querySelector(".pr").textContent = d.price + " نقطة";
+      ht.appendChild(tr);
+    });
+  }
+
+  /* ---------- قائمة اللغات ---------- */
+  document.getElementById('langLead').textContent =
+    `واجهة اللعبة متوفرة بـ ${langs.length} لغة، مع دعم كامل للكتابة من اليمين ومن اليسار.`;
+
+  const langList = document.getElementById('langList');
+  langs.forEach(L => {
+    const el = document.createElement('div');
+    el.className = 'lang-item';
+    el.innerHTML = '<span class="fl"></span><span><b></b><small></small></span>';
+    el.querySelector('.fl').textContent = L.flag;
+    el.querySelector('b').textContent   = L.native;
+    el.querySelector('small').textContent = L.en;
+    langList.appendChild(el);
+  });
+
+  document.getElementById('openLangs').onclick = () => {
+    if (window.I18N && I18N.openPicker) I18N.openPicker();
+  };
+
+  /* ---------- إعدادات الصور ---------- */
+  const gKey = document.getElementById('gKey');
+  const gCx  = document.getElementById('gCx');
+  const gStatus = document.getElementById('googleStatus');
+  const cacheStatus = document.getElementById('cacheStatus');
+  const autoToggle = document.getElementById('autoImgToggle');
+
+  function refreshCacheStatus(){
+    cacheStatus.textContent = 'محفوظ الآن: ' + Images.cacheSize() + ' صورة';
+  }
+
+  if (window.Images) {
+    const saved = Images.getGoogle();
+    gKey.value = saved.key;
+    gCx.value  = saved.cx;
+    gStatus.textContent = (saved.key && saved.cx)
+      ? 'بحث جوجل مفعّل ✓' : 'غير مفعّل — ستُستخدم ويكيبيديا وكومنز.';
+    if (saved.key && saved.cx) gStatus.classList.add('ok');
+
+    autoToggle.checked = Images.getAuto();
+    refreshCacheStatus();
+
+    document.getElementById('saveGoogle').onclick = () => {
+      Images.setGoogle(gKey.value, gCx.value);
+      const ok = gKey.value.trim() && gCx.value.trim();
+      gStatus.textContent = ok ? 'تم الحفظ — بحث جوجل مفعّل ✓' : 'تم الحفظ — أدخل الحقلين لتفعيل جوجل.';
+      gStatus.classList.toggle('ok', !!ok);
+      if (window.SFX) SFX.click();
+    };
+
+    document.getElementById('clearGoogle').onclick = () => {
+      Images.setGoogle('', '');
+      gKey.value = ''; gCx.value = '';
+      gStatus.textContent = 'تم مسح المفاتيح.';
+      gStatus.classList.remove('ok');
+    };
+
+    autoToggle.onchange = () => { Images.setAuto(autoToggle.checked); };
+
+    document.getElementById('clearCache').onclick = () => {
+      Images.clearCache();
+      refreshCacheStatus();
+      if (window.SFX) SFX.click();
+    };
+  }
+
+  /* ---------- إعدادات ترجمة الأسئلة ---------- */
+  if (window.Translate) {
+    const trToggle = document.getElementById('autoTrToggle');
+    const trEmail  = document.getElementById('trEmail');
+    const trStatus = document.getElementById('trStatus');
+
+    function trInfo(){
+      trStatus.textContent = 'محفوظ: ' + Translate.cacheSize() + ' ترجمة';
+    }
+
+    trToggle.checked = Translate.enabled();
+    trEmail.value = Translate.getEmail();
+    trInfo();
+
+    trToggle.onchange = () => { Translate.setEnabled(trToggle.checked); };
+
+    document.getElementById('saveTr').onclick = () => {
+      Translate.setEmail(trEmail.value);
+      trStatus.textContent = 'تم الحفظ ✓';
+      trStatus.classList.add('ok');
+      if (window.SFX) SFX.click();
+      setTimeout(() => { trStatus.classList.remove('ok'); trInfo(); }, 2000);
+    };
+
+    document.getElementById('clearTr').onclick = () => {
+      Translate.clearCache();
+      trInfo();
+      if (window.SFX) SFX.click();
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.SFX) SFX.mountControls();
+  });
+</script>
+</body>
+</html>
