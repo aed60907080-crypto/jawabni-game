@@ -1035,7 +1035,7 @@
 
   if (!item) {
     const pool = (window.questionsData || {})[category] || [];
-    const level = { 100: 1, 200: 2, 300: 3, 400: 4, 500: 5 }[points] || 1;
+    const level = { 100: 1, 200: 2, 300: 3, 400: 4, 500: 5, 600: 5 }[points] || 1;
     let pick = pool.filter(x => x.l === level);
     if (!pick.length) pick = pool;
     if (pick.length) item = pick[Math.floor(Math.random() * pick.length)];

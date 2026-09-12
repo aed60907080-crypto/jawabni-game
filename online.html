@@ -425,7 +425,7 @@ function showRoom(){
   document.getElementById("roomLink").value = link;
 
   const names = room.c.map(i => catByIndex(i)).filter(Boolean);
-  const totalQs = names.length * 5;
+  const totalQs = names.length * 6;   /* ١٠٠ … ٦٠٠ لكل فئة */
 
   document.getElementById("sumCats").textContent = names.length;
   document.getElementById("sumQs").textContent = totalQs;

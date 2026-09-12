@@ -266,13 +266,13 @@
       z-index:2;
       text-shadow:0 2px 12px rgba(0,0,0,.85);
     }
-    /* صفّ النقاط: خمسة أزرار في سطر إن اتّسعت البطاقة، وإلا نزل بعضها
-       إلى سطر ثانٍ. الأعمدة الخمسة الثابتة كانت تُخرج زرّي ٤٠٠ و٥٠٠
-       عن البطاقة على شاشات اللمس (هدف اللمس ٥٤px × ٥ = ٣١٨px داخل
-       بطاقة ٢٣٠px) فيقطعهما overflow:hidden. */
+    /* ستّ قيم (١٠٠ … ٦٠٠) في صفّين متساويين: ثلاثة وثلاثة.
+       و minmax(0, 1fr) يسمح للأعمدة بالانضغاط، فلا يفيض الصفّ عن
+       البطاقة ولا يقطعه overflow:hidden كما كان يحصل على شاشات اللمس
+       حين كان عرض الزرّ الأدنى ثابتاً. */
     .points-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(52px, 1fr));
+      grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:6px;
       padding:12px 12px 16px;
     }
@@ -571,10 +571,10 @@
   const selected = JSON.parse(localStorage.getItem('selectedCards')) || [];
   const container = document.getElementById('selectedCategories');
   const answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions')) || [];
-  const points = [100, 200, 300, 400, 500];
+  const points = [100, 200, 300, 400, 500, 600];
 
   /* ===== وضع النقاط =====
-     الوضع العادي: قيمة كل زر مكتوبة عليه (100 … 500).
+     الوضع العادي: قيمة كل زر مكتوبة عليه (100 … 600).
      الوضع المخفي (اختياري من الإعدادات): ترتيب القيم يُخلط عشوائياً لكل فئة
      ويظهر «؟» بدل الرقم، فلا يعرف الفريق قيمة السؤال حتى يفتحه.
      الخلط يُحفظ في المتصفح ليبقى ثابتاً طوال الجولة. */
