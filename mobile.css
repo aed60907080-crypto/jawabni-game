@@ -73,7 +73,9 @@ button, .btn, .chip-btn, .seg-btn, .points-grid .btn, .team-btn, .help-btn {
 /* ---------- ٥) أهداف اللمس ---------- */
 @media (pointer: coarse) {
   .chip-btn, .seg-btn { min-height: 44px; }
-  .points-grid .btn   { min-height: 44px; min-width: 54px; font-size: 15px; }
+  /* الارتفاع وحده يكفي لهدف اللمس. عرض أدنى ثابت كان يجبر الصفّ على
+     ٣١٨px فيخرج عن البطاقة ويُقطع، فجعلناه مرناً ينضغط أو ينزل سطراً. */
+  .points-grid .btn   { min-height: 44px; min-width: 0; font-size: 15px; }
   .card-btns .btn-reset { min-height: 44px; }
   .help-btn  { min-height: 46px; }
   .team-btn  { min-height: 58px; }
@@ -169,7 +171,7 @@ button, .btn, .chip-btn, .seg-btn, .points-grid .btn, .team-btn, .help-btn {
 
 /* ---------- ٩) شاشات ضيقة جداً (٣٢٠ بكسل) ---------- */
 @media (max-width: 360px) {
-  .points-grid .btn { min-width: 48px; padding-inline: 8px; }
+  .points-grid .btn { min-width: 0; padding-inline: 6px; }
   /* عجلة السؤال الإضافي: نصغّرها كلها بالتحويل، فتصغير القطر وحده
      يترك أرقام المضاعف (×1 ×2 ×3) خارج الدائرة لأن موضعها محسوب بالبكسل */
   .bw-stage { transform: scale(.86); transform-origin: top center; margin-bottom: 0; }
