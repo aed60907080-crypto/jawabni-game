@@ -392,18 +392,100 @@
 
   var SIGNATURE = /signature|autograph|توقيع/i;
 
+  /* صور لا تصلح لكشف الإجابة: علم دولة (يظهر كصورة رئيسية لمقالات
+     حضارات ومنظمات فلا يدلّ على الجواب)، وصفحة من مستند ممسوح. */
+  var WEAK_ANSWER = /Flag_of_|page\d+-|\.pdf/i;
+
+  /* ------------------------------------------------------------
+     بدائل عنوان المقالة
+     ------------------------------------------------------------
+     الجواب في البنك مكتوب كما يُقال في اللعب: «الأنكيلوصور»،
+     «شجرة السيكويا الساحلية». وعنوان المقالة في ويكيبيديا غالباً
+     بلا تعريف وبلا كلمة الوصف: «أنكيلوصور»، «سيكويا ساحلية».
+     فنجرّب الصيغ بالترتيب حتى تُصيب واحدة، وإلا فلا صورة. */
+  var LEAD = new RegExp("^(شجرة|أشجار|زهرة|نبات|نظام|بكتيريا|هرمون|فيتامين|مدينة|" +
+    "جبل|بحر|نهر|جزيرة|سورة|معركة|غزوة|عملية|ظاهرة|حساء|شوربة|طبق|لحم|جبن|قارة|" +
+    "دولة|مسجد|متحف|برج|كوكب|مجرة|حيوان|طائر|سمكة|حشرة|فطر|خلية|جهاز|قانون|" +
+    "نظرية|معادلة|وحدة|عنصر|معدن|صخر|فوهة|هيكل|زاحف|عصور)\\s+");
+
+  function stripAl(s) { return String(s || "").replace(/^ال(?=[^\s])/, ""); }
+
+  function answerVariants(t) {
+    var v = [];
+    function push(x) {
+      x = String(x || "").replace(/\s+/g, " ").trim();
+      if (x && x.length > 1 && v.indexOf(x) < 0) v.push(x);
+    }
+    var noLead    = t.replace(LEAD, "");
+    var bareAl    = stripAl(t);
+    var noLeadAl  = stripAl(noLead);
+    push(t);
+    push(bareAl);
+    if (noLead !== t) { push(noLead); push(noLeadAl); }
+    /* «السيكويا الساحلية» → «سيكويا ساحلية»: نزع التعريف عن كل كلمة */
+    push(t.split(" ").map(stripAl).join(" "));
+    push(noLead.split(" ").map(stripAl).join(" "));
+    return v.slice(0, 6);
+  }
+
+  /* ------------------------------------------------------------
+     مطابقة الرسم العربي
+     ------------------------------------------------------------
+     أسماء منقولة عن لغات أخرى تُكتب بأكثر من رسم: «الديبلودوكوس»
+     عندنا و«ديبلودوكس» في ويكيبيديا. فنبحث في الموسوعة، ولا نقبل
+     نتيجة إلا إذا كان عنوانها هو الجواب نفسه بفارق حرف أو حرفين.
+     بهذا نكسب الرسوم المختلفة ولا نقع في صورة لموضوع آخر. */
+  function normAr(s) {
+    return String(s || "")
+      .replace(/[ً-ْـ]/g, "")
+      .replace(/[أإآٱ]/g, "ا")
+      .replace(/ة/g, "ه")
+      .replace(/[ىی]/g, "ي")
+      .replace(/^ال/, "")
+      .replace(/\s+/g, "")
+      .toLowerCase();
+  }
+
+  /* ------------------------------------------------------------
+     ألفاظ لها في العربية معنى آخر غير المقصود في السؤال
+     ------------------------------------------------------------
+     مقالة ويكيبيديا موجودة بالعنوان نفسه لكنها تتكلّم عن شيء آخر،
+     فتظهر صورة لا علاقة لها بالجواب. هنا نمنعها ولا نعرض صورة.
+       الثغور     : في السؤال مسام الورقة، وفي الموسوعة حصون الحدود.
+       البلوك تشين: في السؤال سلسلة الكتل، وفي الموسوعة التشفير الكتلي. */
+  var AMBIGUOUS = ["الثغور", "البلوك تشين"];
+
+  function isAmbiguous(term) {
+    var n = normAr(term);
+    for (var i = 0; i < AMBIGUOUS.length; i++) {
+      if (normAr(AMBIGUOUS[i]) === n) return true;
+    }
+    return false;
+  }
+
   function answerImage(term) {
+    if (isAmbiguous(term)) return Promise.resolve(null);
     var arabic = /[؀-ۿ]/.test(term);
-    return exactPage(term, arabic ? "ar" : "en").then(function (r) {
-      if (!r) return null;
-      if (r.img && !SIGNATURE.test(r.img)) return r.img;
-      if (arabic && r.en) {
-        return exactPage(r.en, "en").then(function (e) {
-          return e && e.img && !SIGNATURE.test(e.img) ? e.img : null;
-        });
-      }
-      return null;
-    });
+    var list = arabic ? answerVariants(term) : [term];
+    var i = 0;
+
+    function next() {
+      if (i >= list.length) return Promise.resolve(null);
+      var title = list[i++];
+      return exactPage(title, arabic ? "ar" : "en").then(function (r) {
+        if (!r) return next();
+        if (r.img && !SIGNATURE.test(r.img) && !WEAK_ANSWER.test(r.img)) return r.img;
+        if (arabic && r.en) {
+          return exactPage(r.en, "en").then(function (e) {
+            if (e && e.img && !SIGNATURE.test(e.img) && !WEAK_ANSWER.test(e.img)) return e.img;
+            return next();
+          });
+        }
+        return next();
+      });
+    }
+
+    return next();
   }
 
   var Images = {
