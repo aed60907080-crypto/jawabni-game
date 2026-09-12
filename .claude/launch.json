@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jawabni",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "serve.ps1"
+      ],
+      "port": 8123,
+      "autoPort": true
+    }
+  ]
+}
