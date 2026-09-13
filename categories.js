@@ -58,6 +58,7 @@
     { name: "خمن اسم المسلسل",  img: "image/KWS.png",             emoji: "📺", tint: "#6b3030", group: "media" },
     { name: "من القارئ",        img: "image/Quraan.png",          emoji: "🎧", tint: "#1f7d68", group: "islam" },
     { name: "عدنيات",           img: "image/oud3.png",            emoji: "🪘", tint: "#a06a2c", group: "culture" },
+    { name: "أغاني عربية",      img: "image/الموسيقى و الالات.jpg", emoji: "🎵", tint: "#8a3570", group: "culture" },
     { name: "طعام ومطبخ",       img: "image/طعام و مطبخ.jpg",      emoji: "🍽️", tint: "#b5652c", group: "culture" },
     { name: "مشاهير عرب",       img: "image/مشاهير عرب.jpg",       emoji: "⭐", tint: "#8a3570", group: "culture" },
     { name: "أمثال وألغاز",     img: "image/امثال و الغاز.jpg",    emoji: "🧩", tint: "#4a5fb5", group: "culture" },

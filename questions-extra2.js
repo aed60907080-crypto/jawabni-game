@@ -822,6 +822,96 @@
       hide: [[14, 12, 52, 24]] },
   ];
 
+  /* ---------- أغاني عربية (30 سؤالاً) ----------
+     فئة صوتية: يُشغَّل مقطع قصير والمطلوب اسم الأغنية. الأغاني بين
+     2000 و 2026، من الخليج ومصر والشام والمغرب.
+
+     المصدر: معاينات آبل الرسمية عبر itunes.apple.com — مفتوحة للعموم
+     بلا حساب، وتُبثّ من خوادم آبل مباشرة بلا نسخ محلي. والمشغّل عندنا
+     لا يعرض اسم الأغنية ولا صورة الغلاف، فلا تنكشف الإجابة.
+
+     t1: 18 يوقف المقطع عند 18 ثانية، والمعاينة نفسها 30 ثانية.
+     ولا صورة للسؤال عمداً: غلاف الألبوم يكشف الأغنية. */
+  extra["أغاني عربية"] = [
+    /* ===== المستوى الأول ===== */
+    { l: 1, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«تملي معاك» — عمرو دياب (2000)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5e/df/09/5edf0981-ce52-4740-f0b2-f6ad0760afcb/mzaf_17144740537777531434.plus.aac.p.m4a", t1: 18 },
+    { l: 1, q: "ما اسم الأغنية في هذا المقطع؟", a: "«إنت إيه» — نانسي عجرم (2004)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/7b/5a/517b5a4e-74d4-9d0e-666b-86377c14f984/mzaf_1600088455891426148.plus.aac.p.m4a", t1: 18 },
+    { l: 1, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«بشرة خير» — حسين الجسمي (2014)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/15/46/00/15460053-095b-aa1e-a92c-42737c4f346c/mzaf_16099995635699003830.plus.aac.p.m4a", t1: 18 },
+    { l: 1, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«لم علّم» — سعد لمجرد (2015)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/10/8b/58/108b58ff-13d3-9c63-f656-a4edf255631d/mzaf_8631182694702136423.plus.aac.p.m4a", t1: 18 },
+    { l: 1, q: "ما اسم الأغنية في هذا المقطع؟", a: "«يا طبطب ودلع» — نانسي عجرم (2006)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a4/44/c0/a444c09f-7a71-1712-29ca-029eceba47c4/mzaf_3607238438218530259.plus.aac.p.m4a", t1: 18 },
+    { l: 1, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«صبري قليل» — شيرين (2003)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cd/1a/e9/cd1ae9ec-f7cb-9f4e-95fe-2ed86dd60d96/mzaf_5355291922452830237.plus.aac.p.m4a", t1: 18 },
+
+    /* ===== المستوى الثاني ===== */
+    { l: 2, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«بتمون» — إليسا (2007)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/09/eb/8a/09eb8aab-c8f2-9ad5-959f-eab62dafd615/mzaf_4305294413609236715.plus.aac.p.m4a", t1: 18 },
+    { l: 2, q: "ما اسم الأغنية في هذا المقطع؟", a: "«يا بنت الإيه» — تامر حسني (2007)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bb/a9/4b/bba94bd9-020a-8eb9-c67e-1930dce68986/mzaf_11579290530808350749.plus.aac.p.m4a", t1: 18 },
+    { l: 2, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«وش جاه» — راشد الماجد (2008)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4c/0a/93/4c0a93b1-d540-4279-7904-216ad82f2e5d/mzaf_14742894182240006440.plus.aac.p.m4a", t1: 18 },
+    { l: 2, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«خليك معايا» — عمرو دياب (2005)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/27/2f/60/272f6016-bd6a-f7c5-b597-9a02f85a1b74/mzaf_18088930297802721508.plus.aac.p.m4a", t1: 18 },
+    { l: 2, q: "ما اسم الأغنية في هذا المقطع؟", a: "«صوّاها قلبي» — أصالة (2007)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e4/11/66/e41166bb-9dc3-ab7b-a866-2c48d8245cba/mzaf_2606507136071176121.plus.aac.p.m4a", t1: 18 },
+    { l: 2, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«عمري كلّو» — وائل كفوري (2003)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/72/ad/52/72ad5214-79d6-33c9-ef58-92cdbb6de2d1/mzaf_2307072817582404022.plus.aac.p.m4a", t1: 18 },
+
+    /* ===== المستوى الثالث ===== */
+    { l: 3, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«الدنيا دوّارة» — ماجد المهندس (2018)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d6/63/be/d663beae-2167-0229-ddf5-78bd76f2d8f8/mzaf_14560108662420015215.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "ما اسم الأغنية في هذا المقطع؟", a: "«يلزمني خيالك» — أحلام (2016)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/84/43/5c/84435cde-b304-d66a-9bdc-9cc22edcdc6a/mzaf_17432759770040953479.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«عدّي اللي في بالي» — محمد حماقي (2012)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/c0/c2/51c0c2e8-c9ab-bfa4-faad-3018937a20be/mzaf_744756614061022063.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«سيدي وصالك» — أنغام (2001)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/35/3b/79/353b79cd-ec72-5d36-944f-65b9bdb91a15/mzaf_9618429099776502251.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "ما اسم الأغنية في هذا المقطع؟", a: "«قهوة وداع» — حسين الجسمي (2016)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/33/55/8b/33558beb-d691-59d0-e730-12e1982495fd/mzaf_11611515571903933804.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«مشاعر» — شيرين (2013)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/08/13/32/08133239-98a1-7578-e365-8b489219c0db/mzaf_13654587899466436776.plus.aac.p.m4a", t1: 18 },
+
+    /* ===== المستوى الرابع ===== */
+    { l: 4, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«تعبت منك» — إليسا (2012)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/15/8d/f8/158df852-3ae5-56f1-4948-e524cf7b69c5/mzaf_6774382498010351346.plus.aac.p.m4a", t1: 18 },
+    { l: 4, q: "ما اسم الأغنية في هذا المقطع؟", a: "«ممنون» — نوال الكويتية (2019)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/70/1b/c6/701bc6b3-6fb5-5f44-c8f8-d507d88cc847/mzaf_3281977635193480062.plus.aac.p.m4a", t1: 18 },
+    { l: 4, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«يا تعبني» — تامر حسني (2008)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b9/03/05/b90305d3-fa42-524b-4f74-e14dc0a38a85/mzaf_10518637038864247705.plus.aac.p.m4a", t1: 18 },
+    { l: 4, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«كان يهمني» — أصالة (2016)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/70/c6/0e/70c60e6e-2b62-c56b-3e0c-46aa7058b52e/mzaf_2798950891084292409.plus.aac.p.m4a", t1: 18 },
+    { l: 4, q: "ما اسم الأغنية في هذا المقطع؟", a: "«بقفل الباب» — عبدالله الرويشد (2018)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/62/51/28/6251281c-0a9c-df39-661f-cde15f8ed192/mzaf_11822626165954897380.plus.aac.p.m4a", t1: 18 },
+    { l: 4, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«خذ راحتك» — راشد الماجد (2014)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d5/9c/69/d59c6930-01df-d1c4-ce52-5c048325a64f/mzaf_5679770150688146571.plus.aac.p.m4a", t1: 18 },
+
+    /* ===== المستوى الخامس ===== */
+    { l: 5, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«يا أنا يا لا» — عمرو دياب (2020)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/78/98/b0/7898b067-3923-e61f-9143-8fbfc8fad617/mzaf_11822862610550744571.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "ما اسم الأغنية في هذا المقطع؟", a: "«عمري معاك» — أنغام (2003)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/16/65/3e/16653ea2-be4e-ba34-dd87-02c7d1442fbe/mzaf_5299744446191711820.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«جننت قلبي» — ماجد المهندس (2023)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/66/9f/9b/669f9b6e-612b-a19a-1a69-617938dd2ad6/mzaf_1654944039507812824.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«عدّى الكلام» — سعد لمجرد (2020)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/af/37/77/af3777e5-dc85-3bbe-b976-965f172e1e6e/mzaf_11473131038850272193.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "ما اسم الأغنية في هذا المقطع؟", a: "«عيوني بس» — أحلام (2021)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/07/91/c2/0791c2ab-0816-f94d-4955-ffbcd6838bbf/mzaf_9960444028991933489.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "استمع جيداً — ما اسم هذه الأغنية؟", a: "«البنت القوية» — وائل كفوري (2021)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/99/78/f2/9978f240-0163-db68-4d5b-49a3862c0733/mzaf_12914565316707975548.plus.aac.p.m4a", t1: 18 },
+
+    /* ===== الأحدث: 2024 – 2026 ===== */
+    { l: 2, q: "ما اسم الأغنية في هذا المقطع؟", a: "«هو انت مين» — أنغام (2024)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/e9/6c/97e96cdd-7400-c9cc-26f3-f9163314c9bc/mzaf_1288156330981299683.plus.aac.p.m4a", t1: 18 },
+    { l: 3, q: "استمعوا إلى المقطع — ما اسم هذه الأغنية؟", a: "«خطفوني» — عمرو دياب (2025)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/59/f1/75/59f175e8-3787-88d1-7178-f9e0236e62e8/mzaf_9274447277030290168.plus.aac.p.m4a", t1: 18 },
+    { l: 5, q: "ما اسم الأغنية في هذا المقطع؟", a: "«عوّدت قلبي» — عبدالمجيد عبدالله (2026)",
+      audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/02/d2/ad/02d2add8-8065-70ac-a946-133423ccfaf1/mzaf_7106180361730711890.plus.aac.p.m4a", t1: 18 },
+  ];
+
   /* ---------- التسجيل والدمج ---------- */
   if (typeof window !== "undefined") {
     window.questionsExtra2 = Object.assign(window.questionsExtra2 || {}, extra);
