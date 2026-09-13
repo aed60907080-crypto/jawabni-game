@@ -63,6 +63,7 @@
     { name: "أمثال وألغاز",     img: "image/امثال و الغاز.jpg",    emoji: "🧩", tint: "#4a5fb5", group: "culture" },
     { name: "الصيادون",         img: "image/fishing.png",         emoji: "🎣", tint: "#2b7d9c", group: "kuwait" },
     { name: "مجمعات الكويت",    img: "image/مجمعات الكويت.jpg",   emoji: "🏬", tint: "#2f8f7d", group: "kuwait" },
+    { name: "منتجات",           img: "image/منتجات.jpg",          emoji: "🛒", tint: "#b5652c", group: "culture" },
     { name: "مناطق الكويت",     img: "image/Kuwait.png",          emoji: "📍", tint: "#2f8f7d", group: "kuwait" },
 
     /* ===== الفئات الجديدة ===== */

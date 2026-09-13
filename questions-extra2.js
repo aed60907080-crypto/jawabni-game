@@ -776,6 +776,52 @@
     { l: 5, q: "ما الاسم التركي الأصلي للمسلسل؟", a: "كوروولوش عثمان (Kuruluş Osman)", img: OSMAN_CARD, iq: "Kurulus Osman" },
   ];
 
+  /* ---------- منتجات (12 سؤالاً) ----------
+     خمّن المنتج من عبوته. الصور من ويكيميديا كومنز (حرّة الرخصة)،
+     وحقل hide يغطّي الاسم المطبوع على العبوة في السؤال ثم يُرفع مع
+     الإجابة فتظهر الصورة كاملة بالاسم. المستطيلات [x, y, w, h]
+     نسبةً مئوية من عرض الصورة وارتفاعها، قيست بالنظر إلى كل صورة.
+     وما لا اسم ظاهراً فيه (كيندر بوينو، أوريو، فيرو روشيه) بلا hide. */
+  extra["منتجات"] = [
+    { l: 1, q: "ما اسم هذا المشروب الغازي؟", a: "كوكاكولا",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Coca-cola_50cl_can_-_Italia.jpg/960px-Coca-cola_50cl_can_-_Italia.jpg",
+      hide: [[26, 18, 40, 58]] },
+    { l: 1, q: "ما اسم هذا المشروب الغازي؟", a: "بيبسي",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Pepsi_lime_330ml_can-front_PNr%C2%B00852.jpg/960px-Pepsi_lime_330ml_can-front_PNr%C2%B00852.jpg",
+      hide: [[25, 49, 40, 14]] },
+    { l: 1, q: "ما اسم هذه الشوكولاتة القابلة للدهن؟", a: "نوتيلا",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Nutella_ak.jpg/960px-Nutella_ak.jpg",
+      hide: [[24, 11, 25, 24]] },
+
+    { l: 2, q: "ما اسم لوح الشوكولاتة السويسري المثلّث الشكل؟", a: "توبلرون",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Toblerone_3362.jpg/960px-Toblerone_3362.jpg",
+      hide: [[30, 26, 62, 24]] },
+    { l: 2, q: "ما اسم هذا البسكويت المحشو بالكريمة؟", a: "أوريو",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Oreo_Cookies_%2813706103195%29.jpg/960px-Oreo_Cookies_%2813706103195%29.jpg" },
+    { l: 2, q: "ما اسم كريم العناية بالبشرة في هذه العلبة الزرقاء؟", a: "نيفيا",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Nivea_Creme_BW_2025-07-05_16-51-45_s.jpg/960px-Nivea_Creme_BW_2025-07-05_16-51-45_s.jpg",
+      hide: [[26, 22, 52, 30]] },
+
+    { l: 3, q: "ما اسم هذه الشوكولاتة المحشوّة بالبندق ذات الطبقات المقرمشة؟", a: "كيندر بوينو",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Kinder-Bueno-Split.jpg/960px-Kinder-Bueno-Split.jpg" },
+    { l: 3, q: "ما اسم مشروب الشوكولاتة بالشعير في هذه العلبة الخضراء؟", a: "مايلو",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Milo_tin_circa_2004.jpg/960px-Milo_tin_circa_2004.jpg",
+      hide: [[16, 40, 70, 20], [52, 26, 30, 12]] },
+
+    { l: 4, q: "ما اسم هذه الزبدة الدنماركية الشهيرة؟", a: "لورباك",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Lurpak_Butter_250g_unsalted_UK_market.jpg/960px-Lurpak_Butter_250g_unsalted_UK_market.jpg",
+      hide: [[26, 14, 40, 16], [23, 40, 31, 16]] },
+    { l: 4, q: "ما اسم هذه الشوكولاتة الإيطالية المغلّفة بورق ذهبي؟", a: "فيريرو روشيه",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Ferrero_Rocher_8pcs_box_20150118.jpg/960px-Ferrero_Rocher_8pcs_box_20150118.jpg" },
+
+    { l: 5, q: "ما اسم هذه المياه الفوّارة الفرنسية ذات الزجاجة الخضراء؟", a: "بيريه",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/PERRIER_%2812%29.jpg/960px-PERRIER_%2812%29.jpg",
+      hide: [[28, 20, 36, 18]] },
+    { l: 5, q: "ما اسم مسحوق الغسيل صاحب هذه الكبسولات؟", a: "أريال",
+      img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Ariel_pods.jpg/960px-Ariel_pods.jpg",
+      hide: [[14, 12, 52, 24]] },
+  ];
+
   /* ---------- التسجيل والدمج ---------- */
   if (typeof window !== "undefined") {
     window.questionsExtra2 = Object.assign(window.questionsExtra2 || {}, extra);

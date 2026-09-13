@@ -1729,7 +1729,7 @@
 
     /* اسم المنتج كان مغطّى في السؤال — نعرض الصورة كاملة الآن */
     if (!item.aimg && Array.isArray(item.hide) && item.hide.length && item.img) {
-      mountAnswerImage(holder, item.img);
+      mountAnswerImage(holder, item.img, true);
       return;
     }
 
@@ -1770,7 +1770,7 @@
   }
 
   /* يرسم صورة الإجابة بعد فحصها — يشترك فيه المساران (بحث الإنترنت وبنك الأنمي) */
-  function mountAnswerImage(holder, url) {
+  function mountAnswerImage(holder, url, allowSameAsQuestion) {
     holder.classList.remove("loading");
 
     /* بطاقة مولّدة (data:) تعني أن البحث لم يجد صورة حقيقية */
@@ -1787,7 +1787,10 @@
     };
     const qImg = document.querySelector("#questionMedia img");
     const qSrc = qImg ? (qImg.currentSrc || qImg.src) : (item.img || "");
-    if (fileOf(url) && (fileOf(url) === fileOf(qSrc) || fileOf(url) === fileOf(item.img))) {
+    /* في فئة «منتجات» الصورتان واحدة عمداً: الاسم مغطّى في السؤال
+       ومكشوف في الإجابة، فلا نطبّق فحص التطابق هنا. */
+    if (!allowSameAsQuestion &&
+        fileOf(url) && (fileOf(url) === fileOf(qSrc) || fileOf(url) === fileOf(item.img))) {
       holder.hidden = true; return;
     }
 
