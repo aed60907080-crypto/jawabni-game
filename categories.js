@@ -53,6 +53,7 @@
     { name: "أفلام وأنمي",      img: "image/افلام و انمي.jpg",     emoji: "🎬", tint: "#8a3570", group: "media" },
     { name: "البوكيمون",        img: "image/pokemons.png",        emoji: "⚡", tint: "#c49a24", group: "media" },
     { name: "ارطغرل",           img: "image/ErtugurlBey.png",     emoji: "🗡️", tint: "#8a5a2a", group: "media" },
+    { name: "المؤسس عثمان",     img: "image/المؤسس عثمان.jpg",    emoji: "⚔️", tint: "#7a4a22", group: "media" },
     { name: "الحفره",           img: "image/cukur1.png",          emoji: "🎥", tint: "#6b3030", group: "media" },
     { name: "خمن اسم المسلسل",  img: "image/KWS.png",             emoji: "📺", tint: "#6b3030", group: "media" },
     { name: "من القارئ",        img: "image/Quraan.png",          emoji: "🎧", tint: "#1f7d68", group: "islam" },
