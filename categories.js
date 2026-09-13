@@ -47,7 +47,7 @@
     { name: "حيوانات",          img: "image/حيوانات.jpg",          emoji: "🦁", tint: "#a8792a", group: "nature" },
     { name: "رياضة",            img: "image/رياضة.jpg",            emoji: "🏅", tint: "#2f8f52", group: "sport" },
     { name: "تخمين اللاعب",     img: "image/who is the player.jpg", emoji: "⚽", tint: "#2f8f52", group: "sport" },
-    { name: "سيارات",           img: "image/cars.jpeg",           emoji: "🚗", tint: "#8a3d3d", group: "tech" },
+    { name: "سيارات",           img: "image/cars.jpg",            emoji: "🚗", tint: "#8a3d3d", group: "tech" },
     { name: "تقنية",            img: "image/تقنية.jpg",            emoji: "💻", tint: "#3b6fb5", group: "tech" },
     { name: "ألعاب فيديو",      img: "image/العاب فيديو.jpg",      emoji: "🎮", tint: "#6a3fa0", group: "media" },
     { name: "أفلام وأنمي",      img: "image/افلام و انمي.jpg",     emoji: "🎬", tint: "#8a3570", group: "media" },
@@ -61,7 +61,7 @@
     { name: "مشاهير عرب",       img: "image/مشاهير عرب.jpg",       emoji: "⭐", tint: "#8a3570", group: "culture" },
     { name: "أمثال وألغاز",     img: "image/امثال و الغاز.jpg",    emoji: "🧩", tint: "#4a5fb5", group: "culture" },
     { name: "الصيادون",         img: "image/fishing.png",         emoji: "🎣", tint: "#2b7d9c", group: "kuwait" },
-    { name: "مجمعات الكويت",    img: "image/coop.jpg",            emoji: "🏬", tint: "#2f8f7d", group: "kuwait" },
+    { name: "مجمعات الكويت",    img: "image/مجمعات الكويت.jpg",   emoji: "🏬", tint: "#2f8f7d", group: "kuwait" },
     { name: "مناطق الكويت",     img: "image/Kuwait.png",          emoji: "📍", tint: "#2f8f7d", group: "kuwait" },
 
     /* ===== الفئات الجديدة ===== */
