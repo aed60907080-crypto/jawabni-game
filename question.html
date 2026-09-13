@@ -317,12 +317,21 @@
 
     /* ---------- مشغّل الفيديو ---------- */
     .vid{
+      position:relative;
       max-width:640px; margin:0 auto;
       border-radius:20px;
       overflow:hidden;
       border:1px solid var(--line);
       box-shadow:0 20px 48px rgba(0,0,0,.5);
       background:#000;
+    }
+    /* شريط يغطّي عنوان الفيديو أعلى مشغّل يوتيوب: العنوان يذكر اسم
+       الهدّاف فيكشف الإجابة قبل أن يجيب أحد. ويغطّي معه زرّ «مشاهدة
+       على YouTube» لأنه طريق آخر إلى العنوان. */
+    .vid > .vid-mask{
+      position:absolute; z-index:2; display:block;
+      background:#0a2620;
+      box-shadow:inset 0 0 0 1px rgba(231,183,64,.18);
     }
     .vid video, .vid iframe{
       display:block; width:100%; aspect-ratio:16/9;
@@ -1337,6 +1346,20 @@
       fr.allowFullscreen = true;
       fr.title = "مقطع السؤال";
       box.appendChild(fr);
+
+      /* تغطية عنوان الفيديو — انظر .vid-mask في التنسيق أعلاه.
+         hide = [[x, y, w, h], …] نسبةً مئوية من مساحة المشغّل. */
+      if (Array.isArray(item.hide)) {
+        item.hide.forEach(r => {
+          if (!Array.isArray(r) || r.length < 4) return;
+          const mask = document.createElement("i");
+          mask.className = "vid-mask";
+          mask.style.cssText =
+            "left:" + r[0] + "%;top:" + r[1] + "%;width:" + r[2] + "%;height:" + r[3] + "%;";
+          box.appendChild(mask);
+        });
+      }
+
       media.appendChild(box);
     }
   }
