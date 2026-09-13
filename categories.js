@@ -63,8 +63,7 @@
     { name: "طعام ومطبخ",       img: "image/طعام و مطبخ.jpg",      emoji: "🍽️", tint: "#b5652c", group: "culture" },
     { name: "مشاهير عرب",       img: "image/مشاهير عرب.jpg",       emoji: "⭐", tint: "#8a3570", group: "culture" },
     { name: "أمثال وألغاز",     img: "image/امثال و الغاز.jpg",    emoji: "🧩", tint: "#4a5fb5", group: "culture" },
-    /* بلا img حتى تصل صورة خاصة — البطاقة تُولَّد من الإيموجي */
-    { name: "ولا كلمة",                                             emoji: "🤫", tint: "#6a3fa0", group: "culture" },
+    { name: "ولا كلمة",         img: "image/ولا كلمة.jpg",         emoji: "🤫", tint: "#6a3fa0", group: "culture" },
     { name: "الصيادون",         img: "image/fishing.png",         emoji: "🎣", tint: "#2b7d9c", group: "kuwait" },
     { name: "مجمعات الكويت",    img: "image/مجمعات الكويت.jpg",   emoji: "🏬", tint: "#2f8f7d", group: "kuwait" },
     { name: "منتجات",           img: "image/منتجات.jpg",          emoji: "🛒", tint: "#b5652c", group: "culture" },
