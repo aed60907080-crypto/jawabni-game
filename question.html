@@ -357,14 +357,19 @@
     /* ---------- تكبير صورة السؤال ---------- */
     .q-media .zoomable{ cursor:zoom-in; }
 
-    /* تغطية اسم المنتج على صورة السؤال (فئة «منتجات») —
-       تُرفع عند إظهار الإجابة فيظهر الاسم. */
+    /* تغبيش اسم المنتج على صورة السؤال (فئة «منتجات») —
+       يُرفع عند إظهار الإجابة فيظهر الاسم واضحاً. */
     .hide-wrap{ position:relative; display:inline-block; line-height:0; max-width:100%; }
     .hide-wrap > .hide-mask{
       position:absolute; display:block;
-      background:#0a2620;
       border-radius:8px;
-      box-shadow:inset 0 0 0 1px rgba(231,183,64,.28), 0 2px 10px rgba(0,0,0,.35);
+      -webkit-backdrop-filter:blur(16px) saturate(1.15);
+              backdrop-filter:blur(16px) saturate(1.15);
+      box-shadow:inset 0 0 0 1px rgba(231,183,64,.22);
+    }
+    /* متصفح لا يدعم التغبيش: نغطّي بلون صلب، فالأهمّ ألا ينكشف الاسم */
+    @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+      .hide-wrap > .hide-mask{ background:#0a2620; }
     }
     .zoom-tip{
       display:inline-flex; align-items:center; gap:7px;
