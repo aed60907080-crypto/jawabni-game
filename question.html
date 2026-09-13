@@ -1719,19 +1719,11 @@
       return;
     }
 
-    /* مقال ويكيبيديا الذي عنوانه الجواب نفسه تماماً — وإلا لا صورة.
-       البحث الحر كان يعيد صوراً خاطئة (خطّ «الله» لسؤال «كينيا»). */
-    if (!Images.resolveAnswer) return;
-    holder.hidden = false;
-    holder.classList.add("loading");
-
-    Images.resolveAnswer({ a: item.a })
-      .then(url => {
-        if (url) { mountAnswerImage(holder, url); return; }
-        holder.classList.remove("loading");
-        holder.hidden = true;
-      })
-      .catch(() => { holder.classList.remove("loading"); holder.hidden = true; });
+    /* لا بحث تلقائي عن صورة للإجابة.
+       صورة الإجابة تظهر فقط إن كانت مكتوبة في البنك (aimg — كخريطة
+       الدولة في فئة الخرائط) أو من بنك صور الأنمي أعلاه. وما عدا ذلك
+       تُعرض الإجابة نصاً بلا صورة. */
+    holder.hidden = true;
   }
 
   /* يرسم صورة الإجابة بعد فحصها — يشترك فيه المساران (بحث الإنترنت وبنك الأنمي) */
