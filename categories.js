@@ -47,9 +47,7 @@
     { name: "حيوانات",          img: "image/حيوانات.jpg",          emoji: "🦁", tint: "#a8792a", group: "nature" },
     { name: "رياضة",            img: "image/رياضة.jpg",            emoji: "🏅", tint: "#2f8f52", group: "sport" },
     { name: "تخمين اللاعب",     img: "image/who is the player.jpg", emoji: "⚽", tint: "#2f8f52", group: "sport" },
-    /* بلا img: كل صور كرة القدم مستعملة في فئات أخرى، فتُولَّد بطاقتها
-       من الإيموجي حتى تصلنا صورة خاصة بها. */
-    { name: "من صاحب الهدف",                                        emoji: "🥅", tint: "#1f7d4a", group: "sport" },
+    { name: "من صاحب الهدف",    img: "image/من صاحب الهدف.jpg",   emoji: "🥅", tint: "#1f7d4a", group: "sport" },
     { name: "سيارات",           img: "image/cars.jpg",            emoji: "🚗", tint: "#8a3d3d", group: "tech" },
     { name: "تقنية",            img: "image/تقنية.jpg",            emoji: "💻", tint: "#3b6fb5", group: "tech" },
     { name: "ألعاب فيديو",      img: "image/العاب فيديو.jpg",      emoji: "🎮", tint: "#6a3fa0", group: "media" },
