@@ -409,6 +409,12 @@
     }
     /* الخريطة العالمية تُستنسخ بحاويتها ليبقى المؤشّر في موضعه */
     #imgZoom .zoom-stage .worldpin{ width:min(92vw, 900px); max-width:none; }
+    /* وصورة المنتج تُستنسخ بغلافها كذلك، ليبقى التغبيش فوق الاسم
+       عند التكبير — وإلا انكشف الاسم بضغطة واحدة. */
+    #imgZoom .zoom-stage .hide-wrap{ display:block; }
+    #imgZoom .zoom-stage .hide-wrap img{
+      max-width:92vw; max-height:88vh; width:auto; height:auto; display:block;
+    }
     #imgZoom .zoom-stage img{ border-radius:14px; }
 
     .zoom-bar{
@@ -1951,7 +1957,10 @@
     }
 
     function open(source) {
-      node = source.cloneNode(true);
+      /* صورة عليها تغبيش لاسم المنتج: نستنسخ غلافها بأقنعته لا الصورة
+         وحدها، وإلا ظهر الاسم واضحاً في نافذة التكبير. */
+      const masked = source.closest ? source.closest('.hide-wrap') : null;
+      node = (masked || source).cloneNode(true);
       node.classList.remove('zoomable');
       node.removeAttribute('id');
       stage.innerHTML = '';
