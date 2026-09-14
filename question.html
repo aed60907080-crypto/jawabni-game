@@ -1084,6 +1084,12 @@
     });
   }
 
+  /* فئات صورتها للإجابة لا للسؤال: يُعرض السؤال نصاً بلا صورة (ولا صورة
+     تُجلب له تلقائياً)، وتظهر صورته المكتوبة في البنك بعد إظهار الإجابة.
+     في «الأنبياء والرسل» كانت الصورة تُلمّح إلى الجواب قبل أن يجيب أحد. */
+  const IMAGE_IN_ANSWER_CATEGORIES = ["الأنبياء والرسل"];
+  const imageInAnswer = IMAGE_IN_ANSWER_CATEGORIES.indexOf(category) >= 0;
+
   /* ---------------- ترجمة نص السؤال والإجابة ----------------
      الواجهة مترجمة يدوياً، أما نصوص الأسئلة فتُترجم آلياً حسب اللغة
      المختارة. النص العربي يظهر أولاً ثم يُستبدل بالترجمة عند وصولها،
@@ -1197,10 +1203,14 @@
     /* أسئلة الوسائط (صوت أو فيديو) بلا صورة مكتوبة: لا نجلب لها صورة تلقائياً —
        الوسيط نفسه هو السؤال، وأي صورة إضافية إما تكشف الإجابة أو تشوّش. */
     const audioOnly = (!!item.audio || !!item.yt || !!item.video) && !item.img;
+    /* فئة صورتها للإجابة: لا صورة في السؤال — وإن لم يكن فيه وسيط آخر
+       نخفي حاوية الوسائط كلها فلا يبقى مكانها فارغاً */
+    const noQuestionImage = audioOnly || imageInAnswer;
+    if (imageInAnswer && !item.audio && !item.yt && !item.video) media.hidden = true;
 
     const shell = document.createElement('div');
     shell.className = 'q-img-shell';
-    if (!audioOnly) media.appendChild(shell);
+    if (!noQuestionImage) media.appendChild(shell);
 
     /* تنسيق الصورة حسب نوعها كما كان سابقاً */
     let cls = '';
@@ -1210,8 +1220,8 @@
       else if (/maps?\//i.test(item.img))  cls = 'mapimg';
     }
 
-    if (audioOnly) {
-      /* لا صورة — يكتفي السؤال بالمشغّل الصوتي */
+    if (noQuestionImage) {
+      /* لا صورة — يكتفي السؤال بالمشغّل الصوتي، أو صورته تنتظر الإجابة */
     } else if (item.pin) {
       /* فئة الخرائط: خريطة العالم كاملة مع حلقة على الدولة المقصودة،
          وشكل الدولة الصمّاء في الزاوية لإزالة اللبس بين الجارات. */
@@ -1777,6 +1787,15 @@
     /* اسم المنتج كان مغطّى في السؤال — نعرض الصورة كاملة الآن */
     if (!item.aimg && Array.isArray(item.hide) && item.hide.length && item.img) {
       mountAnswerImage(holder, item.img, true);
+      return;
+    }
+
+    /* فئة صورتها للإجابة (الأنبياء والرسل): صورة السؤال لم تُعرض في
+       السؤال، فتظهر الآن مع الإجابة. وقبل فحص NO_ANSWER_IMAGE_CATEGORIES
+       لأن الفئة مدرجة فيه. وما لا صورة له في البنك يبقى بلا صورة. */
+    if (imageInAnswer) {
+      if (item.img) mountAnswerImage(holder, item.img, true);
+      else holder.hidden = true;
       return;
     }
 
