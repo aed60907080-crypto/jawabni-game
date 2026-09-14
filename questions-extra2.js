@@ -528,8 +528,16 @@
     { l: 5, q: "ما اسم المدينة التي كانت عاصمة الدولة العثمانية قبل إسطنبول؟", a: "بورصة ثم أدرنة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Bursa_Kalesi_1.jpg/960px-Bursa_Kalesi_1.jpg" }
   ];
 
-  /* ---------- مناطق تركيا (50 سؤالاً) ---------- */
+  /* ---------- مناطق تركيا (57 سؤالاً) ---------- */
   extra["مناطق تركيا"] = [
+    /* خريطة المناطق السبع مرقّمة — رقم على كل منطقة */
+    { l: 1, q: "على الخريطة: ما اسم المنطقة رقم 1؟", a: "منطقة مرمرة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "1" },
+    { l: 2, q: "على الخريطة: ما اسم المنطقة رقم 2؟", a: "منطقة إيجة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "2" },
+    { l: 3, q: "على الخريطة: ما اسم المنطقة رقم 3؟", a: "منطقة البحر المتوسط", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "3" },
+    { l: 1, q: "على الخريطة: ما اسم المنطقة رقم 4؟", a: "منطقة الأناضول الوسطى", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "4" },
+    { l: 2, q: "على الخريطة: ما اسم المنطقة رقم 5؟", a: "منطقة البحر الأسود", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "5" },
+    { l: 3, q: "على الخريطة: ما اسم المنطقة رقم 6؟", a: "منطقة شرق الأناضول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "6" },
+    { l: 4, q: "على الخريطة: ما اسم المنطقة رقم 7؟", a: "منطقة جنوب شرق الأناضول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Turkey_Regions_blank.png/960px-Turkey_Regions_blank.png", labels: [[13, 36, "1"], [17, 55, "2"], [28, 63, "3"], [43, 47, "4"], [52, 29, "5"], [80, 42, "6"], [68, 62, "7"]], mark: "7" },
     { l: 1, q: "في أي منطقة جغرافية تقع مدينة إسطنبول؟", a: "منطقة مرمرة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Istanbul_beaches-_Sea_of_Marmara_-_Tourism_in_Turkey_16.jpg/960px-Istanbul_beaches-_Sea_of_Marmara_-_Tourism_in_Turkey_16.jpg" },
     { l: 1, q: "في أي منطقة جغرافية تقع مدينة أنقرة؟", a: "منطقة الأناضول الوسطى", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/E%C5%9Frefo%C4%9Fullar%C4%B1_Beyli%C4%9Fi%27nin_konumu-ar.png/960px-E%C5%9Frefo%C4%9Fullar%C4%B1_Beyli%C4%9Fi%27nin_konumu-ar.png" },
     { l: 1, q: "ما اسم أشهر مدينة سياحية على ساحل المتوسط في تركيا؟", a: "أنطاليا", img: "https://upload.wikimedia.org/wikipedia/commons/8/87/Antalya_city.jpg" },

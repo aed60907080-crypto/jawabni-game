@@ -380,6 +380,23 @@
     @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
       .hide-wrap > .hide-mask{ background:#0a2620; }
     }
+    /* أرقام على الخريطة (labels) — «ما اسم المنطقة رقم ٣؟» */
+    .hide-wrap > .map-label{
+      position:absolute; transform:translate(-50%, -50%);
+      min-width:1.9em; height:1.9em; padding:0 .35em;
+      display:grid; place-items:center;
+      border-radius:999px;
+      background:#0a2620; color:#f3e9cf;
+      border:2px solid #e7b740;
+      box-shadow:0 2px 6px rgba(0,0,0,.45);
+      font:800 clamp(11px, 2.4vw, 17px)/1 'Cairo', sans-serif;
+      pointer-events:none;
+    }
+    /* في الإجابة: رقم المنطقة المسؤول عنها يُبرَز */
+    .hide-wrap > .map-label.on{
+      background:#e7b740; color:#0a2620; border-color:#fff;
+      transform:translate(-50%, -50%) scale(1.25);
+    }
     .zoom-tip{
       display:inline-flex; align-items:center; gap:7px;
       margin-top:10px; padding:6px 14px;
@@ -1256,7 +1273,7 @@
     } else if (window.Images) {
       shell.classList.add('loading');
       Images.mountInto(shell, item, category, { className: cls })
-        .then(() => { shell.classList.remove('loading'); applyHideMasks(shell, item.hide); })
+        .then(() => { shell.classList.remove('loading'); applyHideMasks(shell, item.hide); applyLabels(shell, item.labels); })
         .catch(() => shell.classList.remove('loading'));
     } else if (item.img) {
       const im = document.createElement('img');
@@ -1266,6 +1283,7 @@
       im.onerror = () => { im.replaceWith(missingNote(item.img, 'صورة')); };
       shell.appendChild(im);
       applyHideMasks(shell, item.hide);
+      applyLabels(shell, item.labels);
     }
 
     /* صوت — مشغّل مخصص */
@@ -1761,15 +1779,46 @@
      تغطّيه في السؤال: [[x, y, w, h], …] نسبةً مئوية من عرض
      الصورة وارتفاعها. وعند إظهار الإجابة تُعرض الصورة كاملة
      بلا تغطية، فيرى اللاعبون الاسم. صورة واحدة تكفي للاثنين. */
-  function applyHideMasks(shell, rects) {
-    if (!Array.isArray(rects) || !rects.length || !shell) return;
+  /* غلاف الصورة الذي تُرسم فوقه الطبقات (أقنعة التغبيش وأرقام الخريطة).
+     غلاف واحد مشترك، فتجتمع الطبقتان على الصورة نفسها، ويستنسخه التكبير
+     كاملاً بما عليه (انظر zoom.open). */
+  function overlayWrap(shell) {
+    if (!shell) return null;
+    const existing = shell.querySelector(".hide-wrap");
+    if (existing) return existing;
     const img = shell.querySelector("img");
-    if (!img) return;
-
+    if (!img) return null;
     const wrap = document.createElement("span");
     wrap.className = "hide-wrap";
     img.replaceWith(wrap);
     wrap.appendChild(img);
+    return wrap;
+  }
+
+  /* ---------- أرقام على الخريطة ----------
+     labels = [[x, y, "نص"], …] — شارة صغيرة مركزها عند (x٪، y٪) من الصورة.
+     في «مناطق تركيا» مثلاً: رقم على كل منطقة في خريطة صمّاء، والسؤال
+     «ما اسم المنطقة رقم ٣؟». الأرقام تبقى مع الصورة عند التكبير.
+     mark = نص الرقم المسؤول عنه، يُبرَز في صورة الإجابة. */
+  function applyLabels(shell, labels, mark) {
+    if (!Array.isArray(labels) || !labels.length) return;
+    const wrap = overlayWrap(shell);
+    if (!wrap) return;
+    labels.forEach(l => {
+      if (!Array.isArray(l) || l.length < 3) return;
+      const tag = document.createElement("b");
+      tag.className = "map-label" + (mark != null && String(l[2]) === String(mark) ? " on" : "");
+      tag.textContent = String(l[2]);
+      tag.style.left = l[0] + "%";
+      tag.style.top  = l[1] + "%";
+      wrap.appendChild(tag);
+    });
+  }
+
+  function applyHideMasks(shell, rects) {
+    if (!Array.isArray(rects) || !rects.length || !shell) return;
+    const wrap = overlayWrap(shell);
+    if (!wrap) return;
 
     rects.forEach(r => {
       if (!Array.isArray(r) || r.length < 4) return;
@@ -1784,6 +1833,14 @@
   function showAnswerImage() {
     const holder = document.getElementById("answerMedia");
     if (!holder || !item) return;
+
+    /* خريطة مرقّمة: نعيدها في الإجابة بأرقامها، ورقم المنطقة المسؤول
+       عنها مُبرَز — فيرى اللاعبون موضع الجواب على الخريطة. */
+    if (!item.aimg && Array.isArray(item.labels) && item.labels.length && item.img) {
+      mountAnswerImage(holder, item.img, true);
+      applyLabels(holder, item.labels, item.mark);
+      return;
+    }
 
     /* اسم المنتج كان مغطّى في السؤال — نعرض الصورة كاملة الآن */
     if (!item.aimg && Array.isArray(item.hide) && item.hide.length && item.img) {
