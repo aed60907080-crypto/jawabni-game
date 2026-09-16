@@ -1968,7 +1968,7 @@
   function award(team){
     /* «امنع الخصم»: الفريق الممنوع لا يأخذ نقاط هذا السؤال */
     if (team && team === blockedTeam) return;
-    team ? SFX.correct() : SFX.wrong();
+    team ? SFX.correctAnswer() : SFX.wrongAnswer();
     const s = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
     let msg;
 

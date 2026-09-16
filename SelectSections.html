@@ -720,7 +720,7 @@
   }
 
   function applyPenalty(team, amount) {
-    SFX.penalty();
+    SFX.penaltyCard();
     const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
     scores[team] = Math.max(0, scores[team] - amount);
     localStorage.setItem('teamScores', JSON.stringify(scores));

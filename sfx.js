@@ -14,7 +14,15 @@
      SFX.wrong()      إجابة خاطئة / لا أحد
      SFX.penalty()    بطاقة جزاء
      SFX.win()        فوز ونهاية اللعبة
-     SFX.coin()       شحن رصيد
+     SFX.coin()       رنّة عملات (شراء مساعدة، مكافأة)
+
+   المؤثرات المرحة (تُطفأ من الإعدادات فتعود الأصوات الكلاسيكية):
+     SFX.laugh()          ضحكة شريرة مجنونة «ها ها ها… هاااا» — صوت مولّد لا تسجيل
+     SFX.applause()       تصفيق
+     SFX.sadTrombone()    بوق حزين «واه واه واه واااه»
+     SFX.correctAnswer()  إجابة صحيحة: نغمة النجاح + تصفيق
+     SFX.wrongAnswer()    لا أحد أجاب: الضحكة (أو صوت الخطأ الكلاسيكي)
+     SFX.penaltyCard()    بطاقة جزاء: البوق الحزين (أو الطرقتان الكلاسيكيتان)
 
      SFX.music.toggle()   تشغيل/إيقاف الموسيقى الخلفية
      SFX.mountControls()  يضيف أزرار الصوت والموسيقى للصفحة
@@ -22,6 +30,7 @@
    الإعدادات تُحفظ في localStorage:
      sfxOn   ("1" | "0")   المؤثرات
      musicOn ("1" | "0")   الموسيقى الخلفية
+     funSfxOn ("1" | "0")  المؤثرات المرحة (مفعّلة افتراضياً)
    ============================================================ */
 
 (function (global) {
@@ -33,7 +42,8 @@
 
   var state = {
     sfx:   localStorage.getItem("sfxOn")   !== "0",   // مفعّلة افتراضياً
-    music: localStorage.getItem("musicOn") === "1"    // مطفأة افتراضياً
+    music: localStorage.getItem("musicOn") === "1",   // مطفأة افتراضياً
+    fun:   localStorage.getItem("funSfxOn") !== "0"   // المؤثرات المرحة مفعّلة افتراضياً
   };
 
   /* ---------- تهيئة السياق الصوتي (بعد أول تفاعل من المستخدم) ---------- */
@@ -116,6 +126,95 @@
     src.start(t); src.stop(t + dur + 0.05);
   }
 
+  /* ---------- مقطع صوتي بشري مولّد (للضحكة) ----------
+     موجة منشارية بنبرة الصوت تمرّ في مرشّحات «مُكوِّنات» تحاكي حرف
+     العلّة «آ»، فيخرج صوت يشبه «هاا». */
+  function voiced(opt) {
+    if (!state.sfx || !ensure()) return;
+    var t = now() + (opt.delay || 0);
+    var dur = opt.dur;
+    var vol = opt.vol == null ? 0.5 : opt.vol;
+
+    var o = ctx.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.setValueAtTime(opt.f0, t);
+    o.frequency.exponentialRampToValueAtTime(Math.max(40, opt.f1 || opt.f0), t + dur);
+
+    if (opt.vib) {
+      var lfo = ctx.createOscillator();
+      var lfoGain = ctx.createGain();
+      lfo.frequency.value = opt.vib.rate;
+      lfoGain.gain.value = opt.vib.depth;
+      lfo.connect(lfoGain); lfoGain.connect(o.frequency);
+      lfo.start(t); lfo.stop(t + dur + 0.05);
+    }
+
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.02);
+    g.gain.setValueAtTime(vol, t + dur * 0.6);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+    /* مُكوِّنات حرف «آ»: [التردد، الحدّة Q، الكسب] */
+    [[750, 6, 2.2], [1150, 8, 1.4], [2600, 10, 0.5]].forEach(function (fm) {
+      var bp = ctx.createBiquadFilter();
+      bp.type = "bandpass";
+      bp.frequency.value = fm[0];
+      bp.Q.value = fm[1];
+      var fg = ctx.createGain();
+      fg.gain.value = fm[2];
+      g.connect(bp); bp.connect(fg); fg.connect(master);
+    });
+    /* جسم الصوت: مسار منخفض خفيف */
+    var body = ctx.createBiquadFilter();
+    body.type = "lowpass";
+    body.frequency.value = 900;
+    var bodyGain = ctx.createGain();
+    bodyGain.gain.value = 0.15;
+    g.connect(body); body.connect(bodyGain); bodyGain.connect(master);
+
+    o.connect(g);
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  }
+
+  /* ---------- نغمة بوق (للبوق الحزين) ---------- */
+  function brass(freq, dur, delay, vib) {
+    if (!state.sfx || !ensure()) return;
+    var t = now() + (delay || 0);
+
+    var o = ctx.createOscillator();
+    o.type = "sawtooth";
+    o.frequency.setValueAtTime(freq * 1.03, t);
+    o.frequency.exponentialRampToValueAtTime(freq, t + 0.08);
+    if (vib) {
+      var lfo = ctx.createOscillator();
+      var lfoGain = ctx.createGain();
+      lfo.frequency.value = 5;
+      lfoGain.gain.value = freq * 0.035;
+      lfo.connect(lfoGain); lfoGain.connect(o.frequency);
+      lfo.start(t + 0.2); lfo.stop(t + dur + 0.05);
+    }
+
+    /* «واه»: المرشّح ينفتح ثم ينغلق */
+    var lp = ctx.createBiquadFilter();
+    lp.type = "lowpass";
+    lp.Q.value = 4;
+    lp.frequency.setValueAtTime(350, t);
+    lp.frequency.exponentialRampToValueAtTime(1600, t + 0.12);
+    lp.frequency.exponentialRampToValueAtTime(600, t + dur);
+
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.17, t + 0.05);
+    g.gain.setValueAtTime(0.17, t + dur * 0.7);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+    o.connect(lp); lp.connect(g); g.connect(master);
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  }
+
   /* ============ المؤثرات ============ */
   var SFX = {
     /* نقرة زر خفيفة */
@@ -177,7 +276,62 @@
       tone({ freq: 160, to: 95,  dur: 0.22, vol: 0.16, type: "square", filter: 700, delay: 0.16 });
     },
 
-    /* شحن رصيد — رنّة عملات */
+    /* ضحكة شريرة مجنونة «ها ها ها ها… هاااا» — تتسارع وترتفع ثم تنتهي
+       بـ«هاااا» طويلة نازلة مرتعشة. مولّدة بالكامل، لا تسجيل. */
+    laugh: function () {
+      var syl = [
+        [230, 0.14], [260, 0.13], [290, 0.12], [315, 0.11],
+        [330, 0.10], [340, 0.10], [320, 0.11], [300, 0.12]
+      ];
+      var t = 0;
+      syl.forEach(function (s, i) {
+        noise({ from: 1400, toFreq: 2000, dur: 0.05, vol: 0.05, delay: t });      /* «هـ» */
+        voiced({ f0: s[0], f1: s[0] * 0.84, dur: s[1], vol: 0.3, delay: t + 0.03 });
+        t += 0.03 + s[1] + (i < 4 ? 0.07 : 0.05);                                   /* تتسارع */
+      });
+      noise({ from: 1400, toFreq: 2000, dur: 0.06, vol: 0.05, delay: t });
+      voiced({ f0: 360, f1: 165, dur: 0.85, vol: 0.33, delay: t + 0.04, vib: { rate: 7, depth: 14 } });
+    },
+
+    /* تصفيق — نقرات ضجيج متفرقة تخفت تدريجياً */
+    applause: function () {
+      for (var i = 0; i < 46; i++) {
+        var p = Math.random();
+        noise({
+          from: 1300 + Math.random() * 1500,
+          toFreq: 2400 + Math.random() * 2400,
+          dur: 0.04 + Math.random() * 0.04,
+          vol: 0.26 * (1 - p * 0.7),
+          delay: 0.25 + p * p * 1.5
+        });
+      }
+    },
+
+    /* بوق حزين «واه واه واه واااه» */
+    sadTrombone: function () {
+      brass(293.66, 0.36, 0);
+      brass(277.18, 0.36, 0.40);
+      brass(261.63, 0.36, 0.80);
+      brass(246.94, 1.15, 1.20, true);
+    },
+
+    /* إجابة صحيحة في اللعبة: نغمة النجاح + تصفيق (إن كانت المرحة مفعّلة) */
+    correctAnswer: function () {
+      SFX.correct();
+      if (state.fun) SFX.applause();
+    },
+
+    /* لا أحد أجاب في اللعبة: الضحكة، أو صوت الخطأ الكلاسيكي */
+    wrongAnswer: function () {
+      state.fun ? SFX.laugh() : SFX.wrong();
+    },
+
+    /* بطاقة جزاء من المقدّم: البوق الحزين، أو الطرقتان الكلاسيكيتان */
+    penaltyCard: function () {
+      state.fun ? SFX.sadTrombone() : SFX.penalty();
+    },
+
+    /* رنّة عملات */
     coin: function () {
       [1046.5, 1318.5, 1568].forEach(function (f, i) {
         tone({ freq: f, dur: 0.18, vol: 0.13, type: "triangle", delay: i * 0.06 });
@@ -312,6 +466,13 @@
   };
   SFX.toggleSfx = function () { SFX.setSfx(!state.sfx); };
   Object.defineProperty(SFX, "sfxOn", { get: function () { return state.sfx; } });
+
+  /* المؤثرات المرحة (ضحكة/تصفيق/بوق حزين) */
+  SFX.setFun = function (on) {
+    state.fun = !!on;
+    localStorage.setItem("funSfxOn", on ? "1" : "0");
+  };
+  Object.defineProperty(SFX, "funOn", { get: function () { return state.fun; } });
 
   /* ============ أزرار التحكم في الصفحة ============ */
   function updateControls() {

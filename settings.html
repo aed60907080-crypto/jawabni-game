@@ -452,6 +452,22 @@
         </label>
       </div>
 
+      <div class="row">
+        <div class="txt">
+          <b>المؤثرات المرحة</b>
+          <span>ضحكة شريرة حين لا يجيب أحد، وتصفيق للإجابة الصحيحة، وبوق حزين عند بطاقة الجزاء. أطفئها لتعود الأصوات الكلاسيكية.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="funToggle">
+          <span class="track"></span>
+        </label>
+      </div>
+      <div class="btn-row" style="margin-top:6px">
+        <button class="btn ghost" type="button" id="tryLaugh">😈 جرّب الضحكة</button>
+        <button class="btn ghost" type="button" id="tryApplause">👏 التصفيق</button>
+        <button class="btn ghost" type="button" id="tryTrombone">🎺 البوق الحزين</button>
+      </div>
+
       <p class="note">المتصفحات لا تسمح بالصوت قبل أول نقرة منك — إن لم تسمع شيئاً فانقر أي مكان في الصفحة أولاً.</p>
     </div>
 
@@ -735,13 +751,31 @@
   (function () {
     const sfxT   = document.getElementById('sfxToggle');
     const musicT = document.getElementById('musicToggle');
+    const funT   = document.getElementById('funToggle');
     if (!window.SFX) {
-      sfxT.disabled = musicT.disabled = true;
+      sfxT.disabled = musicT.disabled = funT.disabled = true;
       return;
     }
 
     sfxT.checked   = SFX.sfxOn;
     musicT.checked = SFX.music.on;
+    funT.checked   = SFX.funOn;
+
+    funT.onchange = () => {
+      SFX.setFun(funT.checked);
+      toast(funT.checked ? 'المؤثرات المرحة مفعّلة 😈' : 'عادت الأصوات الكلاسيكية', 'fa-face-grin-squint-tears');
+      funT.checked ? SFX.laugh() : SFX.wrong();
+    };
+
+    /* أزرار التجربة — تُسمع حتى لو كانت المؤثرات المرحة مطفأة */
+    const needSfx = () => {
+      if (SFX.sfxOn) return true;
+      toast('شغّل «المؤثرات الصوتية» أولاً لتسمعها', 'fa-volume-xmark');
+      return false;
+    };
+    document.getElementById('tryLaugh').onclick    = () => { if (needSfx()) SFX.laugh(); };
+    document.getElementById('tryApplause').onclick = () => { if (needSfx()) SFX.applause(); };
+    document.getElementById('tryTrombone').onclick = () => { if (needSfx()) SFX.sadTrombone(); };
 
     sfxT.onchange = () => {
       SFX.setSfx(sfxT.checked);
