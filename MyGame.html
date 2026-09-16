@@ -366,11 +366,6 @@
       <b id="sumLast" style="font-size:16px; line-height:1.6">—</b>
       <small>آخر لعبة</small>
     </div>
-    <div class="sbox">
-      <i class="fa-solid fa-wallet"></i>
-      <b id="sumBalance">0</b>
-      <small>رصيدك الحالي</small>
-    </div>
   </div>
 
   <div class="table-card">
@@ -443,7 +438,6 @@
 
   function renderLog(){
     document.getElementById("sumGames").textContent = logs.length;
-    document.getElementById("sumBalance").textContent = parseInt(localStorage.getItem("balance")) || 0;
     document.getElementById("sumLast").textContent = logs.length ? (logs[logs.length - 1].time || "—") : "—";
     document.getElementById("clearBtn").style.display = logs.length ? "inline-flex" : "none";
 

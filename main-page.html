@@ -691,10 +691,6 @@
       <i class="fa-solid fa-coins"></i>
       نقاطك <span class="value" id="user-points">0</span>
     </span>
-    <span class="chip balance">
-      <i class="fa-solid fa-wallet"></i>
-      رصيدك <span class="value" id="user-balance">0</span>
-    </span>
 
     <div class="clock-wrap">
       <canvas id="canvas" width="60" height="60">متصفحك لا يدعم canvas.</canvas>
@@ -765,14 +761,14 @@
   <div class="section-head reveal">
     <span class="eyebrow-line">لوحة التحكم</span>
     <h2>كل شيء على بُعد نقرة</h2>
-    <p>تنقّل بين رصيدك وألعابك وإعداداتك بسهولة</p>
+    <p>تنقّل بين ألعابك والمتجر وإعداداتك بسهولة</p>
   </div>
 
   <ul class="podium reveal">
     <li class="list active">
       <a href="balance.html">
-        <span class="icon"><i class="fa-solid fa-money-check-dollar"></i></span>
-        <p>الرصيد</p>
+        <span class="icon"><i class="fa-solid fa-cart-shopping"></i></span>
+        <p>المتجر</p>
       </a>
     </li>
     <li class="list">
@@ -956,22 +952,11 @@
     ctx.rotate(-pos);
   }
 
-  /* ---------------- points / balance ---------------- */
+  /* ---------------- points ---------------- */
+  /* اللعب مجاني: لا رصيد ولا شحن. نقاط الحساب تُنفق في متجر المساعدات. */
   document.addEventListener("DOMContentLoaded", function () {
-    let points = parseInt(localStorage.getItem("points")) || 0;
-    let balance = parseInt(localStorage.getItem("balance")) || 0;
-
-    // تحويل النقاط إلى رصيد تلقائياً (كل 20 نقطة = 1 رصيد)
-    while (points >= 20) {
-      points -= 20;
-      balance += 1;
-    }
-
-    localStorage.setItem("points", points);
-    localStorage.setItem("balance", balance);
-
+    const points = parseInt(localStorage.getItem("points")) || 0;
     countUp(document.getElementById("user-points"), points);
-    countUp(document.getElementById("user-balance"), balance);
 
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user && user.username) {
@@ -1019,40 +1004,9 @@
     setTimeout(() => { window.location.href = "signIn.html"; }, 900);
   }
 
-  /* ---------------- payments (kept as-is) ---------------- */
-  const payButton = document.getElementById("pay-button");
-  if (payButton) {
-    payButton.addEventListener("click", function () {
-      const amount = prompt("كم المبلغ الذي تريد دفعه؟");
-      if (amount && !isNaN(amount)) {
-        let current = parseInt(localStorage.getItem("balance")) || 0;
-        current += parseInt(amount);
-        localStorage.setItem("balance", current);
-        document.getElementById("user-balance").textContent = current;
-        showToast("تم الدفع بنجاح! المبلغ المضاف: " + amount + " ريال");
-      } else {
-        showToast("يرجى إدخال مبلغ صالح.", "err");
-      }
-    });
-  }
-
   /* ---------------- start / new game ---------------- */
   function startNewGame() {
-    let balance = parseInt(localStorage.getItem("balance")) || 0;
-
-    if (balance < 1) {
-      SFX.wrong();
-      showToast("لا يوجد لديك رصيد كافٍ. يرجى شحن الرصيد أولاً.", "err");
-      return;
-    }
     SFX.select();
-
-    balance -= 1;
-    localStorage.setItem("balance", balance);
-    const bEl = document.getElementById("user-balance");
-    bEl.textContent = balance;
-    bEl.classList.add("pop");
-    setTimeout(() => bEl.classList.remove("pop"), 520);
 
     localStorage.removeItem("selectedCategories");
     localStorage.removeItem("selectedQuestions");

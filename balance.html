@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="&#1580;&#1575;&#1608;&#1576;&#1606;&#1610;">
 <script src="pwa.js" defer></script>
-  <title>شحن الرصيد — جاوبني</title>
+  <title>متجر المساعدات — جاوبني</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -455,10 +455,6 @@
     <b>جاوبني</b>
   </div>
   <div class="head-right">
-    <span class="chip">
-      <i class="fa-solid fa-wallet"></i>
-      رصيدك <span class="value" id="current-balance">0</span>
-    </span>
     <a class="ghost-link" href="main-page.html"><i class="fa-solid fa-arrow-right-long"></i> الرئيسية</a>
   </div>
 </header>
@@ -466,65 +462,12 @@
 <div class="lightbar"></div>
 
 <div class="page-head">
-  <span class="eyebrow-line">المحفظة</span>
-  <h1>شحن رصيد اللعبة</h1>
-  <p>كل رصيد = جولة كاملة من ٦ فئات — اختر الباقة التي تناسبك</p>
+  <span class="eyebrow-line">بلا رصيد ولا شحن</span>
+  <h1>المتجر</h1>
+  <p>اللعب مجاني — ونقاط حسابك تشتري بها مساعدات إضافية تبدأ معك في كل جولة</p>
 </div>
 
 <div class="wrap">
-
-  <!-- الباقات (تُحدّث القيمة في القائمة المخفية أدناه) -->
-  <div class="plans">
-    <label class="plan">
-      <input type="radio" name="plan" value="1" data-price="1" checked>
-      <span class="tick"><i class="fa-solid fa-check"></i></span>
-      <div class="coins"><i class="fa-solid fa-coins"></i></div>
-      <div class="games">1 <small>لعبة</small></div>
-      <div class="price">1 دينار</div>
-      <div class="per">جولة واحدة للتجربة</div>
-    </label>
-
-    <label class="plan">
-      <input type="radio" name="plan" value="2" data-price="2">
-      <span class="tick"><i class="fa-solid fa-check"></i></span>
-      <div class="coins"><i class="fa-solid fa-sack-dollar"></i></div>
-      <div class="games">2 <small>ألعاب</small></div>
-      <div class="price">2 دينار</div>
-      <div class="per">مناسبة لسهرة قصيرة</div>
-    </label>
-
-    <label class="plan">
-      <span class="badge-best">الأوفر</span>
-      <input type="radio" name="plan" value="7" data-price="5">
-      <span class="tick"><i class="fa-solid fa-check"></i></span>
-      <div class="coins"><i class="fa-solid fa-gem"></i></div>
-      <div class="games">7 <small>ألعاب</small></div>
-      <div class="price">5 دينار</div>
-      <div class="per">توفير حتى ٣٠٪ لكل جولة</div>
-    </label>
-  </div>
-
-  <!-- القائمة الأصلية محفوظة لتوافق الكود -->
-  <select id="game-count" style="display:none">
-    <option value="1">1 لعبة - 1 دينار</option>
-    <option value="2">2 ألعاب - 2 دينار</option>
-    <option value="7">7 ألعاب - 5 دينار</option>
-  </select>
-
-  <div class="checkout">
-    <div class="sum">
-      <span>ملخّص الطلب</span>
-      <b><em id="sumGames">1</em> لعبة مقابل <em id="sumPrice">1</em> دينار</b>
-    </div>
-    <button id="purchase-button">
-      <i class="fa-solid fa-bolt"></i> شراء الرصيد
-    </button>
-  </div>
-
-  <p class="note">
-    <i class="fa-solid fa-circle-info"></i>
-    الرصيد يُخصم بمقدار واحد عند بدء كل لعبة جديدة، وكل ٢٠ نقطة تربحها تتحوّل تلقائياً إلى رصيد إضافي.
-  </p>
 
   <!-- ============ متجر المساعدات ============ -->
   <div class="shop" id="shop">
@@ -581,14 +524,6 @@
     box.appendChild(t);
     setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2400);
   }
-
-  const select = document.getElementById("game-count");
-  const balanceEl = document.getElementById("current-balance");
-
-  function refreshBalance(){
-    balanceEl.textContent = parseInt(localStorage.getItem("balance")) || 0;
-  }
-  refreshBalance();
 
   /* ================= متجر المساعدات ================= */
   /* اللاعب يشتري بنقاط حسابه، وما يشتريه يصير ملكاً دائماً
@@ -662,37 +597,7 @@
 
   renderShop();
 
-  // ربط بطاقات الباقات بالقائمة المخفية + تحديث الملخّص
-  const radios = document.querySelectorAll('input[name="plan"]');
-  function syncPlan(){
-    const picked = document.querySelector('input[name="plan"]:checked');
-    if (!picked) return;
-    select.value = picked.value;
-    document.getElementById("sumGames").textContent = picked.value;
-    document.getElementById("sumPrice").textContent = picked.dataset.price;
-  }
-  radios.forEach(r => r.addEventListener('change', () => { SFX.select(); syncPlan(); }));
-  syncPlan();
   SFX.mountControls();
-
-  document.getElementById("purchase-button").addEventListener("click", function () {
-    const selected = document.getElementById("game-count").value;
-    const cost = parseInt(selected);
-    let balance = parseInt(localStorage.getItem("balance")) || 0;
-    balance += cost;
-    localStorage.setItem("balance", balance);
-
-    balanceEl.textContent = balance;
-    balanceEl.classList.add("pop");
-    setTimeout(() => balanceEl.classList.remove("pop"), 520);
-
-    SFX.coin();
-    showToast("تمت إضافة " + cost + " رصيد بنجاح! رصيدك الآن: " + balance);
-
-    setTimeout(() => {
-      window.location.href = "main-page.html"; // العودة إلى الصفحة الرئيسية بعد الشراء
-    }, 1500);
-  });
 </script>
 </body>
 </html>

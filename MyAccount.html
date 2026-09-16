@@ -460,7 +460,7 @@
       <h2 id="profileName">زائر</h2>
       <span class="role"><i class="fa-solid fa-crown"></i> <span id="profileRank">لاعب جديد</span></span>
 
-      <p class="rank-note" id="rankNote">اجمع ٢٠ نقطة لتحصل على رصيد لعبة جديد.</p>
+      <p class="rank-note" id="rankNote">اجمع النقاط بالإجابات الصحيحة واشترِ بها مساعدات من المتجر.</p>
     </div>
 
     <div class="card-block">
@@ -493,11 +493,6 @@
           <b id="statPoints">0</b>
           <small>النقاط</small>
         </div>
-        <div class="stat coral">
-          <i class="fa-solid fa-wallet"></i>
-          <b id="statBalance">0</b>
-          <small>الرصيد</small>
-        </div>
         <div class="stat">
           <i class="fa-solid fa-gamepad"></i>
           <b id="statGames">0</b>
@@ -506,7 +501,7 @@
       </div>
 
       <div class="actions">
-        <a class="btn-gold" href="balance.html"><i class="fa-solid fa-plus"></i> شحن الرصيد</a>
+        <a class="btn-gold" href="balance.html"><i class="fa-solid fa-cart-shopping"></i> متجر المساعدات</a>
         <a class="btn-gold" href="MyGame.html" style="background:linear-gradient(135deg,#8fe3d0,#3fae95); box-shadow:0 12px 28px rgba(63,174,149,.3)"><i class="fa-solid fa-clock-rotate-left"></i> سجل ألعابي</a>
         <button class="btn-outline" onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> تسجيل خروج</button>
       </div>
@@ -579,7 +574,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("loggedInUser")) || {};
     const points  = parseInt(localStorage.getItem("points"))  || 0;
-    const balance = parseInt(localStorage.getItem("balance")) || 0;
     const games   = (JSON.parse(localStorage.getItem("gameLog")) || []).length;
 
     const name = user.username || "زائر";
@@ -591,7 +585,6 @@
       user.joined || new Date().toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
 
     countUp(document.getElementById("statPoints"), points);
-    countUp(document.getElementById("statBalance"), balance);
     countUp(document.getElementById("statGames"), games);
 
     // لقب اللاعب حسب عدد الألعاب
@@ -601,11 +594,10 @@
     else if (games >= 3) rank = "لاعب نشِط";
     document.getElementById("profileRank").textContent = rank;
 
-    const remaining = 20 - (points % 20);
     document.getElementById("rankNote").textContent =
-      balance > 0
-        ? `لديك ${balance} رصيد جاهز للعب — تبقّى ${remaining} نقطة للرصيد التالي.`
-        : `اجمع ${remaining} نقطة إضافية لتحصل على رصيد لعبة جديد.`;
+      points > 0
+        ? `لديك ${points} نقطة — أنفقها على مساعدات إضافية من المتجر.`
+        : "اجمع النقاط بالإجابات الصحيحة واشترِ بها مساعدات من المتجر.";
 
     // الصورة المحفوظة، أو صورة افتراضية بحرف الاسم
     const savedAvatar = localStorage.getItem("userAvatar");
