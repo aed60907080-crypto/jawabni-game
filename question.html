@@ -1667,6 +1667,7 @@
     document.getElementById("turnName").textContent = who;
     document.getElementById("btnT1").classList.toggle("turn", answeringTeam === 'team1');
     document.getElementById("btnT2").classList.toggle("turn", answeringTeam === 'team2');
+    if (window.SFX) SFX.stealTurn();
     showToast('🔀 سُرق الدور — ' + who + ' هو من يجيب الآن');
   }
 

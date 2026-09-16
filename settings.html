@@ -255,6 +255,26 @@
     }
     .bg-opt.on .nm{ color:var(--ink); background:linear-gradient(135deg, var(--gold-soft), var(--gold)); }
 
+    /* شبكة اختيار مقطوعة الموسيقى */
+    .track-grid{
+      display:grid; gap:8px; margin:2px 0 12px;
+      grid-template-columns:repeat(auto-fill, minmax(96px, 1fr));
+    }
+    .track-opt{
+      display:flex; flex-direction:column; align-items:center; gap:2px;
+      padding:10px 6px; border-radius:14px; cursor:pointer;
+      border:1px solid var(--line); background:rgba(4,18,15,.5);
+      color:var(--muted); font-family:'Cairo',sans-serif; font-weight:800; font-size:13px;
+      transition:transform .18s ease, border-color .2s ease, background .2s ease;
+    }
+    .track-opt .em{ font-size:22px; line-height:1.2; }
+    .track-opt:hover{ transform:translateY(-2px); border-color:var(--line-strong); }
+    .track-opt.on{
+      color:#04120f; border-color:var(--gold);
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      box-shadow:0 8px 20px rgba(231,183,64,.25);
+    }
+
     /* مجموعة أزرار للاختيار بين قيمتين (عدد الفئات) */
     .seg{
       display:inline-flex; flex:0 0 auto; gap:4px; padding:4px;
@@ -428,7 +448,7 @@
     <!-- ============ الصوت ============ -->
     <div class="card">
       <h2><i class="fa-solid fa-volume-high"></i> الصوت</h2>
-      <p class="sub">كل المؤثرات مولّدة داخل المتصفح — بلا أي ملفات صوتية.</p>
+      <p class="sub">المؤثرات والموسيقى مولّدة داخل المتصفح، عدا الضحكة والتصفيق فهما تسجيلان حقيقيان.</p>
 
       <div class="row">
         <div class="txt">
@@ -444,18 +464,19 @@
       <div class="row">
         <div class="txt">
           <b>الموسيقى الخلفية</b>
-          <span>لحن هادئ يعمل أثناء اللعب.</span>
+          <span>تعمل أثناء اللعب. اختر المقطوعة من الأسفل — الضغط عليها يشغّلها.</span>
         </div>
         <label class="switch">
           <input type="checkbox" id="musicToggle">
           <span class="track"></span>
         </label>
       </div>
+      <div class="track-grid" id="trackGrid"></div>
 
       <div class="row">
         <div class="txt">
           <b>المؤثرات المرحة</b>
-          <span>ضحكة شريرة حين لا يجيب أحد، وتصفيق للإجابة الصحيحة، وبوق حزين عند بطاقة الجزاء. أطفئها لتعود الأصوات الكلاسيكية.</span>
+          <span>ضحكة شريرة عند «اسرق الدور»، وتصفيق للإجابة الصحيحة، وبوق حزين عند بطاقة الجزاء. أطفئها لتعود الأصوات الكلاسيكية.</span>
         </div>
         <label class="switch">
           <input type="checkbox" id="funToggle">
@@ -790,6 +811,30 @@
       toast(SFX.music.on ? 'الموسيقى الخلفية تعمل' : 'الموسيقى الخلفية متوقفة', 'fa-music');
       click();
     };
+
+    /* اختيار المقطوعة — الضغط يحفظها ويشغّلها فوراً */
+    const grid = document.getElementById('trackGrid');
+    if (SFX.music.tracks) {
+      const opts = SFX.music.tracks.concat([{ id: 'random', name: 'عشوائي', emoji: '🎲' }]);
+      const mark = () => grid.querySelectorAll('.track-opt').forEach(b =>
+        b.classList.toggle('on', b.dataset.id === SFX.music.track));
+      opts.forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'track-opt';
+        b.dataset.id = t.id;
+        b.innerHTML = '<span class="em">' + t.emoji + '</span><span>' + t.name + '</span>';
+        b.onclick = () => {
+          SFX.music.setTrack(t.id);
+          musicT.checked = SFX.music.on;
+          mark();
+          const now = SFX.music.tracks.find(x => x.id === SFX.music.playing);
+          toast(t.id === 'random' ? '🎲 عشوائي — الآن: ' + (now ? now.name : '') : '🎵 ' + t.name, 'fa-music');
+        };
+        grid.appendChild(b);
+      });
+      mark();
+    }
   })();
 
   /* ============ اللغة ============ */
