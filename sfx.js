@@ -803,8 +803,10 @@
 
     updateControls();
 
-    /* تشغيل الموسيقى بعد أول تفاعل إذا كانت مفعّلة (سياسة المتصفحات) */
+    /* تشغيل الموسيقى إذا كانت مفعّلة: فوراً إن سمح المتصفح (كالعودة للوحة
+       بعد السؤال)، وإلا بعد أول تفاعل (سياسة المتصفحات) */
     if (opts.music !== false && state.music) {
+      SFX.music.start();
       var kick = function () {
         SFX.music.start();
         document.removeEventListener("pointerdown", kick);
