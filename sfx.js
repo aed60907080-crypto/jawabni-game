@@ -2,7 +2,8 @@
    جاوبني — محرّك الصوت (SFX)
    ------------------------------------------------------------
    كل المؤثرات والموسيقى مولّدة داخل المتصفح عبر Web Audio API،
-   بدون أي ملفات صوتية خارجية.
+   بدون أي ملفات صوتية خارجية — عدا الضحكة والتصفيق فهما تسجيلان حقيقيان
+   حرّان (ملكية عامة) يُجلبان من ويكيميديا كومنز، مع بديل مولّد بلا إنترنت.
 
    الاستخدام:
      SFX.click()      نقرة زر
@@ -17,8 +18,8 @@
      SFX.coin()       رنّة عملات (شراء مساعدة، مكافأة)
 
    المؤثرات المرحة (تُطفأ من الإعدادات فتعود الأصوات الكلاسيكية):
-     SFX.laugh()          ضحكة شريرة مجنونة «ها ها ها… هاااا» — صوت مولّد لا تسجيل
-     SFX.applause()       تصفيق
+     SFX.laugh()          ضحكة شريرة مجنونة (تسجيل حقيقي؛ laughSynth البديل المولّد)
+     SFX.applause()       تصفيق وهتاف (تسجيل حقيقي؛ applauseSynth البديل المولّد)
      SFX.sadTrombone()    بوق حزين «واه واه واه واااه»
      SFX.correctAnswer()  إجابة صحيحة: نغمة النجاح + تصفيق
      SFX.wrongAnswer()    لا أحد أجاب: الضحكة (أو صوت الخطأ الكلاسيكي)
@@ -215,6 +216,64 @@
     o.stop(t + dur + 0.05);
   }
 
+  /* ---------- تسجيلات حقيقية (ضحكة/تصفيق) ----------
+     ملفات حرّة من ويكيميديا كومنز (ملكية عامة) تُجلب عند الحاجة وتُحفظ في
+     الذاكرة؛ وإن تعذّر جلبها (بلا إنترنت) يُستخدم الصوت المولّد بدلاً منها.
+     start/dur: المقطع المستخدم من التسجيل بالثواني. */
+  var CLIPS = {
+    /* «Evil laughter» — stilgar، PDSounds، ملكية عامة */
+    laugh: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/fb/Evil_laughter.ogg/Evil_laughter.ogg.mp3",
+      start: 0, dur: 3.7, vol: 0.85
+    },
+    /* «Clapping hurray (cropped)» — Starlite، ملكية عامة */
+    applause: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1b/Clapping_hurray_%28cropped%29.oga/Clapping_hurray_%28cropped%29.oga.mp3",
+      start: 0, dur: 4.2, vol: 0.6
+    }
+  };
+  var clipBuf = {};      /* name -> AudioBuffer */
+  var clipLoad = {};     /* name -> Promise */
+
+  function loadClip(name) {
+    if (clipLoad[name]) return clipLoad[name];
+    var AC = global.OfflineAudioContext || global.webkitOfflineAudioContext;
+    if (!AC || !global.fetch) return Promise.reject();
+    clipLoad[name] = fetch(CLIPS[name].url)
+      .then(function (r) { if (!r.ok) throw r.status; return r.arrayBuffer(); })
+      .then(function (data) {
+        var dec = new AC(1, 1, 44100);
+        return new Promise(function (res, rej) { dec.decodeAudioData(data, res, rej); });
+      })
+      .then(function (buf) { clipBuf[name] = buf; return buf; })
+      .catch(function (e) { delete clipLoad[name]; throw e; });
+    return clipLoad[name];
+  }
+
+  /* يشغّل التسجيل إن كان جاهزاً ويعيد true؛ وإلا يبدأ تحميله ويعيد false */
+  function playClip(name, delay) {
+    if (!state.sfx || !ensure()) return true;
+    var buf = clipBuf[name];
+    if (!buf) { loadClip(name).catch(function () {}); return false; }
+    var c = CLIPS[name];
+    var t = now() + (delay || 0);
+    var dur = Math.min(c.dur, buf.duration - c.start);
+    var src = ctx.createBufferSource(); src.buffer = buf;
+    var g = ctx.createGain();
+    var fade = Math.min(0.8, dur * 0.3);
+    g.gain.setValueAtTime(c.vol, t);
+    g.gain.setValueAtTime(c.vol, t + dur - fade);
+    g.gain.linearRampToValueAtTime(0.0001, t + dur);
+    src.connect(g); g.connect(master);
+    src.start(t, c.start, dur);
+    return true;
+  }
+
+  function preloadClips() {
+    if (!state.sfx || !state.fun) return;
+    Object.keys(CLIPS).forEach(function (n) { loadClip(n).catch(function () {}); });
+  }
+
   /* ============ المؤثرات ============ */
   var SFX = {
     /* نقرة زر خفيفة */
@@ -276,9 +335,14 @@
       tone({ freq: 160, to: 95,  dur: 0.22, vol: 0.16, type: "square", filter: 700, delay: 0.16 });
     },
 
-    /* ضحكة شريرة مجنونة «ها ها ها ها… هاااا» — تتسارع وترتفع ثم تنتهي
-       بـ«هاااا» طويلة نازلة مرتعشة. مولّدة بالكامل، لا تسجيل. */
+    /* ضحكة شريرة مجنونة — تسجيل حقيقي، وإن لم يتوفر فضحكة مولّدة */
     laugh: function () {
+      if (!playClip("laugh")) SFX.laughSynth();
+    },
+
+    /* الضحكة المولّدة «ها ها ها ها… هاااا» — تتسارع وترتفع ثم تنتهي
+       بـ«هاااا» طويلة نازلة مرتعشة. */
+    laughSynth: function () {
       var syl = [
         [230, 0.14], [260, 0.13], [290, 0.12], [315, 0.11],
         [330, 0.10], [340, 0.10], [320, 0.11], [300, 0.12]
@@ -293,8 +357,13 @@
       voiced({ f0: 360, f1: 165, dur: 0.85, vol: 0.33, delay: t + 0.04, vib: { rate: 7, depth: 14 } });
     },
 
-    /* تصفيق — نقرات ضجيج متفرقة تخفت تدريجياً */
-    applause: function () {
+    /* تصفيق وهتاف — تسجيل حقيقي، وإن لم يتوفر فتصفيق مولّد */
+    applause: function (delay) {
+      if (!playClip("applause", delay == null ? 0.25 : delay)) SFX.applauseSynth();
+    },
+
+    /* التصفيق المولّد — نقرات ضجيج متفرقة تخفت تدريجياً */
+    applauseSynth: function () {
       for (var i = 0; i < 46; i++) {
         var p = Math.random();
         noise({
@@ -471,7 +540,9 @@
   SFX.setFun = function (on) {
     state.fun = !!on;
     localStorage.setItem("funSfxOn", on ? "1" : "0");
+    preloadClips();
   };
+  SFX.preloadClips = preloadClips;
   Object.defineProperty(SFX, "funOn", { get: function () { return state.fun; } });
 
   /* ============ أزرار التحكم في الصفحة ============ */
@@ -541,6 +612,9 @@
     ensure();
     document.removeEventListener("pointerdown", once);
   }, { once: true });
+
+  /* تجهيز الضحكة والتصفيق مسبقاً لتُسمع فوراً وقت الحاجة */
+  preloadClips();
 
   global.SFX = SFX;
 })(window);
