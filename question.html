@@ -812,6 +812,7 @@
       font-family:inherit; font-weight:800; cursor:pointer; }
     .pick-team .pt-btn small{ color:var(--muted); font-weight:700; }
     .pick-team .pt-btn:disabled{ opacity:.45; cursor:not-allowed; }
+    .pick-team .pt-none{ color:var(--gold-soft); }
     .pick-team .pt-cancel{ margin-top:14px; background:none; border:0; color:var(--muted); font-family:inherit;
       text-decoration:underline; cursor:pointer; }
     .team-btn.none i{ color:var(--muted); }
@@ -2147,12 +2148,58 @@
   }
 
   /* ---------------- award points ---------------- */
+  /* الإجابة الصحيحة لفريق فيه لاعبون: نسأل من أجاب منهم، فيكسب ٣ نقاط
+     لاعب (Teams.PLAYER_POINTS) تُجمع في قائمة اللاعبين بالإعدادات */
+  let awarding = false;
   function award(team){
     /* «امنع الخصم»: الفريق الممنوع لا يأخذ نقاط هذا السؤال */
-    if (team && team === blockedTeam) return;
+    if (awarding || (team && team === blockedTeam)) return;
+    const mem = team ? Teams.members(team) : [];
+    if (!mem.length) { awarding = true; finishAward(team, null); return; }
+    pickPlayer(team, mem).then(player => {
+      if (player === undefined) return;          /* أُلغيت النافذة — لم يُحتسب شيء بعد */
+      awarding = true;
+      finishAward(team, player);
+    });
+  }
+
+  /* نافذة «من أجاب؟» — تعيد اسم اللاعب، أو null (بلا لاعب)، أو undefined (إلغاء) */
+  function pickPlayer(team, mem){
+    return new Promise(resolve => {
+      const ov = document.createElement('div');
+      ov.className = 'pick-team';
+      ov.innerHTML = '<div class="pt-card"><h5></h5><div class="pt-list"></div>' +
+                     '<button type="button" class="pt-cancel pt-none">بدون تحديد لاعب</button><br>' +
+                     '<button type="button" class="pt-cancel">إلغاء</button></div>';
+      ov.querySelector('h5').textContent = 'من أجاب من ' + nameOf(team) + '؟ (+' + Teams.PLAYER_POINTS + ' نقاط للاعب)';
+      const done = (v) => { ov.remove(); resolve(v); };
+      mem.forEach(m => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pt-btn';
+        b.style.setProperty('--tc', Teams.color(team).main);
+        b.innerHTML = '<span data-no-i18n></span><small></small>';
+        b.querySelector('span').textContent = m;
+        b.querySelector('small').textContent = Teams.playerPoints(m) + ' نقطة';
+        b.onclick = () => done(m);
+        ov.querySelector('.pt-list').appendChild(b);
+      });
+      ov.querySelector('.pt-none').onclick = () => done(null);
+      ov.querySelectorAll('.pt-cancel')[1].onclick = () => done(undefined);
+      ov.addEventListener('click', e => { if (e.target === ov) done(undefined); });
+      document.body.appendChild(ov);
+      if (window.I18N) I18N.apply(ov);
+    });
+  }
+
+  function finishAward(team, player){
     team ? SFX.correctAnswer() : SFX.wrongAnswer();
     const s = Teams.scores();
     let msg;
+    /* ٣ نقاط للاعب الذي أجاب */
+    const playerMsg = (team && player)
+      ? ' · ⭐ ' + player + ' +' + Teams.PLAYER_POINTS + ' (' + Teams.addPlayerPoints(player) + ')'
+      : '';
 
     /* 🎡 سؤال العجلة: القيمة × المضاعف، بلا مفاجآت، ولا يُعلَّم على اللوحة ولا يغيّر الدور */
     if (bonusMode) {
@@ -2163,7 +2210,7 @@
         const acc = parseInt(localStorage.getItem("points")) || 0;
         localStorage.setItem("points", acc + 1);
         msg = '🎡 ' + trT('{team} كسب {n} نقطة ({p} × {m})',
-              { team: nameOf(team), n: amount, p: points, m: mult });
+              { team: nameOf(team), n: amount, p: points, m: mult }) + playerMsg;
       } else {
         msg = trT(bonusMode === 'tie'
           ? 'لم يجب أحد — ما زال التعادل، تدور العجلة من جديد'
@@ -2192,7 +2239,7 @@
       localStorage.setItem("points", acc + 1);
 
       const toName = nameOf(plan.to);
-      msg = "تمت إضافة " + plan.amount + " نقطة لـ " + toName;
+      msg = "تمت إضافة " + plan.amount + " نقطة لـ " + toName + playerMsg;
       if (plan.note) msg = plan.note + " · " + msg;
       /* مع أكثر من فريقين تقع العقوبة على أقوى خصم — نسمّيه */
       const hit = (plan.penalty && plan.penalty.team) || plan.freeze;

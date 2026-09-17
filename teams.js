@@ -11,6 +11,7 @@
      team1 … team6   أسماء الفرق
      teamMembers     { team1: ["أحمد", "سارة"], … }  أسماء اللاعبين في كل فريق
      savedTeams      [{ name, members }]  الفرق الثابتة — تبقى دائماً لإعادة استعمالها
+     players         [{ name, points }]   اللاعبون ونقاطهم — ٣ نقاط لكل إجابة صحيحة (الإعدادات)
      teamScores      { team1: 0, team2: 0, … }
    ============================================================ */
 
@@ -129,7 +130,60 @@
     all[id] = (list || []).map(function (s) { return String(s).trim().slice(0, 30); })
       .filter(function (s) { if (!s || seen[s]) return false; seen[s] = 1; return true; });
     set("teamMembers", JSON.stringify(all));
+    addPlayers(all[id]);                /* كل لاعب في فريق يدخل قائمة اللاعبين */
     return all[id];
+  }
+
+  /* ---------- قائمة اللاعبين ونقاطهم (تُدار من الإعدادات) ----------
+     players: [{ name: "أحمد", points: 12 }, …] — تبقى دائماً.
+     كل إجابة صحيحة = PLAYER_POINTS نقاط للاعب الذي أجاب. */
+  var PLAYER_POINTS = 3;
+
+  function players() {
+    var v = readJSON("players", []);
+    return Array.isArray(v) ? v.filter(function (p) { return p && p.name; })
+      .map(function (p) { return { name: String(p.name), points: Number(p.points) || 0 }; }) : [];
+  }
+
+  function savePlayers(list) { set("players", JSON.stringify(list)); }
+
+  function addPlayers(names) {
+    var list = players(), have = {};
+    list.forEach(function (p) { have[p.name] = 1; });
+    var added = 0;
+    (names || []).forEach(function (n) {
+      n = String(n).trim().slice(0, 30);
+      if (n && !have[n]) { list.push({ name: n, points: 0 }); have[n] = 1; added++; }
+    });
+    if (added) savePlayers(list);
+    return added;
+  }
+
+  function removePlayer(name) {
+    savePlayers(players().filter(function (p) { return p.name !== name; }));
+  }
+
+  function addPlayerPoints(name, n) {
+    var list = players(), p = null;
+    list.forEach(function (x) { if (x.name === name) p = x; });
+    if (!p) { p = { name: name, points: 0 }; list.push(p); }
+    p.points += (n == null ? PLAYER_POINTS : n);
+    savePlayers(list);
+    return p.points;
+  }
+
+  function playerPoints(name) {
+    var p = players().filter(function (x) { return x.name === name; })[0];
+    return p ? p.points : 0;
+  }
+
+  function resetPlayerPoints() {
+    savePlayers(players().map(function (p) { return { name: p.name, points: 0 }; }));
+  }
+
+  /* اللاعبون مرتّبون من الأعلى نقاطاً */
+  function playerRanking() {
+    return players().sort(function (a, b) { return (b.points - a.points) || a.name.localeCompare(b.name, "ar"); });
   }
 
   /* ---------- الفرق الثابتة (محفوظة دائماً لإعادة استعمالها) ----------
@@ -195,6 +249,14 @@
     splitNames: splitNames,
     members: members,
     setMembers: setMembers,
+    PLAYER_POINTS: PLAYER_POINTS,
+    players: players,
+    addPlayers: addPlayers,
+    removePlayer: removePlayer,
+    addPlayerPoints: addPlayerPoints,
+    playerPoints: playerPoints,
+    resetPlayerPoints: resetPlayerPoints,
+    playerRanking: playerRanking,
     saved: saved,
     saveTeam: saveTeam,
     deleteSaved: deleteSaved,

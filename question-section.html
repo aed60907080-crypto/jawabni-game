@@ -835,6 +835,14 @@
       inp.focus();
     }
 
+    /* اقتراحات من قائمة اللاعبين المحفوظة في الإعدادات */
+    function fillPlayersDatalist() {
+      let dl = document.getElementById('playersDatalist');
+      if (!dl) { dl = document.createElement('datalist'); dl.id = 'playersDatalist'; document.body.appendChild(dl); }
+      dl.innerHTML = '';
+      Teams.players().forEach(p => { const o = document.createElement('option'); o.value = p.name; dl.appendChild(o); });
+    }
+
     /* قائمة «فريق ثابت…» في كل خانة */
     function fillSavedPick(col) {
       const sel = col.querySelector('.saved-pick');
@@ -903,7 +911,7 @@
           '<div class="members">' +
             '<div class="member-chips"></div>' +
             '<div class="member-add">' +
-              '<input type="text" class="form-control member-input" placeholder="أسماء اللاعبين" />' +
+              '<input type="text" class="form-control member-input" list="playersDatalist" placeholder="أسماء اللاعبين" />' +
               '<button type="button" class="add-btn"><i class="fa-solid fa-user-plus"></i> إضافة</button>' +
             '</div>' +
             '<div class="member-hint">يمكن إضافة أكثر من اسم مفصولة بفاصلة: أحمد، سارة، علي</div>' +
@@ -949,6 +957,7 @@
         grid.appendChild(col);
       });
       document.querySelector('.team-panel').classList.toggle('wide', n > 2);
+      fillPlayersDatalist();
       renderSavedTeams();
       if (window.I18N) I18N.apply(document.querySelector('.team-panel'));
     }

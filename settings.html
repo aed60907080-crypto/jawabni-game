@@ -255,6 +255,30 @@
     }
     .bg-opt.on .nm{ color:var(--ink); background:linear-gradient(135deg, var(--gold-soft), var(--gold)); }
 
+    /* اللاعبون ونقاطهم */
+    .player-add{ display:flex; gap:8px; margin-bottom:12px; }
+    .player-add input{
+      flex:1; min-width:0; height:44px; padding:0 14px; border-radius:12px;
+      border:1px solid var(--line); background:rgba(4,18,15,.6);
+      color:var(--ivory); font-family:inherit; font-size:14px; outline:none;
+    }
+    .player-add input:focus{ border-color:var(--line-strong); }
+    .player-add .btn{ padding:0 16px; }
+    .player-list{ display:flex; flex-direction:column; gap:6px; max-height:340px; overflow-y:auto; }
+    .player-row{
+      display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px;
+      background:rgba(0,0,0,.22); border:1px solid rgba(231,183,64,.12);
+    }
+    .player-row .rk{ width:26px; height:26px; flex:none; border-radius:8px; display:grid; place-items:center;
+      background:rgba(231,183,64,.14); color:var(--gold); font-family:'Cairo',sans-serif; font-weight:900; font-size:13px; }
+    .player-row.top .rk{ background:linear-gradient(135deg,var(--gold-soft),var(--gold)); color:#04120f; }
+    .player-row .nm{ flex:1; font-family:'Cairo',sans-serif; font-weight:800; color:var(--ivory); }
+    .player-row .pts{ font-family:'Cairo',sans-serif; font-weight:900; color:var(--gold); }
+    .player-row .pts small{ color:var(--muted); font-weight:700; font-size:12px; margin-inline-start:3px; }
+    .player-row .del{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:15px; }
+    .player-row .del:hover{ color:var(--coral); }
+    .player-empty{ color:var(--muted); font-size:13px; text-align:center; padding:10px; }
+
     /* شبكة اختيار مقطوعة الموسيقى */
     .track-grid{
       display:grid; gap:8px; margin:2px 0 12px;
@@ -459,6 +483,24 @@
       <p class="note" id="playNote">الخلط يحدث مرة واحدة لكل فئة ويبقى ثابتاً حتى نهاية الجولة.</p>
     </div>
 
+    <!-- ============ اللاعبون ونقاطهم ============ -->
+    <div class="card">
+      <h2><i class="fa-solid fa-users"></i> اللاعبون ونقاطهم</h2>
+      <p class="sub">أسماء اللاعبين ونقاط كل لاعب: <b>٣ نقاط</b> عن كل سؤال يجيبه صحيحاً (يُختار اسمه بعد الضغط على
+         فريقه في صفحة السؤال). من يُضاف إلى فريق في «اختر فئاتك» يظهر هنا تلقائياً.</p>
+
+      <div class="player-add">
+        <input type="text" id="playerInput" placeholder="اسم لاعب — أو أكثر مفصولة بفاصلة: أحمد، سارة" autocomplete="off">
+        <button class="btn" type="button" id="playerAddBtn"><i class="fa-solid fa-user-plus"></i> إضافة</button>
+      </div>
+
+      <div class="player-list" id="playerList"></div>
+
+      <div class="btn-row">
+        <button class="btn ghost" type="button" id="playerResetBtn"><i class="fa-solid fa-rotate-left"></i> تصفير النقاط</button>
+      </div>
+    </div>
+
     <!-- ============ الصوت ============ -->
     <div class="card">
       <h2><i class="fa-solid fa-volume-high"></i> الصوت</h2>
@@ -661,6 +703,7 @@
 <script src="i18n.js"></script>
 <script src="i18n-langs.js"></script>
 <script src="i18n-categories.js"></script>
+<script src="teams.js"></script>
 <script src="sfx.js"></script>
 
 <script>
@@ -800,6 +843,62 @@
         click();
       };
     }
+  })();
+
+  /* ============ اللاعبون ونقاطهم (teams.js) ============ */
+  (function () {
+    const list  = document.getElementById('playerList');
+    const input = document.getElementById('playerInput');
+    if (!list || !window.Teams) return;
+
+    function render() {
+      const rows = Teams.playerRanking();
+      list.innerHTML = '';
+      if (!rows.length) {
+        list.innerHTML = '<div class="player-empty">لا يوجد لاعبون بعد — أضف أسماءهم هنا أو في خانات الفرق.</div>';
+        return;
+      }
+      rows.forEach((p, i) => {
+        const r = document.createElement('div');
+        r.className = 'player-row' + (i === 0 && p.points > 0 ? ' top' : '');
+        r.innerHTML = '<span class="rk"></span><span class="nm" data-no-i18n></span>' +
+                      '<span class="pts"></span><button type="button" class="del" title="حذف اللاعب">✕</button>';
+        r.querySelector('.rk').textContent = i + 1;
+        r.querySelector('.nm').textContent = p.name;
+        r.querySelector('.pts').innerHTML = p.points + '<small>نقطة</small>';
+        r.querySelector('.del').onclick = () => {
+          if (!confirm('حذف اللاعب «' + p.name + '» ونقاطه؟')) return;
+          Teams.removePlayer(p.name);
+          render();
+          toast('حُذف ' + p.name, 'fa-user-minus');
+        };
+        list.appendChild(r);
+      });
+      if (window.I18N) I18N.apply(list);
+    }
+
+    function add() {
+      const names = Teams.splitNames(input.value);
+      if (!names.length) { input.focus(); return; }
+      const n = Teams.addPlayers(names);
+      input.value = '';
+      render();
+      toast(n ? 'أُضيف ' + n + (n === 1 ? ' لاعب' : ' لاعبين') : 'الأسماء موجودة مسبقاً', 'fa-user-plus');
+      click();
+    }
+
+    document.getElementById('playerAddBtn').onclick = add;
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+
+    document.getElementById('playerResetBtn').onclick = () => {
+      if (!Teams.players().length) return;
+      if (!confirm('تصفير نقاط كل اللاعبين؟')) return;
+      Teams.resetPlayerPoints();
+      render();
+      toast('صُفّرت نقاط اللاعبين', 'fa-rotate-left');
+    };
+
+    render();
   })();
 
   /* ============ الصوت ============ */

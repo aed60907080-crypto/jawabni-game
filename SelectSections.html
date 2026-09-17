@@ -365,6 +365,7 @@
       padding:2px 9px; border-radius:999px; background:rgba(0,0,0,.28);
       border:1px solid var(--tc, var(--line));
     }
+    .team-members span b{ color:var(--gold); margin-inline-start:5px; font-weight:900; }
 
     .score-card p {
       font-family:'Cairo', sans-serif;
@@ -666,6 +667,10 @@
       mem.forEach(m => {
         const s = document.createElement('span');
         s.textContent = m;
+        /* نقاط اللاعب (٣ لكل إجابة صحيحة) */
+        const pts = document.createElement('b');
+        pts.textContent = Teams.playerPoints(m);
+        s.appendChild(pts);
         memEl.appendChild(s);
       });
       box.appendChild(card);
