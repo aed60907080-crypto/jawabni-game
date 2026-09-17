@@ -490,6 +490,20 @@
       padding:8px;
       max-height:260px;
     }
+    /* الشعارات (فئات الشعارات) على خلفية بيضاء. الإطار الأبيض ظلّ لا حشوة،
+       فتبقى نِسب أقنعة التغبيش (hide) مطابقة لمساحة الشعار نفسه. */
+    img.logoimg{
+      background:#fff;
+      padding:0 !important;
+      border-radius:6px !important;
+      margin:0;
+      max-height:240px !important;
+      box-shadow:0 0 0 14px #fff, 0 18px 40px 14px rgba(0,0,0,.45) !important;
+    }
+    /* الهامش على الغلاف لا على الصورة، حتى لا يُزيح الأقنعة */
+    .hide-wrap:has(> img.logoimg),
+    .q-img-shell > img.logoimg,
+    .a-media > img.logoimg{ margin:14px; }
     /* الرسوم التوضيحية (أيقونات) بحجم كبير وواضح */
     .q-media img.iconimg{
       width:230px; height:230px;
@@ -1108,6 +1122,22 @@
   const IMAGE_IN_ANSWER_CATEGORIES = ["الأنبياء والرسل", "قصص الأنبياء", "اسلامي", "قرآن وسيرة", "الحج والعمرة"];
   const imageInAnswer = IMAGE_IN_ANSWER_CATEGORIES.indexOf(category) >= 0;
 
+  /* فئات الشعارات: الصورة على خلفية بيضاء (شعارات شفافة أو داكنة) */
+  const LOGO_CATEGORIES = ["شعارات النوادي", "شعارات كويتية"];
+  const isLogoCategory = LOGO_CATEGORIES.indexOf(category) >= 0;
+
+  /* بعض الشعارات ملفات صغيرة (أقل من 100 بكسل) فتظهر ضئيلة: نكبّر
+     الطويل منها إلى ارتفاع مريح. العرض يتبع الارتفاع فتبقى النِّسب —
+     وأقنعة hide — كما هي، ولا نكبّر العريض حتى لا يتجاوز عرض الشاشة. */
+  function enlargeSmallLogo(img) {
+    if (!isLogoCategory || !img) return;
+    const fit = () => {
+      const w = img.naturalWidth, h = img.naturalHeight;
+      if (h && h < 180 && w / h < 1.5) img.style.height = "180px";
+    };
+    img.complete ? fit() : img.addEventListener("load", fit, { once: true });
+  }
+
   /* ---------------- ترجمة نص السؤال والإجابة ----------------
      الواجهة مترجمة يدوياً، أما نصوص الأسئلة فتُترجم آلياً حسب اللغة
      المختارة. النص العربي يظهر أولاً ثم يُستبدل بالترجمة عند وصولها،
@@ -1233,7 +1263,8 @@
     /* تنسيق الصورة حسب نوعها كما كان سابقاً */
     let cls = '';
     if (item.img) {
-      if (/icons?\//i.test(item.img))      cls = 'iconimg';
+      if (isLogoCategory)                  cls = 'logoimg';
+      else if (/icons?\//i.test(item.img)) cls = 'iconimg';
       else if (/flag/i.test(item.img))     cls = 'flagimg';
       else if (/maps?\//i.test(item.img))  cls = 'mapimg';
     }
@@ -1273,7 +1304,7 @@
     } else if (window.Images) {
       shell.classList.add('loading');
       Images.mountInto(shell, item, category, { className: cls })
-        .then(() => { shell.classList.remove('loading'); applyHideMasks(shell, item.hide); applyLabels(shell, item.labels); })
+        .then(() => { shell.classList.remove('loading'); enlargeSmallLogo(shell.querySelector('img')); applyHideMasks(shell, item.hide); applyLabels(shell, item.labels); })
         .catch(() => shell.classList.remove('loading'));
     } else if (item.img) {
       const im = document.createElement('img');
@@ -1922,7 +1953,9 @@
     holder.hidden = false;
     const img = document.createElement("img");
     img.alt = "صورة الإجابة: " + (item.a || "");
+    if (isLogoCategory) img.className = "logoimg";
     img.src = url;
+    enlargeSmallLogo(img);
     img.onerror = () => { holder.hidden = true; };
     img.onload = () => {
       const cap = document.createElement("span");

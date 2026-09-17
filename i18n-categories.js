@@ -385,12 +385,64 @@
   P3.so = ["Dragon Ball","Baadhaha Conan","Stranger Things","Sayidka Giraanta","Sacuudi Carabiya","Baxrayn","Imaaraadka Carabta","Cumaan","Turkiga","Gobollada Turkiga","Dalalka Gacanka"];
   P3.am = ["ድራጎን ቦል","መርማሪ ኮናን","ስትሬንጀር ቲንግስ","የቀለበቶቹ ጌታ","ሳውዲ ዓረቢያ","ባህሬን","የተባበሩት ዓረብ ኤምሬትስ","ኦማን","ቱርክ","የቱርክ ክልሎች","የባህረ ሰላጤ አገራት"];
 
+  /* ============================================================
+     الدفعة الرابعة من الفئات (3 فئات)
+     ============================================================ */
+  var C4 = [
+    /* 0 */ "أطفال",
+    /* 1 */ "شعارات النوادي",
+    /* 2 */ "شعارات كويتية"
+  ];
+
+  var P4 = {
+    en: ["Kids","Club logos","Kuwaiti logos"],
+    fr: ["Enfants","Logos de clubs","Logos koweïtiens"],
+    es: ["Niños","Escudos de clubes","Logotipos kuwaitíes"],
+    pt: ["Crianças","Emblemas de clubes","Logótipos kuwaitianos"],
+    de: ["Kinder","Vereinswappen","Kuwaitische Logos"],
+    it: ["Bambini","Stemmi dei club","Loghi kuwaitiani"],
+    nl: ["Kinderen","Clublogo's","Koeweitse logo's"],
+    sv: ["Barn","Klubbmärken","Kuwaitiska logotyper"],
+    pl: ["Dzieci","Herby klubów","Kuwejckie logo"],
+    cs: ["Děti","Klubové znaky","Kuvajtská loga"],
+    ro: ["Copii","Embleme de cluburi","Logouri kuweitiene"],
+    hu: ["Gyerekek","Klubcímerek","Kuvaiti logók"],
+    el: ["Παιδιά","Σήματα ομάδων","Λογότυπα του Κουβέιτ"],
+    ru: ["Детям","Эмблемы клубов","Логотипы Кувейта"],
+    uk: ["Дітям","Емблеми клубів","Логотипи Кувейту"],
+    tr: ["Çocuklar","Kulüp logoları","Kuveyt logoları"],
+    az: ["Uşaqlar","Klub loqoları","Küveyt loqoları"],
+    fa: ["کودکان","نشان باشگاه‌ها","لوگوهای کویتی"],
+    ku: ["Zarok","Logoyên klûban","Logoyên Kuweytê"],
+    ur: ["بچے","کلبوں کے لوگو","کویتی لوگو"],
+    ps: ["ماشومان","د کلبونو نښې","کویټي نښې"],
+    he: ["ילדים","סמלי מועדונים","לוגואים כוויתיים"],
+    hi: ["बच्चे","क्लबों के लोगो","कुवैती लोगो"],
+    bn: ["শিশু","ক্লাবের লোগো","কুয়েতি লোগো"],
+    ta: ["குழந்தைகள்","கழக சின்னங்கள்","குவைத் சின்னங்கள்"],
+    id: ["Anak-anak","Logo klub","Logo Kuwait"],
+    ms: ["Kanak-kanak","Logo kelab","Logo Kuwait"],
+    zh: ["儿童","俱乐部队徽","科威特标志"],
+    ja: ["キッズ","クラブのエンブレム","クウェートのロゴ"],
+    ko: ["어린이","클럽 엠블럼","쿠웨이트 로고"],
+    th: ["เด็ก","โลโก้สโมสร","โลโก้คูเวต"],
+    vi: ["Thiếu nhi","Logo câu lạc bộ","Logo Kuwait"],
+    tl: ["Mga bata","Mga logo ng club","Mga logo ng Kuwait"],
+    sw: ["Watoto","Nembo za klabu","Nembo za Kuwait"],
+    ha: ["Yara","Tambarin kulob","Tambarin Kuwait"],
+    so: ["Carruurta","Astaamaha kooxaha","Astaamaha Kuwayt"],
+    am: ["ልጆች","የክለብ አርማዎች","የኩዌት አርማዎች"]
+  };
+
   window.I18N_CAT_KEYS = C;
   window.I18N_CAT_PACKED = P;
   window.I18N_CAT_KEYS3 = C3;
   window.I18N_CAT_PACKED3 = P3;
+  window.I18N_CAT_KEYS4 = C4;
+  window.I18N_CAT_PACKED4 = P4;
   if (window.I18N && window.I18N.loadPacked) {
     window.I18N.loadPacked(C, P);
     window.I18N.loadPacked(C3, P3);
+    window.I18N.loadPacked(C4, P4);
   }
 })();

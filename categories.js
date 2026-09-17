@@ -108,7 +108,12 @@
     { name: "عُمان",                   img: "image/عمان.jpg", emoji: "🪔", tint: "#a13a3a", group: "gulf" },
     { name: "دول الخليج",              img: "image/دول الخليج.jpg", emoji: "🛢️", tint: "#2b7d9c", group: "gulf" },
     { name: "تركيا",                   img: "image/تركيا.jpg", emoji: "🌙", tint: "#a12a2a", group: "world" },
-    { name: "مناطق تركيا",             img: "image/مناطق تركيا.jpg", emoji: "🎈", tint: "#8a3a3a", group: "world" }
+    { name: "مناطق تركيا",             img: "image/مناطق تركيا.jpg", emoji: "🎈", tint: "#8a3a3a", group: "world" },
+
+    /* ===== الدفعة الرابعة — بطاقات مولّدة من الإيموجي ===== */
+    { name: "أطفال",                   emoji: "🧸", tint: "#c0567f", group: "culture" },
+    { name: "شعارات النوادي",          emoji: "🛡️", tint: "#2f8f52", group: "sport" },
+    { name: "شعارات كويتية",           emoji: "🏷️", tint: "#2f8f7d", group: "kuwait" }
   ];
 
   /* ---------- بطاقة مولّدة من الإيموجي (SVG بلا أي ملفات خارجية) ---------- */
