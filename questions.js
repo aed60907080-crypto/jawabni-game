@@ -1692,48 +1692,48 @@ const questionsData = {
   /* ---------- مجمعات الكويت (20 سؤالاً) ----------
      نوعان فقط من الأسئلة، ولكل مجمع صورته الحقيقية:
        «ما اسم هذا المجمع؟»   صورة المجمع نفسه
-       «أين يقع هذا المجمع؟»  صورة أخرى له، والجواب منطقته
+       «أين يقع مجمع كذا؟»    صورة أخرى له، واسمه في السؤال، والجواب منطقته
      الصور من ويكيميديا كومنز وويكيبيديا (تحقّقنا من كل صورة بصرياً). */
   "مجمعات الكويت": [
     /* الأفنيوز — الري */
     { l: 1, q: "ما اسم هذا المجمع؟", a: "الأفنيوز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/The_Avenues_Kuwait.jpg/960px-The_Avenues_Kuwait.jpg" },
-    { l: 1, q: "أين يقع هذا المجمع؟", a: "منطقة الري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Grand_Avenue_in_Kuwait.jpg/960px-Grand_Avenue_in_Kuwait.jpg" },
+    { l: 1, q: "أين يقع مجمع الأفنيوز؟", a: "منطقة الري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Grand_Avenue_in_Kuwait.jpg/960px-Grand_Avenue_in_Kuwait.jpg" },
 
     /* مارينا مول — السالمية */
     { l: 1, q: "ما اسم هذا المجمع؟", a: "مارينا مول", img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Marina_Mall_-_Salmiya.png" },
-    { l: 1, q: "أين يقع هذا المجمع؟", a: "السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Marina_crescent_at_night.jpg/960px-Marina_crescent_at_night.jpg" },
+    { l: 1, q: "أين يقع مارينا مول؟", a: "السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Marina_crescent_at_night.jpg/960px-Marina_crescent_at_night.jpg" },
 
     /* مجمع 360 — الزهراء (جنوب السرة) */
     { l: 2, q: "ما اسم هذا المجمع؟", a: "مجمع 360", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/360_Mall_in_Kuwait_City.jpg/960px-360_Mall_in_Kuwait_City.jpg" },
-    { l: 2, q: "أين يقع هذا المجمع؟", a: "الزهراء (جنوب السرة) على الدائري السادس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/360_degree_mall.jpg/960px-360_degree_mall.jpg" },
+    { l: 2, q: "أين يقع مجمع 360؟", a: "الزهراء (جنوب السرة) على الدائري السادس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/360_degree_mall.jpg/960px-360_degree_mall.jpg" },
 
     /* سوق شرق — شرق */
     { l: 2, q: "ما اسم هذا المجمع؟", a: "سوق شرق", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Kuwait_City_Souq_Sharq_02.jpg/960px-Kuwait_City_Souq_Sharq_02.jpg" },
-    { l: 2, q: "أين يقع هذا المجمع؟", a: "منطقة شرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Kuwait_City_Souq_Sharq_Marina_05.jpg/960px-Kuwait_City_Souq_Sharq_Marina_05.jpg" },
+    { l: 2, q: "أين يقع سوق شرق؟", a: "منطقة شرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Kuwait_City_Souq_Sharq_Marina_05.jpg/960px-Kuwait_City_Souq_Sharq_Marina_05.jpg" },
 
     /* سوق الكوت — الفحيحيل */
     { l: 3, q: "ما اسم هذا المجمع؟", a: "سوق الكوت (الكوت مول)", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Kuwait_landmark_AlKout_Mall_shopping_Center_2013-06-13_16-38.jpg" },
-    { l: 3, q: "أين يقع هذا المجمع؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg/960px-Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg" },
+    { l: 3, q: "أين يقع سوق الكوت (الكوت مول)؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg/960px-Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg" },
 
     /* سوق المباركية — القبلة */
     { l: 3, q: "ما اسم هذا السوق؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 3, q: "أين يقع هذا السوق؟", a: "منطقة القبلة في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Kuwait_City_Souq_al-Mubarakeya_2.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_2.jpg" },
+    { l: 3, q: "أين يقع سوق المباركية؟", a: "منطقة القبلة في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Kuwait_City_Souq_al-Mubarakeya_2.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_2.jpg" },
 
     /* مجمع وبرج الحمراء — الشرق */
     { l: 4, q: "ما اسم هذا البرج الذي يضم مجمعاً تجارياً؟", a: "برج الحمراء (مجمع الحمراء)", img: "https://thumb.wikimedia.org/wikipedia/ar/thumb/4/42/Al_Hamra_Tower.jpg/960px-Al_Hamra_Tower.jpg" },
-    { l: 4, q: "أين يقع هذا المجمع؟", a: "منطقة الشرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Al_Hamra_Kuwait_Mai_2010.jpg/960px-Al_Hamra_Kuwait_Mai_2010.jpg" },
+    { l: 4, q: "أين يقع مجمع وبرج الحمراء؟", a: "منطقة الشرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Al_Hamra_Kuwait_Mai_2010.jpg/960px-Al_Hamra_Kuwait_Mai_2010.jpg" },
 
     /* مجمع العالمية — الجهراء */
     { l: 4, q: "ما اسم هذا المجمع؟", a: "مجمع العالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
-    { l: 4, q: "أين يقع هذا المجمع؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
+    { l: 4, q: "أين يقع مجمع العالمية؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
 
     /* سوق المناخ — مدينة الكويت */
     { l: 5, q: "ما اسم هذا السوق؟", a: "سوق المناخ", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
-    { l: 5, q: "أين يقع هذا السوق؟", a: "مدينة الكويت", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
+    { l: 5, q: "أين يقع سوق المناخ؟", a: "مدينة الكويت", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
 
     /* سوق الجمعة — الشويخ */
     { l: 5, q: "ما اسم هذا السوق الشعبي؟", a: "سوق الجمعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
-    { l: 5, q: "أين يقع هذا السوق؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
+    { l: 5, q: "أين يقع سوق الجمعة؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
   ],
 
   /* ---------- مناطق الكويت (50 سؤالاً) ---------- */
