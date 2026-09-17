@@ -1689,58 +1689,51 @@ const questionsData = {
     { l: 5, q: "ما اسم الحرفة التي تُصلح شباك الصيد؟", a: "حياكة الشباك (خياطة الليخ)", img: "image/fishing.png" },
   ],
 
-  /* ---------- مجمعات الكويت (50 سؤالاً) ---------- */
+  /* ---------- مجمعات الكويت (20 سؤالاً) ----------
+     نوعان فقط من الأسئلة، ولكل مجمع صورته الحقيقية:
+       «ما اسم هذا المجمع؟»   صورة المجمع نفسه
+       «أين يقع هذا المجمع؟»  صورة أخرى له، والجواب منطقته
+     الصور من ويكيميديا كومنز وويكيبيديا (تحقّقنا من كل صورة بصرياً). */
   "مجمعات الكويت": [
-    { l: 1, q: "ما اسم أكبر مجمع تجاري في الكويت؟", a: "الأفنيوز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Avenues_coastline%2C_Bahrain.jpg/960px-Avenues_coastline%2C_Bahrain.jpg" },
-    { l: 1, q: "أي مجمع يقع على ساحل السالمية ويطل على البحر؟", a: "مارينا مول", img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Marina_lake_haddara.jpg" },
-    { l: 1, q: "ما اسم المجمع الذي يقع أسفل أطول برج في الكويت؟", a: "مجمع الحمراء", img: "https://thumb.wikimedia.org/wikipedia/ar/thumb/4/42/Al_Hamra_Tower.jpg/960px-Al_Hamra_Tower.jpg" },
-    { l: 1, q: "ما اسم المجمع الذي يحمل رقماً في اسمه ويقع في الزهراء؟", a: "مجمع 360", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/360_Mall_in_Kuwait_City.jpg/960px-360_Mall_in_Kuwait_City.jpg" },
-    { l: 1, q: "ما اسم السوق الحديث المطلّ على البحر في منطقة شرق؟", a: "سوق شرق", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Kuwait_City_-_Night_view.jpg" },
-    { l: 1, q: "ما اسم أشهر سوق تراثي شعبي في مدينة الكويت؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 1, q: "في أي منطقة يقع مجمع الأفنيوز؟", a: "منطقة الراي", img: "image/Kuwait.png" },
-    { l: 1, q: "ما اسم البرج الأطول في الكويت الذي يضم مجمعاً تجارياً؟", a: "برج الحمراء", img: "https://thumb.wikimedia.org/wikipedia/ar/thumb/4/42/Al_Hamra_Tower.jpg/960px-Al_Hamra_Tower.jpg" },
-    { l: 1, q: "ما اسم المجمع الكبير الذي يقع في منطقة الفحيحيل؟", a: "الكوت مول", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Kuwait_landmark_AlKout_Mall_shopping_Center_2013-06-13_16-38.jpg" },
-    { l: 1, q: "ما اسم المجمع الذي يقع في منطقة العقيلة جنوب الكويت؟", a: "ذا غيت مول" },
-    { l: 2, q: "ما اسم السوق التراثي المشهور ببيع التمور والبهارات في الكويت؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 2, q: "ما اسم مجمع الأزياء الراقي في منطقة السالمية؟", a: "مجمع الفنار", img: "image/Kuwait.png" },
-    { l: 2, q: "ما اسم المجمع التجاري الذي يقع في منطقة الجهراء؟", a: "مجمع سما الجهراء" },
-    { l: 2, q: "ما اسم المجمع الذي يقع في منطقة الصالحية وسط العاصمة؟", a: "مجمع الصالحية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/AlSalhyia_Street.png/960px-AlSalhyia_Street.png" },
-    { l: 2, q: "ما اسم المجمع التجاري في منطقة الأندلس والفروانية؟", a: "مجمع أسواق القرين والمجمعات المحلية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Beit_alqurain_2.JPG/960px-Beit_alqurain_2.JPG" },
-    { l: 2, q: "ما اسم أشهر معلم سياحي في الكويت يتكوّن من ثلاثة أبراج؟", a: "أبراج الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Kuwait_towers.jpg/960px-Kuwait_towers.jpg" },
-    { l: 2, q: "ما اسم البرج الشهير في الكويت الذي يُعدّ من أطول أبراج الاتصالات؟", a: "برج التحرير", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/LiberationTower.jpg" },
-    { l: 2, q: "ما اسم المجمع الذي يضم صالة تزلج على الجليد في الكويت؟", a: "مجمع الأفنيوز (والزهراء سابقاً)", img: "https://upload.wikimedia.org/wikipedia/commons/7/79/The_Avenues%2C_Harare.jpg" },
-    { l: 2, q: "في أي منطقة يقع مجمع مارينا مول؟", a: "منطقة السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Pyramids_Mosque%2C_Salmiya%2C_Kuwait_City%2C_Kuwait_01.jpg/960px-Pyramids_Mosque%2C_Salmiya%2C_Kuwait_City%2C_Kuwait_01.jpg" },
-    { l: 2, q: "ما اسم المنطقة التجارية الشهيرة بمحلات قطع غيار السيارات والمعارض؟", a: "الراي والشويخ" },
-    { l: 3, q: "ما اسم القسم الشهير داخل الأفنيوز الذي يشبه الشوارع الأوروبية؟", a: "ذا غراند أفنيو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Grand_Hyatt_Hotel_New_York.jpg/960px-Grand_Hyatt_Hotel_New_York.jpg" },
-    { l: 3, q: "ما اسم القسم الذي يضم المطاعم الراقية داخل الأفنيوز؟", a: "برستيج" },
-    { l: 3, q: "في أي منطقة يقع سوق شرق؟", a: "منطقة شرق في العاصمة", img: "image/Kuwait.png" },
-    { l: 3, q: "ما اسم المجمع المطلّ على الخليج والذي يضم مرسى لليخوت؟", a: "مارينا مول ومرسى مارينا كريسنت", img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Marina_lake_haddara.jpg" },
-    { l: 3, q: "ما اسم أقدم سوق شعبي في الكويت يعود لأكثر من مئتي عام؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 3, q: "ما اسم المجمع التجاري الذي يقع في منطقة الزهراء ويشتهر بتصميمه الدائري؟", a: "مجمع 360", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/360_Mall_in_Kuwait_City.jpg/960px-360_Mall_in_Kuwait_City.jpg" },
-    { l: 3, q: "ما اسم أشهر منطقة تسوّق شعبية في حولي؟", a: "شارع تونس وأسواق حولي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Hawalli_in_Kuwait.svg/960px-Hawalli_in_Kuwait.svg.png" },
-    { l: 3, q: "ما اسم المجمع الذي يقع في منطقة العقيلة ويخدم محافظة الأحمدي؟", a: "ذا غيت مول" },
-    { l: 3, q: "ما اسم المجمع الذي يقع في منطقة الفحيحيل ويطل على البحر؟", a: "الكوت مول", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Kuwait_landmark_AlKout_Mall_shopping_Center_2013-06-13_16-38.jpg" },
-    { l: 3, q: "ما اسم المنطقة التي تضم أكبر تجمّع للمجمعات التجارية في الكويت؟", a: "منطقة الراي", img: "image/Kuwait.png" },
-    { l: 4, q: "في أي عام افتُتحت المرحلة الأولى من مجمع الأفنيوز؟", a: "عام 2007", img: "image/Kuwait.png" },
-    { l: 4, q: "ما اسم الشركة الكويتية المطوّرة لمجمع الأفنيوز؟", a: "شركة مباني (المشاريع العقارية)", img: "image/Kuwait.png" },
-    { l: 4, q: "كم يبلغ ارتفاع برج الحمراء تقريباً؟", a: "حوالي 412 متراً" },
-    { l: 4, q: "ما اسم أطول برج في الكويت؟", a: "برج الحمراء", img: "https://thumb.wikimedia.org/wikipedia/ar/thumb/4/42/Al_Hamra_Tower.jpg/960px-Al_Hamra_Tower.jpg" },
-    { l: 4, q: "ما اسم البرج الرئيسي في أبراج الكويت الذي يحتوي على مطعم دوّار؟", a: "البرج الرئيسي (الكرة العليا الدوّارة)", img: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Songhwa_Street_Main_Tower.png" },
-    { l: 4, q: "في أي عام افتُتحت أبراج الكويت؟", a: "عام 1979", img: "image/Kuwait.png" },
-    { l: 4, q: "ما اسم المجمع الذي يضم أكبر عدد من دور السينما في الكويت؟", a: "الأفنيوز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Avenues_coastline%2C_Bahrain.jpg/960px-Avenues_coastline%2C_Bahrain.jpg" },
-    { l: 4, q: "ما اسم الشارع التجاري الشهير في السالمية؟", a: "شارع سالم المبارك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Salmiya_main_street.jpg/960px-Salmiya_main_street.jpg" },
-    { l: 4, q: "ما اسم المجمع الذي يقع في منطقة الشويخ ويضم مطاعم ومحلات؟", a: "مجمع الشويخ التجاري (أسواق الشويخ)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Arabian_Gulf_Street.JPG/960px-Arabian_Gulf_Street.JPG" },
-    { l: 4, q: "ما اسم أشهر سوق ذهب في الكويت؟", a: "سوق الذهب في المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 5, q: "ما اسم أول مجمع تجاري مغلق افتُتح في الكويت؟", a: "مجمع المثنى (من أوائل المجمعات)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/360_Mall_in_Kuwait_City.jpg/960px-360_Mall_in_Kuwait_City.jpg" },
-    { l: 5, q: "ما اسم السوق الذي كان مركزاً لتجارة اللؤلؤ في الكويت قديماً؟", a: "سوق التجار في المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
-    { l: 5, q: "ما اسم البوابات التاريخية التي كانت تحيط بمدينة الكويت؟", a: "بوابات السور الثالث" },
-    { l: 5, q: "كم عدد بوابات سور الكويت الثالث؟", a: "خمس بوابات", img: "image/Kuwait.png" },
-    { l: 5, q: "ما اسم المشروع التجاري الضخم على طريق الفحيحيل السريع؟", a: "ذا غيت مول" },
-    { l: 5, q: "ما اسم منطقة المعارض والمعارض التجارية الدولية في الكويت؟", a: "أرض المعارض في مشرف" },
-    { l: 5, q: "ما اسم المجمع الذي يضم أكبر متجر للمواد الغذائية في الكويت؟", a: "لولو هايبر ماركت (والجمعيات التعاونية)" },
-    { l: 5, q: "ما اسم النظام التعاوني الشهير في الكويت الذي يخدم كل منطقة سكنية؟", a: "الجمعيات التعاونية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Harvesting_beans_%285762966966%29.jpg/960px-Harvesting_beans_%285762966966%29.jpg" },
-    { l: 5, q: "ما اسم أشهر سوق شعبي للأدوات المستعملة في الكويت؟", a: "سوق الجمعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/%D8%B3%D9%88%D9%82_%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9_%D8%B9%D9%85%D8%A7%D9%86.jpg/960px-%D8%B3%D9%88%D9%82_%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9_%D8%B9%D9%85%D8%A7%D9%86.jpg" },
-    { l: 5, q: "ما اسم السوق المتخصص ببيع السمك في مدينة الكويت؟", a: "سوق شرق (سوق السمك)", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Kuwait_City_-_Night_view.jpg" },
+    /* الأفنيوز — الري */
+    { l: 1, q: "ما اسم هذا المجمع؟", a: "الأفنيوز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/The_Avenues_Kuwait.jpg/960px-The_Avenues_Kuwait.jpg" },
+    { l: 1, q: "أين يقع هذا المجمع؟", a: "منطقة الري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Grand_Avenue_in_Kuwait.jpg/960px-Grand_Avenue_in_Kuwait.jpg" },
+
+    /* مارينا مول — السالمية */
+    { l: 1, q: "ما اسم هذا المجمع؟", a: "مارينا مول", img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Marina_Mall_-_Salmiya.png" },
+    { l: 1, q: "أين يقع هذا المجمع؟", a: "السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Marina_crescent_at_night.jpg/960px-Marina_crescent_at_night.jpg" },
+
+    /* مجمع 360 — الزهراء (جنوب السرة) */
+    { l: 2, q: "ما اسم هذا المجمع؟", a: "مجمع 360", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/360_Mall_in_Kuwait_City.jpg/960px-360_Mall_in_Kuwait_City.jpg" },
+    { l: 2, q: "أين يقع هذا المجمع؟", a: "الزهراء (جنوب السرة) على الدائري السادس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/360_degree_mall.jpg/960px-360_degree_mall.jpg" },
+
+    /* سوق شرق — شرق */
+    { l: 2, q: "ما اسم هذا المجمع؟", a: "سوق شرق", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Kuwait_City_Souq_Sharq_02.jpg/960px-Kuwait_City_Souq_Sharq_02.jpg" },
+    { l: 2, q: "أين يقع هذا المجمع؟", a: "منطقة شرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Kuwait_City_Souq_Sharq_Marina_05.jpg/960px-Kuwait_City_Souq_Sharq_Marina_05.jpg" },
+
+    /* سوق الكوت — الفحيحيل */
+    { l: 3, q: "ما اسم هذا المجمع؟", a: "سوق الكوت (الكوت مول)", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Kuwait_landmark_AlKout_Mall_shopping_Center_2013-06-13_16-38.jpg" },
+    { l: 3, q: "أين يقع هذا المجمع؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg/960px-Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg" },
+
+    /* سوق المباركية — القبلة */
+    { l: 3, q: "ما اسم هذا السوق؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
+    { l: 3, q: "أين يقع هذا السوق؟", a: "منطقة القبلة في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Kuwait_City_Souq_al-Mubarakeya_2.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_2.jpg" },
+
+    /* مجمع وبرج الحمراء — الشرق */
+    { l: 4, q: "ما اسم هذا البرج الذي يضم مجمعاً تجارياً؟", a: "برج الحمراء (مجمع الحمراء)", img: "https://thumb.wikimedia.org/wikipedia/ar/thumb/4/42/Al_Hamra_Tower.jpg/960px-Al_Hamra_Tower.jpg" },
+    { l: 4, q: "أين يقع هذا المجمع؟", a: "منطقة الشرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Al_Hamra_Kuwait_Mai_2010.jpg/960px-Al_Hamra_Kuwait_Mai_2010.jpg" },
+
+    /* مجمع العالمية — الجهراء */
+    { l: 4, q: "ما اسم هذا المجمع؟", a: "مجمع العالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
+    { l: 4, q: "أين يقع هذا المجمع؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
+
+    /* سوق المناخ — مدينة الكويت */
+    { l: 5, q: "ما اسم هذا السوق؟", a: "سوق المناخ", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
+    { l: 5, q: "أين يقع هذا السوق؟", a: "مدينة الكويت", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
+
+    /* سوق الجمعة — الشويخ */
+    { l: 5, q: "ما اسم هذا السوق الشعبي؟", a: "سوق الجمعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
+    { l: 5, q: "أين يقع هذا السوق؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
   ],
 
   /* ---------- مناطق الكويت (50 سؤالاً) ---------- */
