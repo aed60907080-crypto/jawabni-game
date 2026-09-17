@@ -1736,39 +1736,33 @@ const questionsData = {
     { l: 5, q: "أين يقع سوق الجمعة؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
   ],
 
-  /* ---------- مناطق الكويت (50 سؤالاً) ---------- */
+  /* ---------- مناطق الكويت (16 سؤالاً) ----------
+     سؤال واحد فقط: «ما اسم هذه المنطقة؟» على خريطة الكويت الصمّاء
+     مع حلقة على موضع المنطقة (pin = [س٪، ص٪] من الخريطة).
+     مواضع الحلقات محسوبة من إحداثيات كل منطقة (ويكيبيديا) على حدود
+     الخريطة المعروفة: شمال 30.2° وجنوب 28.4° وغرب 46.4° وشرق 48.8°.
+     اختيرت مناطق متباعدة بما يكفي حتى لا تلتبس حلقة بأخرى. */
   "مناطق الكويت": [
-    { l: 1, q: "في أي محافظة تقع منطقة السالمية؟", a: "محافظة حولي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Hawalli_in_Kuwait.svg/960px-Hawalli_in_Kuwait.svg.png" },
-    { l: 1, q: "في أي محافظة تقع منطقة الفحيحيل؟", a: "محافظة الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Al_Ahmadi_in_Kuwait.svg/960px-Al_Ahmadi_in_Kuwait.svg.png" },
-    { l: 1, q: "في أي محافظة تقع منطقة خيطان؟", a: "محافظة الفروانية", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Kuwait-Al_Farwaniyah.png" },
-    { l: 1, q: "ما اسم المحافظة التي تقع فيها منطقة الشرق والقبلة؟", a: "محافظة العاصمة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Makkah_Region_-_Makkah_Al_Mukarramah.svg/960px-Makkah_Region_-_Makkah_Al_Mukarramah.svg.png" },
-    { l: 2, q: "في أي محافظة تقع منطقة الجابرية؟", a: "محافظة حولي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Hawalli_in_Kuwait.svg/960px-Hawalli_in_Kuwait.svg.png" },
-    { l: 2, q: "في أي محافظة تقع منطقة صباح السالم؟", a: "محافظة مبارك الكبير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Mubarak_Al-Kabeer_in_Kuwait.svg/960px-Mubarak_Al-Kabeer_in_Kuwait.svg.png" },
-    { l: 2, q: "في أي محافظة تقع منطقة جليب الشيوخ؟", a: "محافظة الفروانية", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Kuwait-Al_Farwaniyah.png" },
-    { l: 2, q: "في أي محافظة تقع منطقة المنقف؟", a: "محافظة الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Al_Ahmadi_in_Kuwait.svg/960px-Al_Ahmadi_in_Kuwait.svg.png" },
-    { l: 2, q: "في أي محافظة تقع منطقة سعد العبدالله؟", a: "محافظة الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Sunset_%2837519692%29.jpeg/960px-Sunset_%2837519692%29.jpeg" },
-    { l: 2, q: "ما اسم المنطقة الكويتية التي تضم أبراج الكويت؟", a: "منطقة دسمان في العاصمة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Kuwait_cosmopolis_-_don%27t_miss_the_details_-_zoom_in_%28540280595%29.jpg/960px-Kuwait_cosmopolis_-_don%27t_miss_the_details_-_zoom_in_%28540280595%29.jpg" },
-    { l: 2, q: "ما اسم المنطقة الصناعية الشهيرة في الكويت قرب العاصمة؟", a: "منطقة الشويخ الصناعية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Carmuseumq8.jpg/960px-Carmuseumq8.jpg" },
-    { l: 2, q: "ما اسم المنطقة الزراعية الشهيرة في جنوب الكويت؟", a: "الوفرة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Wafra_Village_in_Kuwait.jpg/960px-Wafra_Village_in_Kuwait.jpg" },
-    { l: 2, q: "ما اسم المنطقة الزراعية الشهيرة في شمال الكويت؟", a: "العبدلي", img: "https://upload.wikimedia.org/wikipedia/commons/3/37/Amman_district_09.png" },
-    { l: 2, q: "ما اسم المنطقة الساحلية السياحية جنوب الكويت؟", a: "الخيران", img: "https://upload.wikimedia.org/wikipedia/commons/3/30/Sabah_Al_Ahmad_Sea_City_-_Phase_A3_Aerial_Shot.JPG" },
-    { l: 3, q: "ما اسم المنطقة التي تضم قصر السيف الحكومي؟", a: "منطقة الشرق في العاصمة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Charguia1.JPG/960px-Charguia1.JPG" },
-    { l: 3, q: "ما اسم المنطقة التي يقع فيها مطار الكويت الدولي؟", a: "منطقة الفروانية", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Kuwait-Al_Farwaniyah.png" },
-    { l: 3, q: "ما اسم المنطقة التي يقع فيها ميناء الشعيبة؟", a: "محافظة الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Al_Ahmadi_in_Kuwait.svg/960px-Al_Ahmadi_in_Kuwait.svg.png" },
-    { l: 3, q: "ما اسم المنطقة التي فيها القصر الأحمر التاريخي؟", a: "الجهراء", img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Jahra-castle.jpg" },
-    { l: 3, q: "ما اسم المدينة السكنية الجديدة شمال الكويت التي تحمل اسم أمير راحل؟", a: "مدينة جابر الأحمد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/%D8%AD%D8%B6%D8%B1%D8%A9_%D8%B5%D8%A7%D8%AD%D8%A8_%D8%A7%D9%84%D8%B3%D9%85%D9%88_%D8%A7%D9%84%D8%B4%D9%8A%D8%AE_%D8%AC%D8%A7%D8%A8%D8%B1_%D8%A7%D9%84%D8%A3%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B5%D8%A8%D8%A7%D8%AD_%D8%A3%D9%85%D9%8A%D8%B1_%D8%AF%D9%88%D9%84%D8%A9_%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.jpg/960px-%D8%AD%D8%B6%D8%B1%D8%A9_%D8%B5%D8%A7%D8%AD%D8%A8_%D8%A7%D9%84%D8%B3%D9%85%D9%88_%D8%A7%D9%84%D8%B4%D9%8A%D8%AE_%D8%AC%D8%A7%D8%A8%D8%B1_%D8%A7%D9%84%D8%A3%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B5%D8%A8%D8%A7%D8%AD_%D8%A3%D9%85%D9%8A%D8%B1_%D8%AF%D9%88%D9%84%D8%A9_%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.jpg" },
-    { l: 4, q: "ما اسم المنطقة الكويتية التي تحتوي على مستشفى العدان؟", a: "منطقة حدائق العدان في مبارك الكبير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Saray_El-Qubba_Garden.JPG/960px-Saray_El-Qubba_Garden.JPG" },
-    { l: 4, q: "في أي منطقة يقع مجلس الأمة الكويتي؟", a: "منطقة الشرق في العاصمة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Charguia1.JPG/960px-Charguia1.JPG" },
-    { l: 4, q: "ما اسم المنطقة التي تضم جامعة الكويت الرئيسية سابقاً؟", a: "منطقة الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Carmuseumq8.jpg/960px-Carmuseumq8.jpg" },
-    { l: 4, q: "ما اسم المدينة الجامعية الجديدة في الكويت؟", a: "مدينة صباح السالم الجامعية في الشدادية", img: "https://upload.wikimedia.org/wikipedia/commons/3/39/Mohammad_Sabah_Al-Salem_Al-Sabah.jpg" },
-    { l: 4, q: "ما اسم المنطقة التي تقع في أقصى جنوب الكويت على الحدود؟", a: "النويصيب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Arabian_Red_Fox_with_Juvenile.jpg/960px-Arabian_Red_Fox_with_Juvenile.jpg" },
-    { l: 4, q: "ما اسم المنطقة التي تضم حديقة الشهيد؟", a: "منطقة الشويخ / حولي على حدود العاصمة", img: "https://upload.wikimedia.org/wikipedia/commons/5/52/Kuwait_ESA21888966_%28Kuwait_Bay%29_%28cropped_to_Shuwaikh_Island%29.jpg" },
-    { l: 4, q: "ما اسم أقدم منطقة سكنية داخل سور الكويت القديم؟", a: "القبلة والشرق والمرقاب" },
-    { l: 5, q: "ما اسم الأحياء الثلاثة القديمة داخل سور الكويت؟", a: "القبلة والشرق والمرقاب" },
-    { l: 5, q: "ما اسم المنطقة التي أُنشئت فيها أول مدرسة نظامية في الكويت؟", a: "المدرسة المباركية في الشرق", img: "https://upload.wikimedia.org/wikipedia/ar/2/24/Mbarkyiah.jpg" },
-    { l: 5, q: "ما اسم المنطقة التي شهدت اكتشاف النفط لأول مرة في الكويت؟", a: "حقل برقان في محافظة الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Al_Ahmadi_in_Kuwait.svg/960px-Al_Ahmadi_in_Kuwait.svg.png" },
-    { l: 5, q: "ما اسم المنطقة التي تضم مصفاة ميناء الأحمدي؟", a: "محافظة الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Al_Ahmadi_in_Kuwait.svg/960px-Al_Ahmadi_in_Kuwait.svg.png" },
-    { l: 5, q: "ما اسم المشروع العمراني الضخم المخطَّط في منطقة الصبية شمال الكويت، ومن معالمه برج مبارك الكبير؟", a: "مدينة الحرير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Fortaleza_de_Bam%2C_Ir%C3%A1n%2C_2016-09-23%2C_DD_09.jpg/960px-Fortaleza_de_Bam%2C_Ir%C3%A1n%2C_2016-09-23%2C_DD_09.jpg" },
+    { l: 1, q: "ما اسم هذه المنطقة؟", a: "مدينة الكويت (العاصمة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65.8, 46.1] },
+    { l: 1, q: "ما اسم هذه المنطقة؟", a: "السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [70.1, 48.1] },
+    { l: 1, q: "ما اسم هذه المنطقة؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [53.5, 47.2] },
+    { l: 1, q: "ما اسم هذه المنطقة؟", a: "جزيرة فيلكا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [80.6, 42.3] },
+
+    { l: 2, q: "ما اسم هذه المنطقة؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.9, 62] },
+    { l: 2, q: "ما اسم هذه المنطقة؟", a: "الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [70.1, 62] },
+    { l: 2, q: "ما اسم هذه المنطقة؟", a: "الفروانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65, 51.3] },
+
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "الجابرية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [68.1, 49.1] },
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "صباح السالم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [69.3, 52.4] },
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "الفنطاس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.7, 57.2] },
+
+    { l: 4, q: "ما اسم هذه المنطقة؟", a: "أبو حليفة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.9, 59.3] },
+    { l: 4, q: "ما اسم هذه المنطقة؟", a: "الصليبية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [59.1, 50.8] },
+    { l: 4, q: "ما اسم هذه المنطقة؟", a: "العارضية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [62.5, 50] },
+
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "الصليبيخات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [60.3, 49.2] },
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "القرين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [69.6, 55.7] },
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "كيفان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65.1, 47.9] },
   ],
 };
 
