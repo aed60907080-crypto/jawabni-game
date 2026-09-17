@@ -284,7 +284,8 @@
         POINT_VALUES.forEach(function (p) { slots.push({ c: cat, p: p }); });
       });
 
-      var n = count == null ? DEFAULT_SCATTER : count;
+      /* مع ٤ أو ٦ فرق تكبر اللوحة (فئات أكثر)، فتكبر المفاجآت بالنسبة نفسها */
+      var n = count == null ? Math.round(DEFAULT_SCATTER * teamIds().length / 2) : count;
       n = Math.max(0, Math.min(n, slots.length));
       if (!n) { write("tilePowers", {}); return {}; }
 

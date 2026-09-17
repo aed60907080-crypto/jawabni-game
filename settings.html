@@ -383,7 +383,9 @@
       <div class="row">
         <div class="txt">
           <b>عدد الفئات المختارة</b>
-          <span>سقف ما يمكن اختياره في صفحة «اختر فئاتك». ٦ فئات = ٣٦ سؤالاً، ٨ فئات = ٤٨ سؤالاً.</span>
+          <span>سقف ما يمكن اختياره في صفحة «اختر فئاتك» للعبة فريقين. ٦ فئات = ٣٦ سؤالاً، ٨ فئات = ٤٨ سؤالاً.
+                ومع زيادة الفرق تزيد الفئات بالنسبة نفسها: ٤ فرق = ضعفها، ٦ فرق = ثلاثة أضعافها.
+                <b id="catCapNow"></b></span>
         </div>
         <div class="seg" id="maxCatSeg">
           <button type="button" class="seg-btn" data-val="6">٦ فئات</button>
@@ -394,7 +396,7 @@
       <div class="row">
         <div class="txt">
           <b>عدد الفرق</b>
-          <span>فريقان أو ٤ أو ٦ فرق تتناوب على الدور. يُطبَّق عند بدء الجولة القادمة، وتظهر خانة اسم لكل فريق في صفحة «اختر فئاتك».</span>
+          <span>فريقان أو ٤ أو ٦ فرق تتناوب على الدور، وكل زيادة في الفرق تزيد عدد الفئات حتى يبقى لكل فريق عدد الأسئلة نفسه. يُطبَّق عند بدء الجولة القادمة، وتظهر خانة اسم لكل فريق في صفحة «اختر فئاتك».</span>
         </div>
         <div class="seg" id="teamCountSeg">
           <button type="button" class="seg-btn" data-val="2">٢</button>
@@ -744,14 +746,29 @@
       paint();
     }
 
-    /* --- عدد الفئات المختارة: 6 أو 8 --- */
+    /* السقف الفعلي = سقف الفريقين × (عدد الفرق ÷ ٢) — نفس حساب Teams.maxCategories */
+    const capNow = () => {
+      const base = localStorage.getItem('maxCategories') === '8' ? 8 : 6;
+      const teams = [2, 4, 6].indexOf(+localStorage.getItem('teamCount')) >= 0 ? +localStorage.getItem('teamCount') : 2;
+      return { base, teams, cap: base * teams / 2 };
+    };
+    const paintCap = () => {
+      const c = capNow(), el = document.getElementById('catCapNow');
+      if (el) el.textContent = 'الآن: ' + (c.teams === 2 ? 'فريقان' : c.teams + ' فرق') + ' ← حتى ' + c.cap + ' فئة · الأسئلة: ' + (c.cap * 6);
+    };
+    paintCap();
+
+    /* --- عدد الفئات المختارة: 6 أو 8 (لفريقين) --- */
     wireSeg('maxCatSeg', 'maxCategories', '6', v => {
-      toast('صار سقف الاختيار ' + v + ' فئات', 'fa-layer-group');
+      paintCap();
+      toast('صار سقف الاختيار ' + capNow().cap + ' فئة', 'fa-layer-group');
     });
 
-    /* --- عدد الفرق: 2 أو 4 أو 6 (teams.js) --- */
+    /* --- عدد الفرق: 2 أو 4 أو 6 (teams.js) — والفئات تزيد معه --- */
     wireSeg('teamCountSeg', 'teamCount', '2', v => {
-      toast(v === '2' ? 'الجولة القادمة بفريقين' : 'الجولة القادمة بـ ' + v + ' فرق', 'fa-people-group');
+      paintCap();
+      toast((v === '2' ? 'الجولة القادمة بفريقين' : 'الجولة القادمة بـ ' + v + ' فرق') +
+            ' · حتى ' + capNow().cap + ' فئة', 'fa-people-group');
     });
 
     /* --- نمط الجولة: عادي أو بالمفاجآت --- */

@@ -104,6 +104,12 @@
     return tied.length > 1 ? tied : [];
   }
 
+  /* سقف الفئات يكبر مع عدد الفرق حتى يبقى لكل فريق عدد الأسئلة نفسه:
+     الإعدادات تحدد السقف لفريقين (٦ أو ٨)، ومع ٤ فرق يتضاعف (١٢ أو ١٦)،
+     ومع ٦ فرق ثلاثة أضعاف (١٨ أو ٢٤). n = عدد الفرق (الافتراضي: اختيار الإعدادات) */
+  function baseCategories() { return parseInt(get("maxCategories"), 10) === 8 ? 8 : 6; }
+  function maxCategories(n) { return baseCategories() * ((n || setting()) / 2); }
+
   /* بداية جولة: تثبيت عدد الفرق وتصفير النقاط والدور */
   function startRound() {
     var n = setting();
@@ -137,6 +143,8 @@
     ranking: ranking,
     leader: leader,
     tiedLeaders: tiedLeaders,
+    baseCategories: baseCategories,
+    maxCategories: maxCategories,
     startRound: startRound,
     storageKeys: storageKeys
   };

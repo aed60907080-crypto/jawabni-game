@@ -502,6 +502,7 @@
     .picked-list{
       pointer-events:auto;
       width:min(960px, 100%);
+      max-height:34vh; overflow-y:auto;       /* ١٨–٢٤ فئة مع ٤ أو ٦ فرق */
       display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px;
       padding:10px 12px;
       background:linear-gradient(150deg, rgba(21,74,65,.92), rgba(6,24,20,.95));
@@ -597,11 +598,9 @@
 <script src="sfx.js"></script>
 
   <script>
-    /* سقف الفئات: 6 أو 8 — يُضبط من صفحة الإعدادات ويُحفظ في المتصفح */
-    const MAX_SELECTIONS = (function () {
-      const v = parseInt(localStorage.getItem("maxCategories"), 10);
-      return (v === 8) ? 8 : 6;
-    })();
+    /* سقف الفئات: 6 أو 8 للفريقين (من الإعدادات)، ويكبر مع عدد الفرق —
+       ١٢ أو ١٦ لأربعة فرق، و١٨ أو ٢٤ لستة (teams.js) */
+    const MAX_SELECTIONS = Teams.maxCategories();
 
     function showToast(msg, type){
       const box = document.getElementById('toastBox');
@@ -695,7 +694,7 @@
   <div class="page-head">
     <span class="eyebrow-line">الخطوة الأولى</span>
     <h1 class="section1">اختر فئاتك</h1>
-    <p class="sub">اختر حتى ٦ فئات لتبدأ الجولة — كل فئة تحمل ٦ أسئلة بقيم مختلفة</p>
+    <p class="sub" id="catSub">اختر حتى ٦ فئات لتبدأ الجولة — كل فئة تحمل ٦ أسئلة بقيم مختلفة</p>
   </div>
 
   <div class="counter-wrap" id="counterWrap">
@@ -758,7 +757,13 @@
       grid.classList.toggle('many', n > 2);
       grid.classList.toggle('four', n === 4);
       document.getElementById('teamsTitle').textContent = n > 2 ? 'أسماء اللعبة والفرق' : 'أسماء اللعبة والفريقين';
-      document.getElementById('teamCountNote').textContent = 'عدد الفرق: ' + n;
+      document.getElementById('teamCountNote').textContent = 'عدد الفرق: ' + n + ' · حتى ' + MAX_SELECTIONS + ' فئة';
+      /* السقف يكبر مع عدد الفرق — نص «حتى ٦ فئات» الأصلي يبقى كما هو (مترجَم) للسقف ٦ */
+      if (MAX_SELECTIONS !== 6) {
+        const digits = String(MAX_SELECTIONS).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+        document.getElementById('catSub').textContent =
+          'اختر حتى ' + digits + ' فئة لتبدأ الجولة — كل فئة تحمل ٦ أسئلة بقيم مختلفة';
+      }
       Teams.ids(n).forEach(t => {
         const c = Teams.color(t);
         const col = document.createElement('div');
