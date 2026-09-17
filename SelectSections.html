@@ -358,6 +358,13 @@
       display:flex; align-items:center; justify-content:center; gap:9px;
     }
     .score-card h2 i{ color:var(--tc, var(--muted)); }
+    /* أسماء لاعبي الفريق */
+    .team-members{ display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:0 0 6px; }
+    .team-members span{
+      font-family:'Cairo', sans-serif; font-size:12px; font-weight:700; color:var(--ivory);
+      padding:2px 9px; border-radius:999px; background:rgba(0,0,0,.28);
+      border:1px solid var(--tc, var(--line));
+    }
 
     .score-card p {
       font-family:'Cairo', sans-serif;
@@ -644,6 +651,7 @@
       card.style.setProperty('--tc', Teams.color(t).main);
       card.innerHTML =
         '<h2><i class="fa-solid fa-shield-halved"></i> <span class="team-name" data-no-i18n></span></h2>' +
+        '<div class="team-members" data-no-i18n></div>' +
         '<p id="' + t + 'Score">0</p>' +
         '<div class="card-btns">' +
           '<button class="btn-reset btn-bonus" onclick="applyBonus(\'' + t + '\', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>' +
@@ -651,6 +659,15 @@
           '<button class="btn-reset btn-red" onclick="applyPenalty(\'' + t + '\', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>' +
         '</div>';
       card.querySelector('.team-name').textContent = Teams.name(t);
+      /* أسماء اللاعبين تحت اسم الفريق */
+      const mem = Teams.members(t);
+      const memEl = card.querySelector('.team-members');
+      memEl.hidden = !mem.length;
+      mem.forEach(m => {
+        const s = document.createElement('span');
+        s.textContent = m;
+        memEl.appendChild(s);
+      });
       box.appendChild(card);
     });
     if (window.I18N) I18N.apply(box);

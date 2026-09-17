@@ -9,6 +9,8 @@
      teamCount       ("2"|"4"|"6")  اختيار الإعدادات للجولات القادمة
      gameTeamCount   ("2"|"4"|"6")  عدد فرق الجولة الجارية (يُكتب عند البدء)
      team1 … team6   أسماء الفرق
+     teamMembers     { team1: ["أحمد", "سارة"], … }  أسماء اللاعبين في كل فريق
+     savedTeams      [{ name, members }]  الفرق الثابتة — تبقى دائماً لإعادة استعمالها
      teamScores      { team1: 0, team2: 0, … }
    ============================================================ */
 
@@ -104,6 +106,53 @@
     return tied.length > 1 ? tied : [];
   }
 
+  /* ---------- أسماء اللاعبين في كل فريق ---------- */
+  function readJSON(k, fb) {
+    try { var v = JSON.parse(get(k) || "null"); return v == null ? fb : v; } catch (e) { return fb; }
+  }
+
+  /* يقسم نصاً فيه أكثر من اسم (فاصلة عربية/إنجليزية أو سطر جديد) */
+  function splitNames(text) {
+    return String(text || "").split(/[,،\n]+/)
+      .map(function (s) { return s.trim(); })
+      .filter(function (s) { return s; });
+  }
+
+  function members(id) {
+    var all = readJSON("teamMembers", {});
+    return Array.isArray(all[id]) ? all[id] : [];
+  }
+
+  function setMembers(id, list) {
+    var all = readJSON("teamMembers", {});
+    var seen = {};
+    all[id] = (list || []).map(function (s) { return String(s).trim().slice(0, 30); })
+      .filter(function (s) { if (!s || seen[s]) return false; seen[s] = 1; return true; });
+    set("teamMembers", JSON.stringify(all));
+    return all[id];
+  }
+
+  /* ---------- الفرق الثابتة (محفوظة دائماً لإعادة استعمالها) ----------
+     savedTeams: [{ name: "النسور", members: ["أحمد", "سارة"] }, …] */
+  function saved() {
+    var v = readJSON("savedTeams", []);
+    return Array.isArray(v) ? v.filter(function (t) { return t && t.name; }) : [];
+  }
+
+  function saveTeam(name, list) {
+    name = String(name || "").trim();
+    if (!name) return false;
+    var all = saved().filter(function (t) { return t.name !== name; });
+    all.push({ name: name, members: (list || []).slice(0, 30) });
+    all.sort(function (a, b) { return a.name.localeCompare(b.name, "ar"); });
+    set("savedTeams", JSON.stringify(all));
+    return true;
+  }
+
+  function deleteSaved(name) {
+    set("savedTeams", JSON.stringify(saved().filter(function (t) { return t.name !== name; })));
+  }
+
   /* سقف الفئات يكبر مع عدد الفرق حتى يبقى لكل فريق عدد الأسئلة نفسه:
      الإعدادات تحدد السقف لفريقين (٦ أو ٨)، ومع ٤ فرق يتضاعف (١٢ أو ١٦)،
      ومع ٦ فرق ثلاثة أضعاف (١٨ أو ٢٤). n = عدد الفرق (الافتراضي: اختيار الإعدادات) */
@@ -121,7 +170,7 @@
 
   /* مفاتيح الفرق كلها (لمسح بيانات الجولة) */
   function storageKeys() {
-    var k = ["gameTeamCount"];
+    var k = ["gameTeamCount", "teamMembers"];
     for (var i = 1; i <= 6; i++) k.push("team" + i);
     return k;
   }
@@ -143,6 +192,12 @@
     ranking: ranking,
     leader: leader,
     tiedLeaders: tiedLeaders,
+    splitNames: splitNames,
+    members: members,
+    setMembers: setMembers,
+    saved: saved,
+    saveTeam: saveTeam,
+    deleteSaved: deleteSaved,
     baseCategories: baseCategories,
     maxCategories: maxCategories,
     startRound: startRound,

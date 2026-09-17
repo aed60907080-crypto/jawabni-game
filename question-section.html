@@ -453,6 +453,55 @@
     /* ٤ أو ٦ فرق: عمودان أو ثلاثة */
     .team-grid.many .team-col{ flex:1 1 30%; min-width:180px; }
     .team-grid.four .team-col{ flex:1 1 40%; }
+    .team-panel.wide{ max-width:980px; }
+
+    /* اختيار فريق ثابت محفوظ */
+    .saved-pick{
+      width:100%; margin-bottom:8px; padding:7px 10px; border-radius:12px;
+      background:rgba(0,0,0,.28); color:var(--ivory); font-family:'Cairo',sans-serif; font-size:13px;
+      border:1px dashed var(--tc, var(--line)); text-align:center; cursor:pointer;
+    }
+    .saved-pick option{ background:#0a2a25; color:var(--ivory); }
+
+    /* أسماء اللاعبين داخل كل فريق */
+    .members{ margin-top:8px; }
+    .member-chips{ display:flex; flex-wrap:wrap; gap:6px; justify-content:center; min-height:4px; margin-bottom:6px; }
+    .member-chip{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 6px 4px 10px; border-radius:999px;
+      background:rgba(0,0,0,.3); border:1px solid var(--tc, var(--line));
+      font-family:'Cairo',sans-serif; font-size:13px; font-weight:700; color:var(--ivory);
+    }
+    .member-chip button{
+      width:20px; height:20px; border-radius:50%; border:0; padding:0; line-height:20px;
+      background:rgba(255,255,255,.1); color:var(--muted); cursor:pointer; font-size:12px;
+    }
+    .member-chip button:hover{ background:var(--coral); color:#fff; }
+    .member-add{ display:flex; gap:6px; }
+    .member-add input{ flex:1; min-width:0; padding:8px 12px; font-size:14px; font-weight:600; }
+    .member-add .add-btn, .team-actions button{
+      flex:none; border-radius:12px; border:1px solid var(--tc, var(--line-strong));
+      background:rgba(0,0,0,.25); color:var(--ts, var(--gold-soft)); cursor:pointer;
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:13px; padding:0 12px;
+    }
+    .member-add .add-btn:hover, .team-actions button:hover{ background:rgba(255,255,255,.08); }
+    .member-hint{ color:var(--muted); font-size:11.5px; margin-top:4px; }
+    .team-actions{ display:flex; justify-content:center; margin-top:8px; }
+    .team-actions button{ padding:6px 12px; }
+
+    /* قائمة الفرق الثابتة المحفوظة */
+    .saved-list{ margin-top:18px; padding-top:14px; border-top:1px solid rgba(231,183,64,.15); }
+    .saved-list h4{ font-family:'Cairo',sans-serif; font-size:15px; font-weight:800; color:var(--gold-soft); margin:0 0 10px; }
+    .saved-list .chips-row{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+    .saved-team{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 8px 6px 12px; border-radius:14px;
+      background:rgba(0,0,0,.25); border:1px solid var(--line); font-size:13px; color:var(--ivory);
+    }
+    .saved-team b{ font-family:'Cairo',sans-serif; }
+    .saved-team small{ color:var(--muted); }
+    .saved-team button{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:14px; }
+    .saved-team button:hover{ color:var(--coral); }
+    .saved-empty{ color:var(--muted); font-size:13px; }
     .team-count-note{ text-align:center; color:var(--muted); font-size:13px; margin:-6px 0 14px; }
     .team-count-note a{ color:var(--gold); }
 
@@ -726,8 +775,14 @@
 
     <p class="team-count-note"><span id="teamCountNote"></span> — <a href="settings.html">غيّر عدد الفرق من الإعدادات</a></p>
 
-    <!-- خانة اسم لكل فريق (٢ أو ٤ أو ٦) — تُبنى من teams.js -->
+    <!-- لكل فريق (٢ أو ٤ أو ٦): اسمه، أسماء لاعبيه، واختيار فريق ثابت — تُبنى من teams.js -->
     <div class="team-grid" id="teamGrid"></div>
+
+    <!-- الفرق الثابتة المحفوظة (تبقى دائماً لإعادة استعمالها) -->
+    <div class="saved-list">
+      <h4><i class="fa-solid fa-star"></i> الفرق الثابتة</h4>
+      <div class="chips-row" id="savedTeamsList"></div>
+    </div>
   </div>
 
   <div class="start-dock">
@@ -744,9 +799,80 @@
     function autoSaveGameInfo() {
       const gameName = document.getElementById('gameName').value.trim();
       localStorage.setItem("gameName", gameName);
-      document.querySelectorAll('#teamGrid input').forEach(inp => {
+      document.querySelectorAll('#teamGrid input.team-name-input').forEach(inp => {
         localStorage.setItem(inp.id, inp.value.trim());
       });
+    }
+
+    /* شرائح أسماء اللاعبين لفريق واحد */
+    function renderMembers(col, t) {
+      const box = col.querySelector('.member-chips');
+      box.innerHTML = '';
+      Teams.members(t).forEach((m, i) => {
+        const chip = document.createElement('span');
+        chip.className = 'member-chip';
+        chip.innerHTML = '<span data-no-i18n></span><button type="button" aria-label="حذف">✕</button>';
+        chip.querySelector('span').textContent = m;
+        chip.querySelector('button').onclick = () => {
+          const list = Teams.members(t);
+          list.splice(i, 1);
+          Teams.setMembers(t, list);
+          renderMembers(col, t);
+        };
+        box.appendChild(chip);
+      });
+    }
+
+    /* يضيف اسماً أو أكثر (مفصولة بفاصلة) إلى لاعبي الفريق */
+    function addMembers(col, t) {
+      const inp = col.querySelector('.member-input');
+      const names = Teams.splitNames(inp.value);
+      if (!names.length) { inp.focus(); return; }
+      Teams.setMembers(t, Teams.members(t).concat(names));
+      inp.value = '';
+      renderMembers(col, t);
+      if (window.SFX) SFX.select();
+      inp.focus();
+    }
+
+    /* قائمة «فريق ثابت…» في كل خانة */
+    function fillSavedPick(col) {
+      const sel = col.querySelector('.saved-pick');
+      const list = Teams.saved();
+      sel.hidden = !list.length;
+      sel.innerHTML = '<option value="">⭐ اختر فريقاً ثابتاً…</option>';
+      list.forEach((st, i) => {
+        const o = document.createElement('option');
+        o.value = String(i);
+        o.textContent = st.name + (st.members.length ? ' (' + st.members.length + ')' : '');
+        sel.appendChild(o);
+      });
+    }
+
+    /* الفرق الثابتة المحفوظة — مع حذف */
+    function renderSavedTeams() {
+      const box = document.getElementById('savedTeamsList');
+      const list = Teams.saved();
+      box.innerHTML = '';
+      if (!list.length) {
+        box.innerHTML = '<span class="saved-empty">لا توجد فرق ثابتة بعد — اكتب اسم فريق ولاعبيه ثم اضغط «احفظه فريقاً ثابتاً».</span>';
+      }
+      list.forEach(st => {
+        const el = document.createElement('span');
+        el.className = 'saved-team';
+        el.innerHTML = '<b data-no-i18n></b><small data-no-i18n></small><button type="button" title="حذف الفريق الثابت">🗑️</button>';
+        el.querySelector('b').textContent = st.name;
+        el.querySelector('small').textContent = st.members.length ? st.members.join('، ') : '';
+        el.querySelector('button').onclick = () => {
+          if (!confirm('حذف الفريق الثابت «' + st.name + '»؟')) return;
+          Teams.deleteSaved(st.name);
+          renderSavedTeams();
+          document.querySelectorAll('#teamGrid .team-col').forEach(fillSavedPick);
+          showToast('حُذف الفريق الثابت «' + st.name + '»');
+        };
+        box.appendChild(el);
+      });
+      if (window.I18N) I18N.apply(box);
     }
 
     /* خانات أسماء الفرق حسب العدد المختار في الإعدادات (لا حسب جولة سابقة) */
@@ -772,12 +898,58 @@
         col.style.setProperty('--ts', c.soft);
         col.innerHTML =
           '<label for="' + t + '" class="team-label"><span class="dot"></span> فريق ' + Teams.num(t) + '</label>' +
-          '<input type="text" id="' + t + '" class="form-control" oninput="autoSaveGameInfo()" />';
-        const inp = col.querySelector('input');
+          '<select class="saved-pick" hidden></select>' +
+          '<input type="text" id="' + t + '" class="form-control team-name-input" oninput="autoSaveGameInfo()" />' +
+          '<div class="members">' +
+            '<div class="member-chips"></div>' +
+            '<div class="member-add">' +
+              '<input type="text" class="form-control member-input" placeholder="أسماء اللاعبين" />' +
+              '<button type="button" class="add-btn"><i class="fa-solid fa-user-plus"></i> إضافة</button>' +
+            '</div>' +
+            '<div class="member-hint">يمكن إضافة أكثر من اسم مفصولة بفاصلة: أحمد، سارة، علي</div>' +
+          '</div>' +
+          '<div class="team-actions"><button type="button" class="save-btn"><i class="fa-solid fa-star"></i> احفظه فريقاً ثابتاً</button></div>';
+        const inp = col.querySelector('.team-name-input');
         inp.placeholder = 'اسم الفريق ' + Teams.ordinal(t);
         inp.value = localStorage.getItem(t) || '';
+
+        const mInp = col.querySelector('.member-input');
+        col.querySelector('.add-btn').onclick = () => addMembers(col, t);
+        mInp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addMembers(col, t); } });
+
+        /* اختيار فريق ثابت يملأ الاسم واللاعبين */
+        const sel = col.querySelector('.saved-pick');
+        sel.onchange = () => {
+          const st = Teams.saved()[+sel.value];
+          if (!st) return;
+          inp.value = st.name;
+          Teams.setMembers(t, st.members);
+          autoSaveGameInfo();
+          renderMembers(col, t);
+          sel.value = '';
+          if (window.SFX) SFX.select();
+          showToast('⭐ ' + st.name);
+        };
+
+        /* حفظ الفريق (الاسم واللاعبون) فريقاً ثابتاً لكل الجولات القادمة */
+        col.querySelector('.save-btn').onclick = () => {
+          const name = inp.value.trim();
+          if (!name) { inp.focus(); showToast('اكتب اسم الفريق أولاً', 'err'); return; }
+          const pending = Teams.splitNames(mInp.value);
+          if (pending.length) { Teams.setMembers(t, Teams.members(t).concat(pending)); mInp.value = ''; renderMembers(col, t); }
+          Teams.saveTeam(name, Teams.members(t));
+          renderSavedTeams();
+          document.querySelectorAll('#teamGrid .team-col').forEach(fillSavedPick);
+          if (window.SFX) SFX.coin();
+          showToast('⭐ حُفظ «' + name + '» فريقاً ثابتاً');
+        };
+
+        fillSavedPick(col);
+        renderMembers(col, t);
         grid.appendChild(col);
       });
+      document.querySelector('.team-panel').classList.toggle('wide', n > 2);
+      renderSavedTeams();
       if (window.I18N) I18N.apply(document.querySelector('.team-panel'));
     }
 
