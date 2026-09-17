@@ -180,8 +180,7 @@
       animation:rowIn .5s ease backwards;
     }
     @keyframes rowIn{ from{ opacity:0; transform:translateX(-16px);} to{ opacity:1; transform:none;} }
-    #row1{ animation-delay:.25s; }
-    #row2{ animation-delay:.35s; }
+    .score .medal b{ font-family:'Cairo', sans-serif; font-weight:900; font-size:17px; }
     .score .bar{
       position:absolute;
       top:0; bottom:0;
@@ -229,9 +228,9 @@
       color:var(--ink-deep);
       box-shadow:0 8px 20px rgba(231,183,64,.45);
     }
-    .score.t1 .bar{ background:linear-gradient(270deg, rgba(74,155,255,.3), rgba(74,155,255,.06)); }
-    .score.t2 .bar{ background:linear-gradient(270deg, rgba(255,107,77,.3), rgba(255,107,77,.06)); }
-    .score.win.t1 .bar, .score.win.t2 .bar{ background:linear-gradient(270deg, rgba(231,183,64,.36), rgba(231,183,64,.08)); }
+    /* شريط كل فريق بلونه (--tc-a قوي و --tc-b خفيف من teams.js) */
+    .score .bar.team{ background:linear-gradient(270deg, var(--tc-a), var(--tc-b)); }
+    .score.win .bar.team{ background:linear-gradient(270deg, rgba(231,183,64,.36), rgba(231,183,64,.08)); }
 
     /* ---------- winner banner ---------- */
     .winner{
@@ -331,19 +330,8 @@
   <h1>النتيجة النهائية</h1>
   <p class="game-title" id="gameTitle">لعبتنا الثقافية</p>
 
-  <div class="score t1" id="row1">
-    <span class="bar" id="bar1"></span>
-    <span class="medal" id="medal1"><i class="fa-solid fa-shield-halved"></i></span>
-    <span class="who" id="team1Name"></span>
-    <span class="pts" id="pts1">0<span>نقطة</span></span>
-  </div>
-
-  <div class="score t2" id="row2">
-    <span class="bar" id="bar2"></span>
-    <span class="medal" id="medal2"><i class="fa-solid fa-shield-halved"></i></span>
-    <span class="who" id="team2Name"></span>
-    <span class="pts" id="pts2">0<span>نقطة</span></span>
-  </div>
+  <!-- صف لكل فريق مرتّباً حسب النقاط — يُبنى من teams.js -->
+  <div id="scoreRows"></div>
 
   <p id="winnerMessage" class="winner"></p>
   <p class="margin-note" id="marginNote"></p>
@@ -364,6 +352,7 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
 <!-- تعدد اللغات (38 لغة) -->
@@ -373,22 +362,55 @@
 <script src="sfx.js"></script>
 
 <script>
-  const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
-  const team1 = localStorage.getItem("team1") || "الفريق 1";
-  const team2 = localStorage.getItem("team2") || "الفريق 2";
+  /* الفرق (٢ أو ٤ أو ٦ — teams.js) مرتّبة من الأعلى نقاطاً */
+  const scores = Teams.scores();
+  const ranked = Teams.ranking();
   const gameName = localStorage.getItem("gameName");
 
   if (gameName) document.getElementById("gameTitle").textContent = gameName;
 
-  document.getElementById("team1Name").textContent = team1;
-  document.getElementById("team2Name").textContent = team2;
+  const topScore = scores[ranked[0]];
+  const max = Math.max(topScore, 1);
+  const leaders = ranked.filter(t => scores[t] === topScore);
+  const isDraw = leaders.length > 1;
 
-  const s1 = Number(scores.team1) || 0;
-  const s2 = Number(scores.team2) || 0;
-  const max = Math.max(s1, s2, 1);
+  /* لون الفريق بشفافية — لشريط النسبة */
+  function rgba(hex, a){
+    const n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
 
-  countUp(document.getElementById("pts1"), s1);
-  countUp(document.getElementById("pts2"), s2);
+  const rowsBox = document.getElementById("scoreRows");
+  const rows = {};
+  ranked.forEach((t, i) => {
+    const c = Teams.color(t).main;
+    const row = document.createElement("div");
+    row.className = "score";
+    row.style.animationDelay = (0.25 + i * 0.1) + "s";
+    row.innerHTML =
+      '<span class="bar team"></span>' +
+      '<span class="medal"></span>' +
+      '<span class="who" data-no-i18n></span>' +
+      '<span class="pts">0<span>نقطة</span></span>';
+    row.querySelector(".bar").style.setProperty("--tc-a", rgba(c, .3));
+    row.querySelector(".bar").style.setProperty("--tc-b", rgba(c, .06));
+    row.querySelector(".who").textContent = Teams.name(t);
+    /* التاج للمتصدّر (أو المتعادلين في الصدارة)، ورقم الترتيب لبقية الفرق حين تكون أكثر من اثنين */
+    const medal = row.querySelector(".medal");
+    if (scores[t] === topScore && !isDraw) {
+      row.classList.add("win");
+      medal.innerHTML = '<i class="fa-solid fa-crown"></i>';
+    } else if (ranked.length > 2) {
+      medal.innerHTML = '<b>' + (ranked.findIndex(x => scores[x] === scores[t]) + 1) + '</b>';
+      medal.style.color = c;
+    } else {
+      medal.innerHTML = '<i class="fa-solid fa-shield-halved"></i>';
+      medal.style.color = c;
+    }
+    rowsBox.appendChild(row);
+    rows[t] = row;
+    countUp(row.querySelector(".pts"), scores[t]);
+  });
 
   function countUp(el, target){
     const suffix = '<span>نقطة</span>';
@@ -404,29 +426,24 @@
 
   // أشرطة النسبة
   requestAnimationFrame(() => {
-    document.getElementById("bar1").style.width = (s1 / max * 100) + '%';
-    document.getElementById("bar2").style.width = (s2 / max * 100) + '%';
+    ranked.forEach(t => { rows[t].querySelector(".bar").style.width = (scores[t] / max * 100) + '%'; });
   });
 
   const winnerEl = document.getElementById("winnerMessage");
   const marginEl = document.getElementById("marginNote");
 
-  if (s1 > s2) {
-    winnerEl.textContent = `🎉 الفائز هو: ${team1}`;
-    document.getElementById("row1").classList.add("win");
-    document.getElementById("medal1").innerHTML = '<i class="fa-solid fa-crown"></i>';
-    marginEl.textContent = `بفارق ${s1 - s2} نقطة`;
-    fireConfetti(); playWin();
-  } else if (s2 > s1) {
-    winnerEl.textContent = `🎉 الفائز هو: ${team2}`;
-    document.getElementById("row2").classList.add("win");
-    document.getElementById("medal2").innerHTML = '<i class="fa-solid fa-crown"></i>';
-    marginEl.textContent = `بفارق ${s2 - s1} نقطة`;
+  if (!isDraw) {
+    const second = ranked[1];
+    winnerEl.textContent = `🎉 الفائز هو: ${Teams.name(ranked[0])}`;
+    marginEl.textContent = `بفارق ${topScore - scores[second]} نقطة` +
+      (ranked.length > 2 ? ` عن ${Teams.name(second)}` : '');
     fireConfetti(); playWin();
   } else {
     winnerEl.textContent = "🤝 تعادل!";
     winnerEl.classList.add("draw");
-    marginEl.textContent = "أداء متكافئ من الفريقين";
+    marginEl.textContent = ranked.length > 2
+      ? "تعادل في الصدارة بين " + leaders.map(t => Teams.name(t)).join(" و")
+      : "أداء متكافئ من الفريقين";
     playDraw();
   }
 
@@ -510,7 +527,7 @@
     // مسح بيانات الجولة فقط، مع الإبقاء على الحساب والنقاط والرصيد وسجل الألعاب
     ["selectedCards", "selectedCategories", "selectedQuestions", "answeredQuestions",
      "currentTurn", "teamScores", "currentQuestion", "gameStarted", "roundQuestions", "bonusMilestones",
-     "gameName", "team1", "team2"].forEach(k => localStorage.removeItem(k));
+     "gameName"].concat(Teams.storageKeys()).forEach(k => localStorage.removeItem(k));
 
     window.location.href = "question-section.html"; // صفحة اختيار الفئات
   }

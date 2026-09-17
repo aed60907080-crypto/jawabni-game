@@ -273,6 +273,7 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
 <!-- تعدد اللغات (38 لغة) -->
@@ -473,6 +474,8 @@ document.getElementById("startRoom").onclick = () => {
   localStorage.setItem("selectedCards", JSON.stringify(cards));
   localStorage.setItem("roundQuestions", JSON.stringify(buildSeededRound(names.map(c => c.name), room.s)));
   localStorage.setItem("answeredQuestions", "[]");
+  /* اللعب عن بُعد بين فريقين دائماً، مهما كان عدد الفرق في الإعدادات */
+  localStorage.setItem("gameTeamCount", "2");
   localStorage.setItem("teamScores", JSON.stringify({ team1: 0, team2: 0 }));
   localStorage.setItem("currentTurn", "team1");
   localStorage.setItem("gameName", room.n || "جولة أونلاين");

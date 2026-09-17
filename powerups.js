@@ -11,6 +11,7 @@
       تنكشف عند فتح البطاقة، ويُحسم أثرها **عند الإجابة الصحيحة فقط**:
       المكافأة لمن أجاب، والعقوبة على من **لم** يجب.
       وإن لم يُجب أحد فلا يحدث شيء إطلاقاً.
+      ومع أكثر من فريقين تقع العقوبة على أقوى خصم (الأعلى نقاطاً).
 
         🕸️ فخ          تسحب قيمة السؤال من الفريق الذي لم يجب وتُضاف لك
         🕳️ حفرة        خصم نصف القيمة من الفريق الذي لم يجب
@@ -40,9 +41,9 @@
 
    التخزين في localStorage:
      tilePowers   { "الفئة_300": { t:"bomb", by:"random" } }   موزّعة عشوائياً
-     teamPowers   { team1:{trap:1,…}, team2:{…} }
-     teamHelps    { team1:{two:1,call:1,steal:1}, team2:{…} }
-     frozenTeams  { team1:0, team2:1 }        عدد الأدوار المتبقية للتجميد
+     teamPowers   { team1:{trap:1,…}, team2:{…}, … }   لكل فريق (٢ أو ٤ أو ٦ — teams.js)
+     teamHelps    { team1:{two:1,call:1,steal:1}, team2:{…}, … }
+     frozenTeams  { team1:0, team2:1, … }     عدد الأدوار المتبقية للتجميد
      ownedHelps   { two:2, steal:1 }          المساعدات المشتراة — دائمة
      points       نقاط الحساب (مفتاح موجود أصلاً) — بها يُشترى
    ============================================================ */
@@ -133,10 +134,21 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
   }
 
+  /* معرّفات فرق الجولة (teams.js) — فريقان إن لم يُحمَّل */
+  function teamIds() {
+    return global.Teams ? global.Teams.ids() : ["team1", "team2"];
+  }
+  /* كائن فيه قيمة لكل فريق */
+  function perTeam(make) {
+    var o = {};
+    teamIds().forEach(function (t) { o[t] = make(); });
+    return o;
+  }
+
   function tiles()      { return read("tilePowers", {}); }
-  function powers()     { return read("teamPowers", { team1: DEFAULT_POWERS, team2: DEFAULT_POWERS }); }
-  function helps()      { return read("teamHelps",  { team1: DEFAULT_HELPS,  team2: DEFAULT_HELPS  }); }
-  function frozen()     { return read("frozenTeams", { team1: 0, team2: 0 }); }
+  function powers()     { return read("teamPowers", perTeam(function () { return DEFAULT_POWERS; })); }
+  function helps()      { return read("teamHelps",  perTeam(function () { return DEFAULT_HELPS; })); }
+  function frozen()     { return read("frozenTeams", perTeam(function () { return 0; })); }
 
   /* المساعدات المشتراة بالنقاط — دائمة، لا تُصفَّر مع الجولات */
   function owned()      { return read("ownedHelps", {}); }
@@ -185,10 +197,10 @@
     /* تصفير كل شيء عند بدء جولة جديدة */
     reset: function () {
       write("tilePowers", {});
-      write("teamPowers", { team1: Object.assign({}, DEFAULT_POWERS), team2: Object.assign({}, DEFAULT_POWERS) });
+      write("teamPowers", perTeam(function () { return Object.assign({}, DEFAULT_POWERS); }));
       /* المساعدات المشتراة تُضاف لكل جولة جديدة — فهي ملك دائم للاعب */
-      write("teamHelps",  { team1: startingHelps(), team2: startingHelps() });
-      write("frozenTeams", { team1: 0, team2: 0 });
+      write("teamHelps",  perTeam(startingHelps));
+      write("frozenTeams", perTeam(function () { return 0; }));
     },
 
     /* ---------- متجر المساعدات ----------
@@ -239,9 +251,9 @@
       own[key] = (own[key] || 0) + 1;
       write("ownedHelps", own);
 
-      /* تُضاف فوراً لمخزون الفريقين إن كانت هناك جولة جارية */
+      /* تُضاف فوراً لمخزون كل الفرق إن كانت هناك جولة جارية */
       var h = helps();
-      ["team1", "team2"].forEach(function (t) {
+      Object.keys(h).forEach(function (t) {
         if (h[t]) h[t][key] = def.once ? 1 : (h[t][key] || 0) + 1;
       });
       write("teamHelps", h);
@@ -362,16 +374,19 @@
       write("frozenTeams", f);
     },
 
-    /* الدور التالي مع تخطّي الفريق المجمّد (ويُستهلك التجميد) */
+    /* الدور التالي مع تخطّي كل فريق مجمّد (ويُستهلك تجميده).
+       إن كانت الفرق الأخرى كلها مجمّدة يبقى الدور مع الفريق الحالي. */
     nextTurn: function (current) {
-      var other = current === "team1" ? "team2" : "team1";
-      var f = frozen();
-      if ((f[other] || 0) > 0) {
-        f[other] -= 1;
-        write("frozenTeams", f);
-        return current;                 /* الخصم مجمّد — الدور يبقى معك */
+      var list = teamIds(), f = frozen(), changed = false;
+      var i = Math.max(0, list.indexOf(current));
+      for (var k = 1; k < list.length; k++) {
+        var t = list[(i + k) % list.length];
+        if ((f[t] || 0) > 0) { f[t] -= 1; changed = true; continue; }
+        if (changed) write("frozenTeams", f);
+        return t;
       }
-      return other;
+      if (changed) write("frozenTeams", f);
+      return current;                   /* الخصوم مجمّدون — الدور يبقى معك */
     },
 
     /* ---------- المساعدات ---------- */
@@ -388,14 +403,14 @@
       return true;
     },
 
-    /* ---------- نقاط الفريقين — لمساعدات المتجر ---------- */
+    /* ---------- نقاط الفرق — لمساعدات المتجر ---------- */
     teamScore: function (team) {
-      return read("teamScores", { team1: 0, team2: 0 })[team] || 0;
+      return read("teamScores", {})[team] || 0;
     },
 
     /* ينقل نقاطاً من فريق لآخر، ولا يأخذ أكثر مما يملكه — يعيد المنقول فعلاً */
     transferPoints: function (from, to, amount) {
-      var s = read("teamScores", { team1: 0, team2: 0 });
+      var s = read("teamScores", {});
       var n = Math.max(0, Math.min(amount, s[from] || 0));
       s[from] = (s[from] || 0) - n;
       s[to]   = (s[to]   || 0) + n;
@@ -405,7 +420,7 @@
 
     /* يخصم من فريق دون أن ينزل تحت الصفر — يعيد المخصوم فعلاً */
     deductPoints: function (team, amount) {
-      var s = read("teamScores", { team1: 0, team2: 0 });
+      var s = read("teamScores", {});
       var n = Math.max(0, Math.min(amount, s[team] || 0));
       s[team] = (s[team] || 0) - n;
       write("teamScores", s);
@@ -448,7 +463,7 @@
     },
 
     /* يحسب النقاط النهائية عند الإجابة الصحيحة
-       يعيد { to: "team1"|"team2", amount: n, note: "…" } */
+       يعيد { to: "team1"…"team6", amount: n, note: "…" } */
     /* يحسم المفاجأة بعد الإجابة الصحيحة ويعيد خطة التطبيق:
          to      : الفريق الذي يأخذ نقاط السؤال
          amount  : كم يأخذ
@@ -458,7 +473,10 @@
        ولا يُستدعى هذا إطلاقاً إن لم يُجب أحد — عندها لا يحدث شيء. */
     settle: function (category, points, answeringTeam) {
       var p = Powerups.planted(category, points);
-      var other = answeringTeam === "team1" ? "team2" : "team1";
+      /* «الفريق الذي لم يجب»: في لعبة فريقين هو الخصم، ومع أكثر من فريقين
+         تقع العقوبة على أقوى خصم (الأعلى نقاطاً بين الفرق الأخرى) */
+      var other = global.Teams ? global.Teams.leader(answeringTeam)
+                               : (answeringTeam === "team1" ? "team2" : "team1");
       var base = { to: answeringTeam, amount: points, penalty: null, freeze: null, note: "" };
 
       if (!p) return base;
@@ -509,7 +527,7 @@
     /* يطبّق خطة settle على النتائج والتجميد */
     apply: function (plan) {
       if (!plan) return;
-      var s = read("teamScores", { team1: 0, team2: 0 });
+      var s = read("teamScores", {});
 
       s[plan.to] = (s[plan.to] || 0) + plan.amount;
       if (plan.penalty) {

@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    ١) كل 1500 نقطة يبلغها فريق (1500، 3000، 4500…) تمنحه سؤالاً
       إضافياً من فئة **خارج الجولة**.
-   ٢) عند التعادل في نهاية الجولة: سؤال فاصل للفريقين من فئة أخرى،
+   ٢) عند التعادل في الصدارة نهاية الجولة: سؤال فاصل للفرق المتعادلة من فئة أخرى،
       وإن لم يجب أحد تدور العجلة من جديد.
 
    العجلة تحدد المضاعف: دبل ×1 أو ×2 أو ×3، وقيمة السؤال (100–500)
@@ -13,7 +13,7 @@
      category, points, mult (1–3), bonus ("milestone" | "tie"), team
 
    التخزين:
-     bonusMilestones { sig, team1: 1, team2: 0 }  عدد المحطات المكافأة
+     bonusMilestones { sig, team1: 1, team2: 0, … }  عدد المحطات المكافأة لكل فريق
                      sig بصمة فئات الجولة — تُصفَّر المحطات مع جولة جديدة
    ============================================================ */
 
@@ -31,7 +31,10 @@
   }
   function write(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
-  function scores() { return read("teamScores", null) || { team1: 0, team2: 0 }; }
+  function scores() { return read("teamScores", null) || {}; }
+
+  /* فرق الجولة (teams.js) — فريقان إن لم يُحمَّل */
+  function teamIds() { return global.Teams ? global.Teams.ids() : ["team1", "team2"]; }
 
   /* ترجمة نص عبر قاموس i18n (i18n-langs.js — الدفعة K9) ثم ملء قوالبه
      {team} {n}… — تُترجم أسماء الفئات أيضاً من قاموس الفئات */
@@ -50,14 +53,14 @@
 
   function milestones() {
     var m = read("bonusMilestones", null);
-    if (!m || m.sig !== roundSig()) m = { sig: roundSig(), team1: 0, team2: 0 };
+    if (!m || m.sig !== roundSig()) m = { sig: roundSig() };
     return m;
   }
 
   /* أول فريق بلغ محطة 1500 جديدة لم يُكافأ عليها بعد (أو null) */
   function pendingMilestone() {
     var s = scores(), m = milestones();
-    var teams = ["team1", "team2"];
+    var teams = teamIds();
     for (var i = 0; i < teams.length; i++) {
       var t = teams[i];
       if (Math.floor((s[t] || 0) / MILESTONE) > (m[t] || 0)) return t;
@@ -92,10 +95,11 @@
     return { category: cat, points: level * 100, names: names };
   }
 
-  function questionUrl(b, mult, reason, team) {
+  function questionUrl(b, mult, reason, team, tied) {
     return "question.html?category=" + encodeURIComponent(b.category) +
       "&points=" + b.points + "&mult=" + mult + "&bonus=" + reason +
-      (team ? "&team=" + team : "");
+      (team ? "&team=" + team : "") +
+      (tied && tied.length ? "&tied=" + tied.join(",") : "");
   }
 
   var CSS = [
@@ -138,7 +142,7 @@
     document.head.appendChild(st);
   }
 
-  /* يعرض العجلة. opts: { reason: "milestone"|"tie", team, teamName, exclude: [فئات الجولة], onSkip } */
+  /* يعرض العجلة. opts: { reason: "milestone"|"tie", team, teamName, tied: [الفرق المتعادلة], exclude: [فئات الجولة], onSkip } */
   function open(opts) {
     if (document.getElementById("bonusWheel")) return true;
     var tie = opts.reason === "tie";
@@ -184,7 +188,9 @@
       ? "🤝 " + tr("تعادل! سؤال فاصل من العجلة")
       : "🎡 " + tr("{team} بلغ {n} نقطة!", { team: opts.teamName || "", n: reached });
     ov.querySelector(".bw-sub").textContent = tie
-      ? tr("سؤال من فئة خارج الجولة للفريقين — من يجب صحيحاً أولاً يأخذ النقاط")
+      ? ((opts.tied || []).length > 2
+          ? tr("سؤال من فئة خارج الجولة للفرق المتعادلة — من يجب صحيحاً أولاً يأخذ النقاط")
+          : tr("سؤال من فئة خارج الجولة للفريقين — من يجب صحيحاً أولاً يأخذ النقاط"))
       : tr("سؤال إضافي من فئة خارج الجولة — العجلة تحدد المضاعف: دبل ×1 أو ×2 أو ×3");
     document.body.appendChild(ov);
 
@@ -231,7 +237,8 @@
 
     goBtn.onclick = function () {
       if (!tie) markMilestone(opts.team);
-      global.location.href = questionUrl(bonus, mult, tie ? "tie" : "milestone", tie ? null : opts.team);
+      global.location.href = questionUrl(bonus, mult, tie ? "tie" : "milestone",
+                                         tie ? null : opts.team, tie ? opts.tied : null);
     };
 
     if (skip) skip.onclick = function () {

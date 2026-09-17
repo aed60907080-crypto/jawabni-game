@@ -338,8 +338,15 @@
       background:linear-gradient(90deg, transparent, var(--muted), transparent);
       opacity:.5;
     }
-    #team1Card::before{ background:linear-gradient(90deg, transparent, var(--blue), transparent); }
-    #team2Card::before{ background:linear-gradient(90deg, transparent, var(--coral), transparent); }
+    /* لون كل فريق يأتي من teams.js عبر المتغيّر --tc */
+    .score-card[style*="--tc"]::before{ background:linear-gradient(90deg, transparent, var(--tc), transparent); opacity:.9; }
+    /* ٤ أو ٦ فرق: بطاقات أصغر تتسع ثلاثاً في الصف */
+    .Scores.many{ gap:14px; max-width:1100px; margin-left:auto; margin-right:auto; }
+    .Scores.four{ max-width:680px; }
+    .Scores.many .score-card{ width:300px; padding:18px 16px; }
+    .Scores.many .score-card h2{ font-size:18px; }
+    .Scores.many .score-card p{ font-size:34px; margin-bottom:12px; }
+    .Scores.many .btn-reset{ font-size:12px; padding:7px 11px; }
 
 
     .score-card h2 {
@@ -350,8 +357,7 @@
       color:var(--ivory);
       display:flex; align-items:center; justify-content:center; gap:9px;
     }
-    #team1Card h2 i{ color:var(--blue); }
-    #team2Card h2 i{ color:var(--coral); }
+    .score-card h2 i{ color:var(--tc, var(--muted)); }
 
     .score-card p {
       font-family:'Cairo', sans-serif;
@@ -529,27 +535,8 @@
     <div class="power-chips" id="powersLegend"></div>
   </div>
 
-  <div class="Scores">
-    <div class="score-card" id="team1Card">
-      <h2><i class="fa-solid fa-shield-halved"></i> <span id="displayTeam1"></span></h2>
-      <p id="team1Score">0</p>
-      <div class="card-btns">
-        <button class="btn-reset btn-bonus" onclick="applyBonus('team1', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>
-        <button class="btn-reset btn-yellow" onclick="applyPenalty('team1', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>
-        <button class="btn-reset btn-red" onclick="applyPenalty('team1', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>
-      </div>
-    </div>
-
-    <div class="score-card" id="team2Card">
-      <h2><i class="fa-solid fa-shield-halved"></i> <span id="displayTeam2"></span></h2>
-      <p id="team2Score">0</p>
-      <div class="card-btns">
-        <button class="btn-reset btn-bonus" onclick="applyBonus('team2', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>
-        <button class="btn-reset btn-yellow" onclick="applyPenalty('team2', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>
-        <button class="btn-reset btn-red" onclick="applyPenalty('team2', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>
-      </div>
-    </div>
-  </div>
+  <!-- بطاقات الفرق (٢ أو ٤ أو ٦) — تُبنى من teams.js -->
+  <div class="Scores" id="scoresBox"></div>
 
 <!-- بنك الأسئلة والفئات ومحرّك الصور -->
 <script src="questions.js"></script>
@@ -557,6 +544,7 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
 <!-- تعدد اللغات (38 لغة) -->
@@ -640,8 +628,34 @@
      هنا نعرض فقط كم بقي منها مخبّأً، ودليل أنواعها. */
 
   function teamLabel(team) {
-    return localStorage.getItem(team) || (team === "team1" ? "الفريق 1" : "الفريق 2");
+    return Teams.name(team);
   }
+
+  /* بطاقة نقاط لكل فريق مع أزرار المقدّم (زيادة / بطاقة صفراء / حمراء) */
+  function renderScoreCards() {
+    const box = document.getElementById('scoresBox');
+    box.innerHTML = '';
+    box.classList.toggle('many', Teams.count() > 2);
+    box.classList.toggle('four', Teams.count() === 4);
+    Teams.ids().forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'score-card';
+      card.id = t + 'Card';
+      card.style.setProperty('--tc', Teams.color(t).main);
+      card.innerHTML =
+        '<h2><i class="fa-solid fa-shield-halved"></i> <span class="team-name" data-no-i18n></span></h2>' +
+        '<p id="' + t + 'Score">0</p>' +
+        '<div class="card-btns">' +
+          '<button class="btn-reset btn-bonus" onclick="applyBonus(\'' + t + '\', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>' +
+          '<button class="btn-reset btn-yellow" onclick="applyPenalty(\'' + t + '\', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>' +
+          '<button class="btn-reset btn-red" onclick="applyPenalty(\'' + t + '\', 300)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300</button>' +
+        '</div>';
+      card.querySelector('.team-name').textContent = Teams.name(t);
+      box.appendChild(card);
+    });
+    if (window.I18N) I18N.apply(box);
+  }
+  renderScoreCards();
 
   function renderPowersPanel() {
     if (!window.Powerups) return;
@@ -701,29 +715,28 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const gameName = localStorage.getItem("gameName") || "لعبتنا الثقافية";
-    const team1 = localStorage.getItem("team1") || "الفريق 1";
-    const team2 = localStorage.getItem("team2") || "الفريق 2";
 
     document.getElementById("displayGameName").textContent = gameName;
-    document.getElementById("displayTeam1").textContent = team1;
-    document.getElementById("displayTeam2").textContent = team2;
 
-    if (!localStorage.getItem('currentTurn')) localStorage.setItem('currentTurn', 'team1');
+    const turn = localStorage.getItem('currentTurn');
+    if (!turn || Teams.ids().indexOf(turn) === -1) localStorage.setItem('currentTurn', 'team1');
 
     updateTurnUI();
   });
 
   function loadScores() {
-    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
-    document.getElementById('team1Score').textContent = scores.team1;
-    document.getElementById('team2Score').textContent = scores.team2;
+    const scores = Teams.scores();
+    Teams.ids().forEach(t => {
+      const el = document.getElementById(t + 'Score');
+      if (el) el.textContent = scores[t];
+    });
   }
 
   function applyPenalty(team, amount) {
     SFX.penaltyCard();
-    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    const scores = Teams.scores();
     scores[team] = Math.max(0, scores[team] - amount);
-    localStorage.setItem('teamScores', JSON.stringify(scores));
+    Teams.saveScores(scores);
     loadScores();
 
     const el = document.getElementById(team + 'Score');
@@ -734,9 +747,9 @@
   /* مكافأة من المقدّم — عكس البطاقتين: تضيف نقاطاً للفريق */
   function applyBonus(team, amount) {
     SFX.coin();
-    const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    const scores = Teams.scores();
     scores[team] = (scores[team] || 0) + amount;
-    localStorage.setItem('teamScores', JSON.stringify(scores));
+    Teams.saveScores(scores);
     loadScores();
     /* قد تتجاوز الزيادة محطة 1500 — فتظهر العجلة فوراً */
     checkBonusWheel();
@@ -747,24 +760,24 @@
   }
 
   function updateTurnUI() {
-    const team1 = localStorage.getItem("team1") || "الفريق 1";
-    const team2 = localStorage.getItem("team2") || "الفريق 2";
     const currentTurn = localStorage.getItem("currentTurn") || "team1";
-    const who = currentTurn === 'team1' ? team1 : team2;
+    const who = Teams.name(currentTurn);
 
     const ind = document.getElementById("turnIndicator");
     ind.innerHTML = '<span class="live-dot"></span> الدور الآن على: <span class="who"></span>';
     ind.querySelector('.who').textContent = who;
 
-    document.getElementById("team1Card").classList.toggle("active-turn", currentTurn === "team1");
-    document.getElementById("team2Card").classList.toggle("active-turn", currentTurn === "team2");
+    Teams.ids().forEach(t => {
+      const card = document.getElementById(t + "Card");
+      if (card) card.classList.toggle("active-turn", currentTurn === t);
+    });
 
     renderPowersPanel();
 
     /* تنبيه التجميد يعلو على نصّ العدّاد */
     const hint = document.getElementById('powersHint');
     if (hint && window.Powerups) {
-      const froz = ['team1', 'team2'].filter(t => Powerups.isFrozen(t));
+      const froz = Teams.ids().filter(t => Powerups.isFrozen(t));
       if (froz.length) {
         hint.textContent = '🧊 ' + froz.map(teamLabel).join(' و') + ' سيفوت دوره القادم بسبب التجميد.';
       }
@@ -777,10 +790,11 @@
     /* nextTurn يتخطّى الفريق المجمّد ويستهلك تجميده */
     const nextTurn = window.Powerups
       ? Powerups.nextTurn(currentTurn)
-      : (currentTurn === "team1" ? "team2" : "team1");
+      : Teams.next(currentTurn);
 
     if (nextTurn === currentTurn) {
-      showBoardToast('🧊 الخصم مجمّد — الدور يبقى معك');
+      showBoardToast(Teams.count() > 2 ? '🧊 الفرق الأخرى مجمّدة — الدور يبقى معك'
+                                       : '🧊 الخصم مجمّد — الدور يبقى معك');
     }
     localStorage.setItem("currentTurn", nextTurn);
     updateTurnUI();
@@ -789,10 +803,10 @@
   function checkIfGameEnded() {
     let totalQuestions = selected.length * points.length;
     if (selected.length > 0 && answeredQuestions.length >= totalQuestions) {
-      /* 🤝 تعادل في نهاية الجولة — سؤال فاصل من العجلة من فئة أخرى */
-      const s = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
-      if ((s.team1 || 0) === (s.team2 || 0) && window.BonusWheel &&
-          BonusWheel.open({ reason: 'tie', exclude: selected.map(c => c.title) })) {
+      /* 🤝 تعادل في الصدارة نهاية الجولة — سؤال فاصل للمتعادلين من فئة أخرى */
+      const tied = Teams.tiedLeaders();
+      if (tied.length && window.BonusWheel &&
+          BonusWheel.open({ reason: 'tie', tied: tied, exclude: selected.map(c => c.title) })) {
         return;
       }
       window.location.href = 'result.html';
@@ -842,6 +856,7 @@
     localStorage.removeItem("teamScores");
     localStorage.removeItem("gameStarted");
     localStorage.removeItem("bonusMilestones");
+    localStorage.removeItem("gameTeamCount");
 
     // تصفير المفاجآت والمساعدات
     if (window.Powerups) Powerups.reset();

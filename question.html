@@ -787,10 +787,28 @@
     .team-btn span.nm{ font-weight:900; font-size:17px; }
     .team-btn span.sc{ font-size:12.5px; color:var(--muted); font-weight:700; }
     .team-btn i{ font-size:18px; margin-bottom:2px; }
-    .team-btn.t1 i{ color:var(--blue); }
-    .team-btn.t2 i{ color:var(--coral); }
-    .team-btn.t1:hover{ border-color:var(--blue); background:rgba(74,155,255,.14); transform:translateY(-4px); box-shadow:0 14px 32px rgba(74,155,255,.22); }
-    .team-btn.t2:hover{ border-color:var(--coral); background:rgba(255,107,77,.14); transform:translateY(-4px); box-shadow:0 14px 32px rgba(255,107,77,.22); }
+    /* لون كل فريق من teams.js عبر --tc */
+    .team-btn.team i{ color:var(--tc); }
+    .team-btn.team:hover{ border-color:var(--tc); background:rgba(255,255,255,.06); transform:translateY(-4px); box-shadow:0 14px 32px rgba(0,0,0,.3); }
+    /* ٤ أو ٦ فرق: أزرار أصغر ثلاثة في الصف */
+    .team-btns.many .team-btn{ flex:1 1 150px; max-width:210px; padding:13px 10px; }
+    .team-btns.many .team-btn span.nm{ font-size:15px; }
+
+    /* اختيار الخصم لمساعدات الخصم حين تكون الفرق أكثر من اثنين */
+    .pick-team{ position:fixed; inset:0; z-index:1500; display:flex; align-items:center; justify-content:center;
+      background:rgba(3,14,12,.78); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:18px; }
+    .pick-team .pt-card{ width:min(440px,100%); background:linear-gradient(160deg,#0f3a33,#0a2a25);
+      border:1px solid rgba(231,183,64,.45); border-radius:22px; padding:20px; text-align:center;
+      box-shadow:0 30px 80px rgba(0,0,0,.5); font-family:'Cairo',sans-serif; }
+    .pick-team h5{ margin:0 0 14px; color:var(--gold-soft); font-size:18px; font-weight:900; }
+    .pick-team .pt-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+    .pick-team .pt-btn{ display:flex; flex-direction:column; align-items:center; gap:2px; padding:12px 8px;
+      border-radius:14px; border:1.5px solid var(--tc); background:rgba(0,0,0,.25); color:var(--ivory);
+      font-family:inherit; font-weight:800; cursor:pointer; }
+    .pick-team .pt-btn small{ color:var(--muted); font-weight:700; }
+    .pick-team .pt-btn:disabled{ opacity:.45; cursor:not-allowed; }
+    .pick-team .pt-cancel{ margin-top:14px; background:none; border:0; color:var(--muted); font-family:inherit;
+      text-decoration:underline; cursor:pointer; }
     .team-btn.none i{ color:var(--muted); }
     .team-btn.none:hover{ border-color:var(--line-strong); background:rgba(255,255,255,.05); transform:translateY(-4px); }
     .team-btn.turn{ border-color:var(--gold); box-shadow:0 0 0 1px rgba(231,183,64,.3); }
@@ -946,18 +964,9 @@
       <h4><i class="fa-solid fa-medal"></i> من أجاب إجابة صحيحة؟</h4>
 
 
-      <div class="team-btns">
-        <button class="team-btn t1" id="btnT1" onclick="award('team1')">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span class="nm" id="nameT1">الفريق 1</span>
-          <span class="sc" id="scoreT1">0 نقطة</span>
-        </button>
-        <button class="team-btn t2" id="btnT2" onclick="award('team2')">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span class="nm" id="nameT2">الفريق 2</span>
-          <span class="sc" id="scoreT2">0 نقطة</span>
-        </button>
-        <button class="team-btn none" onclick="award(null)">
+      <!-- زر لكل فريق (٢ أو ٤ أو ٦) يُبنى من teams.js قبل زر «لا أحد» -->
+      <div class="team-btns" id="teamBtns">
+        <button class="team-btn none" id="btnNone" onclick="award(null)">
           <i class="fa-solid fa-ban"></i>
           <span class="nm">لا أحد</span>
           <span class="sc">بدون نقاط</span>
@@ -989,6 +998,7 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
 <!-- تعدد اللغات (38 لغة) -->
@@ -1026,16 +1036,21 @@
   const category = params.get('category') || '';
   const points   = parseInt(params.get('points')) || 100;
 
-  const team1 = localStorage.getItem("team1") || "الفريق 1";
-  const team2 = localStorage.getItem("team2") || "الفريق 2";
+  /* الفرق (٢ أو ٤ أو ٦) — teams.js */
+  const TEAM_IDS = Teams.ids();
+  const nameOf = (t) => Teams.name(t);
   let currentTurn = localStorage.getItem("currentTurn") || "team1";
+  if (TEAM_IDS.indexOf(currentTurn) === -1) currentTurn = "team1";
 
   /* 🎡 سؤال العجلة الإضافي (wheel.js): فئة خارج الجولة، والنقاط = القيمة × المضاعف.
        milestone — للفريق الذي بلغ 1500 نقطة     tie — سؤال فاصل للفريقين عند التعادل
      لا يُعلَّم على اللوحة، ولا يغيّر الدور، ولا تعمل عليه المفاجآت. */
   const bonusMode = (params.get('bonus') === 'milestone' || params.get('bonus') === 'tie') ? params.get('bonus') : '';
   const mult = Math.max(1, Math.min(3, parseInt(params.get('mult'), 10) || 1));
-  if (bonusMode === 'milestone' && /^team[12]$/.test(params.get('team') || '')) currentTurn = params.get('team');
+  if (bonusMode === 'milestone' && TEAM_IDS.indexOf(params.get('team') || '') >= 0) currentTurn = params.get('team');
+  /* السؤال الفاصل: الفرق المتعادلة وحدها تتنافس عليه */
+  const TIED = (params.get('tied') || '').split(',').filter(t => TEAM_IDS.indexOf(t) >= 0);
+  const CONTENDERS = (bonusMode === 'tie' && TIED.length > 1) ? TIED : TEAM_IDS;
 
   /* ترجمة نصوص سؤال العجلة عبر قاموس i18n ثم ملء قوالبها {team} {n}… */
   function trT(key, vars) {
@@ -1055,14 +1070,35 @@
   /* ---------------- fill header / meta ---------------- */
   document.getElementById("catBadge").textContent = category || "بدون فئة";
   document.getElementById("ptsBadge").textContent = points + " نقطة";
-  document.getElementById("nameT1").textContent = team1;
-  document.getElementById("nameT2").textContent = team2;
-  document.getElementById("turnName").textContent = currentTurn === "team1" ? team1 : team2;
-  document.getElementById(currentTurn === "team1" ? "btnT1" : "btnT2").classList.add("turn");
+  /* أزرار «من أجاب إجابة صحيحة؟» — زر لكل فريق منافس */
+  (function buildTeamButtons() {
+    const box = document.getElementById("teamBtns");
+    const none = document.getElementById("btnNone");
+    box.classList.toggle("many", CONTENDERS.length > 2);
+    CONTENDERS.forEach(t => {
+      const b = document.createElement("button");
+      b.className = "team-btn team";
+      b.id = "btn-" + t;
+      b.style.setProperty("--tc", Teams.color(t).main);
+      b.onclick = () => award(t);
+      b.innerHTML = '<i class="fa-solid fa-shield-halved"></i>' +
+                    '<span class="nm" data-no-i18n></span><span class="sc" id="score-' + t + '"></span>';
+      b.querySelector(".nm").textContent = nameOf(t);
+      box.insertBefore(b, none);
+    });
+  })();
 
-  const scores = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
-  document.getElementById("scoreT1").textContent = scores.team1 + " نقطة";
-  document.getElementById("scoreT2").textContent = scores.team2 + " نقطة";
+  /* إبراز زر الفريق صاحب الدور */
+  function markTurn(team) {
+    TEAM_IDS.forEach(t => {
+      const b = document.getElementById("btn-" + t);
+      if (b) b.classList.toggle("turn", t === team);
+    });
+  }
+
+  document.getElementById("turnName").textContent = nameOf(currentTurn);
+  markTurn(currentTurn);
+  refreshScoreChips();
 
   /* شارة النقاط ونص الدور في سؤال العجلة — تُرسم الآن ثم تُعاد بعد تهيئة
      اللغة وعند تغييرها، لأن I18N يضبط اللغة عند DOMContentLoaded */
@@ -1071,8 +1107,11 @@
     document.getElementById("ptsBadge").textContent =
       '🎡 ' + points + ' × ' + mult + ' = ' + trT('{n} نقطة', { n: points * mult });
     if (bonusMode === 'tie') {
-      /* السؤال الفاصل للفريقين معاً — لا دور ولا انتقال للفريق الآخر */
-      document.getElementById("turnName").textContent = trT('{a} و {b}', { a: team1, b: team2 });
+      /* السؤال الفاصل للمتعادلين معاً — لا دور ولا انتقال لفريق آخر */
+      const names = CONTENDERS.map(nameOf);
+      document.getElementById("turnName").textContent = names.length === 2
+        ? trT('{a} و {b}', { a: names[0], b: names[1] })
+        : names.join(' و ');
       document.getElementById("passBtn").hidden = true;
     }
   }
@@ -1536,24 +1575,33 @@
     return (v === 60 || v === 80) ? v : 30;
   })();
   document.getElementById('passSecs').textContent = OTHER_TEAM_SECONDS;
-  let otherPhase = false;
+  /* الفرق التي أخذت فرصتها في هذا السؤال — مع أكثر من فريقين ينتقل السؤال
+     للفريق التالي في الدور، ثم الذي يليه، حتى تجرّبه كل الفرق */
+  const triedTeams = [];
+
+  /* الفريق التالي الذي لم يجرّب السؤال ولم يُمنع منه — أو null */
+  function nextCandidate(){
+    const tried = triedTeams.concat([answeringTeam]);
+    return Teams.others(answeringTeam).find(t => tried.indexOf(t) === -1 && t !== blockedTeam) || null;
+  }
 
   function startOtherTeamTime(auto){
-    if (otherPhase || revealed || bonusMode === 'tie') return false;
-    const other = answeringTeam === 'team1' ? 'team2' : 'team1';
-    const nm = (t) => t === 'team1' ? team1 : team2;
+    if (revealed || bonusMode === 'tie') return false;
+    const nm = nameOf;
+    const other = nextCandidate();
 
-    if (blockedTeam === other) {
-      if (!auto) showToast('🚫 ' + nm(other) + ' ممنوع من الإجابة على هذا السؤال');
+    if (!other) {
+      /* فريقان: الخصم ممنوع بـ«امنع الخصم» — نفس رسالة النسخة السابقة */
+      const rival = Teams.others(answeringTeam).find(t => triedTeams.indexOf(t) === -1);
+      if (!auto && rival && rival === blockedTeam) showToast('🚫 ' + nm(rival) + ' ممنوع من الإجابة على هذا السؤال');
       return false;
     }
 
-    otherPhase = true;
     const was = answeringTeam;
+    triedTeams.push(was);
     answeringTeam = other;
     document.getElementById("turnName").textContent = nm(other);
-    document.getElementById("btnT1").classList.toggle("turn", other === 'team1');
-    document.getElementById("btnT2").classList.toggle("turn", other === 'team2');
+    markTurn(other);
 
     left = OTHER_TEAM_SECONDS;
     timerTotal = OTHER_TEAM_SECONDS;
@@ -1563,7 +1611,8 @@
       document.getElementById("pauseBtn").innerHTML = '<i class="fa-solid fa-pause"></i> إيقاف المؤقّت';
     }
     renderTimer();
-    document.getElementById('passBtn').hidden = true;
+    /* يبقى الزر ما دام هناك فريق لم يجرّب السؤال */
+    document.getElementById('passBtn').hidden = !nextCandidate();
     if (typeof renderHelps === 'function') renderHelps();   /* مساعدات الفريق الآخر */
 
     if (window.SFX) SFX.turn();
@@ -1597,8 +1646,7 @@
   function renderHelps(){
     if (!window.Powerups) { document.getElementById('helpsBox').hidden = true; return; }
 
-    document.getElementById('helpsTeam').textContent =
-      answeringTeam === 'team1' ? team1 : team2;
+    document.getElementById('helpsTeam').textContent = nameOf(answeringTeam);
 
     const row = document.getElementById('helpsRow');
     row.innerHTML = '';
@@ -1627,9 +1675,49 @@
     if (window.I18N) I18N.apply(document.getElementById('helpsBox'));
   }
 
-  function useHelp(key){
-    const other = answeringTeam === 'team1' ? 'team2' : 'team1';
+  /* مساعدات تقع على فريق آخر: مع فريقين هو الخصم مباشرة، ومع ٤ أو ٦ فرق
+     يختار المقدّم الفريق المستهدف من نافذة صغيرة */
+  const TARGETED_HELPS = { steal: 'من يجيب بدلاً منكم؟', stealPts: 'اسرق النقاط من أي فريق؟',
+                           freezeOpp: 'جمّد دور أي فريق؟', block: 'امنع أي فريق من نقاط السؤال؟',
+                           cutPts: 'خفّض نقاط أي فريق؟' };
 
+  function useHelp(key){
+    if (!TARGETED_HELPS[key] || TEAM_IDS.length <= 2) {
+      applyHelp(key, Teams.others(answeringTeam)[0]);
+      return;
+    }
+    pickTeam(TARGETED_HELPS[key], Teams.others(answeringTeam)).then(t => { if (t) applyHelp(key, t); });
+  }
+
+  /* نافذة اختيار فريق — تعيد Promise بمعرّف الفريق أو null عند الإلغاء */
+  function pickTeam(title, candidates){
+    return new Promise(resolve => {
+      const ov = document.createElement('div');
+      ov.className = 'pick-team';
+      ov.innerHTML = '<div class="pt-card"><h5></h5><div class="pt-list"></div>' +
+                     '<button type="button" class="pt-cancel">إلغاء</button></div>';
+      ov.querySelector('h5').textContent = title;
+      const s = Teams.scores();
+      const done = (v) => { ov.remove(); resolve(v); };
+      candidates.forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pt-btn';
+        b.style.setProperty('--tc', Teams.color(t).main);
+        b.innerHTML = '<span data-no-i18n></span><small></small>';
+        b.querySelector('span').textContent = nameOf(t);
+        b.querySelector('small').textContent = s[t] + ' نقطة';
+        b.onclick = () => done(t);
+        ov.querySelector('.pt-list').appendChild(b);
+      });
+      ov.querySelector('.pt-cancel').onclick = () => done(null);
+      ov.addEventListener('click', e => { if (e.target === ov) done(null); });
+      document.body.appendChild(ov);
+      if (window.I18N) I18N.apply(ov);
+    });
+  }
+
+  function applyHelp(key, other){
     /* فحوص قبل الاستهلاك — حتى لا تضيع المساعدة بلا أثر */
     if ((key === 'stealPts' || key === 'cutPts') && Powerups.teamScore(other) <= 0) {
       showToast('رصيد ' + teamNameOf(other) + ' صفر — لا نقاط لسحبها أو خصمها');
@@ -1645,7 +1733,7 @@
 
     if (key === 'two')       helpTwoAnswers();
     if (key === 'call')      helpCall();
-    if (key === 'steal')     helpSteal();
+    if (key === 'steal')     helpSteal(other);
     if (key === 'stealPts')  helpStealPoints(other);
     if (key === 'freezeOpp') helpFreezeOpponent(other);
     if (key === 'block')     helpBlock(other);
@@ -1731,26 +1819,28 @@
   }
 
   /* 🔀 اسرق الدور — الفريق الآخر يجيب على هذا السؤال */
-  function helpSteal(){
-    answeringTeam = answeringTeam === 'team1' ? 'team2' : 'team1';
-    const who = answeringTeam === 'team1' ? team1 : team2;
+  function helpSteal(other){
+    answeringTeam = other || Teams.next(answeringTeam);
+    const who = nameOf(answeringTeam);
     document.getElementById("turnName").textContent = who;
-    document.getElementById("btnT1").classList.toggle("turn", answeringTeam === 'team1');
-    document.getElementById("btnT2").classList.toggle("turn", answeringTeam === 'team2');
+    markTurn(answeringTeam);
+    document.getElementById('passBtn').hidden = !nextCandidate() || bonusMode === 'tie';
     if (window.SFX) SFX.stealTurn();
     showToast('🔀 سُرق الدور — ' + who + ' هو من يجيب الآن');
   }
 
   /* ---------- مساعدات المتجر ---------- */
-  const teamNameOf = (t) => t === 'team1' ? team1 : team2;
+  const teamNameOf = nameOf;
 
   /* الفريق الممنوع من أخذ نقاط هذا السؤال (مساعدة «امنع الخصم») */
   let blockedTeam = null;
 
   function refreshScoreChips(){
-    const s = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
-    document.getElementById("scoreT1").textContent = s.team1 + " نقطة";
-    document.getElementById("scoreT2").textContent = s.team2 + " نقطة";
+    const s = Teams.scores();
+    TEAM_IDS.forEach(t => {
+      const el = document.getElementById("score-" + t);
+      if (el) el.textContent = s[t] + " نقطة";
+    });
   }
 
   /* 💰 اسرق النقاط — تنتقل قيمة السؤال من الخصم إليك فوراً (مرة واحدة في الجولة) */
@@ -1771,10 +1861,12 @@
   /* 🚫 امنع الخصم — لا يحق له أخذ نقاط هذا السؤال إن أخطأت */
   function helpBlock(other){
     blockedTeam = other;
-    const btn = document.getElementById(other === 'team1' ? 'btnT1' : 'btnT2');
-    btn.disabled = true;
-    btn.style.opacity = '.4';
-    btn.style.cursor = 'not-allowed';
+    const btn = document.getElementById('btn-' + other);
+    if (btn) {
+      btn.disabled = true;
+      btn.style.opacity = '.4';
+      btn.style.cursor = 'not-allowed';
+    }
     showToast('🚫 ' + teamNameOf(other) + ' ممنوع من الإجابة على هذا السؤال');
   }
 
@@ -2048,7 +2140,7 @@
     /* «امنع الخصم»: الفريق الممنوع لا يأخذ نقاط هذا السؤال */
     if (team && team === blockedTeam) return;
     team ? SFX.correctAnswer() : SFX.wrongAnswer();
-    const s = JSON.parse(localStorage.getItem('teamScores')) || { team1: 0, team2: 0 };
+    const s = Teams.scores();
     let msg;
 
     /* 🎡 سؤال العجلة: القيمة × المضاعف، بلا مفاجآت، ولا يُعلَّم على اللوحة ولا يغيّر الدور */
@@ -2060,7 +2152,7 @@
         const acc = parseInt(localStorage.getItem("points")) || 0;
         localStorage.setItem("points", acc + 1);
         msg = '🎡 ' + trT('{team} كسب {n} نقطة ({p} × {m})',
-              { team: team === 'team1' ? team1 : team2, n: amount, p: points, m: mult });
+              { team: nameOf(team), n: amount, p: points, m: mult });
       } else {
         msg = trT(bonusMode === 'tie'
           ? 'لم يجب أحد — ما زال التعادل، تدور العجلة من جديد'
@@ -2088,9 +2180,12 @@
       const acc = parseInt(localStorage.getItem("points")) || 0;
       localStorage.setItem("points", acc + 1);
 
-      const toName = plan.to === "team1" ? team1 : team2;
+      const toName = nameOf(plan.to);
       msg = "تمت إضافة " + plan.amount + " نقطة لـ " + toName;
       if (plan.note) msg = plan.note + " · " + msg;
+      /* مع أكثر من فريقين تقع العقوبة على أقوى خصم — نسمّيه */
+      const hit = (plan.penalty && plan.penalty.team) || plan.freeze;
+      if (hit && TEAM_IDS.length > 2) msg += " · وقعت العقوبة على " + nameOf(hit);
     } else {
       /* لا أحد أجاب — المفاجأة لا تعمل إطلاقاً */
       msg = surprise
@@ -2108,9 +2203,9 @@
     // تبديل الدور — مع تخطّي الفريق المجمّد
     const next = window.Powerups
       ? Powerups.nextTurn(currentTurn)
-      : (currentTurn === "team1" ? "team2" : "team1");
+      : Teams.next(currentTurn);
     localStorage.setItem("currentTurn", next);
-    if (next === currentTurn) msg += " · 🧊 الخصم مجمّد، الدور يبقى معك";
+    if (next === currentTurn) msg += TEAM_IDS.length > 2 ? " · 🧊 الفرق الأخرى مجمّدة، الدور يبقى معك" : " · 🧊 الخصم مجمّد، الدور يبقى معك";
 
     showToast(msg);
 

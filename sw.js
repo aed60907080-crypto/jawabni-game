@@ -11,7 +11,7 @@
    عند أي تعديل على قائمة الملفات أو الاستراتيجية: غيّر VERSION.
    ============================================================ */
 
-const VERSION = 'jawabni-v2';
+const VERSION = 'jawabni-v3';
 const SHELL   = VERSION + '-shell';
 const MEDIA   = VERSION + '-media';
 const REMOTE  = VERSION + '-remote';
@@ -23,7 +23,7 @@ const SHELL_FILES = [
   'MyAccount.html', 'MyGame.html', 'online.html', 'signIn.html', 'signUp.html',
   'theme.js', 'questions.js', 'questions-extra.js', 'questions-extra2.js', 'categories.js',
   'images.js', 'powerups.js', 'wheel.js', 'translate.js', 'i18n.js', 'i18n-langs.js',
-  'i18n-categories.js', 'sfx.js', 'pwa.js', 'manifest.json', 'mobile.css',
+  'i18n-categories.js', 'sfx.js', 'teams.js', 'pwa.js', 'manifest.json', 'mobile.css',
   'image/jawbnny.png', 'image/maps.webp',
   'image/icons/icon-192.png', 'image/icons/icon-512.png'
 ];

@@ -446,12 +446,15 @@
       margin-bottom:8px;
     }
     .team-label .dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
-    .t1-label{ color:#8ec5ff; }
-    .t1-label .dot{ background:#4a9bff; box-shadow:0 0 10px rgba(74,155,255,.8); }
-    .t2-label{ color:#ff9c89; }
-    .t2-label .dot{ background:var(--coral); box-shadow:0 0 10px rgba(255,107,77,.8); }
-    #team1:focus{ border-color:#4a9bff; box-shadow:0 0 0 4px rgba(74,155,255,.16); }
-    #team2:focus{ border-color:var(--coral); box-shadow:0 0 0 4px rgba(255,107,77,.16); }
+    /* لون كل فريق من teams.js عبر --tc و --ts */
+    .team-col .team-label{ color:var(--ts, var(--ivory)); }
+    .team-col .team-label .dot{ background:var(--tc); box-shadow:0 0 10px var(--tc); }
+    .team-col .form-control:focus{ border-color:var(--tc); box-shadow:0 0 0 4px rgba(255,255,255,.08); }
+    /* ٤ أو ٦ فرق: عمودان أو ثلاثة */
+    .team-grid.many .team-col{ flex:1 1 30%; min-width:180px; }
+    .team-grid.four .team-col{ flex:1 1 40%; }
+    .team-count-note{ text-align:center; color:var(--muted); font-size:13px; margin:-6px 0 14px; }
+    .team-count-note a{ color:var(--gold); }
 
 
     /* ---------- start bar ---------- */
@@ -584,6 +587,7 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
 <!-- تعدد اللغات (38 لغة) -->
@@ -635,8 +639,8 @@
         localStorage.removeItem('roundQuestions');
       }
       localStorage.setItem('answeredQuestions', JSON.stringify([]));
-      localStorage.setItem('teamScores', JSON.stringify({ team1: 0, team2: 0 }));
-      localStorage.setItem('currentTurn', 'team1');
+      /* يثبّت عدد الفرق لهذه الجولة ويصفّر نقاطها والدور (teams.js) */
+      Teams.startRound();
 
       // نمط الجولة: عادي أو بالمفاجآت
       const mode = (localStorage.getItem('gameMode') === 'surprises') ? 'surprises' : 'normal';
@@ -651,11 +655,10 @@
 
       // تسجيل اللعبة في سجل الألعاب
       const gName = (document.getElementById('gameName').value || '').trim() || 'لعبة بدون اسم';
-      const t1 = (document.getElementById('team1').value || '').trim() || 'الفريق 1';
-      const t2 = (document.getElementById('team2').value || '').trim() || 'الفريق 2';
+      const names = Teams.ids().map(t => Teams.name(t));
       const log = JSON.parse(localStorage.getItem('gameLog') || '[]');
       log.push({
-        description: gName + ' — ' + t1 + ' ضد ' + t2 + ' (' + selectedCards.length + ' فئات)',
+        description: gName + ' — ' + names.join(' ضد ') + ' (' + selectedCards.length + ' فئات)',
         time: new Date().toLocaleString('ar-EG', { dateStyle: 'medium', timeStyle: 'short' })
       });
       localStorage.setItem('gameLog', JSON.stringify(log));
@@ -716,22 +719,16 @@
 
   <!-- Team Name -->
   <div class="team-panel">
-    <h3><i class="fa-solid fa-flag"></i> أسماء اللعبة والفريقين</h3>
+    <h3><i class="fa-solid fa-flag"></i> <span id="teamsTitle">أسماء اللعبة والفريقين</span></h3>
 
     <div style="margin-bottom:18px">
       <input type="text" id="gameName" class="form-control" placeholder="اسم اللعبة" oninput="autoSaveGameInfo()" />
     </div>
 
-    <div class="team-grid">
-      <div class="team-col">
-        <label for="team1" class="team-label t1-label"><span class="dot"></span> فريق 1</label>
-        <input type="text" id="team1" class="form-control" placeholder="اسم الفريق الأول" oninput="autoSaveGameInfo()" />
-      </div>
-      <div class="team-col">
-        <label for="team2" class="team-label t2-label"><span class="dot"></span> فريق 2</label>
-        <input type="text" id="team2" class="form-control" placeholder="اسم الفريق الثاني" oninput="autoSaveGameInfo()" />
-      </div>
-    </div>
+    <p class="team-count-note"><span id="teamCountNote"></span> — <a href="settings.html">غيّر عدد الفرق من الإعدادات</a></p>
+
+    <!-- خانة اسم لكل فريق (٢ أو ٤ أو ٦) — تُبنى من teams.js -->
+    <div class="team-grid" id="teamGrid"></div>
   </div>
 
   <div class="start-dock">
@@ -747,12 +744,36 @@
     // حفظ الاسماء
     function autoSaveGameInfo() {
       const gameName = document.getElementById('gameName').value.trim();
-      const team1 = document.getElementById('team1').value.trim();
-      const team2 = document.getElementById('team2').value.trim();
-
       localStorage.setItem("gameName", gameName);
-      localStorage.setItem("team1", team1);
-      localStorage.setItem("team2", team2);
+      document.querySelectorAll('#teamGrid input').forEach(inp => {
+        localStorage.setItem(inp.id, inp.value.trim());
+      });
+    }
+
+    /* خانات أسماء الفرق حسب العدد المختار في الإعدادات (لا حسب جولة سابقة) */
+    function renderTeamInputs() {
+      const n = Teams.setting();
+      const grid = document.getElementById('teamGrid');
+      grid.innerHTML = '';
+      grid.classList.toggle('many', n > 2);
+      grid.classList.toggle('four', n === 4);
+      document.getElementById('teamsTitle').textContent = n > 2 ? 'أسماء اللعبة والفرق' : 'أسماء اللعبة والفريقين';
+      document.getElementById('teamCountNote').textContent = 'عدد الفرق: ' + n;
+      Teams.ids(n).forEach(t => {
+        const c = Teams.color(t);
+        const col = document.createElement('div');
+        col.className = 'team-col';
+        col.style.setProperty('--tc', c.main);
+        col.style.setProperty('--ts', c.soft);
+        col.innerHTML =
+          '<label for="' + t + '" class="team-label"><span class="dot"></span> فريق ' + Teams.num(t) + '</label>' +
+          '<input type="text" id="' + t + '" class="form-control" oninput="autoSaveGameInfo()" />';
+        const inp = col.querySelector('input');
+        inp.placeholder = 'اسم الفريق ' + Teams.ordinal(t);
+        inp.value = localStorage.getItem(t) || '';
+        grid.appendChild(col);
+      });
+      if (window.I18N) I18N.apply(document.querySelector('.team-panel'));
     }
 
     /* ================= بناء بطاقات الفئات تلقائياً ================= */
@@ -1092,11 +1113,8 @@
 
       // استرجاع الأسماء المحفوظة
       const g = localStorage.getItem("gameName");
-      const t1 = localStorage.getItem("team1");
-      const t2 = localStorage.getItem("team2");
       if (g) document.getElementById("gameName").value = g;
-      if (t1) document.getElementById("team1").value = t1;
-      if (t2) document.getElementById("team2").value = t2;
+      renderTeamInputs();
     });
   </script>
 </body>

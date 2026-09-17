@@ -393,6 +393,18 @@
 
       <div class="row">
         <div class="txt">
+          <b>عدد الفرق</b>
+          <span>فريقان أو ٤ أو ٦ فرق تتناوب على الدور. يُطبَّق عند بدء الجولة القادمة، وتظهر خانة اسم لكل فريق في صفحة «اختر فئاتك».</span>
+        </div>
+        <div class="seg" id="teamCountSeg">
+          <button type="button" class="seg-btn" data-val="2">٢</button>
+          <button type="button" class="seg-btn" data-val="4">٤</button>
+          <button type="button" class="seg-btn" data-val="6">٦</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txt">
           <b>نمط الجولة</b>
           <span><b>عادي</b>: النقاط من الأسئلة وحدها، ولا تُوزَّع أي مفاجأة، ولوحة المفاجآت
                 تختفي من شاشة اللعب. <b>بالمفاجآت</b>: عشر مفاجآت تُخبَّأ عشوائياً بين
@@ -737,6 +749,11 @@
       toast('صار سقف الاختيار ' + v + ' فئات', 'fa-layer-group');
     });
 
+    /* --- عدد الفرق: 2 أو 4 أو 6 (teams.js) --- */
+    wireSeg('teamCountSeg', 'teamCount', '2', v => {
+      toast(v === '2' ? 'الجولة القادمة بفريقين' : 'الجولة القادمة بـ ' + v + ' فرق', 'fa-people-group');
+    });
+
     /* --- نمط الجولة: عادي أو بالمفاجآت --- */
     wireSeg('modeSeg', 'gameMode', 'normal', v => {
       toast(v === 'surprises' ? 'الجولة القادمة بالمفاجآت' : 'الجولة القادمة لعب عادي',
@@ -969,7 +986,8 @@
     const ROUND_KEYS = [
       'gameStarted', 'roundQuestions', 'answeredQuestions', 'teamScores',
       'selectedCategories', 'selectedCards', 'selectedQuestions',
-      'currentTurn', 'currentQuestion', 'team1', 'team2', 'gameName', 'onlineRoom'
+      'currentTurn', 'currentQuestion', 'gameName', 'onlineRoom', 'gameTeamCount',
+      'team1', 'team2', 'team3', 'team4', 'team5', 'team6'
     ];
 
     const gameStat = document.getElementById('gameStatus');
@@ -983,9 +1001,11 @@
     function refresh(){
       const running = localStorage.getItem('gameStarted') === 'true'
                    || localStorage.getItem('gameStarted') === '1';
-      const t1 = localStorage.getItem('team1'), t2 = localStorage.getItem('team2');
+      const teamN = [2, 4, 6].indexOf(+localStorage.getItem('gameTeamCount')) >= 0 ? +localStorage.getItem('gameTeamCount') : 2;
+      const names = [];
+      for (let i = 1; i <= teamN; i++) { const v = localStorage.getItem('team' + i); if (v) names.push(v); }
       gameStat.textContent = running
-        ? ('جولة جارية' + (t1 && t2 ? ' — ' + t1 + ' × ' + t2 : ''))
+        ? ('جولة جارية' + (names.length === teamN ? ' — ' + names.join(' × ') : ''))
         : 'لا توجد جولة جارية';
 
       const n = readLog().length;
