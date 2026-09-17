@@ -11,7 +11,8 @@
      team1 … team6   أسماء الفرق
      teamMembers     { team1: ["أحمد", "سارة"], … }  أسماء اللاعبين في كل فريق
      savedTeams      [{ name, members }]  الفرق الثابتة — تبقى دائماً لإعادة استعمالها
-     players         [{ name, points }]   اللاعبون ونقاطهم — ٣ نقاط لكل إجابة صحيحة (الإعدادات)
+     players         [{ name, points, absent }]  اللاعبون ونقاطهم — ٣ نقاط لكل إجابة صحيحة (الإعدادات)؛
+                     absent = غير حاضر، فلا يدخل في تقسيم اللاعبين على الفرق
      teamScores      { team1: 0, team2: 0, … }
    ============================================================ */
 
@@ -139,10 +140,44 @@
      كل إجابة صحيحة = PLAYER_POINTS نقاط للاعب الذي أجاب. */
   var PLAYER_POINTS = 3;
 
+  /* absent: لاعب غير حاضر اليوم — لا يدخل في تقسيم الفرق */
   function players() {
     var v = readJSON("players", []);
     return Array.isArray(v) ? v.filter(function (p) { return p && p.name; })
-      .map(function (p) { return { name: String(p.name), points: Number(p.points) || 0 }; }) : [];
+      .map(function (p) { return { name: String(p.name), points: Number(p.points) || 0, absent: !!p.absent }; }) : [];
+  }
+
+  function setPresent(name, present) {
+    savePlayers(players().map(function (p) {
+      if (p.name === name) p.absent = !present;
+      return p;
+    }));
+  }
+
+  /* تقسيم اللاعبين الحاضرين على الفرق بالتساوي:
+       mode "random"   — ترتيب عشوائي
+       mode "balanced" — حسب النقاط بطريقة الثعبان (1،2،3،3،2،1…) فتتقارب قوة الفرق
+     يكتب أسماء لاعبي كل فريق (teamMembers) ويعيد مصفوفة لكل فريق */
+  function splitPlayers(mode, n) {
+    n = n || setting();
+    var list = players().filter(function (p) { return !p.absent; });
+    /* خلط أولاً، ثم (في المتوازن) ترتيب ثابت بالنقاط — فالمتساوون يتوزعون عشوائياً */
+    for (var i = list.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = list[i]; list[i] = list[j]; list[j] = t;
+    }
+    if (mode === "balanced") list.sort(function (a, b) { return b.points - a.points; });
+    var groups = [];
+    for (var g = 0; g < n; g++) groups.push([]);
+    list.forEach(function (p, k) {
+      var round = Math.floor(k / n), pos = k % n;
+      var idx = (mode === "balanced" && round % 2 === 1) ? n - 1 - pos : pos;
+      groups[idx].push(p.name);
+    });
+    var all = readJSON("teamMembers", {});
+    ids(n).forEach(function (id, g) { all[id] = groups[g]; });
+    set("teamMembers", JSON.stringify(all));
+    return groups;
   }
 
   function savePlayers(list) { set("players", JSON.stringify(list)); }
@@ -159,8 +194,16 @@
     return added;
   }
 
+  /* حذف لاعب: من القائمة ومن الفرق التي هو فيها */
   function removePlayer(name) {
     savePlayers(players().filter(function (p) { return p.name !== name; }));
+    var all = readJSON("teamMembers", {}), changed = false;
+    Object.keys(all).forEach(function (t) {
+      if (!Array.isArray(all[t])) return;
+      var kept = all[t].filter(function (m) { return m !== name; });
+      if (kept.length !== all[t].length) { all[t] = kept; changed = true; }
+    });
+    if (changed) set("teamMembers", JSON.stringify(all));
   }
 
   function addPlayerPoints(name, n) {
@@ -178,7 +221,7 @@
   }
 
   function resetPlayerPoints() {
-    savePlayers(players().map(function (p) { return { name: p.name, points: 0 }; }));
+    savePlayers(players().map(function (p) { p.points = 0; return p; }));
   }
 
   /* اللاعبون مرتّبون من الأعلى نقاطاً */
@@ -257,6 +300,8 @@
     playerPoints: playerPoints,
     resetPlayerPoints: resetPlayerPoints,
     playerRanking: playerRanking,
+    setPresent: setPresent,
+    splitPlayers: splitPlayers,
     saved: saved,
     saveTeam: saveTeam,
     deleteSaved: deleteSaved,

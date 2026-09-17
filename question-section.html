@@ -502,6 +502,14 @@
     .saved-team button{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:14px; }
     .saved-team button:hover{ color:var(--coral); }
     .saved-empty{ color:var(--muted); font-size:13px; }
+    /* أزرار تقسيم اللاعبين على الفرق */
+    .split-row{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:0 0 14px; }
+    .split-btn{
+      display:inline-flex; align-items:center; gap:7px; padding:9px 14px; border-radius:14px; cursor:pointer;
+      border:1px solid var(--line-strong); background:rgba(231,183,64,.1); color:var(--gold-soft);
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:13.5px;
+    }
+    .split-btn:hover{ background:rgba(231,183,64,.2); }
     .team-count-note{ text-align:center; color:var(--muted); font-size:13px; margin:-6px 0 14px; }
     .team-count-note a{ color:var(--gold); }
 
@@ -775,6 +783,12 @@
 
     <p class="team-count-note"><span id="teamCountNote"></span> — <a href="settings.html">غيّر عدد الفرق من الإعدادات</a></p>
 
+    <!-- تقسيم اللاعبين (قائمة الإعدادات) على الفرق -->
+    <div class="split-row" id="splitRow" hidden>
+      <button type="button" class="split-btn" id="splitRandom"><i class="fa-solid fa-shuffle"></i> قسّم اللاعبين عشوائياً</button>
+      <button type="button" class="split-btn" id="splitBalanced"><i class="fa-solid fa-scale-balanced"></i> قسّمهم بالتساوي حسب النقاط</button>
+    </div>
+
     <!-- لكل فريق (٢ أو ٤ أو ٦): اسمه، أسماء لاعبيه، واختيار فريق ثابت — تُبنى من teams.js -->
     <div class="team-grid" id="teamGrid"></div>
 
@@ -833,6 +847,19 @@
       renderMembers(col, t);
       if (window.SFX) SFX.select();
       inp.focus();
+    }
+
+    /* تقسيم اللاعبين الحاضرين (قائمة الإعدادات) على الفرق ثم إعادة رسم الخانات */
+    function splitPlayersInto(mode) {
+      const n = Teams.setting();
+      if (Teams.players().filter(p => !p.absent).length < n) {
+        showToast('أضف لاعبين في الإعدادات أولاً', 'err');
+        return;
+      }
+      Teams.splitPlayers(mode, n);
+      renderTeamInputs();
+      if (window.SFX) SFX.coin();
+      showToast(mode === 'balanced' ? 'قُسّم اللاعبون بالتساوي حسب النقاط' : 'قُسّم اللاعبون عشوائياً');
     }
 
     /* اقتراحات من قائمة اللاعبين المحفوظة في الإعدادات */
@@ -958,6 +985,8 @@
       });
       document.querySelector('.team-panel').classList.toggle('wide', n > 2);
       fillPlayersDatalist();
+      /* أزرار التقسيم تظهر إن كان في قائمة اللاعبين ما يكفي */
+      document.getElementById('splitRow').hidden = Teams.players().filter(p => !p.absent).length < n;
       renderSavedTeams();
       if (window.I18N) I18N.apply(document.querySelector('.team-panel'));
     }
@@ -1301,6 +1330,10 @@
       const g = localStorage.getItem("gameName");
       if (g) document.getElementById("gameName").value = g;
       renderTeamInputs();
+
+      /* أزرار تقسيم اللاعبين على الفرق */
+      document.getElementById('splitRandom').onclick   = () => splitPlayersInto('random');
+      document.getElementById('splitBalanced').onclick = () => splitPlayersInto('balanced');
     });
   </script>
 </body>

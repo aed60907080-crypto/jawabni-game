@@ -278,6 +278,19 @@
     .player-row .del{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:15px; }
     .player-row .del:hover{ color:var(--coral); }
     .player-empty{ color:var(--muted); font-size:13px; text-align:center; padding:10px; }
+    .player-row .here{ width:18px; height:18px; accent-color:var(--gold); cursor:pointer; flex:none; }
+    .player-row.absent .nm, .player-row.absent .pts{ opacity:.4; text-decoration:line-through; }
+
+    /* تقسيم اللاعبين إلى فرق */
+    .split-box{ margin-top:16px; padding:14px; border-radius:16px; background:rgba(231,183,64,.06); border:1px solid var(--line); }
+    .split-box > b{ display:block; font-family:'Cairo',sans-serif; color:var(--gold-soft); margin-bottom:4px; }
+    .split-hint{ display:block; color:var(--muted); font-size:12.5px; line-height:1.7; }
+    .split-box .btn-row{ margin-top:10px; }
+    .split-preview{ display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); margin-top:12px; }
+    .split-team{ border-radius:12px; padding:8px 10px; background:rgba(0,0,0,.25); border:1px solid var(--tc); }
+    .split-team h5{ margin:0 0 4px; font-family:'Cairo',sans-serif; font-size:13.5px; font-weight:900; color:var(--tc); }
+    .split-team div{ font-size:13px; color:var(--ivory); line-height:1.7; }
+    .split-team small{ color:var(--muted); }
 
     /* شبكة اختيار مقطوعة الموسيقى */
     .track-grid{
@@ -495,6 +508,17 @@
       </div>
 
       <div class="player-list" id="playerList"></div>
+
+      <!-- تقسيم اللاعبين الحاضرين على الفرق -->
+      <div class="split-box">
+        <b><i class="fa-solid fa-people-arrows"></i> تقسيم اللاعبين إلى فرق</b>
+        <span class="split-hint" id="splitHint"></span>
+        <div class="btn-row">
+          <button class="btn" type="button" id="splitRandomBtn"><i class="fa-solid fa-shuffle"></i> قسّم عشوائياً</button>
+          <button class="btn ghost" type="button" id="splitBalancedBtn"><i class="fa-solid fa-scale-balanced"></i> قسّم بالتساوي حسب النقاط</button>
+        </div>
+        <div class="split-preview" id="splitPreview"></div>
+      </div>
 
       <div class="btn-row">
         <button class="btn ghost" type="button" id="playerResetBtn"><i class="fa-solid fa-rotate-left"></i> تصفير النقاط</button>
@@ -810,6 +834,7 @@
     /* --- عدد الفرق: 2 أو 4 أو 6 (teams.js) — والفئات تزيد معه --- */
     wireSeg('teamCountSeg', 'teamCount', '2', v => {
       paintCap();
+      document.dispatchEvent(new CustomEvent('teams:count'));   /* يحدّث نص تقسيم اللاعبين */
       toast((v === '2' ? 'الجولة القادمة بفريقين' : 'الجولة القادمة بـ ' + v + ' فرق') +
             ' · حتى ' + capNow().cap + ' فئة', 'fa-people-group');
     });
@@ -860,9 +885,13 @@
       }
       rows.forEach((p, i) => {
         const r = document.createElement('div');
-        r.className = 'player-row' + (i === 0 && p.points > 0 ? ' top' : '');
-        r.innerHTML = '<span class="rk"></span><span class="nm" data-no-i18n></span>' +
-                      '<span class="pts"></span><button type="button" class="del" title="حذف اللاعب">✕</button>';
+        r.className = 'player-row' + (i === 0 && p.points > 0 ? ' top' : '') + (p.absent ? ' absent' : '');
+        r.innerHTML = '<input type="checkbox" class="here" title="حاضر — يدخل في تقسيم الفرق">' +
+                      '<span class="rk"></span><span class="nm" data-no-i18n></span>' +
+                      '<span class="pts"></span><button type="button" class="del" title="حذف اللاعب من القائمة ومن فريقه">✕</button>';
+        const here = r.querySelector('.here');
+        here.checked = !p.absent;
+        here.onchange = () => { Teams.setPresent(p.name, here.checked); render(); };
         r.querySelector('.rk').textContent = i + 1;
         r.querySelector('.nm').textContent = p.name;
         r.querySelector('.pts').innerHTML = p.points + '<small>نقطة</small>';
@@ -875,7 +904,53 @@
         list.appendChild(r);
       });
       if (window.I18N) I18N.apply(list);
+      paintSplitHint();
     }
+
+    /* ---------- تقسيم اللاعبين الحاضرين على الفرق ---------- */
+    function paintSplitHint() {
+      const hint = document.getElementById('splitHint');
+      if (!hint) return;
+      const n = Teams.setting();
+      const present = Teams.players().filter(p => !p.absent).length;
+      hint.textContent = 'علّم ✔ على الحاضرين. سيُقسَّم ' + present + ' لاعب على ' + n +
+        ' فرق (عدد الفرق من «اللعب» أعلاه) — عشوائياً، أو بالتساوي حسب النقاط فتتقارب قوة الفرق. ' +
+        'تظهر الفرق في صفحة «اختر فئاتك».';
+    }
+
+    function renderSplit(groups) {
+      const box = document.getElementById('splitPreview');
+      box.innerHTML = '';
+      Teams.ids(groups.length).forEach((t, g) => {
+        const el = document.createElement('div');
+        el.className = 'split-team';
+        el.style.setProperty('--tc', Teams.color(t).soft);
+        el.innerHTML = '<h5 data-no-i18n></h5><div data-no-i18n></div>';
+        el.querySelector('h5').textContent = Teams.name(t);
+        const pts = groups[g].reduce((s, m) => s + Teams.playerPoints(m), 0);
+        el.querySelector('div').textContent = groups[g].length ? groups[g].join('، ') : '—';
+        const sm = document.createElement('small');
+        sm.textContent = ' (' + pts + ' نقطة)';
+        el.querySelector('div').appendChild(sm);
+        box.appendChild(el);
+      });
+    }
+
+    function split(mode) {
+      const n = Teams.setting();
+      const present = Teams.players().filter(p => !p.absent).length;
+      if (present < n) {
+        toast('تحتاج ' + n + ' لاعبين حاضرين على الأقل لـ ' + n + ' فرق', 'fa-circle-exclamation');
+        return;
+      }
+      renderSplit(Teams.splitPlayers(mode, n));
+      if (window.SFX) SFX.coin();
+      toast(mode === 'balanced' ? 'قُسّم اللاعبون بالتساوي حسب النقاط' : 'قُسّم اللاعبون عشوائياً', 'fa-people-arrows');
+    }
+
+    document.getElementById('splitRandomBtn').onclick = () => split('random');
+    document.getElementById('splitBalancedBtn').onclick = () => split('balanced');
+    document.addEventListener('teams:count', paintSplitHint);
 
     function add() {
       const names = Teams.splitNames(input.value);
