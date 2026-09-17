@@ -1138,6 +1138,37 @@
     img.complete ? fit() : img.addEventListener("load", fit, { once: true });
   }
 
+  /* قصّ الشعار (crop = [x, y, w, h] نِسباً مئوية): يُرسم رمز الشعار وحده
+     على لوحة canvas بخلفية بيضاء، فلا تظهر أي كتابة في السؤال، ويُعرض
+     الشعار كاملاً مع الإجابة. ?crop=1 يفصل هذا الطلب (CORS) عن نسخة
+     الصورة العادية في ذاكرة المتصفح وعامل الخدمة. */
+  function cropImage(url, c) {
+    return new Promise((resolve, reject) => {
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onload = () => {
+        try {
+          const W = im.naturalWidth, H = im.naturalHeight;
+          const sx = W * c[0] / 100, sy = H * c[1] / 100;
+          const sw = W * c[2] / 100, sh = H * c[3] / 100;
+          const k = Math.max(1, 320 / Math.max(sw, sh));
+          const pad = Math.round(Math.max(sw, sh) * k * 0.06);
+          const cv = document.createElement("canvas");
+          cv.width  = Math.round(sw * k) + pad * 2;
+          cv.height = Math.round(sh * k) + pad * 2;
+          const g = cv.getContext("2d");
+          g.fillStyle = "#fff";
+          g.fillRect(0, 0, cv.width, cv.height);
+          g.imageSmoothingQuality = "high";
+          g.drawImage(im, sx, sy, sw, sh, pad, pad, sw * k, sh * k);
+          resolve(cv.toDataURL("image/png"));
+        } catch (e) { reject(e); }
+      };
+      im.onerror = reject;
+      im.src = url + (url.indexOf("?") < 0 ? "?" : "&") + "crop=1";
+    });
+  }
+
   /* ---------------- ترجمة نص السؤال والإجابة ----------------
      الواجهة مترجمة يدوياً، أما نصوص الأسئلة فتُترجم آلياً حسب اللغة
      المختارة. النص العربي يظهر أولاً ثم يُستبدل بالترجمة عند وصولها،
@@ -1240,6 +1271,14 @@
     const media = document.getElementById("questionMedia");
     if (!item) return;
     media.hidden = false;
+
+    /* شعار مقصوص: نجهّز الرمز وحده أولاً ثم نعرضه (انظر cropImage) */
+    if (item.crop && item.img && !item._cropped) {
+      cropImage(item.img, item.crop)
+        .then(url => renderMedia(Object.assign({}, item, { img: url, _cropped: true })))
+        .catch(() => renderMedia(Object.assign({}, item, { _cropped: true })));
+      return;
+    }
 
     /* ---------- صورة السؤال ----------
        كل سؤال يحصل على صورة: إمّا الصورة المكتوبة له في بنك الأسئلة،
@@ -1871,6 +1910,12 @@
     if (!item.aimg && Array.isArray(item.labels) && item.labels.length && item.img) {
       mountAnswerImage(holder, item.img, true);
       applyLabels(holder, item.labels, item.mark);
+      return;
+    }
+
+    /* شعار مقصوص في السؤال — نعرضه كاملاً الآن */
+    if (!item.aimg && item.crop && item.img) {
+      mountAnswerImage(holder, item.img, true);
       return;
     }
 
