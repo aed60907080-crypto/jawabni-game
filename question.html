@@ -435,6 +435,10 @@
     }
     /* الخريطة العالمية تُستنسخ بحاويتها ليبقى المؤشّر في موضعه */
     #imgZoom .zoom-stage .worldpin{ width:min(92vw, 900px); max-width:none; }
+    /* خريطة الشوارع حاوية بارتفاع ثابت، فنمنحها ارتفاعاً عند التكبير */
+    #imgZoom .zoom-stage .streetmap{
+      width:min(92vw, 900px); height:min(88vh, 620px); max-height:88vh;
+    }
     /* وصورة المنتج تُستنسخ بغلافها كذلك، ليبقى التغبيش فوق الاسم
        عند التكبير — وإلا انكشف الاسم بضغطة واحدة. */
     #imgZoom .zoom-stage .hide-wrap{ display:block; }
@@ -521,6 +525,29 @@
       box-shadow:none;
       filter:drop-shadow(0 14px 30px rgba(231,183,64,.28));
     }
+    /* ---------- خريطة شوارع المنطقة (streets) ----------
+       بلاطات خريطة بلا أسماء مكتوبة، فتظهر الشوارع والأحياء ولا يُكشف
+       اسم المنطقة، وحلقة في المنتصف على موضعها. */
+    .streetmap{
+      position:relative; width:min(640px, 100%); height:min(440px, 62vw);
+      overflow:hidden; border-radius:18px; background:#eceff1;
+      box-shadow:0 18px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(231,183,64,.15);
+    }
+    .streetmap .tiles{ position:absolute; top:0; left:0; width:1280px; height:1280px; }
+    .streetmap .tiles img{
+      position:absolute; width:256px !important; height:256px !important;
+      max-width:none !important; max-height:none !important;
+      margin:0 !important; padding:0 !important; border-radius:0 !important;
+      background:none !important; box-shadow:none !important;
+      /* بلاطات الخريطة رمادية فاتحة جداً، فنرفع التباين ليظهر خطّ الشارع */
+      filter:invert(1) brightness(9) invert(1);
+    }
+    .streetmap .wp-ring{ left:50%; top:50%; }
+    .map-credit{
+      display:block; margin-top:6px; color:var(--muted);
+      font-size:11.5px; direction:ltr; text-align:center;
+    }
+
     /* ---------- خريطة العالم مع مؤشّر الدولة (فئة الخرائط) ---------- */
     .worldpin{ position:relative; display:inline-block; width:100%; max-width:620px; line-height:0; }
     .worldpin > img.wp-map{
@@ -659,6 +686,8 @@
 
     /* غلاف صورة السؤال — يعرض بطاقة مولّدة ثم يبدّلها بالصورة الحقيقية */
     .q-img-shell{ position:relative; display:flex; justify-content:center; }
+    /* خريطة الشوارع: الخريطة ثم سطر المصدر تحتها */
+    .q-img-shell:has(> .streetmap){ flex-direction:column; align-items:center; }
     .q-img-shell img{ transition:opacity .35s ease, filter .35s ease; }
     .q-img-shell.loading img{ opacity:.72; filter:saturate(.7); }
     .q-img-shell.loading::after{
@@ -1341,7 +1370,7 @@
     media.hidden = false;
 
     /* صورة مقصوصة: شعار بلا كتابة، أو خريطة مكبّرة عليها حلقة (انظر cropImage) */
-    if (item.crop && item.img && !item._cropped) {
+    if (item.crop && item.img && !item.streets && !item._cropped) {
       cropImage(item.img, item.crop, item.pin)
         /* الحلقة صارت مرسومة داخل الصورة، فلا نضيف حلقة الخريطة فوقها */
         .then(url => renderMedia(Object.assign({}, item, { img: url, _cropped: true, pin: null })))
@@ -1379,6 +1408,55 @@
 
     if (noQuestionImage) {
       /* لا صورة — يكتفي السؤال بالمشغّل الصوتي، أو صورته تنتظر الإجابة */
+    } else if (item.streets) {
+      /* خريطة شوارع المنطقة: شبكة بلاطات حول الإحداثيات، والحلقة في المنتصف.
+         streets = [خط العرض، خط الطول، درجة التقريب] */
+      const box = document.createElement('div');
+      box.className = 'worldpin streetmap';
+
+      const lat = item.streets[0], lon = item.streets[1], z = item.streets[2] || 13;
+      const n = Math.pow(2, z);
+      const xf = (lon + 180) / 360 * n;
+      const r  = lat * Math.PI / 180;
+      const yf = (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n;
+      const x0 = Math.floor(xf), y0 = Math.floor(yf);
+      const px = (xf - x0) * 256, py = (yf - y0) * 256;
+
+      const tiles = document.createElement('div');
+      tiles.className = 'tiles';
+      /* المنتصف = موضع المنطقة: نزيح شبكة البلاطات حتى تقع عليه */
+      tiles.style.left = '50%';
+      tiles.style.top  = '50%';
+      tiles.style.marginLeft = -(512 + px) + 'px';
+      tiles.style.marginTop  = -(512 + py) + 'px';
+
+      /* ٥×٥ بلاطات: تكفي النافذة العادية ونافذة التكبير بلا فراغ في الحواف */
+      for (let dy = -2; dy <= 2; dy++) {
+        for (let dx = -2; dx <= 2; dx++) {
+          const t = document.createElement('img');
+          t.alt = '';
+          t.loading = 'eager';
+          t.style.left = ((dx + 2) * 256) + 'px';
+          t.style.top  = ((dy + 2) * 256) + 'px';
+          t.src = 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/' +
+                  z + '/' + (y0 + dy) + '/' + (x0 + dx);
+          tiles.appendChild(t);
+        }
+      }
+      box.appendChild(tiles);
+
+      const ring = document.createElement('span');
+      ring.className = 'wp-ring';
+      box.appendChild(ring);
+
+      shell.appendChild(box);
+
+      const credit = document.createElement('span');
+      credit.className = 'map-credit';
+      credit.setAttribute('data-no-i18n', '');
+      credit.textContent = 'Esri, HERE, Garmin, © OpenStreetMap contributors';
+      shell.appendChild(credit);
+
     } else if (item.pin) {
       /* فئة الخرائط: خريطة العالم كاملة مع حلقة على الدولة المقصودة،
          وشكل الدولة الصمّاء في الزاوية لإزالة اللبس بين الجارات. */
@@ -2037,7 +2115,7 @@
 
     /* صورة مقصوصة في السؤال — نعرضها كاملة الآن:
        الشعار كاملاً بكتابته، والخريطة كاملة وعليها الحلقة نفسها. */
-    if (!item.aimg && item.crop && item.img) {
+    if (!item.aimg && (item.crop || item.streets) && item.img) {
       if (item.pin) {
         cropImage(item.img, [0, 0, 100, 100], item.pin)
           .then(url => mountAnswerImage(holder, url, true))
