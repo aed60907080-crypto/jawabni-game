@@ -1157,10 +1157,10 @@
     { l: 5, q: "أكمل الجملة: She ___ to school every day (go / goes)", a: "goes", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Schoolgirls_in_Street_-_Asahikawa_-_Hokkaido_-_Japan_%2848018181627%29.jpg/960px-Schoolgirls_in_Street_-_Asahikawa_-_Hokkaido_-_Japan_%2848018181627%29.jpg" },
   ];
 
-  /* ---------- شعارات النوادي (50 سؤالاً) ----------
+  /* ---------- شعارات أندية (50 سؤالاً) ----------
      الشعارات من ويكيبيديا. crop يقصّ رمز الشعار وحده بلا أي كتابة
      (انظر cropImage في question.html)، ويظهر الشعار كاملاً مع الإجابة. */
-  extra["شعارات النوادي"] = [
+  extra["شعارات أندية"] = [
     { l: 1, q: "ما اسم النادي صاحب هذا الشعار؟", a: "مانشستر يونايتد", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/500px-Manchester_United_FC_crest.svg.png", crop: [27, 24, 46, 50] },
     { l: 1, q: "ما اسم النادي صاحب هذا الشعار؟", a: "ليفربول", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/500px-Liverpool_FC.svg.png", crop: [5, 57, 90, 29] },
     { l: 1, q: "ما اسم النادي صاحب هذا الشعار؟", a: "بايرن ميونخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/500px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png", crop: [27, 27, 46, 46] },

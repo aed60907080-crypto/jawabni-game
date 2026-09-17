@@ -112,7 +112,7 @@
 
     /* ===== الدفعة الرابعة ===== */
     { name: "أطفال",                   img: "image/اطفال.jpg", emoji: "🧸", tint: "#c0567f", group: "culture" },
-    { name: "شعارات النوادي",          img: "image/شعارات اندية.jpg", emoji: "🛡️", tint: "#2f8f52", group: "sport" },
+    { name: "شعارات أندية",           img: "image/شعارات اندية.jpg", emoji: "🛡️", tint: "#2f8f52", group: "sport" },
     { name: "شعارات كويتية",           img: "image/شعارات كويتية.jpg", emoji: "🏷️", tint: "#2f8f7d", group: "kuwait" }
   ];
 
