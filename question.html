@@ -1193,7 +1193,9 @@
      على لوحة canvas بخلفية بيضاء، فلا تظهر أي كتابة في السؤال، ويُعرض
      الشعار كاملاً مع الإجابة. ?crop=1 يفصل هذا الطلب (CORS) عن نسخة
      الصورة العادية في ذاكرة المتصفح وعامل الخدمة. */
-  function cropImage(url, c) {
+  /* pin اختياري: [س٪، ص٪] من الصورة الأصلية — تُرسم عليه حلقة حمراء داخل
+     القصّة، فتعمل الخريطة المكبّرة كخريطة «ما اسم هذه المنطقة؟» */
+  function cropImage(url, c, pin) {
     return new Promise((resolve, reject) => {
       const im = new Image();
       im.crossOrigin = "anonymous";
@@ -1212,6 +1214,21 @@
           g.fillRect(0, 0, cv.width, cv.height);
           g.imageSmoothingQuality = "high";
           g.drawImage(im, sx, sy, sw, sh, pad, pad, sw * k, sh * k);
+
+          /* حلقة على الموضع المطلوب داخل القصّة */
+          if (pin && pin.length >= 2) {
+            const px = pad + (pin[0] - c[0]) / c[2] * sw * k;
+            const py = pad + (pin[1] - c[1]) / c[3] * sh * k;
+            const r  = Math.max(10, Math.min(cv.width, cv.height) * 0.055);
+            g.beginPath(); g.arc(px, py, r, 0, Math.PI * 2);
+            g.lineWidth = Math.max(4, r * 0.32);
+            g.strokeStyle = "rgba(255,255,255,.9)"; g.stroke();
+            g.beginPath(); g.arc(px, py, r, 0, Math.PI * 2);
+            g.lineWidth = Math.max(2.5, r * 0.2);
+            g.strokeStyle = "#e23b2e"; g.stroke();
+            g.beginPath(); g.arc(px, py, Math.max(2, r * 0.16), 0, Math.PI * 2);
+            g.fillStyle = "#e23b2e"; g.fill();
+          }
           resolve(cv.toDataURL("image/png"));
         } catch (e) { reject(e); }
       };
@@ -1323,10 +1340,11 @@
     if (!item) return;
     media.hidden = false;
 
-    /* شعار مقصوص: نجهّز الرمز وحده أولاً ثم نعرضه (انظر cropImage) */
+    /* صورة مقصوصة: شعار بلا كتابة، أو خريطة مكبّرة عليها حلقة (انظر cropImage) */
     if (item.crop && item.img && !item._cropped) {
-      cropImage(item.img, item.crop)
-        .then(url => renderMedia(Object.assign({}, item, { img: url, _cropped: true })))
+      cropImage(item.img, item.crop, item.pin)
+        /* الحلقة صارت مرسومة داخل الصورة، فلا نضيف حلقة الخريطة فوقها */
+        .then(url => renderMedia(Object.assign({}, item, { img: url, _cropped: true, pin: null })))
         .catch(() => renderMedia(Object.assign({}, item, { _cropped: true })));
       return;
     }
@@ -2017,9 +2035,16 @@
       return;
     }
 
-    /* شعار مقصوص في السؤال — نعرضه كاملاً الآن */
+    /* صورة مقصوصة في السؤال — نعرضها كاملة الآن:
+       الشعار كاملاً بكتابته، والخريطة كاملة وعليها الحلقة نفسها. */
     if (!item.aimg && item.crop && item.img) {
-      mountAnswerImage(holder, item.img, true);
+      if (item.pin) {
+        cropImage(item.img, [0, 0, 100, 100], item.pin)
+          .then(url => mountAnswerImage(holder, url, true))
+          .catch(() => mountAnswerImage(holder, item.img, true));
+      } else {
+        mountAnswerImage(holder, item.img, true);
+      }
       return;
     }
 
@@ -2078,8 +2103,9 @@
   function mountAnswerImage(holder, url, allowSameAsQuestion) {
     holder.classList.remove("loading");
 
-    /* بطاقة مولّدة (data:) تعني أن البحث لم يجد صورة حقيقية */
-    if (!url || url.indexOf("data:") === 0) { holder.hidden = true; return; }
+    /* بطاقة مولّدة (data:) تعني أن البحث لم يجد صورة حقيقية.
+       أمّا الصور التي نرسمها نحن (خريطة عليها حلقة) فتُمرَّر بـ allowSameAsQuestion. */
+    if (!url || (url.indexOf("data:") === 0 && !allowSameAsQuestion)) { holder.hidden = true; return; }
 
     /* نقارن بالصورة المعروضة فعلاً في السؤال — لا بالحقل img وحده،
        لأن الأسئلة بلا صورة مثبّتة يجلب لها المحرّك صورة بنفس عبارة

@@ -1735,13 +1735,13 @@ const questionsData = {
     { l: 5, q: "ما اسم هذا السوق الشعبي؟", a: "سوق الجمعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
     { l: 5, q: "أين يقع سوق الجمعة؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
   ],
-
-  /* ---------- مناطق الكويت (16 سؤالاً) ----------
-     سؤال واحد فقط: «ما اسم هذه المنطقة؟» على خريطة الكويت الصمّاء
-     مع حلقة على موضع المنطقة (pin = [س٪، ص٪] من الخريطة).
+  /* ---------- مناطق الكويت (24 سؤالاً) ----------
+     سؤال واحد فقط: «ما اسم هذه المنطقة؟» — تحديد المنطقة على الخريطة:
+       pin  = [س٪، ص٪] موضع الحلقة على خريطة الكويت الصمّاء
+       crop = نافذة مكبّرة حول المنطقة (للمناطق المتجاورة داخل العاصمة)،
+              وتُرسم الحلقة داخلها، وتظهر الخريطة كاملة مع الحلقة في الإجابة.
      مواضع الحلقات محسوبة من إحداثيات كل منطقة (ويكيبيديا) على حدود
-     الخريطة المعروفة: شمال 30.2° وجنوب 28.4° وغرب 46.4° وشرق 48.8°.
-     اختيرت مناطق متباعدة بما يكفي حتى لا تلتبس حلقة بأخرى. */
+     الخريطة المعروفة: شمال 30.2° وجنوب 28.4° وغرب 46.4° وشرق 48.8°. */
   "مناطق الكويت": [
     { l: 1, q: "ما اسم هذه المنطقة؟", a: "مدينة الكويت (العاصمة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65.8, 46.1] },
     { l: 1, q: "ما اسم هذه المنطقة؟", a: "السالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [70.1, 48.1] },
@@ -1751,10 +1751,15 @@ const questionsData = {
     { l: 2, q: "ما اسم هذه المنطقة؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.9, 62] },
     { l: 2, q: "ما اسم هذه المنطقة؟", a: "الأحمدي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [70.1, 62] },
     { l: 2, q: "ما اسم هذه المنطقة؟", a: "الفروانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65, 51.3] },
+    { l: 2, q: "ما اسم هذه المنطقة؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [64.8, 46.9], crop: [56.8, 38.9, 16, 16] },
+    { l: 2, q: "ما اسم هذه المنطقة؟", a: "المنقف", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [72, 60.8], crop: [64.0, 52.8, 16, 16] },
 
     { l: 3, q: "ما اسم هذه المنطقة؟", a: "الجابرية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [68.1, 49.1] },
     { l: 3, q: "ما اسم هذه المنطقة؟", a: "صباح السالم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [69.3, 52.4] },
     { l: 3, q: "ما اسم هذه المنطقة؟", a: "الفنطاس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.7, 57.2] },
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "خيطان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65.3, 50], crop: [57.3, 42.0, 16, 16] },
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "جليب الشيوخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [63.9, 51.8], crop: [55.9, 43.8, 16, 16] },
+    { l: 3, q: "ما اسم هذه المنطقة؟", a: "الدوحة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [52.4, 47.9], crop: [44.4, 39.9, 16, 16] },
 
     { l: 4, q: "ما اسم هذه المنطقة؟", a: "أبو حليفة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [71.9, 59.3] },
     { l: 4, q: "ما اسم هذه المنطقة؟", a: "الصليبية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [59.1, 50.8] },
@@ -1763,6 +1768,9 @@ const questionsData = {
     { l: 5, q: "ما اسم هذه المنطقة؟", a: "الصليبيخات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [60.3, 49.2] },
     { l: 5, q: "ما اسم هذه المنطقة؟", a: "القرين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [69.6, 55.7] },
     { l: 5, q: "ما اسم هذه المنطقة؟", a: "كيفان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [65.1, 47.9] },
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "سلوى", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [70.1, 50], crop: [62.1, 42.0, 16, 16] },
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "الرميثية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [69.4, 49.1], crop: [61.4, 41.1, 16, 16] },
+    { l: 5, q: "ما اسم هذه المنطقة؟", a: "الروضة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kuwait_location_map.svg/1280px-Kuwait_location_map.svg.png", pin: [66.6, 48.4], crop: [58.6, 40.4, 16, 16] },
   ],
 };
 
