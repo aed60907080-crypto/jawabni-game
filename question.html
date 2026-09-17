@@ -539,9 +539,11 @@
       max-width:none !important; max-height:none !important;
       margin:0 !important; padding:0 !important; border-radius:0 !important;
       background:none !important; box-shadow:none !important;
-      /* بلاطات الخريطة رمادية فاتحة جداً، فنرفع التباين ليظهر خطّ الشارع */
-      filter:invert(1) brightness(9) invert(1);
+      /* بلاطات الأساس رمادية فاتحة جداً، فنرفع التباين ليظهر خطّ الشارع */
+      filter:invert(1) brightness(3.5) invert(1);
     }
+    /* طبقة أسماء الشوارع تُعرض كما هي فوق الأساس */
+    .streetmap .tiles.labels img{ filter:none; }
     .streetmap .wp-ring{ left:50%; top:50%; }
     .map-credit{
       display:block; margin-top:6px; color:var(--muted);
@@ -1422,28 +1424,36 @@
       const x0 = Math.floor(xf), y0 = Math.floor(yf);
       const px = (xf - x0) * 256, py = (yf - y0) * 256;
 
-      const tiles = document.createElement('div');
-      tiles.className = 'tiles';
-      /* المنتصف = موضع المنطقة: نزيح شبكة البلاطات حتى تقع عليه */
-      tiles.style.left = '50%';
-      tiles.style.top  = '50%';
-      tiles.style.marginLeft = -(512 + px) + 'px';
-      tiles.style.marginTop  = -(512 + py) + 'px';
+      /* طبقة بلاطات: ٥×٥ بلاطة (٢٥٦ بكسل) — تكفي النافذة العادية ونافذة
+         التكبير بلا فراغ في الحواف — مُزاحة حتى تقع المنطقة في المنتصف. */
+      function tileLayer(service, cls) {
+        const layer = document.createElement('div');
+        layer.className = 'tiles' + (cls ? ' ' + cls : '');
+        layer.style.left = '50%';
+        layer.style.top  = '50%';
+        layer.style.marginLeft = -(512 + px) + 'px';
+        layer.style.marginTop  = -(512 + py) + 'px';
 
-      /* ٥×٥ بلاطات: تكفي النافذة العادية ونافذة التكبير بلا فراغ في الحواف */
-      for (let dy = -2; dy <= 2; dy++) {
-        for (let dx = -2; dx <= 2; dx++) {
-          const t = document.createElement('img');
-          t.alt = '';
-          t.loading = 'eager';
-          t.style.left = ((dx + 2) * 256) + 'px';
-          t.style.top  = ((dy + 2) * 256) + 'px';
-          t.src = 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/' +
-                  z + '/' + (y0 + dy) + '/' + (x0 + dx);
-          tiles.appendChild(t);
+        for (let dy = -2; dy <= 2; dy++) {
+          for (let dx = -2; dx <= 2; dx++) {
+            const t = document.createElement('img');
+            t.alt = '';
+            t.loading = 'eager';
+            t.style.left = ((dx + 2) * 256) + 'px';
+            t.style.top  = ((dy + 2) * 256) + 'px';
+            t.src = 'https://services.arcgisonline.com/ArcGIS/rest/services/' + service +
+                    '/MapServer/tile/' + z + '/' + (y0 + dy) + '/' + (x0 + dx);
+            layer.appendChild(t);
+          }
         }
+        return layer;
       }
-      box.appendChild(tiles);
+
+      /* الأساس: شوارع وأحياء وحدائق بلا أي كتابة */
+      box.appendChild(tileLayer('Canvas/World_Light_Gray_Base'));
+      /* وفوقه أسماء الشوارع والطرق وحدها — طبقة «النقل» لا تحمل أسماء
+         المناطق، فتظهر أسماء الشوارع ويبقى اسم المنطقة مخفياً. */
+      box.appendChild(tileLayer('Reference/World_Transportation', 'labels'));
 
       const ring = document.createElement('span');
       ring.className = 'wp-ring';
