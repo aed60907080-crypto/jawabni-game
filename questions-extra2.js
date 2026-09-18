@@ -928,10 +928,10 @@
   ];
 
   /* ---------- من صاحب الهدف (14 سؤالاً) ----------
-     «من صاحب هذا الهدف؟» — 30 ثانية من فيديو رسمي حول الهدف: ys/ye بداية
+     «من صاحب هذا الهدف؟» — 15 ثانية من فيديو رسمي حول الهدف: ys/ye بداية
      المقطع ونهايته بالثواني، مأخوذة من «الأكثر إعادة» في يوتيوب (ذروته هي
      لحظة الهدف)، فيبدأ يوتيوب من ys ويتوقّف عند ye بلا تحميل أي ملف.
-     (مقاطع صلاح أمام إيفرتون وهنري وروني أمام نيوكاسل أقصر: 16 و17 و22 ثانية.)
+     (مقطعا صلاح أمام إيفرتون وهنري كاملان: 16 و17 ثانية.)
      لا تُستعمل مقاطع قناة FIFA: فيفا تمنع عرضها خارج يوتيوب («Video
      unavailable… blocked it from display on this website») رغم أن يوتيوب
      يصفها بأنها قابلة للتضمين — جُرّبت كل المقاطع هنا مضمَّنةً من موقع آخر. يُعرض
@@ -953,39 +953,39 @@
     { l: 1, q: "من صاحب هذا الهدف؟", a: "محمد صلاح — هدفه في مرمى إيفرتون 2017",
       yt: "uD7D5BTgh_Y", hide: GOAL_MASK, bw: true },
     { l: 1, q: "من صاحب هذا الهدف؟", a: "زين الدين زيدان — تسديدته الطائرة في نهائي دوري الأبطال 2002 أمام ليفركوزن",
-      yt: "rFfomw-Z4uE", ys: 0, ye: 30, hide: GOAL_MASK, bw: true },
+      yt: "rFfomw-Z4uE", ys: 0, ye: 15, hide: GOAL_MASK, bw: true },
     { l: 1, q: "من صاحب هذا الهدف؟", a: "واين روني — المقصية في ديربي مانشستر 2011",
-      yt: "yn7dO5iZHYo", ys: 431, ye: 461, hide: GOAL_MASK, bw: true },
+      yt: "yn7dO5iZHYo", ys: 443, ye: 458, hide: GOAL_MASK, bw: true },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "من صاحب هذا الهدف؟", a: "تييري هنري — هدفه في مرمى مانشستر يونايتد",
       yt: "AUTyZVsLxYE", hide: GOAL_MASK, bw: true },
     { l: 2, q: "من صاحب هذا الهدف؟", a: "كريستيانو رونالدو — مقصّيته في مرمى يوفنتوس 2018",
-      yt: "c_JlCriK3fY", ys: 20, ye: 50, hide: GOAL_MASK, bw: true },
+      yt: "c_JlCriK3fY", ys: 32, ye: 47, hide: GOAL_MASK, bw: true },
     { l: 2, q: "من صاحب هذا الهدف؟", a: "سيرخيو أغويرو — هدف اللقب في الدقيقة 93:20",
-      yt: "qrFPRrZLGmU", ys: 576, ye: 606, hide: GOAL_MASK, bw: true },
+      yt: "qrFPRrZLGmU", ys: 588, ye: 603, hide: GOAL_MASK, bw: true },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "من صاحب هذا الهدف؟", a: "سون هيونغ مين — انطلاقته وهدفه في مرمى بيرنلي",
-      yt: "UjJyA19URHY", ys: 35, ye: 65, hide: GOAL_MASK, bw: true },
+      yt: "UjJyA19URHY", ys: 47, ye: 62, hide: GOAL_MASK, bw: true },
     { l: 3, q: "من صاحب هذا الهدف؟", a: "إيدين هازارد — هدفه الفردي في مرمى آرسنال 2017",
-      yt: "wIWqvf60NhM", ys: 0, ye: 30, hide: GOAL_MASK, bw: true },
+      yt: "wIWqvf60NhM", ys: 2, ye: 17, hide: GOAL_MASK, bw: true },
     { l: 3, q: "من صاحب هذا الهدف؟", a: "واين روني — تسديدته الطائرة في مرمى نيوكاسل 2005",
-      yt: "GNMki7g61Yk", hide: GOAL_MASK, bw: true },
+      yt: "GNMki7g61Yk", ys: 7, ye: 22, hide: GOAL_MASK, bw: true },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "من صاحب هذا الهدف؟", a: "ليونيل ميسي — هدفه الفردي في مرمى خيتافي 2007",
-      yt: "_OlTuc_t_BY", ys: 0, ye: 30, hide: GOAL_MASK, bw: true },
+      yt: "_OlTuc_t_BY", ys: 0, ye: 15, hide: GOAL_MASK, bw: true },
     { l: 4, q: "من صاحب هذا الهدف؟", a: "دينيس بيركامب — هدف الدوران في مرمى نيوكاسل 2002",
-      yt: "w7fZJf0eYq8", ys: 467, ye: 497, hide: GOAL_MASK, bw: true },
+      yt: "w7fZJf0eYq8", ys: 479, ye: 494, hide: GOAL_MASK, bw: true },
     { l: 4, q: "من صاحب هذا الهدف؟", a: "محمد صلاح — انطلاقته الفردية في مرمى مانشستر سيتي",
-      yt: "2yNnklW5HZU", ys: 50, ye: 80, hide: GOAL_MASK, bw: true },
+      yt: "2yNnklW5HZU", ys: 62, ye: 77, hide: GOAL_MASK, bw: true },
 
     /* ===== المستوى الخامس ===== */
     { l: 5, q: "من صاحب هذا الهدف؟", a: "ستان كوليمور — هدف الفوز في مباراة ليفربول 4-3 نيوكاسل 1996",
-      yt: "xX6xHnwwLO8", ys: 485, ye: 515, hide: GOAL_MASK, bw: true },
+      yt: "xX6xHnwwLO8", ys: 497, ye: 512, hide: GOAL_MASK, bw: true },
     { l: 5, q: "من صاحب هذا الهدف؟", a: "إريك لاميلا — هدف «الرابونا» في مرمى آرسنال 2021",
-      yt: "cTidIMc9VPE", ys: 122, ye: 152, hide: GOAL_MASK, bw: true },
+      yt: "cTidIMc9VPE", ys: 134, ye: 149, hide: GOAL_MASK, bw: true },
   ];
 
   /* ---------- ولا كلمة (35 كلمة) ----------
