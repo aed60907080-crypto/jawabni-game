@@ -181,6 +181,9 @@
       border-top:1px solid rgba(231,183,64,.12);
     }
     .row:first-of-type{ border-top:0; }
+    /* صف بخيارات كثيرة: الخيارات تحت النص بعرض كامل */
+    .row.stack{ flex-direction:column; align-items:stretch; }
+    .row.stack .seg{ display:grid; grid-template-columns:repeat(4, 1fr); }
     .row .txt{ flex:1; min-width:0; }
     .row .txt b{ display:block; font-family:'Cairo',sans-serif; font-weight:700; font-size:14.5px; }
     .row .txt span{ display:block; color:var(--muted); font-size:12.5px; margin-top:3px; line-height:1.6; }
@@ -484,6 +487,19 @@
           <button type="button" class="seg-btn" data-val="30">٣٠</button>
           <button type="button" class="seg-btn" data-val="60">٦٠</button>
           <button type="button" class="seg-btn" data-val="80">٨٠</button>
+        </div>
+      </div>
+
+      <div class="row stack">
+        <div class="txt">
+          <b>شكل الساعة</b>
+          <span>شكل عدّاد الوقت في صفحة السؤال (يمكن تبديله أيضاً من زر ⏱ بجانب الساعة).</span>
+        </div>
+        <div class="seg" id="timerStyleSeg">
+          <button type="button" class="seg-btn" data-val="ring"><i class="fa-regular fa-circle"></i> حلقة</button>
+          <button type="button" class="seg-btn" data-val="pie"><i class="fa-solid fa-circle-half-stroke"></i> قرص</button>
+          <button type="button" class="seg-btn" data-val="bar"><i class="fa-solid fa-minus"></i> شريط</button>
+          <button type="button" class="seg-btn" data-val="digital"><i class="fa-solid fa-clock"></i> رقمية</button>
         </div>
       </div>
 
@@ -862,6 +878,12 @@
     /* --- وقت الفريق الآخر بعد انتهاء الوقت أو الخطأ --- */
     wireSeg('otherTimeSeg', 'otherTeamSeconds', '30', v => {
       toast('وقت الفريق الآخر صار ' + v + ' ثانية', 'fa-right-left');
+    });
+
+    /* --- شكل الساعة (نفس مفتاح زر ⏱ في صفحة السؤال) --- */
+    wireSeg('timerStyleSeg', 'timerStyle', 'ring', v => {
+      const names = { ring: 'حلقة', pie: 'قرص', bar: 'شريط', digital: 'رقمية' };
+      toast('شكل الساعة: ' + names[v], 'fa-clock');
     });
 
     /* --- النقاط المخفية والعشوائية --- */
