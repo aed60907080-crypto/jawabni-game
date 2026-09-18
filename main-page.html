@@ -224,6 +224,15 @@
     100%{ box-shadow:0 0 0 0 rgba(255,107,77,0); }
   }
   #canvas{ background:transparent !important; }
+  #canvas[hidden]{ display:none; }
+  /* الساعة الرقمية (شكل «رقمية» من الإعدادات) */
+  .clock-wrap .digi{
+    min-width:92px; padding:8px 12px; border-radius:999px; text-align:center;
+    background:#03100d; box-shadow:inset 0 0 0 1px rgba(231,183,64,.35);
+    font-family:'Courier New', ui-monospace, monospace; font-size:17px; font-weight:900;
+    letter-spacing:1px; color:var(--gold); text-shadow:0 0 8px rgba(231,183,64,.6); direction:ltr;
+  }
+  .clock-wrap .digi[hidden]{ display:none; }
 
   /* ================= account dropdown ================= */
   .account{ position:relative; }
@@ -694,6 +703,7 @@
 
     <div class="clock-wrap">
       <canvas id="canvas" width="60" height="60">متصفحك لا يدعم canvas.</canvas>
+      <b class="digi" id="digiClock" hidden data-no-i18n></b>
       <span>البث مباشر</span>
     </div>
   </nav>
@@ -858,6 +868,7 @@
 <script src="questions-extra.js"></script>
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
+<script src="homeclock.js"></script>
 <script src="images.js"></script>
 <script src="teams.js"></script>
 <script src="powerups.js"></script>
@@ -880,78 +891,9 @@
     setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 320); }, 2600);
   }
 
-  /* ---------------- clock ---------------- */
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-  let radius = canvas.height / 2;
-  ctx.translate(radius, radius);
-  radius *= 0.90;
-  drawClock();
-  setInterval(drawClock, 1000);
-
-  function drawClock() {
-    ctx.clearRect(-radius * 1.2, -radius * 1.2, radius * 2.4, radius * 2.4);
-    drawFace(ctx, radius);
-    drawNumbers(ctx, radius);
-    drawTime(ctx, radius);
-  }
-
-  function drawFace(ctx, radius) {
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = '#f5f1e6';
-    ctx.fill();
-    ctx.strokeStyle = '#e7b740';
-    ctx.lineWidth = radius * 0.1;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-    ctx.fillStyle = '#04120f';
-    ctx.fill();
-  }
-
-  function drawNumbers(ctx, radius) {
-    ctx.font = "bold " + radius * 0.22 + "px Cairo, arial";
-    ctx.fillStyle = '#04120f';
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    for (let num = 3; num <= 12; num += 3) {
-      let ang = num * Math.PI / 6;
-      ctx.rotate(ang);
-      ctx.translate(0, -radius * 0.78);
-      ctx.rotate(-ang);
-      ctx.fillText(num.toString(), 0, 0);
-      ctx.rotate(ang);
-      ctx.translate(0, radius * 0.78);
-      ctx.rotate(-ang);
-    }
-  }
-
-  function drawTime(ctx, radius) {
-    const now = new Date();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
-    hour %= 12;
-    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
-    drawHand(ctx, hour, radius * 0.5, radius * 0.09, '#04120f');
-    minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
-    drawHand(ctx, minute, radius * 0.75, radius * 0.07, '#04120f');
-    second = second * Math.PI / 30;
-    drawHand(ctx, second, radius * 0.85, radius * 0.03, '#ff6b4d');
-  }
-
-  function drawHand(ctx, pos, length, width, color) {
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = color || '#04120f';
-    ctx.moveTo(0, 0);
-    ctx.rotate(pos);
-    ctx.lineTo(0, -length);
-    ctx.stroke();
-    ctx.rotate(-pos);
-  }
+  /* ---------------- clock ----------------
+     ساعة «البث مباشر» — شكلها من الإعدادات (homeclock.js) */
+  HomeClock.mount(document.getElementById("canvas"), document.getElementById("digiClock"));
 
   /* ---------------- points ---------------- */
   /* اللعب مجاني: لا رصيد ولا شحن. نقاط الحساب تُنفق في متجر المساعدات. */

@@ -183,7 +183,16 @@
     .row:first-of-type{ border-top:0; }
     /* صف بخيارات كثيرة: الخيارات تحت النص بعرض كامل */
     .row.stack{ flex-direction:column; align-items:stretch; }
-    .row.stack .seg{ display:grid; grid-template-columns:repeat(4, 1fr); }
+    .row.stack .seg{ display:grid; grid-template-columns:repeat(auto-fit, minmax(76px, 1fr)); }
+    /* ساعة البث مباشر: معاينة حيّة بجانب الخيارات */
+    .clock-pick{ display:flex; align-items:center; gap:12px; }
+    .clock-pick .seg{ flex:1; }
+    .clock-prev{ flex:none; width:96px; display:grid; place-items:center; }
+    .clock-prev canvas[hidden], .clock-prev .digi[hidden]{ display:none; }
+    .clock-prev .digi{
+      padding:7px 10px; border-radius:999px; background:#03100d; box-shadow:inset 0 0 0 1px rgba(231,183,64,.35);
+      font-family:"Courier New", ui-monospace, monospace; font-size:15px; font-weight:900; color:var(--gold); direction:ltr;
+    }
     .row .txt{ flex:1; min-width:0; }
     .row .txt b{ display:block; font-family:'Cairo',sans-serif; font-weight:700; font-size:14.5px; }
     .row .txt span{ display:block; color:var(--muted); font-size:12.5px; margin-top:3px; line-height:1.6; }
@@ -503,6 +512,26 @@
         </div>
       </div>
 
+      <div class="row stack">
+        <div class="txt">
+          <b>ساعة «البث مباشر»</b>
+          <span>شكل الساعة الحيّة أعلى الصفحة الرئيسية — المعاينة بجانبها.</span>
+        </div>
+        <div class="clock-pick">
+          <div class="clock-prev">
+            <canvas id="homeClockPrev" width="72" height="72"></canvas>
+            <b class="digi" id="homeClockDigi" hidden data-no-i18n></b>
+          </div>
+          <div class="seg" id="homeClockSeg">
+            <button type="button" class="seg-btn" data-val="classic">كلاسيكية</button>
+            <button type="button" class="seg-btn" data-val="arabic">أرقام عربية</button>
+            <button type="button" class="seg-btn" data-val="dark">داكنة</button>
+            <button type="button" class="seg-btn" data-val="minimal">بسيطة</button>
+            <button type="button" class="seg-btn" data-val="digital">رقمية</button>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="txt">
           <b>نقاط مخفية وعشوائية</b>
@@ -745,6 +774,7 @@
 <script src="questions-extra.js"></script>
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
+<script src="homeclock.js"></script>
 <script src="images.js"></script>
 <script src="translate.js"></script>
 
@@ -885,6 +915,17 @@
       const names = { ring: 'حلقة', pie: 'قرص', bar: 'شريط', digital: 'رقمية' };
       toast('شكل الساعة: ' + names[v], 'fa-clock');
     });
+
+    /* --- شكل ساعة «البث مباشر» في الصفحة الرئيسية (homeclock.js) مع معاينة حيّة --- */
+    if (window.HomeClock) {
+      const setPrev = HomeClock.preview(document.getElementById('homeClockPrev'),
+                                        document.getElementById('homeClockDigi'), HomeClock.get());
+      wireSeg('homeClockSeg', 'homeClockStyle', 'classic', v => {
+        setPrev(v);
+        const s = HomeClock.STYLES.find(x => x.id === v);
+        toast('ساعة البث مباشر: ' + (s ? s.label : v), 'fa-clock');
+      });
+    }
 
     /* --- النقاط المخفية والعشوائية --- */
     const hp = document.getElementById('hiddenPointsToggle');

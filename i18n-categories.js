@@ -38,7 +38,7 @@
     /* 23 */ "طعام ومطبخ",
     /* 24 */ "مشاهير عرب",
     /* 25 */ "أمثال وألغاز",
-    /* 26 */ "الصيادون",
+    /* 26 */ "صيد الكويت",
     /* 27 */ "مجمعات الكويت",
     /* 28 */ "مناطق الكويت",
     /* 29 */ "الفضاء والفلك",
@@ -71,7 +71,7 @@
 
   P.en = ["Islamic","Quran & Seerah","History","Arabic Language","Countries & Capitals","Guess the Country","Flags","Maps","World Geography","Science",
           "Animals","Sports","Guess the Player","Cars","Technology","Video Games","Movies & Anime","Pokémon","Ertugrul",
-          "Çukur","Guess the Series","Who's the Reciter","Gulf Songs","Food & Cooking","Arab Celebrities","Proverbs & Riddles","Fishermen","Kuwait Malls","Kuwait Areas",
+          "Çukur","Guess the Series","Who's the Reciter","Gulf Songs","Food & Cooking","Arab Celebrities","Proverbs & Riddles","Kuwait Fishing","Kuwait Malls","Kuwait Areas",
           "Space & Astronomy","Human Body","Chemistry","Physics","Math Puzzles","Inventions & Inventors","Dinosaurs","Birds","Seas & Oceans","Plants & Trees",
           "World Football","World Cup","Olympic Games","Ancient Civilizations","World Landmarks","Aviation & Aircraft","Computing & Programming","Currencies & Economy","International Organizations","Arabic Poetry",
           "Music & Instruments","World Cinema","Prophets & Messengers","Hajj & Umrah"];
