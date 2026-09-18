@@ -1045,6 +1045,9 @@
     <button class="btn btn-ghost" id="pauseBtn" onclick="togglePause()">
       <i class="fa-solid fa-pause"></i> إيقاف المؤقّت
     </button>
+    <button class="btn btn-ghost" id="resetTimeBtn" onclick="resetTimer()">
+      <i class="fa-solid fa-rotate-left"></i> إعادة الوقت
+    </button>
     <button class="btn btn-ghost" id="passBtn" onclick="startOtherTeamTime(false)">
       <i class="fa-solid fa-right-left"></i> <span>للفريق الآخر</span> · <span id="passSecs" data-no-i18n>30</span> <span>ثانية</span>
     </button>
@@ -1766,6 +1769,21 @@
     btn.innerHTML = paused
       ? '<i class="fa-solid fa-play"></i> متابعة المؤقّت'
       : '<i class="fa-solid fa-pause"></i> إيقاف المؤقّت';
+  }
+
+  /* 🔄 إعادة الوقت: يرجع العدّاد إلى بدايته — مدة السؤال كاملة، أو وقت
+     الفريق الآخر كاملاً إن كان السؤال انتقل إليه — ويستأنف إن كان موقوفاً */
+  function resetTimer(){
+    if (revealed) return;
+    SFX.click();
+    left = timerTotal;
+    ring.style.stroke = '';
+    if (paused) {
+      paused = false;
+      document.getElementById("pauseBtn").innerHTML = '<i class="fa-solid fa-pause"></i> إيقاف المؤقّت';
+    }
+    renderTimer();
+    showToast('🔄 أُعيد الوقت: ' + timerTotal + ' ثانية');
   }
 
   /* ⏱️ وقت الفريق الآخر — حين ينتهي الوقت (أو يضغط المقدّم الزر لأن الفريق
