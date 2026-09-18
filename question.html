@@ -396,6 +396,9 @@
        وتعود ألوانه عند كشف الإجابة */
     .vid.bw video, .vid.bw iframe{ filter:grayscale(1) contrast(1.05); transition:filter .6s ease; }
     .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
+    .yt-note{ max-width:640px; margin:10px auto 0; color:var(--muted); font-size:13px; line-height:1.7; text-align:center; }
+    .yt-note i{ color:var(--gold); }
+    .yt-note a{ color:var(--gold-soft); }
 
     /* ---------- تنبيه ملف مفقود ---------- */
     .media-missing{
@@ -1682,6 +1685,9 @@
          يوتيوب يبدأ من ys ويتوقّف عند ye */
       const range = (item.ys != null ? "&start=" + Math.floor(item.ys) : "") +
                     (item.ye != null ? "&end=" + Math.floor(item.ye) : "");
+      /* يوتيوب يرفض التشغيل المضمَّن (الخطأ 153) إن لم تُرسل الصفحة عنوانها
+         (Referer) — فنطلبه صراحة */
+      fr.referrerPolicy = "strict-origin-when-cross-origin";
       fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range;
       fr.allow = "accelerometer; encrypted-media; picture-in-picture";
       fr.allowFullscreen = true;
@@ -1702,6 +1708,18 @@
       }
 
       media.appendChild(box);
+
+      /* اللعبة مفتوحة كملف (file://): المتصفح لا يرسل عنواناً فيرفض يوتيوب
+         التشغيل (الخطأ 153) — ننبّه ونعطي رابط المقطع نفسه على يوتيوب */
+      if (location.protocol === "file:") {
+        const note = document.createElement("p");
+        note.className = "yt-note";
+        note.innerHTML = '<i class="fa-solid fa-circle-info"></i> مقاطع يوتيوب لا تعمل حين تُفتح اللعبة كملف من الجهاز. ' +
+          'افتحها من رابط اللعبة على الإنترنت، أو <a target="_blank" rel="noopener">شاهد المقطع على يوتيوب</a>.';
+        note.querySelector("a").href = "https://www.youtube.com/watch?v=" + ytId(item.yt) +
+          (item.ys ? "&t=" + Math.floor(item.ys) + "s" : "");
+        media.appendChild(note);
+      }
     }
   }
 
