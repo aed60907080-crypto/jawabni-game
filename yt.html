@@ -26,12 +26,16 @@
     var id = (p.get("v") || "").replace(/[^A-Za-z0-9_-]/g, "");
     if (!id) return;
     var s = parseInt(p.get("s"), 10), e = parseInt(p.get("e"), 10);
+    var url = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1" +
+              (s >= 0 ? "&start=" + s : "") + (e > 0 ? "&end=" + e : "");
+    /* go=1: ننتقل إلى المشغّل نفسه (نافذة «شغّل المقطع» من لعبة مفتوحة كملف) —
+       الانتقال من هذه الصفحة يُرسل عنوان الموقع فيقبله يوتيوب */
+    if (p.get("go") === "1") { location.replace(url + "&autoplay=1"); return; }
     var f = document.createElement("iframe");
     f.allow = "accelerometer; encrypted-media; picture-in-picture";
     f.allowFullscreen = true;
     f.referrerPolicy = "strict-origin-when-cross-origin";
-    f.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1" +
-            (s >= 0 ? "&start=" + s : "") + (e > 0 ? "&end=" + e : "");
+    f.src = url;
     document.body.appendChild(f);
   })();
 </script>

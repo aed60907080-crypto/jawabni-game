@@ -397,6 +397,16 @@
     .vid.bw video, .vid.bw iframe{ filter:grayscale(1) contrast(1.05); transition:filter .6s ease; }
     .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
     .yt-note{ max-width:640px; margin:10px auto 0; color:var(--muted); font-size:13px; line-height:1.7; text-align:center; }
+    .yt-open-row{ display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:12px; }
+    .yt-open-row .yt-note{ margin:0; font-size:12px; }
+    .yt-open{
+      display:inline-flex; align-items:center; gap:9px; padding:11px 24px; border-radius:999px;
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold)); color:#04120f;
+      font-family:'Cairo',sans-serif; font-weight:900; font-size:15px; text-decoration:none;
+      box-shadow:0 10px 26px rgba(231,183,64,.35); transition:transform .2s ease;
+    }
+    .yt-open:hover{ transform:translateY(-2px); }
+    .yt-open small{ font-weight:700; opacity:.75; }
     .yt-note i{ color:var(--gold); }
     .yt-note a{ color:var(--gold-soft); }
 
@@ -1718,16 +1728,34 @@
 
       media.appendChild(box);
 
-      /* احتياط: إن لم يعمل المقطع في هذا المتصفح (حظر، اتصال…) يفتحه الرابط
-         على يوتيوب من ثانية بدايته */
+      /* زر «شغّل المقطع»: يفتح المقطع نفسه (من ys إلى ye) في نافذة جديدة —
+         للمتصفحات التي تمنع المشغّل المضمَّن (مثل المتصفح داخل تطبيق Claude:
+         يظهر المربع أسود). الصفحة تُفتح من رابط في اللعبة فيصل يوتيوب عنوانها
+         ويعمل المشغّل؛ أما اللعبة المفتوحة كملف فلا عنوان لها، فنفتح
+         المقطع عبر yt.html على موقع اللعبة، فينتقل إلى المشغّل بعنوان الموقع. */
       {
-        const note = document.createElement("p");
-        note.className = "yt-note";
-        note.innerHTML = '<i class="fa-solid fa-circle-info"></i> لا يعمل المقطع؟ ' +
-          '<a target="_blank" rel="noopener">افتحه على يوتيوب</a>';
-        note.querySelector("a").href = "https://www.youtube.com/watch?v=" + ytId(item.yt) +
-          (item.ys ? "&t=" + Math.floor(item.ys) + "s" : "");
-        media.appendChild(note);
+        const id = encodeURIComponent(ytId(item.yt));
+        const btn = document.createElement("a");
+        btn.className = "yt-open";
+        btn.target = "_blank";
+        btn.rel = "noopener";                      /* بلا noreferrer: يوتيوب يحتاج العنوان */
+        btn.referrerPolicy = "strict-origin-when-cross-origin";
+        btn.href = location.protocol === "file:"
+          ? "https://aed60907080-crypto.github.io/jawabni-game/yt.html?go=1&v=" + id +
+            (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
+            (item.ye != null ? "&e=" + Math.floor(item.ye) : "")
+          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1" + range;
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> شغّل المقطع' +
+          (item.ye != null && item.ys != null ? ' <small>(' + Math.round(item.ye - item.ys) + ' ثانية)</small>' : '');
+        btn.addEventListener("click", () => { if (window.SFX) SFX.click(); });
+        const row = document.createElement("div");
+        row.className = "yt-open-row";
+        row.appendChild(btn);
+        const hint = document.createElement("small");
+        hint.className = "yt-note";
+        hint.textContent = "إن ظهر المربع أسود، شغّل المقطع من الزر";
+        row.appendChild(hint);
+        media.appendChild(row);
       }
     }
   }
