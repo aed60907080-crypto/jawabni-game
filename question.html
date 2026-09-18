@@ -392,6 +392,10 @@
       display:block; width:100%; aspect-ratio:16/9;
       border:none; background:#000;
     }
+    /* bw: المقطع بالأبيض والأسود (ألوان القميص تكشف اللاعب)،
+       وتعود ألوانه عند كشف الإجابة */
+    .vid.bw video, .vid.bw iframe{ filter:grayscale(1) contrast(1.05); transition:filter .6s ease; }
+    .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
 
     /* ---------- تنبيه ملف مفقود ---------- */
     .media-missing{
@@ -1657,7 +1661,7 @@
     /* فيديو محلي أو رابط مباشر */
     if (item.video) {
       const box = document.createElement('div');
-      box.className = 'vid';
+      box.className = 'vid' + (item.bw ? ' bw' : '');
       const v = document.createElement('video');
       v.src = item.video;
       v.controls = true;
@@ -1672,7 +1676,7 @@
     /* فيديو يوتيوب */
     if (item.yt) {
       const box = document.createElement('div');
-      box.className = 'vid';
+      box.className = 'vid' + (item.bw ? ' bw' : '');
       const fr = document.createElement('iframe');
       fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1";
       fr.allow = "accelerometer; encrypted-media; picture-in-picture";
@@ -2342,6 +2346,8 @@
     SFX.reveal();
     try { if (questionAudio) questionAudio.pause(); } catch(e){}
     try { if (questionVideo) questionVideo.pause(); } catch(e){}
+    /* المقطع بالأبيض والأسود يعود ملوّناً مع الإجابة */
+    document.querySelectorAll('.vid.bw').forEach(v => v.classList.add('shown'));
 
     if (item) {
       const aEl = document.getElementById("answerText");
