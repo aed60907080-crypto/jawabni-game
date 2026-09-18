@@ -1689,6 +1689,15 @@
          (Referer) — فنطلبه صراحة */
       fr.referrerPolicy = "strict-origin-when-cross-origin";
       fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range;
+      /* اللعبة مفتوحة كملف من الجهاز (file://): لا عنوان يُرسل فيرفض يوتيوب
+         التشغيل (الخطأ 153) — فنمرّ عبر وسيط على موقع اللعبة (yt.html) يضمّن
+         يوتيوب بعنوان الموقع فيعمل المقطع */
+      if (location.protocol === "file:") {
+        fr.src = "https://aed60907080-crypto.github.io/jawabni-game/yt.html?v=" +
+                 encodeURIComponent(ytId(item.yt)) +
+                 (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
+                 (item.ye != null ? "&e=" + Math.floor(item.ye) : "");
+      }
       fr.allow = "accelerometer; encrypted-media; picture-in-picture";
       fr.allowFullscreen = true;
       fr.title = "مقطع السؤال";
@@ -1709,13 +1718,13 @@
 
       media.appendChild(box);
 
-      /* اللعبة مفتوحة كملف (file://): المتصفح لا يرسل عنواناً فيرفض يوتيوب
-         التشغيل (الخطأ 153) — ننبّه ونعطي رابط المقطع نفسه على يوتيوب */
-      if (location.protocol === "file:") {
+      /* احتياط: إن لم يعمل المقطع في هذا المتصفح (حظر، اتصال…) يفتحه الرابط
+         على يوتيوب من ثانية بدايته */
+      {
         const note = document.createElement("p");
         note.className = "yt-note";
-        note.innerHTML = '<i class="fa-solid fa-circle-info"></i> مقاطع يوتيوب لا تعمل حين تُفتح اللعبة كملف من الجهاز. ' +
-          'افتحها من رابط اللعبة على الإنترنت، أو <a target="_blank" rel="noopener">شاهد المقطع على يوتيوب</a>.';
+        note.innerHTML = '<i class="fa-solid fa-circle-info"></i> لا يعمل المقطع؟ ' +
+          '<a target="_blank" rel="noopener">افتحه على يوتيوب</a>';
         note.querySelector("a").href = "https://www.youtube.com/watch?v=" + ytId(item.yt) +
           (item.ys ? "&t=" + Math.floor(item.ys) + "s" : "");
         media.appendChild(note);
