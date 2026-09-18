@@ -383,6 +383,47 @@
       box-shadow:0 6px 18px rgba(231,183,64,.55);
     }
 
+    /* «!» أعلى البطاقة — معلومات الفئة */
+    .info-btn{
+      position:absolute; top:12px; right:12px; z-index:3;
+      width:30px; height:30px; border-radius:50%; padding:0;
+      display:grid; place-items:center; cursor:pointer;
+      background:rgba(4,18,15,.62); border:1.5px solid rgba(247,221,156,.7);
+      color:var(--gold-soft); font-family:'Cairo',sans-serif; font-weight:900; font-size:17px; line-height:1;
+      backdrop-filter:blur(6px);
+      transition:transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .info-btn:hover, .info-btn:focus-visible{ transform:scale(1.12); background:var(--gold); color:var(--ink-deep); outline:none; }
+
+    #catInfo{
+      position:fixed; inset:0; z-index:9999; padding:18px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(3,14,12,.78); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      animation:ciIn .25s ease;
+    }
+    @keyframes ciIn{ from{ opacity:0; } to{ opacity:1; } }
+    #catInfo .ci-card{
+      position:relative; width:min(400px, 100%); text-align:center;
+      padding:24px 22px 20px; border-radius:22px;
+      background:linear-gradient(160deg, #0f3a33, #0a2a25);
+      border:1px solid rgba(231,183,64,.45); box-shadow:0 30px 80px rgba(0,0,0,.5);
+    }
+    #catInfo .ci-close{
+      position:absolute; top:12px; left:12px; width:32px; height:32px; border-radius:50%;
+      border:1px solid rgba(231,183,64,.3); background:rgba(0,0,0,.25); color:var(--muted); cursor:pointer;
+    }
+    #catInfo .ci-close:hover{ color:var(--coral); }
+    #catInfo .ci-emoji{ font-size:40px; line-height:1; }
+    #catInfo .ci-name{ margin:8px 0 6px; font-family:'Cairo',sans-serif; font-weight:900; font-size:21px; color:var(--gold-soft); }
+    #catInfo .ci-text{ margin:0 0 14px; color:var(--ivory); font-size:15px; line-height:1.8; }
+    #catInfo .ci-facts{ display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+    #catInfo .ci-facts span{
+      padding:5px 11px; border-radius:999px; font-size:12.5px; font-weight:700; color:var(--gold-soft);
+      background:rgba(231,183,64,.1); border:1px solid rgba(231,183,64,.22);
+    }
+    #catInfo .ci-facts i{ color:var(--gold); margin-inline-end:3px; }
+    @media (prefers-reduced-motion: reduce){ #catInfo{ animation:none; } }
+
     .card input:checked + .card-content {
       border-color:var(--gold);
       box-shadow:inset 0 0 0 2px rgba(231,183,64,.5), 0 0 34px rgba(231,183,64,.35);
@@ -1015,8 +1056,16 @@
       body.className = 'card-content';
       body.innerHTML =
         '<span class="pick-badge"><i class="fa-solid fa-check"></i></span>' +
+        '<button type="button" class="info-btn" title="معلومات عن الفئة" aria-label="معلومات عن الفئة">!</button>' +
         '<img alt="" />' +
         '<div class="content"><h4></h4><span class="question-count"></span></div>';
+
+      /* «!» يفتح معلومات الفئة — دون أن يختار البطاقة (البطاقة label) */
+      body.querySelector('.info-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showCatInfo(cat.name);
+      });
 
       const img = body.querySelector('img');
       img.src = CategoryLib.image(cat);
@@ -1031,6 +1080,52 @@
 
       label.append(cb, body);
       return label;
+    }
+
+    /* نافذة معلومات الفئة: الوصف، والمجموعة، وعدد الأسئلة، وأنواعها */
+    function showCatInfo(name) {
+      const info = CategoryLib.info(name);
+      document.getElementById('catInfo')?.remove();
+      const ov = document.createElement('div');
+      ov.id = 'catInfo';
+      ov.setAttribute('role', 'dialog');
+      ov.setAttribute('aria-modal', 'true');
+      ov.innerHTML =
+        '<div class="ci-card">' +
+          '<button type="button" class="ci-close" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>' +
+          '<div class="ci-emoji"></div><h3 class="ci-name"></h3>' +
+          '<p class="ci-text"></p>' +
+          '<div class="ci-facts"></div>' +
+        '</div>';
+      ov.querySelector('.ci-emoji').textContent = info.emoji;
+      ov.querySelector('.ci-name').textContent = info.name;
+      ov.querySelector('.ci-text').textContent = info.text || 'أسئلة متنوّعة في «' + info.name + '».';
+
+      const facts = [];
+      if (info.group) facts.push(['fa-layer-group', info.group]);
+      facts.push(['fa-circle-question', info.count ? info.count + ' سؤالاً' : 'قريباً']);
+      if (info.levels) facts.push(['fa-signal', info.levels + ' مستويات صعوبة (100–500)']);
+      const m = info.media;
+      if (m.img)   facts.push(['fa-image', m.img + ' بالصور']);
+      if (m.audio) facts.push(['fa-headphones', m.audio + ' بمقطع صوتي']);
+      if (m.video) facts.push(['fa-film', m.video + ' بمقطع فيديو']);
+      if (m.map)   facts.push(['fa-map-location-dot', m.map + ' على الخريطة']);
+      const box = ov.querySelector('.ci-facts');
+      facts.forEach(([icon, text]) => {
+        const s = document.createElement('span');
+        s.innerHTML = '<i class="fa-solid ' + icon + '"></i> ';
+        s.appendChild(document.createTextNode(text));
+        box.appendChild(s);
+      });
+
+      const close = () => { ov.remove(); document.removeEventListener('keydown', esc); };
+      const esc = (e) => { if (e.key === 'Escape') close(); };
+      ov.addEventListener('click', (e) => { if (e.target === ov) close(); });
+      ov.querySelector('.ci-close').onclick = close;
+      document.addEventListener('keydown', esc);
+      document.body.appendChild(ov);
+      if (window.I18N) I18N.apply(ov);
+      if (window.SFX) SFX.click();
     }
 
     /* هل تطابق الفئة نصّ البحث؟ نبحث في الاسم العربي وفي ترجمته للّغة الحالية */
