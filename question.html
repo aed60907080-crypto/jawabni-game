@@ -1678,7 +1678,11 @@
       const box = document.createElement('div');
       box.className = 'vid' + (item.bw ? ' bw' : '');
       const fr = document.createElement('iframe');
-      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1";
+      /* ys/ye: مقطع محدّد من الفيديو بالثواني (مثلاً 30 ثانية حول الهدف) —
+         يوتيوب يبدأ من ys ويتوقّف عند ye */
+      const range = (item.ys != null ? "&start=" + Math.floor(item.ys) : "") +
+                    (item.ye != null ? "&end=" + Math.floor(item.ye) : "");
+      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range;
       fr.allow = "accelerometer; encrypted-media; picture-in-picture";
       fr.allowFullscreen = true;
       fr.title = "مقطع السؤال";
