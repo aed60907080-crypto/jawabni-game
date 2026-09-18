@@ -825,10 +825,13 @@
   function checkIfGameEnded() {
     let totalQuestions = selected.length * points.length;
     if (selected.length > 0 && answeredQuestions.length >= totalQuestions) {
-      /* 🤝 تعادل في الصدارة نهاية الجولة — سؤال فاصل للمتعادلين من فئة أخرى */
+      /* 🤝 تعادل في الصدارة نهاية الجولة — سؤال فاصل للمتعادلين من فئة أخرى.
+         العجلة تظهر مرة واحدة فقط في الجولة: إن بقي التعادل بعد السؤال
+         الفاصل تُعلن النتيجة تعادلاً (tieWheelUsed يُصفَّر مع جولة جديدة). */
       const tied = Teams.tiedLeaders();
-      if (tied.length && window.BonusWheel &&
+      if (tied.length && window.BonusWheel && localStorage.getItem('tieWheelUsed') !== '1' &&
           BonusWheel.open({ reason: 'tie', tied: tied, exclude: selected.map(c => c.title) })) {
+        localStorage.setItem('tieWheelUsed', '1');
         return;
       }
       window.location.href = 'result.html';

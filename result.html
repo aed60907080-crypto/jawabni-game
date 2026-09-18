@@ -265,6 +265,27 @@
 
     .margin-note{ color:var(--muted); font-size:13.5px; margin:0 0 4px; }
 
+    /* ---------- نقاط اللاعبين ---------- */
+    .players-box{
+      margin:18px 0 0; padding:14px 16px; text-align:start;
+      border:1px solid var(--line); border-radius:18px; background:rgba(0,0,0,.22);
+      animation:riseIn .6s ease .6s backwards;
+    }
+    .players-box > b{
+      display:flex; align-items:center; gap:8px; margin-bottom:8px;
+      font-family:'Cairo', sans-serif; font-size:14.5px; color:var(--gold-soft);
+    }
+    .players-box > b i{ color:var(--gold); }
+    .players-box > small{ display:block; margin-top:8px; color:var(--muted); font-size:12px; }
+    .p-row{
+      display:flex; align-items:center; gap:10px; padding:6px 2px;
+      border-top:1px solid rgba(231,183,64,.08);
+    }
+    .p-row:first-child{ border-top:0; }
+    .p-row .nm{ flex:1; font-family:'Cairo', sans-serif; font-weight:800; font-size:14.5px; color:var(--ivory); }
+    .p-row .gain{ font-family:'Cairo', sans-serif; font-weight:900; color:#8fe0b3; direction:ltr; }
+    .p-row .tot{ font-size:12.5px; color:var(--muted); direction:ltr; }
+
     /* ---------- buttons ---------- */
     .btn-row{
       display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
@@ -336,6 +357,13 @@
 
   <p id="winnerMessage" class="winner"></p>
   <p class="margin-note" id="marginNote"></p>
+
+  <!-- نقاط اللاعبين في هذه الجولة، وقد أُضيفت إلى مجموع كل لاعب -->
+  <div class="players-box" id="playersBox" hidden>
+    <b><i class="fa-solid fa-user-check"></i> نقاط اللاعبين في هذه الجولة</b>
+    <div id="playerRows"></div>
+    <small>أُضيفت إلى مجموع كل لاعب — المجاميع في الإعدادات.</small>
+  </div>
 
   <div class="btn-row">
     <button class="btn-new" onclick="startNewGame()">
@@ -455,6 +483,25 @@
       : "أداء متكافئ من الفريقين";
     playDraw();
   }
+
+  /* ---------------- نقاط اللاعبين ----------------
+     انتهى اللعب: تُجمع نقاط الجولة إلى مجموع كل لاعب (مرة واحدة — لا تتكرر
+     إن حُدِّثت الصفحة)، ونعرض من كسب نقاطاً في هذه الجولة. */
+  (function () {
+    const gained = Teams.commitPlayerPoints();
+    if (!gained.length) return;
+    const box = document.getElementById("playerRows");
+    gained.forEach(p => {
+      const r = document.createElement("div");
+      r.className = "p-row";
+      r.innerHTML = '<span class="nm" data-no-i18n></span><span class="gain"></span><span class="tot"></span>';
+      r.querySelector(".nm").textContent = p.name;
+      r.querySelector(".gain").textContent = "+" + p.gained;
+      r.querySelector(".tot").textContent = "= " + p.total;
+      box.appendChild(r);
+    });
+    document.getElementById("playersBox").hidden = false;
+  })();
 
   /* ---------------- الصوت ---------------- */
   /* المتصفحات تمنع الصوت قبل أول تفاعل، فنشغّل الفانفير عند أول نقرة إن لزم */

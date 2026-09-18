@@ -11,8 +11,11 @@
      team1 … team6   أسماء الفرق
      teamMembers     { team1: ["أحمد", "سارة"], … }  أسماء اللاعبين في كل فريق
      savedTeams      [{ name, members }]  الفرق الثابتة — تبقى دائماً لإعادة استعمالها
-     players         [{ name, points, absent }]  اللاعبون ونقاطهم — ٣ نقاط لكل إجابة صحيحة (الإعدادات)؛
+     players         [{ name, points, total, absent }]  اللاعبون ونقاطهم — ٣ نقاط لكل إجابة صحيحة؛
+                     points = نقاط الجولة الجارية (تُصفَّر عند بدء اللعب)
+                     total  = المجموع التراكمي (يُجمع إليه points عند انتهاء اللعب)
                      absent = غير حاضر، فلا يدخل في تقسيم اللاعبين على الفرق
+     playersCommitted "1" إن جُمعت نقاط الجولة الجارية إلى المجموع (حتى لا تُجمع مرتين)
      teamScores      { team1: 0, team2: 0, … }
    ============================================================ */
 
@@ -136,15 +139,26 @@
   }
 
   /* ---------- قائمة اللاعبين ونقاطهم (تُدار من الإعدادات) ----------
-     players: [{ name: "أحمد", points: 12 }, …] — تبقى دائماً.
-     كل إجابة صحيحة = PLAYER_POINTS نقاط للاعب الذي أجاب. */
+     players: [{ name: "أحمد", points: 5, total: 42 }, …] — تبقى دائماً.
+     كل إجابة صحيحة = PLAYER_POINTS نقاط للاعب الذي أجاب.
+     points نقاط الجولة الجارية: تُصفَّر عند بدء اللعب (startRound) وتُجمع
+     إلى total عند انتهاء اللعب (commitPlayerPoints في صفحة النتيجة). */
   var PLAYER_POINTS = 3;
 
   /* absent: لاعب غير حاضر اليوم — لا يدخل في تقسيم الفرق */
   function players() {
     var v = readJSON("players", []);
     return Array.isArray(v) ? v.filter(function (p) { return p && p.name; })
-      .map(function (p) { return { name: String(p.name), points: Number(p.points) || 0, absent: !!p.absent }; }) : [];
+      .map(function (p) {
+        /* بيانات قديمة بلا total: كانت points مجموعاً تراكمياً — تنتقل إلى total */
+        var legacy = p.total == null;
+        return {
+          name: String(p.name),
+          points: legacy ? 0 : (Number(p.points) || 0),
+          total: legacy ? (Number(p.points) || 0) : (Number(p.total) || 0),
+          absent: !!p.absent
+        };
+      }) : [];
   }
 
   function setPresent(name, present) {
@@ -166,7 +180,7 @@
       var j = Math.floor(Math.random() * (i + 1));
       var t = list[i]; list[i] = list[j]; list[j] = t;
     }
-    if (mode === "balanced") list.sort(function (a, b) { return b.points - a.points; });
+    if (mode === "balanced") list.sort(function (a, b) { return (b.total + b.points) - (a.total + a.points); });
     var groups = [];
     for (var g = 0; g < n; g++) groups.push([]);
     list.forEach(function (p, k) {
@@ -188,7 +202,7 @@
     var added = 0;
     (names || []).forEach(function (n) {
       n = String(n).trim().slice(0, 30);
-      if (n && !have[n]) { list.push({ name: n, points: 0 }); have[n] = 1; added++; }
+      if (n && !have[n]) { list.push({ name: n, points: 0, total: 0 }); have[n] = 1; added++; }
     });
     if (added) savePlayers(list);
     return added;
@@ -209,7 +223,7 @@
   function addPlayerPoints(name, n) {
     var list = players(), p = null;
     list.forEach(function (x) { if (x.name === name) p = x; });
-    if (!p) { p = { name: name, points: 0 }; list.push(p); }
+    if (!p) { p = { name: name, points: 0, total: 0 }; list.push(p); }
     p.points += (n == null ? PLAYER_POINTS : n);
     savePlayers(list);
     return p.points;
@@ -220,13 +234,77 @@
     return p ? p.points : 0;
   }
 
-  function resetPlayerPoints() {
-    savePlayers(players().map(function (p) { p.points = 0; return p; }));
+  /* المجموع التراكمي للاعب (بلا نقاط الجولة الجارية) */
+  function playerTotal(name) {
+    var p = players().filter(function (x) { return x.name === name; })[0];
+    return p ? p.total : 0;
   }
 
-  /* اللاعبون مرتّبون من الأعلى نقاطاً */
+  /* تغيير اسم لاعب: في القائمة، وفي الفرق، وفي الفرق الثابتة */
+  function renamePlayer(oldName, newName) {
+    newName = String(newName || "").trim().slice(0, 30);
+    if (!newName || newName === oldName) return false;
+    var list = players();
+    if (list.some(function (p) { return p.name === newName; })) return false;   /* الاسم مستعمل */
+    savePlayers(list.map(function (p) {
+      if (p.name === oldName) p.name = newName;
+      return p;
+    }));
+
+    var all = readJSON("teamMembers", {}), changed = false;
+    Object.keys(all).forEach(function (t) {
+      if (!Array.isArray(all[t])) return;
+      all[t] = all[t].map(function (m) {
+        if (m === oldName) { changed = true; return newName; }
+        return m;
+      });
+    });
+    if (changed) set("teamMembers", JSON.stringify(all));
+
+    var fixed = saved(), touched = false;
+    fixed.forEach(function (t) {
+      t.members = (t.members || []).map(function (m) {
+        if (m === oldName) { touched = true; return newName; }
+        return m;
+      });
+    });
+    if (touched) set("savedTeams", JSON.stringify(fixed));
+    return true;
+  }
+
+  /* بدء اللعب: تصفير نقاط الجولة وحدها — المجموع التراكمي يبقى */
+  function zeroPlayerPoints() {
+    savePlayers(players().map(function (p) { p.points = 0; return p; }));
+    set("playersCommitted", "");
+  }
+
+  /* انتهاء اللعب: تُجمع نقاط الجولة إلى مجموع كل لاعب — مرة واحدة فقط
+     (صفحة النتيجة قد تُفتح أو تُحدَّث أكثر من مرة).
+     تعيد [{ name, gained, total }] لمن كسب في هذه الجولة. */
+  function commitPlayerPoints() {
+    if (get("playersCommitted") === "1") return readJSON("lastRoundGains", []);
+    var list = players();
+    var gained = list.filter(function (p) { return p.points > 0; })
+      .map(function (p) { return { name: p.name, gained: p.points, total: p.total + p.points }; })
+      .sort(function (a, b) { return (b.gained - a.gained) || a.name.localeCompare(b.name, "ar"); });
+    /* نقاط الجولة انتقلت إلى المجموع فتُصفَّر، وتُحفظ للعرض إن حُدِّثت الصفحة */
+    savePlayers(list.map(function (p) { p.total += p.points; p.points = 0; return p; }));
+    set("lastRoundGains", JSON.stringify(gained));
+    set("playersCommitted", "1");
+    return gained;
+  }
+
+  /* تصفير كامل: نقاط الجولة والمجموع التراكمي (زرّ الإعدادات) */
+  function resetPlayerPoints() {
+    savePlayers(players().map(function (p) { p.points = 0; p.total = 0; return p; }));
+    set("playersCommitted", "");
+  }
+
+  /* اللاعبون مرتّبون من الأعلى نقاطاً (المجموع ثم نقاط الجولة) */
   function playerRanking() {
-    return players().sort(function (a, b) { return (b.points - a.points) || a.name.localeCompare(b.name, "ar"); });
+    return players().sort(function (a, b) {
+      return ((b.total + b.points) - (a.total + a.points)) || a.name.localeCompare(b.name, "ar");
+    });
   }
 
   /* ---------- الفرق الثابتة (محفوظة دائماً لإعادة استعمالها) ----------
@@ -256,12 +334,16 @@
   function baseCategories() { return parseInt(get("maxCategories"), 10) === 8 ? 8 : 6; }
   function maxCategories(n) { return baseCategories() * ((n || setting()) / 2); }
 
-  /* بداية جولة: تثبيت عدد الفرق وتصفير النقاط والدور */
+  /* بداية جولة: تثبيت عدد الفرق وتصفير النقاط والدور،
+     وتصفير نقاط اللاعبين لهذه الجولة (مجاميعهم تبقى)،
+     وإتاحة عجلة التعادل مرة واحدة في الجولة الجديدة */
   function startRound() {
     var n = setting();
     set("gameTeamCount", String(n));
     saveScores(zeroScores(n));
     set("currentTurn", "team1");
+    zeroPlayerPoints();
+    set("tieWheelUsed", "");
     return n;
   }
 
@@ -298,6 +380,10 @@
     removePlayer: removePlayer,
     addPlayerPoints: addPlayerPoints,
     playerPoints: playerPoints,
+    playerTotal: playerTotal,
+    renamePlayer: renamePlayer,
+    zeroPlayerPoints: zeroPlayerPoints,
+    commitPlayerPoints: commitPlayerPoints,
     resetPlayerPoints: resetPlayerPoints,
     playerRanking: playerRanking,
     setPresent: setPresent,

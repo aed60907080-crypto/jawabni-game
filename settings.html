@@ -275,8 +275,15 @@
     .player-row .nm{ flex:1; font-family:'Cairo',sans-serif; font-weight:800; color:var(--ivory); }
     .player-row .pts{ font-family:'Cairo',sans-serif; font-weight:900; color:var(--gold); }
     .player-row .pts small{ color:var(--muted); font-weight:700; font-size:12px; margin-inline-start:3px; }
+    /* نقاط الجولة الجارية — تُضاف للمجموع عند انتهاء اللعب */
+    .player-row .pts .now{
+      margin-inline-start:6px; padding:1px 7px; border-radius:999px; direction:ltr; display:inline-block;
+      background:rgba(63,196,122,.16); color:#8fe0b3; font-size:12px; font-weight:900;
+    }
     .player-row .del{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:15px; }
     .player-row .del:hover{ color:var(--coral); }
+    .player-row .ren{ border:0; background:none; color:var(--muted); cursor:pointer; font-size:13px; padding:2px 4px; }
+    .player-row .ren:hover{ color:var(--gold); }
     .player-empty{ color:var(--muted); font-size:13px; text-align:center; padding:10px; }
     .player-row .here{ width:18px; height:18px; accent-color:var(--gold); cursor:pointer; flex:none; }
     .player-row.absent .nm, .player-row.absent .pts{ opacity:.4; text-decoration:line-through; }
@@ -500,7 +507,9 @@
     <div class="card">
       <h2><i class="fa-solid fa-users"></i> اللاعبون ونقاطهم</h2>
       <p class="sub">أسماء اللاعبين ونقاط كل لاعب: <b>٣ نقاط</b> عن كل سؤال يجيبه صحيحاً (يُختار اسمه بعد الضغط على
-         فريقه في صفحة السؤال). من يُضاف إلى فريق في «اختر فئاتك» يظهر هنا تلقائياً.</p>
+         فريقه في صفحة السؤال). من يُضاف إلى فريق في «اختر فئاتك» يظهر هنا تلقائياً.
+         <b>نقاط الجولة تُصفَّر عند بدء اللعب</b>، وعند انتهاء اللعب تُضاف إلى مجموع اللاعب
+         (الرقم الأخضر <b>+</b> هو نقاط الجولة الجارية). ✏️ لتغيير اسم اللاعب.</p>
 
       <div class="player-add">
         <input type="text" id="playerInput" placeholder="اسم لاعب — أو أكثر مفصولة بفاصلة: أحمد، سارة" autocomplete="off">
@@ -521,7 +530,7 @@
       </div>
 
       <div class="btn-row">
-        <button class="btn ghost" type="button" id="playerResetBtn"><i class="fa-solid fa-rotate-left"></i> تصفير النقاط</button>
+        <button class="btn ghost" type="button" id="playerResetBtn"><i class="fa-solid fa-rotate-left"></i> تصفير كل النقاط (الجولة والمجموع)</button>
       </div>
     </div>
 
@@ -888,13 +897,27 @@
         r.className = 'player-row' + (i === 0 && p.points > 0 ? ' top' : '') + (p.absent ? ' absent' : '');
         r.innerHTML = '<input type="checkbox" class="here" title="حاضر — يدخل في تقسيم الفرق">' +
                       '<span class="rk"></span><span class="nm" data-no-i18n></span>' +
+                      '<button type="button" class="ren" title="تغيير اسم اللاعب"><i class="fa-solid fa-pen"></i></button>' +
                       '<span class="pts"></span><button type="button" class="del" title="حذف اللاعب من القائمة ومن فريقه">✕</button>';
         const here = r.querySelector('.here');
         here.checked = !p.absent;
         here.onchange = () => { Teams.setPresent(p.name, here.checked); render(); };
         r.querySelector('.rk').textContent = i + 1;
         r.querySelector('.nm').textContent = p.name;
-        r.querySelector('.pts').innerHTML = p.points + '<small>نقطة</small>';
+        /* المجموع التراكمي، ونقاط الجولة الجارية إن وُجدت */
+        r.querySelector('.pts').innerHTML = p.total + '<small>نقطة</small>' +
+          (p.points ? '<b class="now" title="نقاط الجولة الجارية — تُضاف عند انتهاء اللعب">+' + p.points + '</b>' : '');
+        r.querySelector('.ren').onclick = () => {
+          const nn = prompt('الاسم الجديد لـ «' + p.name + '»:', p.name);
+          if (nn === null) return;
+          if (!Teams.renamePlayer(p.name, nn)) {
+            toast('الاسم فارغ أو مستعمل', 'fa-circle-exclamation');
+            return;
+          }
+          render();
+          toast('صار اسمه ' + nn.trim(), 'fa-pen');
+          click();
+        };
         r.querySelector('.del').onclick = () => {
           if (!confirm('حذف اللاعب «' + p.name + '» ونقاطه؟')) return;
           Teams.removePlayer(p.name);
@@ -927,7 +950,7 @@
         el.style.setProperty('--tc', Teams.color(t).soft);
         el.innerHTML = '<h5 data-no-i18n></h5><div data-no-i18n></div>';
         el.querySelector('h5').textContent = Teams.name(t);
-        const pts = groups[g].reduce((s, m) => s + Teams.playerPoints(m), 0);
+        const pts = groups[g].reduce((s, m) => s + (Teams.playerTotal(m) + Teams.playerPoints(m)), 0);
         el.querySelector('div').textContent = groups[g].length ? groups[g].join('، ') : '—';
         const sm = document.createElement('small');
         sm.textContent = ' (' + pts + ' نقطة)';
@@ -967,7 +990,7 @@
 
     document.getElementById('playerResetBtn').onclick = () => {
       if (!Teams.players().length) return;
-      if (!confirm('تصفير نقاط كل اللاعبين؟')) return;
+      if (!confirm('تصفير نقاط كل اللاعبين — الجولة والمجموع التراكمي؟')) return;
       Teams.resetPlayerPoints();
       render();
       toast('صُفّرت نقاط اللاعبين', 'fa-rotate-left');
