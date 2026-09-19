@@ -445,6 +445,7 @@
      في المازورة، ودالة play تجدول نغمات الخطوة. */
   var music = (function () {
     var timer = null;
+    var clipTimer = null;   /* مؤقّت أغنية مقطع الهدف (clip) */
     var step = 0;
     var nextTime = 0;
     var bus = null;                   /* مسار المقطوعة الحالية (يُخفَت عند التبديل) */
@@ -710,6 +711,29 @@
       },
       toggle: function () { state.music ? music.stop() : music.start(); },
       get on() { return state.music; },
+
+      /* أغنية مقطع الهدف: تُشغَّل مع الفيديو الصامت (بلا تعليق) مدة sec ثانية
+         ثم تخفت — لا تغيّر إعداد الموسيقى المحفوظ (musicOn) */
+      clip: function (sec, id) {
+        if (!ensure()) return;
+        clearTimeout(clipTimer);
+        musicGain.gain.cancelScheduledValues(now());
+        musicGain.gain.setValueAtTime(Math.max(0.0001, musicGain.gain.value), now());
+        musicGain.gain.exponentialRampToValueAtTime(0.3, now() + 0.4);
+        begin(byId(id || "gameshow") || TRACKS[0]);
+        clipTimer = setTimeout(function () { music.endClip(); }, Math.max(1, sec || 20) * 1000);
+      },
+      endClip: function () {
+        clearTimeout(clipTimer);
+        if (!ctx || !musicGain) return;
+        musicGain.gain.cancelScheduledValues(now());
+        musicGain.gain.setValueAtTime(Math.max(0.0001, musicGain.gain.value), now());
+        musicGain.gain.exponentialRampToValueAtTime(0.0001, now() + 0.8);
+        setTimeout(function () {
+          if (timer) { clearInterval(timer); timer = null; }
+          current = null;
+        }, 850);
+      },
 
       /* قائمة المقطوعات للواجهة */
       tracks: TRACKS.map(function (t) { return { id: t.id, name: t.name, emoji: t.emoji }; }),

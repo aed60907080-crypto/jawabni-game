@@ -392,10 +392,44 @@
       display:block; width:100%; aspect-ratio:16/9;
       border:none; background:#000;
     }
-    /* bw: المقطع بالأبيض والأسود (ألوان القميص تكشف اللاعب)،
-       وتعود ألوانه عند كشف الإجابة */
-    .vid.bw video, .vid.bw iframe{ filter:grayscale(1) contrast(1.05); transition:filter .6s ease; }
+    /* bw: المقطع بأسلوب «الرسم» الأبيض والأسود (مرشّح goalSketch أسفل الصفحة)،
+       فلا تكشف ألوان القميص اللاعب — وتعود ألوانه عند كشف الإجابة */
+    /* ملف فيديو محلي: المرشّح عليه مباشرة. مشغّل يوتيوب: كروم لا يطبّق مرشّح SVG
+       على الإطار نفسه، فتؤدّيه طبقة .vid-sketch الشفافة فوقه (backdrop-filter) */
+    .vid.bw video{ filter:url(#goalSketch); transition:filter .6s ease; }
+    .vid > .vid-sketch{
+      position:absolute; inset:0; z-index:1; pointer-events:none;
+      -webkit-backdrop-filter:url(#goalSketch); backdrop-filter:url(#goalSketch);
+    }
+    .vid.shown > .vid-sketch{ display:none; }
+    @supports not ((backdrop-filter:url(#a)) or (-webkit-backdrop-filter:url(#a))){
+      .vid > .vid-sketch{ display:none; }
+      .vid.bw iframe{ filter:grayscale(1) brightness(1.4) contrast(3); }
+      .vid.bw.shown iframe{ filter:none; }
+    }
+    /* غلاف «شغّل المقطع» فوق صورة يوتيوب المصغّرة (تكشف الفريقين) */
+    .vid > .vid-cover{
+      position:absolute; left:0; right:0; top:25%; bottom:0; z-index:3;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+      border:0; cursor:pointer; color:#000; font-family:"Cairo",sans-serif;
+      background:#fff repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 2px, transparent 2px 14px);
+    }
+    .vid > .vid-cover[hidden]{ display:none; }
+    .vid-cover .pl{
+      width:74px; height:74px; border-radius:50%; display:grid; place-items:center;
+      background:#000; color:#fff; font-size:28px; box-shadow:0 0 0 6px rgba(0,0,0,.12);
+      transition:transform .2s ease;
+    }
+    .vid-cover:hover .pl{ transform:scale(1.08); }
+    .vid-cover b{ font-size:19px; font-weight:900; }
+    .vid-cover small{ font-size:13px; font-weight:700; opacity:.6; }
     .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
+    /* شريط التحدي فوق المقطع: أبيض وكتابة سوداء كمقاطع «اتحداك تعرف…» */
+    .vid > .vid-mask.cap{
+      background:#fff; color:#000; display:flex; align-items:center; justify-content:center;
+      font-family:"Cairo",sans-serif; font-weight:900; font-size:clamp(15px, 3.4vw, 24px);
+      box-shadow:0 2px 0 #000;
+    }
     .yt-note{ max-width:640px; margin:10px auto 0; color:var(--muted); font-size:13px; line-height:1.7; text-align:center; }
     .yt-open-row{ display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:12px; }
     .yt-open-row .yt-note{ margin:0; font-size:12px; }
@@ -407,6 +441,8 @@
     }
     .yt-open:hover{ transform:translateY(-2px); }
     .yt-open small{ font-weight:700; opacity:.75; }
+    .yt-open.alt{ background:none; box-shadow:none; color:var(--muted); font-size:12.5px; font-weight:700; padding:4px 10px; }
+    .yt-open.alt:hover{ color:var(--gold-soft); transform:none; }
     .yt-note i{ color:var(--gold); }
     .yt-note a{ color:var(--gold-soft); }
 
@@ -1110,6 +1146,22 @@
 
 <div id="toastBox"></div>
 
+<!-- مرشّح «الرسم» لمقاطع «من صاحب الهدف» (bw): رمادي ← كشف الحواف ← أبيض وأسود
+     ← تسميك الخطوط — فيظهر الملعب أبيض واللاعبون والخطوط رسماً أسود -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="goalSketch" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feGaussianBlur stdDeviation="0.5"/>
+    <feConvolveMatrix order="3" kernelMatrix="1 1 1 1 -8 1 1 1 1" divisor="1" bias="1" preserveAlpha="true"/>
+    <feComponentTransfer>
+      <feFuncR type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
+      <feFuncG type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
+      <feFuncB type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
+    </feComponentTransfer>
+    <feMorphology operator="erode" radius="0.6"/>
+  </filter>
+</defs></svg>
+
 <!-- بنك الأسئلة والفئات ومحرّك الصور -->
 <script src="questions.js"></script>
 <script src="questions-extra.js"></script>
@@ -1184,6 +1236,7 @@
   })();
   let questionAudio = null;   // مشغّل الصوت الحالي (إن وُجد)
   let questionVideo = null;   // مشغّل الفيديو الحالي (إن وُجد)
+  let goalSongOn = false;     // أغنية مقطع الهدف تعزف الآن (song)
 
   /* ---------------- fill header / meta ---------------- */
   document.getElementById("catBadge").textContent = category || "بدون فئة";
@@ -1695,10 +1748,13 @@
          يوتيوب يبدأ من ys ويتوقّف عند ye */
       const range = (item.ys != null ? "&start=" + Math.floor(item.ys) : "") +
                     (item.ye != null ? "&end=" + Math.floor(item.ye) : "");
+      /* song: المقطع صامت (بلا صوت المعلّق) وتعزف اللعبة أغنية مدة المقطع —
+         enablejsapi يرسل حالة المشغّل (تشغيل/إيقاف) فنزامن الأغنية معه */
+      const mute = item.song ? "&mute=1&enablejsapi=1&origin=" + encodeURIComponent(location.origin) : "";
       /* يوتيوب يرفض التشغيل المضمَّن (الخطأ 153) إن لم تُرسل الصفحة عنوانها
          (Referer) — فنطلبه صراحة */
       fr.referrerPolicy = "strict-origin-when-cross-origin";
-      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range;
+      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range + mute;
       /* اللعبة مفتوحة كملف من الجهاز (file://): لا عنوان يُرسل فيرفض يوتيوب
          التشغيل (الخطأ 153) — فنمرّ عبر وسيط على موقع اللعبة (yt.html) يضمّن
          يوتيوب بعنوان الموقع فيعمل المقطع */
@@ -1706,7 +1762,8 @@
         fr.src = "https://aed60907080-crypto.github.io/jawabni-game/yt.html?v=" +
                  encodeURIComponent(ytId(item.yt)) +
                  (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
-                 (item.ye != null ? "&e=" + Math.floor(item.ye) : "");
+                 (item.ye != null ? "&e=" + Math.floor(item.ye) : "") +
+                 (item.song ? "&m=1" : "");
       }
       fr.allow = "accelerometer; encrypted-media; picture-in-picture";
       fr.allowFullscreen = true;
@@ -1720,6 +1777,11 @@
           if (!Array.isArray(r) || r.length < 4) return;
           const mask = document.createElement("i");
           mask.className = "vid-mask";
+          /* cap: شريط الغلاف يحمل عبارة التحدي (كما في مقاطع «اتحداك تعرف…») */
+          if (item.cap && !box.querySelector(".vid-mask.cap")) {
+            mask.classList.add("cap");
+            mask.textContent = item.cap;
+          }
           mask.style.cssText =
             "left:" + r[0] + "%;top:" + r[1] + "%;width:" + r[2] + "%;height:" + r[3] + "%;";
           box.appendChild(mask);
@@ -1727,6 +1789,69 @@
       }
 
       media.appendChild(box);
+
+      /* مزامنة الأغنية مع المشغّل المضمَّن: تشغيل ← أغنية حتى نهاية المقطع،
+         إيقاف أو انتهاء ← تخفت */
+      if (item.song && location.protocol !== "file:") {
+        const end = item.ye != null ? item.ye : 30;
+        const dur = Math.max(2, end - (item.ys || 0));
+        const cmd = (func, args) => {
+          try { fr.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); } catch (e) {}
+        };
+
+        /* أسلوب «الرسم» كمقاطع «اتحداك تعرف صاحب الهدف»: طبقة شفافة فوق المشغّل
+           تمرّر ما تحتها في مرشّح goalSketch (backdrop-filter) — المرشّح نفسه
+           لا يُطبَّق على المشغّل مباشرة في كروم، لكنه يُطبَّق على ما خلف الطبقة */
+        if (item.bw) {
+          const sk = document.createElement("div");
+          sk.className = "vid-sketch";
+          box.appendChild(sk);
+        }
+
+        /* غلاف التشغيل: يخفي صورة يوتيوب المصغّرة (عليها أسماء الفريقين) ويشغّل
+           المقطع بضغطة — والضغطة نفسها تسمح للمتصفح بعزف الأغنية */
+        const cover = document.createElement("button");
+        cover.type = "button";
+        cover.className = "vid-cover";
+        cover.innerHTML = '<span class="pl"><i class="fa-solid fa-play"></i></span><b></b><small></small>';
+        cover.querySelector("b").textContent = "شغّل المقطع";
+        cover.querySelector("small").textContent = Math.round(dur) + " ثانية";
+        cover.addEventListener("click", () => {
+          cover.hidden = true;
+          cmd("seekTo", [item.ys || 0, true]);
+          cmd("playVideo");
+          if (window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
+        });
+        box.appendChild(cover);
+
+        fr.addEventListener("load", () => {
+          try { fr.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); } catch (e) {}
+        });
+        window.addEventListener("message", (e) => {
+          if (e.source !== fr.contentWindow || typeof e.data !== "string") return;
+          let d; try { d = JSON.parse(e.data); } catch (_) { return; }
+          const info = d.info || {};
+          const st = d.event === "onStateChange" ? d.info : info.playerState;
+          if (st === 1 && !goalSongOn && !revealed) {
+            /* استئناف من أزرار يوتيوب: الأغنية لما بقي من المقطع */
+            goalSongOn = true;
+            cover.hidden = true;
+            const t = typeof info.currentTime === "number" ? info.currentTime : (item.ys || 0);
+            if (window.SFX) SFX.music.clip(Math.max(2, end - t));
+          } else if (st === 2 && goalSongOn) {
+            goalSongOn = false;
+            if (window.SFX) SFX.music.endClip();
+          } else if (st === 0) {
+            /* انتهى المقطع: يعود الغلاف فلا تظهر شاشة يوتيوب الختامية (عناوين) */
+            goalSongOn = false;
+            if (window.SFX) SFX.music.endClip();
+            if (!revealed) {
+              cover.querySelector("b").textContent = "أعد المقطع";
+              cover.hidden = false;
+            }
+          }
+        });
+      }
 
       /* زر «شغّل المقطع»: يفتح المقطع نفسه (من ys إلى ye) في نافذة جديدة —
          للمتصفحات التي تمنع المشغّل المضمَّن (مثل المتصفح داخل تطبيق Claude:
@@ -1736,24 +1861,35 @@
       {
         const id = encodeURIComponent(ytId(item.yt));
         const btn = document.createElement("a");
-        btn.className = "yt-open";
+        /* مع غلاف التشغيل داخل اللعبة يصير الزر رابطاً احتياطياً صغيراً */
+        const inGame = item.song && location.protocol !== "file:";
+        btn.className = "yt-open" + (inGame ? " alt" : "");
         btn.target = "_blank";
         btn.rel = "noopener";                      /* بلا noreferrer: يوتيوب يحتاج العنوان */
         btn.referrerPolicy = "strict-origin-when-cross-origin";
         btn.href = location.protocol === "file:"
           ? "https://aed60907080-crypto.github.io/jawabni-game/yt.html?go=1&v=" + id +
             (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
-            (item.ye != null ? "&e=" + Math.floor(item.ye) : "")
-          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1" + range;
-        btn.innerHTML = '<i class="fa-solid fa-play"></i> شغّل المقطع' +
+            (item.ye != null ? "&e=" + Math.floor(item.ye) : "") + (item.song ? "&m=1" : "")
+          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1" + range +
+            (item.song ? "&mute=1" : "");
+        btn.innerHTML = inGame
+          ? '<i class="fa-solid fa-up-right-from-square"></i> لا يظهر المقطع؟ افتحه في نافذة'
+          : '<i class="fa-solid fa-play"></i> شغّل المقطع' +
           (item.ye != null && item.ys != null ? ' <small>(' + Math.round(item.ye - item.ys) + ' ثانية)</small>' : '');
-        btn.addEventListener("click", () => { if (window.SFX) SFX.click(); });
+        btn.addEventListener("click", () => {
+          if (!window.SFX) return;
+          SFX.click();
+          /* المقطع يُفتح صامتاً في نافذته، والأغنية تعزف هنا مدته */
+          if (item.song) SFX.music.clip((item.ye != null && item.ys != null) ? item.ye - item.ys : 20);
+        });
         const row = document.createElement("div");
         row.className = "yt-open-row";
         row.appendChild(btn);
         const hint = document.createElement("small");
         hint.className = "yt-note";
-        hint.textContent = "إن ظهر المربع أسود، شغّل المقطع من الزر";
+        hint.textContent = inGame ? "" : "إن ظهر المربع أسود، شغّل المقطع من الزر";
+        hint.hidden = inGame;
         row.appendChild(hint);
         media.appendChild(row);
       }
@@ -2407,6 +2543,7 @@
     try { if (questionVideo) questionVideo.pause(); } catch(e){}
     /* المقطع بالأبيض والأسود يعود ملوّناً مع الإجابة */
     document.querySelectorAll('.vid.bw').forEach(v => v.classList.add('shown'));
+    if (window.SFX && SFX.music.endClip) { goalSongOn = false; SFX.music.endClip(); }
 
     if (item) {
       const aEl = document.getElementById("answerText");
