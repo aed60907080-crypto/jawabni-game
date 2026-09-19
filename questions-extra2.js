@@ -286,58 +286,60 @@
     { l: 5, q: "من هذه الشخصية؟", a: "ديمتري «إنزو» أنتونوف — الحارس الروسي", img: ST_IMG + "a/a2/Dmitri.png/revision/latest/scale-to-width-down/569?nr=1&cb=20220702211146" }
   ];
 
-  /* ---------- لورد أوف ذا رينغز (50 سؤالاً) ---------- */
+  /* ---------- لورد أوف ذا رينغز (36 سؤالاً) ----------
+     نوعان:
+     • «من هذه الشخصية؟» — لقطة الشخصية من أفلام بيتر جاكسون (ويكي The One
+       Wiki to Rule Them All على Fandom — تُطلب بلا Referer، انظر images.js).
+     • «ماذا حصل في هذا المشهد؟» — مشهد مشهور بصوته، 30 ثانية من مقطع يوتيوب
+       (ys إلى ye حول أكثر لحظة يُعاد تشغيلها)، بغلاف «شغّل المقطع» وشريط
+       العنوان مغطّى (clip). */
+  var LOTR_MASK = [[0, 0, 100, 14]];
   extra["لورد أوف ذا رينغز"] = [
-    { l: 1, q: "من هو مؤلف رواية سيد الخواتم؟", a: "ج. ر. ر. تولكين", iq: "J. R. R. Tolkien" },
-    { l: 1, q: "ما اسم الهوبيت الذي حمل الخاتم في رحلته؟", a: "فرودو باغنز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Elijah_Wood_at_the_2025_Sundance_Film_Festival_%28cropped%292.jpg/960px-Elijah_Wood_at_the_2025_Sundance_Film_Festival_%28cropped%292.jpg", iq: "Elijah Wood" },
-    { l: 1, q: "ما اسم الساحر الرمادي رفيق الرحلة؟", a: "غاندالف", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/SDCC13_-_Ian_McKellen.jpg/960px-SDCC13_-_Ian_McKellen.jpg", iq: "Ian McKellen" },
-    { l: 1, q: "ما اسم أرض الهوبيت الخضراء؟", a: "الشاير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Waterhouse_Lake_Front.jpg/960px-Waterhouse_Lake_Front.jpg", iq: "Hobbiton" },
-    { l: 1, q: "ما اسم المخلوق النحيل الذي يردّد كلمة «ثمين»؟", a: "غولوم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Andy_Serkis_at_MEGACON_Orlando_2025.png/960px-Andy_Serkis_at_MEGACON_Orlando_2025.png", iq: "Andy Serkis" },
-    { l: 1, q: "في أي جبل يجب إلقاء الخاتم لتدميره؟", a: "جبل الهلاك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Augustine_volcano_Jan_24_2006_-_Cyrus_Read.jpg/960px-Augustine_volcano_Jan_24_2006_-_Cyrus_Read.jpg", iq: "volcano" },
-    { l: 1, q: "ما اسم أرض الشر التي يحكمها سورون؟", a: "موردور", iq: "Lord of the Rings Mordor" },
-    { l: 1, q: "ما اسم صديق فرودو المخلص الذي رافقه حتى النهاية؟", a: "سام غامجي", img: "image/لورد اوف ذا رينق.jpg", iq: "Sean Astin" },
-    { l: 1, q: "كم عدد أفراد رفقة الخاتم؟", a: "تسعة أفراد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/ExpoSYFY_-_Lord_of_the_Rings_%2810794431516%29.jpg/960px-ExpoSYFY_-_Lord_of_the_Rings_%2810794431516%29.jpg", iq: "Fellowship of the Ring" },
-    { l: 1, q: "ما اسم العالم الخيالي الذي تدور فيه الأحداث؟", a: "الأرض الوسطى", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/LonelyMountain.jpg/960px-LonelyMountain.jpg", iq: "Middle-earth" },
-    { l: 2, q: "ما اسم القزم المحارب في رفقة الخاتم؟", a: "غيملي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/John_Rhys-Davies_NASA_2025.jpg/960px-John_Rhys-Davies_NASA_2025.jpg", iq: "John Rhys-Davies" },
-    { l: 2, q: "ما اسم الإلف الرامي في الرفقة؟", a: "ليغولاس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Orlando_Bloom-9047_%28cropped%29.jpg/960px-Orlando_Bloom-9047_%28cropped%29.jpg", iq: "Orlando Bloom" },
-    { l: 2, q: "ما اسم وريث عرش غوندور الذي رافق الرفقة؟", a: "أراغورن", iq: "Viggo Mortensen" },
-    { l: 2, q: "ما اسم الساحر الأبيض الذي خان الرفقة؟", a: "سارومان", img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Christopher_Lee_2009.jpg", iq: "Christopher Lee" },
-    { l: 2, q: "ما اسم سيد الظلام صانع الخاتم؟", a: "سورون", img: "https://upload.wikimedia.org/wikipedia/commons/9/93/Sauron_replica.jpg", iq: "Lord of the Rings Sauron" },
-    { l: 2, q: "ما اسما الهوبيتين المرحين في الرفقة؟", a: "ميري وبيبين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Billy_Boyd_%2855222129722%29_%28cropped%29.jpg/960px-Billy_Boyd_%2855222129722%29_%28cropped%29.jpg", iq: "Billy Boyd Dominic Monaghan" },
-    { l: 2, q: "ما اسم ابن حاكم غوندور الذي انضم للرفقة؟", a: "بوروميير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Sean_Bean_Anemone-25_%28cropped%29.jpg/960px-Sean_Bean_Anemone-25_%28cropped%29.jpg", iq: "Sean Bean" },
-    { l: 2, q: "ما اسم مملكة الفرسان في الأرض الوسطى؟", a: "روهان", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Where_there%27s_a_whip_there%27s_a_will_-_Orcs_driving_a_Hobbit.jpg", iq: "Lord of the Rings Rohan" },
-    { l: 2, q: "ما اسم عمّ فرودو الذي وجد الخاتم أولاً؟", a: "بيلبو باغنز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Ian_Holm.jpg/960px-Ian_Holm.jpg", iq: "Ian Holm" },
-    { l: 2, q: "ما اسم الحصن الذي دارت فيه معركة روهان الشهيرة؟", a: "خندق هيلم", img: "image/لورد اوف ذا رينق.jpg", iq: "Helm's Deep" },
-    { l: 3, q: "ما اسم أميرة الإلف التي أحبّها أراغورن؟", a: "أروين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Liv_Tyler_%282016%29.jpg/960px-Liv_Tyler_%282016%29.jpg", iq: "Liv Tyler" },
-    { l: 3, q: "ما اسم والد أروين وسيّد ريفينديل؟", a: "إلروند", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Hugo_Weaving_2014.jpg/960px-Hugo_Weaving_2014.jpg", iq: "Hugo Weaving" },
-    { l: 3, q: "ما اسم سيدة غابة لوثلوريان؟", a: "غالادريل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Cate_Blanchett-63298_%28cropped_2%29.jpg/960px-Cate_Blanchett-63298_%28cropped_2%29.jpg", iq: "Cate Blanchett" },
-    { l: 3, q: "ما اسم شجرة الإنت العجوز التي حملت ميري وبيبين؟", a: "تريبيرد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Uroplatus_fangorn_600523975.jpg/960px-Uroplatus_fangorn_600523975.jpg", iq: "Lord of the Rings Treebeard" },
-    { l: 3, q: "ما اسم سيف أراغورن بعد إعادة صياغته؟", a: "أندوريل", iq: "Anduril sword" },
-    { l: 3, q: "ما اسم سيف فرودو الذي يضيء بالأزرق قرب الأورك؟", a: "ستينغ", img: "image/لورد اوف ذا رينق.jpg", iq: "Sting sword Tolkien" },
-    { l: 3, q: "من أي معدن ثمين صُنع درع فرودو الخفي؟", a: "الميثريل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Cotte_de_Maille%2C_El_Bayadh%2C_Alg%C3%A9rie%2C_17%C3%A8me_si%C3%A8cle.jpg/960px-Cotte_de_Maille%2C_El_Bayadh%2C_Alg%C3%A9rie%2C_17%C3%A8me_si%C3%A8cle.jpg", iq: "chain mail" },
-    { l: 3, q: "ما اسم مناجم الأقزام التي عبرتها الرفقة؟", a: "مناجم موريا", img: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gandalf_fighting_the_Balrog_on_the_bridge_of_Khazad-d%C3%BBm.jpg", iq: "Moria Tolkien" },
-    { l: 3, q: "ما اسم الوحش الناري الذي واجهه غاندالف في موريا؟", a: "البالروغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Gothmog%2C_Lord_of_Balrogs.jpg/960px-Gothmog%2C_Lord_of_Balrogs.jpg", iq: "Balrog" },
-    { l: 3, q: "ما اسم ملك روهان في الثلاثية؟", a: "ثيودن", img: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Bernard_Hill2_%28cropped%29.jpg", iq: "Bernard Hill" },
-    { l: 4, q: "من قتل ملك السحرة في معركة حقول بيلينور؟", a: "إيوين", iq: "Miranda Otto" },
-    { l: 4, q: "ما اسم قائد فرسان روهان وابن أخ الملك ثيودن؟", a: "إيومير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Karl_Urban_GalaxyCon_Raleigh_July%2C_25%2C_2026_112.jpg/960px-Karl_Urban_GalaxyCon_Raleigh_July%2C_25%2C_2026_112.jpg", iq: "Karl Urban" },
-    { l: 4, q: "ما اسم حاكم غوندور الذي رفض عودة أراغورن؟", a: "دينيثور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/John_Noble_by_Gage_Skidmore_2.jpg/960px-John_Noble_by_Gage_Skidmore_2.jpg", iq: "John Noble actor" },
-    { l: 4, q: "ما اسم أخي بوروميير الأصغر؟", a: "فارامير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/David_Wenham_April_2016.jpg/960px-David_Wenham_April_2016.jpg", iq: "David Wenham" },
-    { l: 4, q: "ما اسم عاصمة مملكة غوندور؟", a: "ميناس تيريث", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Minas_tirith-2004_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg/960px-Minas_tirith-2004_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg", iq: "Minas Tirith" },
-    { l: 4, q: "ما اسم المعركة الكبرى التي دارت أمام ميناس تيريث؟", a: "معركة حقول بيلينور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/W.E.F._Britten_-_The_Early_Poems_of_Alfred%2C_Lord_Tennyson_-_Sir_Galahad.jpg/960px-W.E.F._Britten_-_The_Early_Poems_of_Alfred%2C_Lord_Tennyson_-_Sir_Galahad.jpg", iq: "Lord of the Rings battle" },
-    { l: 4, q: "ما اسم الفرسان التسعة أتباع سورون؟", a: "النازغول", img: "image/لورد اوف ذا رينق.jpg", iq: "Nazgul" },
-    { l: 4, q: "ما اسم برج سارومان في آيزنغارد؟", a: "أورثانك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Orthanc_studies_tab.jpg/960px-Orthanc_studies_tab.jpg", iq: "Orthanc" },
-    { l: 4, q: "من أخرج ثلاثية أفلام سيد الخواتم؟", a: "بيتر جاكسون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Peter_Jackson_SDCC_2014.jpg/960px-Peter_Jackson_SDCC_2014.jpg", iq: "Peter Jackson" },
-    { l: 4, q: "ما اسم الهوبيت الذي وجد الخاتم قبل بيلبو بقرون؟", a: "سميغول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Andy_Serkis_at_MEGACON_Orlando_2025.png/960px-Andy_Serkis_at_MEGACON_Orlando_2025.png", iq: "Andy Serkis" },
-    { l: 5, q: "ما اسم الرواية التي تسبق أحداث سيد الخواتم؟", a: "الهوبيت", img: "https://upload.wikimedia.org/wikipedia/commons/e/e7/The_Hobbit_-_title_page_of_first_American_print.jpg", iq: "The Hobbit book" },
-    { l: 5, q: "في أي عام نُشر الجزء الأول من سيد الخواتم؟", a: "عام 1954", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/W.E.F._Britten_-_The_Early_Poems_of_Alfred%2C_Lord_Tennyson_-_Sir_Galahad.jpg/960px-W.E.F._Britten_-_The_Early_Poems_of_Alfred%2C_Lord_Tennyson_-_Sir_Galahad.jpg", iq: "Lord of the Rings book" },
-    { l: 5, q: "ما اسم الجزء الثالث من الثلاثية؟", a: "عودة الملك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Reading_Cinema_Fell_Beast%2C_%27Return_of_the_King%27_world_premiere%2C_Wellington.jpg/960px-Reading_Cinema_Fell_Beast%2C_%27Return_of_the_King%27_world_premiere%2C_Wellington.jpg", iq: "Return of the King" },
-    { l: 5, q: "ما اسم الجزء الثاني من الثلاثية؟", a: "البرجان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Asinelli_e_Garisenda.jpg/960px-Asinelli_e_Garisenda.jpg", iq: "The Two Towers" },
-    { l: 5, q: "ما أشهر لغتين اخترعهما تولكين للإلف؟", a: "الكوينيا والسندارين", img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Namarie_First_Stanza_Tengwar.jpg", iq: "Elvish script" },
-    { l: 5, q: "كم جائزة أوسكار حصدها فيلم «عودة الملك»؟", a: "إحدى عشرة جائزة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Paul_Thomas_Anderson_-_BFI_Southbank.jpg/960px-Paul_Thomas_Anderson_-_BFI_Southbank.jpg", iq: "Academy Award" },
-    { l: 5, q: "في أي دولة صُوّرت ثلاثية الأفلام؟", a: "نيوزيلندا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Satellite_image_of_New_Zealand_in_December_2002.jpg/960px-Satellite_image_of_New_Zealand_in_December_2002.jpg", iq: "New Zealand landscape" },
-    { l: 5, q: "ما مضمون النقش المكتوب على الخاتم؟", a: "خاتم واحد ليحكمهم جميعاً", iq: "gold ring" },
-    { l: 5, q: "ما اسم الميناء الذي أبحر منه فرودو في نهاية القصة؟", a: "الموانئ الرمادية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Ship_Harbour%2C_Nova_Scotia.png/960px-Ship_Harbour%2C_Nova_Scotia.png", iq: "harbour ship" },
-    { l: 5, q: "ما اسم العنكبوت العملاقة التي واجهها فرودو وسام؟", a: "شيلوب", img: "https://upload.wikimedia.org/wikipedia/commons/3/35/Hausspinne_Tegenaria_atrica.jpg", iq: "giant spider" }
+    /* ===== المستوى 1 ===== */
+    { l: 1, q: "من هذه الشخصية؟", a: "فرودو باغينز — حامل الخاتم", img: "https://static.wikia.nocookie.net/lotr/images/3/32/Frodo_%28FotR%29.png/revision/latest/scale-to-width-down/500?nr=1&cb=20221006065757" },
+    { l: 1, q: "من هذه الشخصية؟", a: "غاندالف الرمادي", img: "https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20121110131754" },
+    { l: 1, q: "من هذه الشخصية؟", a: "غولوم (سميغول)", img: "https://static.wikia.nocookie.net/lotr/images/f/fa/Gollum_Lotr_Movie.png/revision/latest/scale-to-width-down/500?nr=1&cb=20240715204205" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ليغولاس — الجنّي الرامي", img: "https://static.wikia.nocookie.net/lotr/images/c/c0/Legolas.jpg/revision/latest?nr=1&cb=20070802171850" },
+    { l: 1, q: "من هذه الشخصية؟", a: "أراغورن — ملك غوندور", img: "https://static.wikia.nocookie.net/lotr/images/d/de/Viggo_Mortensen_as_Aragorn_in-chainmail-waist_up.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20240829043758" },
+    { l: 1, q: "من هذه الشخصية؟", a: "غيملي — القزم", img: "https://static.wikia.nocookie.net/lotr/images/a/a5/Lotr_movie_gimli.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20060228022700" },
+    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "غاندالف يقف أمام البالروغ على الجسر ويصرخ «لن تمر!» ثم يسقط معه (رفقة الخاتم)", yt: "3bReJswiMGM", ys: 70, ye: 100, clip: true, hide: LOTR_MASK },
+    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "بيلبو يلبس الخاتم في حفل عيد ميلاده ويختفي أمام الجميع (رفقة الخاتم)", yt: "Cvr5Nf8eUpg", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
+
+    /* ===== المستوى 2 ===== */
+    { l: 2, q: "من هذه الشخصية؟", a: "سام (سامْوايز غامجي) — رفيق فرودو", img: "https://static.wikia.nocookie.net/lotr/images/5/52/Samwise_Gamgee_1.PNG/revision/latest?nr=1&cb=20200617172124" },
+    { l: 2, q: "من هذه الشخصية؟", a: "غاندالف الأبيض", img: "https://static.wikia.nocookie.net/lotr/images/e/ee/Rings-gandalf.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20050523185311" },
+    { l: 2, q: "من هذه الشخصية؟", a: "سارومان الأبيض", img: "https://static.wikia.nocookie.net/lotr/images/e/ee/Saruman-the-white.JPG/revision/latest?nr=1&cb=20070912224216" },
+    { l: 2, q: "من هذه الشخصية؟", a: "بيلبو باغينز — عمّ فرودو", img: "https://static.wikia.nocookie.net/lotr/images/8/87/Bilbo_Ian_Holm.png/revision/latest/scale-to-width-down/500?nr=1&cb=20240716164413" },
+    { l: 2, q: "من هذه الشخصية؟", a: "بورومير", img: "https://static.wikia.nocookie.net/lotr/images/d/de/Boromir_-_FOTR.png/revision/latest/scale-to-width-down/500?nr=1&cb=20121023114949" },
+    { l: 2, q: "من هذه الشخصية؟", a: "آروين — الأميرة الجنّية", img: "https://static.wikia.nocookie.net/lotr/images/6/64/Arwen_-_The_Fellowship_Of_The_Ring.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20210625164207" },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "موت بورومير بعد أن دافع عن ميري وبيبن، وأراغورن بجانبه (رفقة الخاتم)", yt: "ALaPeQxQMM0", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "غولوم يعضّ إصبع فرودو ويأخذ الخاتم ثم يسقط معه في نار جبل الهلاك (عودة الملك)", yt: "7curfSGOhPI", ys: 150, ye: 180, clip: true, hide: LOTR_MASK },
+
+    /* ===== المستوى 3 ===== */
+    { l: 3, q: "من هذه الشخصية؟", a: "غالادرييل — سيدة لوثلورين", img: "https://static.wikia.nocookie.net/lotr/images/c/cb/Galadriel.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20151015204512" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ميري (ميرياداك براندي‌باك)", img: "https://static.wikia.nocookie.net/lotr/images/b/b9/Merry.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20121117101001" },
+    { l: 3, q: "من هذه الشخصية؟", a: "سورون — سيد الظلام", img: "https://static.wikia.nocookie.net/lotr/images/9/90/Sauron-2.jpg/revision/latest?nr=1&cb=20110508182634" },
+    { l: 3, q: "من هذه الشخصية؟", a: "البالروغ — شيطان موريا الناري", img: "https://static.wikia.nocookie.net/lotr/images/c/c4/Balrog_-_FOTR.png/revision/latest/scale-to-width-down/500?nr=1&cb=20210916195941" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إلروند — سيد ريفندل", img: "https://static.wikia.nocookie.net/lotr/images/2/2b/Elrond%27s_armor_-_halfbody.jpg/revision/latest?nr=1&cb=20130202121256" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ثيودن — ملك روهان", img: "https://static.wikia.nocookie.net/lotr/images/1/13/King_Theoden_1.jpg/revision/latest?nr=1&cb=20150313135224" },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "إيوين تقتل ملك الساحرة (قائد النازغول) وتقول «لستُ رجلاً» (عودة الملك)", yt: "W7_c-R7i8F4", ys: 145, ye: 175, clip: true, hide: LOTR_MASK },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "إشعال منارات غوندور واحدة تلو الأخرى لطلب نجدة روهان (عودة الملك)", yt: "agBtXRChsJM", ys: 95, ye: 125, clip: true, hide: LOTR_MASK },
+
+    /* ===== المستوى 4 ===== */
+    { l: 4, q: "من هذه الشخصية؟", a: "إيومر — فارس روهان", img: "https://static.wikia.nocookie.net/lotr/images/b/b9/Eomer_-_Close_up.PNG/revision/latest?nr=1&cb=20120922113500" },
+    { l: 4, q: "من هذه الشخصية؟", a: "فارامير — أخو بورومير", img: "https://static.wikia.nocookie.net/lotr/images/4/43/Faramir.jpg/revision/latest?nr=1&cb=20071211235438" },
+    { l: 4, q: "من هذه الشخصية؟", a: "غريما «لسان الدودة»", img: "https://static.wikia.nocookie.net/lotr/images/2/27/Gr%C3%ADma_Wormtongue_Lotr_Movie.png/revision/latest?nr=1&cb=20240715214830" },
+    { l: 4, q: "من هذه الشخصية؟", a: "اللحية الشجرية (تريبيرد) — زعيم الإنتس", img: "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/500?nr=1&cb=20210117035345" },
+    { l: 4, q: "من هذه الشخصية؟", a: "النازغول — أشباح الخاتم السوداء", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Nazgul.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20150423205044" },
+    { l: 4, q: "من هذه الشخصية؟", a: "لورتز — قائد الأوروك هاي", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Lurtz_2.jpg/revision/latest?nr=1&cb=20110527083830" },
+    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "فرسان روهان يهاجمون جيش موردور في معركة حقول بيلينور (عودة الملك)", yt: "Pis3veqKl8k", ys: 130, ye: 160, clip: true, hide: LOTR_MASK },
+    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "تدمير الخاتم وانهيار برج سورون «باراد-دور» (عودة الملك)", yt: "0wgkg3-bMEA", ys: 82, ye: 112, clip: true, hide: LOTR_MASK },
+
+    /* ===== المستوى 5 ===== */
+    { l: 5, q: "من هذه الشخصية؟", a: "دينيثور — حاكم غوندور", img: "https://static.wikia.nocookie.net/lotr/images/9/98/Lord_Denethor.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20150330023544" },
+    { l: 5, q: "من هذه الشخصية؟", a: "فم سورون", img: "https://static.wikia.nocookie.net/lotr/images/f/f2/Mouth_of_Sauron.png/revision/latest/scale-to-width-down/500?nr=1&cb=20210117030358" },
+    { l: 5, q: "من هذه الشخصية؟", a: "روزي كوتون — زوجة سام", img: "https://static.wikia.nocookie.net/lotr/images/5/5c/Rosie_Cotton_celebrates_-_FOTR.png/revision/latest/scale-to-width-down/500?nr=1&cb=20121003132330" },
+    { l: 5, q: "من هذه الشخصية؟", a: "سيليبورن — زوج غالادرييل", img: "https://static.wikia.nocookie.net/lotr/images/a/a9/Celeborn_-_FOTR.png/revision/latest?nr=1&cb=20121002120216" }
   ];
 
   /* ---------- المملكة العربية السعودية (50 سؤالاً) ---------- */
