@@ -244,7 +244,7 @@
     { l: 1, q: "من هذه الشخصية؟", a: "ستيف هارينغتون", img: ST_IMG + "8/81/Steve_Harrington_1989.png/revision/latest/scale-to-width-down/535?nr=1&cb=20260112123852" },
     { l: 1, q: "من هذه الشخصية؟", a: "جيم هوبر — شريف هوكينز", img: ST_IMG + "e/ed/Jim_Hopper_Finale.png/revision/latest/scale-to-width-down/513?nr=1&cb=20260313155702" },
     { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تقلب شاحنة الأشرار في الهواء بقواها لتنقذ الأولاد (الموسم الأول)", yt: "0ONZqhTC-PM", ys: 0, ye: 28, clip: true, hide: ST_MASK },
-    { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 40, clip: true, hide: ST_MASK },
+    { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 30, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "من هذه الشخصية؟", a: "ماكس مايفيلد", img: ST_IMG + "2/2a/1989.png/revision/latest/scale-to-width-down/489?nr=1&cb=20260313154711" },
@@ -254,8 +254,8 @@
     { l: 2, q: "من هذه الشخصية؟", a: "إدي مانسون — رئيس نادي «هيلفاير»", img: ST_IMG + "c/ca/Eddie_Munson.jpg/revision/latest/scale-to-width-down/479?nr=1&cb=20220608205857" },
     { l: 2, q: "من هذه الشخصية؟", a: "فيكنا (هنري كريل)", img: ST_IMG + "4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/527?nr=1&cb=20251229052347" },
     { l: 2, q: "من هذه الشخصية؟", a: "الديموغورغون — وحش العالم المقلوب", img: ST_IMG + "f/ff/Demogorgon_-_Chapter_Eight.jpg/revision/latest?nr=1&cb=20221105220915" },
-    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 180, ye: 215, clip: true, hide: ST_MASK },
-    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 0, ye: 39, clip: true, hide: ST_MASK },
+    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 183, ye: 213, clip: true, hide: ST_MASK },
+    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 4, ye: 34, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "من هذه الشخصية؟", a: "روبن باكلي", img: ST_IMG + "6/6f/Robin_Finale.png/revision/latest/scale-to-width-down/545?nr=1&cb=20260101040655" },
@@ -265,8 +265,8 @@
     { l: 3, q: "من هذه الشخصية؟", a: "آكل العقول (مايند فلاير)", img: ST_IMG + "b/b0/Mind_Flayer_-_Abyss_form.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260107051652" },
     { l: 3, q: "من هذه الشخصية؟", a: "موراي باومان", img: ST_IMG + "8/8e/Murray_1989.png/revision/latest/scale-to-width-down/559?nr=1&cb=20260109113207" },
     { l: 3, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?nr=1&cb=20180327083407" },
-    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 35, clip: true, hide: ST_MASK },
-    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 105, te: 140, band: [10, 92] },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 30, clip: true, hide: ST_MASK },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 108, te: 138, band: [10, 92] },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "من هذه الشخصية؟", a: "كارين ويلر — أم مايك", img: ST_IMG + "b/b4/Karen_Wheeler_Finale.png/revision/latest/scale-to-width-down/458?nr=1&cb=20260101053303" },
@@ -276,7 +276,7 @@
     { l: 4, q: "من هذه الشخصية؟", a: "أليكسي — العالم الروسي", img: ST_IMG + "a/ad/Alexei.JPG/revision/latest/scale-to-width-down/510?nr=1&cb=20190705023926" },
     { l: 4, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260313155747" },
     { l: 4, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?nr=1&cb=20221124001121" },
-    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 78, ye: 110, clip: true, hide: ST_MASK },
+    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 80, ye: 110, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الخامس ===== */
     { l: 5, q: "من هذه الشخصية؟", a: "السيد سكوت كلارك — معلّم العلوم", img: ST_IMG + "b/b6/Mr_Scott_Clarke_1989.png/revision/latest/scale-to-width-down/481?nr=1&cb=20260101050840" },
