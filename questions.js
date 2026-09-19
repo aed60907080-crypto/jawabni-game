@@ -1059,14 +1059,58 @@ const questionsData = {
     { l: 5, q: "ما اسم الجهاز المحمول من نينتندو الذي صدر عام 1989؟", a: "غيم بوي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Nintendo_Gameboy.jpg/960px-Nintendo_Gameboy.jpg" },
   ],
 
-  /* ---------- أفلام وأنمي (50 سؤالاً) ---------- */
+  /* ---------- أفلام وأنمي ----------
+     ثلاثة أنواع: «من هذه الشخصية؟» (صورة الشخصية من AniList، من أنمي غير
+     الذي له فئته الخاصة)، و«ماذا حصل في هذا المشهد؟» (صورة مشهد مشهور)،
+     وأسئلة عامة عن الأفلام والأنمي. */
   "أفلام وأنمي": [
-    { l: 1, q: "ما اسم القرصان الذي يبحث عن كنز «الون بيس»؟", a: "مونكي دي لوفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png" },
-    { l: 1, q: "ما اسم الأنمي الذي يحلم بطله الأشقر بأن يصبح «هوكاجي» قرية الورق؟", a: "ناروتو" },
-    { l: 1, q: "ما اسم المحقق الصغير الذي تحوّل من شاب إلى طفل؟", a: "المحقق كونان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Conan_Tottori_Liner_in_Yonago_Station_2.jpg/960px-Conan_Tottori_Liner_in_Yonago_Station_2.jpg" },
+    /* ===== «من هذه الشخصية؟» ===== */
+    { l: 1, q: "من هذه الشخصية؟", a: "دورايمون — القط الآلي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4304-4eXX8C1O4Pda.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "كابتن ماجد (تسوباسا أوزارا)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5620-AATHkO6L6JzX.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "إيرين ييغر (هجوم العمالقة)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b40882-dsj7IP943WFF.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "L — المحقق «إل» (مذكرة الموت)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b71-1W4panC53vfs.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "لايت ياغامي (مذكرة الموت)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b80-26EhwSsSqQ50.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "تانجيرو كامادو (قاتل الشياطين)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "سايتاما (رجل اللكمة الواحدة — ون بنش مان)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b73935-ON5d0mAcrItd.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "نيزوكو كامادو (قاتل الشياطين)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b127518-NRlq1CQ1v1ro.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ليفاي (هجوم العمالقة)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b45627-CR68RyZmddGG.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ميكاسا أكرمان (هجوم العمالقة)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b40881-F3gr1PkreDvj.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ساتورو غوجو (جوجوتسو كايسن)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "غون فريكس (القناص — هانتر × هانتر)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30-lyFExKyDhefc.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إدوارد إلريك (الخيميائي المعدني)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "توتورو (جاري توتورو)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b269-sbPL4w1ygjSe.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كيلوا زولديك (القناص — هانتر × هانتر)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b27-Z5O02kQUydpT.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "يوجي إيتادوري (جوجوتسو كايسن)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إيتشيغو كوروساكي (بليتش)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5-a7bkJgjhhigE.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "زينيتسو أغاتسوما (قاتل الشياطين)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b129131-FZrQ7lSlxmEr.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "آنيا فورجر (سباي × فاميلي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b138100-4Li0tWRCa5bQ.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إيزوكو ميدوريا «ديكو» (بطلي الأكاديمي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b89028-8w1I9o1ISHMg.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "تشيهيرو (المخطوفة — سبيريتد أواي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b384-AoWCsQyG0WI7.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "نوبيتا (دورايمون)", img: "https://s4.anilist.co/file/anilistcdn/character/large/4303.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "ألفونس إلريك (الخيميائي المعدني)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b12-tCKu8yK5kFL5.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "لويد فورجر (سباي × فاميلي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b138101-7NCB0Md8zA6G.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "أول مايت (بطلي الأكاديمي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b89224-K6KEuQAuYKzq.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "هاناميتشي ساكوراغي (سلام دانك)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b310-3GLKM2I3EiRf.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "شويو هيناتا (هايكيو)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b64769-WoWlCMLLgJ14.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "دوق فليد «دايسكي» — قائد غرندايزر", img: "https://s4.anilist.co/file/anilistcdn/character/large/7368.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "أوساغي تسوكينو (بحّارة القمر — سيلور مون)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2030-GQvVYPEYkXCy.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ريمورو تيمبست (الوحل — تنسي شيتارا سلايم)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b123962-eL9yGV0NLMF7.png" },
+    /* ===== «ماذا حصل في هذا المشهد؟» — صورة المقطع الرسمي للمشهد على يوتيوب،
+       مقصوصة (crop) لتُبعد الأشرطة السوداء وأي شعار أو عنوان ===== */
+    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "جاك وروز على مقدّمة السفينة «أنا أطير!» — فيلم تايتانيك (1997)", img: "https://i.ytimg.com/vi/8MDPeL8lpzo/hqdefault.jpg", crop: [0, 12.5, 100, 75] },
+    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "البيت يطير بآلاف البالونات — فيلم «فوق» (Up) من بيكسار", img: "https://i.ytimg.com/vi/2zHKQe-aSAI/maxresdefault.jpg" },
+    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "سبايدرمان يوقف القطار بجسده — فيلم «سبايدرمان 2» (2004)", img: "https://i.ytimg.com/vi/BwrP6HTgpNs/maxresdefault.jpg" },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "سكار يُسقط موفاسا من الجرف فيموت في تدافع الحيوانات — «الأسد الملك» (1994)", img: "https://i.ytimg.com/vi/Yw0DXswF5MI/maxresdefault.jpg" },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "آيرون مان يلبس قفاز الأحجار ويفرقع أصابعه «أنا آيرون مان» — «أفنجرز: نهاية اللعبة»", img: "https://i.ytimg.com/vi/_anDMGmck-k/maxresdefault.jpg" },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "إلسا تغني «Let It Go» وتبني قصر الجليد — فيلم «ملكة الثلج» (فروزن)", img: "https://i.ytimg.com/vi/moSFlvxnbgk/maxresdefault.jpg", crop: [0, 14, 100, 72] },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "غوكو يتحوّل إلى «سوبر سايان» أول مرة بعد أن قتل فريزا كريلين — دراغون بول زد", img: "https://i.ytimg.com/vi/dsLsATx4fJ0/hqdefault.jpg", crop: [0, 12.5, 100, 75] },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "القبّعة المصنِّفة تختار منزل هاري — «هاري بوتر وحجر الفيلسوف»", img: "https://i.ytimg.com/vi/zkjcETPvONA/maxresdefault.jpg", crop: [32, 11, 68, 77] },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "الديناصور تي ركس يهرب من حظيرته ويهاجم السيارات — «الحديقة الجوراسية» (1993)", img: "https://i.ytimg.com/vi/Rc_i5TKdmhs/maxresdefault.jpg", crop: [34, 0, 66, 94] },
+    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "لايت يأكل رقاقة البطاطس ويكتب في المذكرة سرّاً «سآخذ رقاقة… وآكلها!» — مذكرة الموت", img: "https://i.ytimg.com/vi/o-qEVoKiic4/hqdefault.jpg", crop: [0, 12.5, 100, 75] },
+    { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "أكاينو يقتل إيس وهو يحمي لوفي في معركة مارين فورد — ون بيس", img: "https://i.ytimg.com/vi/tib047dfWm4/hqdefault.jpg", crop: [0, 12.5, 100, 75] },
+    /* ===== أسئلة عامة ===== */
     { l: 1, q: "ما اسم فيلم جيمس كاميرون عام 1997 عن غرق أشهر سفينة ركّاب في التاريخ؟", a: "تايتانيك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/960px-RMS_Titanic_3.jpg" },
     { l: 1, q: "ما اسم البطل الخارق الذي يرتدي بدلة حديدية؟", a: "الرجل الحديدي (آيرون مان)", img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Iron_Man_transparent_background.png" },
-    { l: 1, q: "ما اسم الأنمي الذي يقاتل فيه غوكو ويتحوّل شعره للأصفر؟", a: "دراغون بول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Preestrena_de_Bola_de_Drac_Super_el_Superheroi_01.jpg/960px-Preestrena_de_Bola_de_Drac_Super_el_Superheroi_01.jpg" },
     { l: 1, q: "ما اسم الفيلم الذي يظهر فيه أسد صغير اسمه سيمبا؟", a: "الأسد الملك" },
     { l: 1, q: "ما اسم الشركة التي أنتجت أفلام «توي ستوري»؟", a: "بيكسار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Pixaranimationstudios.jpg/960px-Pixaranimationstudios.jpg" },
     { l: 1, q: "ما اسم الأنمي الذي يتحوّل فيه البشر إلى عمالقة ويحاربهم إيرين؟", a: "هجوم العمالقة", img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/%D9%87%D8%AC%D9%88%D9%85_%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%84%D9%82%D8%A9.png" },
@@ -1095,13 +1139,9 @@ const questionsData = {
     { l: 4, q: "ما اسم أول فيلم في سلسلة حرب النجوم من حيث الإصدار؟", a: "أمل جديد عام 1977" },
     { l: 4, q: "ما اسم المخرج الذي أخرج فيلم أفاتار وتايتانيك؟", a: "جيمس كاميرون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/James_Cameron_at_53rd_Saturn_Awards_2026-01_%28cropped%29.jpg/960px-James_Cameron_at_53rd_Saturn_Awards_2026-01_%28cropped%29.jpg" },
     { l: 4, q: "ما اسم الأنمي الذي أخرجه ماكوتو شينكاي وحقق نجاحاً عالمياً عام 2016؟", a: "اسمك (يور نيم)", img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21519-SUo3ZQuCbYhJ.png" },
-    { l: 4, q: "ما اسم أطول أنمي مستمر من حيث عدد الحلقات؟", a: "سازاي سان (والأشهر عالمياً ون بيس)" },
     { l: 4, q: "ما اسم الممثل الذي جسّد شخصية الجوكر وفاز بالأوسكار عام 2020؟", a: "خواكين فينيكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Joaquin_Phoenix_in_2018.jpg/960px-Joaquin_Phoenix_in_2018.jpg" },
     { l: 4, q: "ما اسم استوديو الأنمي الذي أنتج قاتل الشياطين؟", a: "يوفوتيبل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Shinjuku_front_tower_2012.JPG/960px-Shinjuku_front_tower_2012.JPG" },
     { l: 4, q: "ما اسم الفيلم الذي بطله رجل يعيش الحياة نفسها كل يوم؟", a: "يوم غراوندهوغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Groundhog_Day%2C_Punxsutawney%2C_2013-1.jpg/960px-Groundhog_Day%2C_Punxsutawney%2C_2013-1.jpg" },
-    { l: 4, q: "ما اسم الفيلم المصري الكلاسيكي الذي بطله عمر الشريف وفاتن حمامة عن الأرض؟", a: "صراع في الوادي / نهر الحب", img: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Omar_elcherif.jpg" },
-    { l: 4, q: "ما اسم مؤلف مانغا ون بيس؟", a: "إييتشيرو أودا", img: "image/افلام و انمي.jpg" },
-    { l: 5, q: "ما اسم أول فيلم ناطق في تاريخ السينما؟", a: "مغني الجاز عام 1927", img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/The_Jazz_Singer_1927_Poster.jpg" },
     { l: 5, q: "ما اسم المخرج الملقّب بـ«سيد التشويق»؟", a: "ألفريد هيتشكوك", img: "https://upload.wikimedia.org/wikipedia/commons/9/94/Hitchcock%2C_Alfred_02.jpg" },
     { l: 5, q: "ما اسم أول أنمي تلفزيوني ياباني؟", a: "أسترو بوي عام 1963", img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx971-zUOKQLxg0pL2.jpg" },
     { l: 5, q: "من هو مؤلف مانغا دراغون بول؟", a: "أكيرا تورياما", img: "https://upload.wikimedia.org/wikipedia/en/1/15/Akira_Toriyama_in_1982.jpg" },
@@ -1109,8 +1149,7 @@ const questionsData = {
     { l: 5, q: "ما اسم مؤلف مانغا هجوم العمالقة؟", a: "هاجيمي إيساياما", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/FIBD2023HajimeIsayama_01.jpg/960px-FIBD2023HajimeIsayama_01.jpg" },
     { l: 5, q: "ما اسم المهرجان السينمائي الذي تُمنح فيه السعفة الذهبية؟", a: "مهرجان كان", img: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Cannes.Redcarpet.jpg" },
     { l: 5, q: "ما اسم أول فيلم رسوم متحركة يُرشّح لأوسكار أفضل فيلم؟", a: "الجميلة والوحش", img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Beauty_and_the_beast.png" },
-    { l: 5, q: "ما اسم مؤلف مانغا المحقق كونان؟", a: "غوشو أوياما", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Gosho_Aoyama.jpg" },
-    { l: 5, q: "ما اسم أقدم استوديو سينمائي ما زال يعمل في هوليوود؟", a: "يونيفرسال بيكتشرز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Universal_Pictures_2021_%28Blue%29.svg/960px-Universal_Pictures_2021_%28Blue%29.svg.png" },
+    { l: 5, q: "ما اسم أقدم استوديو سينمائي ما زال يعمل في هوليوود؟", a: "يونيفرسال بيكتشرز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Universal_Pictures_2021_%28Blue%29.svg/960px-Universal_Pictures_2021_%28Blue%29.svg.png" }
   ],
 
   /* ---------- البوكيمون (50 سؤالاً) ----------
