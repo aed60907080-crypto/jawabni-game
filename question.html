@@ -441,6 +441,7 @@
     .vid.tt{ max-width:340px; }
     .vid.tt iframe{ aspect-ratio:9/16; }
     .vid.tt > .vid-cover{ top:13%; }
+    .vid.clip > .vid-cover{ top:0; }   /* مقطع بصوته بلا شريط تحدٍّ: الغلاف يغطي المشغّل كله */
     /* band: المشهد وحده من مقطع تيك توك (الإطار يُقصّ أعلاه وأسفله) */
     .vid.tt.band{ max-width:min(640px, calc(68vh * var(--ar))); }
     .vid.tt.band iframe{ position:absolute; left:0; width:100%; aspect-ratio:auto; }
@@ -2035,15 +2036,16 @@
     /* فيديو يوتيوب */
     if (item.yt) {
       const box = document.createElement('div');
-      box.className = 'vid' + (item.bw ? ' bw' : '');
+      box.className = 'vid' + (item.bw ? ' bw' : '') + (item.clip ? ' clip' : '');
       const fr = document.createElement('iframe');
       /* ys/ye: مقطع محدّد من الفيديو بالثواني (مثلاً 30 ثانية حول الهدف) —
          يوتيوب يبدأ من ys ويتوقّف عند ye */
       const range = (item.ys != null ? "&start=" + Math.floor(item.ys) : "") +
                     (item.ye != null ? "&end=" + Math.floor(item.ye) : "");
-      /* song: المقطع صامت (بلا صوت المعلّق) وتعزف اللعبة أغنية مدة المقطع —
-         enablejsapi يرسل حالة المشغّل (تشغيل/إيقاف) فنزامن الأغنية معه */
-      const mute = item.song ? "&mute=1&enablejsapi=1&origin=" + encodeURIComponent(location.origin) : "";
+      /* song: صامت وتعزف اللعبة أغنيتها — clip: بصوته (مشهد مسلسل). في الحالتين
+         enablejsapi يرسل حالة المشغّل فنتحكم به من غلاف «شغّل المقطع» */
+      const ctl = !!(item.song || item.clip);
+      const mute = (item.song ? "&mute=1" : "") + (ctl ? "&enablejsapi=1&origin=" + encodeURIComponent(location.origin) : "");
       /* يوتيوب يرفض التشغيل المضمَّن (الخطأ 153) إن لم تُرسل الصفحة عنوانها
          (Referer) — فنطلبه صراحة */
       fr.referrerPolicy = "strict-origin-when-cross-origin";
@@ -2069,7 +2071,7 @@
 
       /* مزامنة الأغنية مع المشغّل المضمَّن: تشغيل ← أغنية حتى نهاية المقطع،
          إيقاف أو انتهاء ← تخفت */
-      if (item.song && location.protocol !== "file:") {
+      if (ctl && location.protocol !== "file:") {
         const end = item.ye != null ? item.ye : 30;
         const dur = Math.max(2, end - (item.ys || 0));
         const cmd = (func, args) => {
@@ -2097,7 +2099,7 @@
           cover.hidden = true;
           cmd("seekTo", [item.ys || 0, true]);
           cmd("playVideo");
-          if (window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
+          if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
         });
         box.appendChild(cover);
 
@@ -2109,7 +2111,8 @@
           let d; try { d = JSON.parse(e.data); } catch (_) { return; }
           const info = d.info || {};
           const st = d.event === "onStateChange" ? d.info : info.playerState;
-          if (st === 1 && !goalSongOn && !revealed) {
+          if (st === 1) cover.hidden = true;
+          if (st === 1 && item.song && !goalSongOn && !revealed) {
             /* استئناف من أزرار يوتيوب: الأغنية لما بقي من المقطع */
             goalSongOn = true;
             cover.hidden = true;
@@ -2117,11 +2120,11 @@
             if (window.SFX) SFX.music.clip(Math.max(2, end - t));
           } else if (st === 2 && goalSongOn) {
             goalSongOn = false;
-            if (window.SFX) SFX.music.endClip();
+            if (item.song && window.SFX) SFX.music.endClip();
           } else if (st === 0) {
             /* انتهى المقطع: يعود الغلاف فلا تظهر شاشة يوتيوب الختامية (عناوين) */
             goalSongOn = false;
-            if (window.SFX) SFX.music.endClip();
+            if (item.song && window.SFX) SFX.music.endClip();
             if (!revealed) {
               cover.querySelector("b").textContent = "أعد المقطع";
               cover.hidden = false;
@@ -2139,7 +2142,7 @@
         const id = encodeURIComponent(ytId(item.yt));
         const btn = document.createElement("a");
         /* مع غلاف التشغيل داخل اللعبة يصير الزر رابطاً احتياطياً صغيراً */
-        const inGame = item.song && location.protocol !== "file:";
+        const inGame = ctl && location.protocol !== "file:";
         btn.className = "yt-open" + (inGame ? " alt" : "");
         btn.target = "_blank";
         btn.rel = "noopener";                      /* بلا noreferrer: يوتيوب يحتاج العنوان */

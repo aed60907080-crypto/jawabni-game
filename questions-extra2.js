@@ -226,58 +226,64 @@
     { l: 5, q: "من هذه الشخصية؟", a: "الشرطي كازونوبو تشيبا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30373-6sv7EFy1sW8j.png" }
   ];
 
-  /* ---------- سترينجر ثينجز (50 سؤالاً) ---------- */
+  /* ---------- سترينجر ثينجز (40 سؤالاً) ----------
+     نوعان:
+     • «من هذه الشخصية؟» — صورة الشخصية من ويكي المسلسل (Stranger Things Wiki).
+     • «ماذا حصل في هذا المقطع؟» — مشهد مشهور بصوته (clip): مقطع يوتيوب من ys
+       إلى ye وغلاف «شغّل المقطع» يخفي صورته المصغّرة، وhide يغطي شريط العنوان
+       أعلى المشغّل (يكشف اسم المشهد)؛ أو مقطع تيك توك من حساب نتفليكس. */
+  var ST_IMG = "https://static.wikia.nocookie.net/strangerthings8338/images/";
+  var ST_MASK = [[0, 0, 100, 14]];
   extra["سترينجر ثينجز"] = [
-    { l: 1, q: "في أي بلدة تدور أحداث مسلسل سترينجر ثينجز؟", a: "هوكينز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 1, q: "في أي ولاية أمريكية تقع بلدة هوكينز؟", a: "إنديانا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Gary%2C_Indiana_%282022%29.jpg/960px-Gary%2C_Indiana_%282022%29.jpg", iq: "Indiana" },
-    { l: 1, q: "ما اسم الفتاة صاحبة القوى الخارقة في المسلسل؟", a: "إليفن", iq: "Millie Bobby Brown" },
-    { l: 1, q: "ماذا يعني اسم «إليفن» بالعربية؟", a: "أحد عشر", img: "image/سترينجر ثنجز.jpg", iq: "number eleven" },
-    { l: 1, q: "ما اسم الصبي الذي اختفى في الحلقة الأولى؟", a: "ويل بايرز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Noah_Schnapp_-_NBFF_2025.jpg/960px-Noah_Schnapp_-_NBFF_2025.jpg", iq: "Noah Schnapp" },
-    { l: 1, q: "ما اسم العالم الموازي المظلم في المسلسل؟", a: "العالم المقلوب", img: "image/سترينجر ثنجز.jpg", iq: "Stranger Things Upside Down" },
-    { l: 1, q: "ما اسم رئيس شرطة هوكينز؟", a: "جيم هوبر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/David_Harbour_by_Gage_Skidmore_2.jpg/960px-David_Harbour_by_Gage_Skidmore_2.jpg", iq: "David Harbour" },
-    { l: 1, q: "ما اسم والدة ويل بايرز؟", a: "جويس بايرز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Winona_Ryder-63849.jpg/960px-Winona_Ryder-63849.jpg", iq: "Winona Ryder" },
-    { l: 1, q: "ما الطعام المفضل لدى إليفن؟", a: "الوافل", iq: "waffle" },
-    { l: 1, q: "في أي عقد زمني تدور أحداث المسلسل؟", a: "ثمانينيات القرن العشرين", img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Jackee88.jpg", iq: "1980s" },
-    { l: 2, q: "على أي منصة يُعرض مسلسل سترينجر ثينجز؟", a: "نتفليكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/101_Albright_Way.jpg/960px-101_Albright_Way.jpg", iq: "Netflix" },
-    { l: 2, q: "من هما الأخوان اللذان ابتكرا المسلسل؟", a: "الأخوان دافر", img: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Matt_and_Ross_Duffer_%28crop%29.png", iq: "Duffer Brothers" },
-    { l: 2, q: "ما اسم أخ ويل الأكبر المصوّر؟", a: "جوناثان بايرز", img: "https://upload.wikimedia.org/wikipedia/commons/5/51/Charlie_Heaton_2025.png", iq: "Charlie Heaton" },
-    { l: 2, q: "ما اسم أخت مايك الكبرى؟", a: "نانسي ويلر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Natalia_Dyer_2025_%283%29.png/960px-Natalia_Dyer_2025_%283%29.png", iq: "Natalia Dyer" },
-    { l: 2, q: "ما اسم الصبي الذي يرتدي قبعة ويحب العلوم؟", a: "دستن هندرسون", iq: "Gaten Matarazzo" },
-    { l: 2, q: "ما اسم الصديق الرابع في مجموعة الأصدقاء؟", a: "لوكاس سينكلير", img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Caleb_McLaughlin_2025_%281%29.png", iq: "Caleb McLaughlin" },
-    { l: 2, q: "ما اسم الوحش الرئيسي في الموسم الأول؟", a: "ديموغورغون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Stranger_Things_cast_by_Gage_Skidmore.jpg/960px-Stranger_Things_cast_by_Gage_Skidmore.jpg", iq: "Stranger Things Demogorgon" },
-    { l: 2, q: "ما اسم اللعبة التي يلعبها الأصدقاء في القبو؟", a: "دنجنز آند دراغونز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/D%26D_Game_1.jpg/960px-D%26D_Game_1.jpg", iq: "Dungeons and Dragons" },
-    { l: 2, q: "ما اسم المختبر الحكومي في هوكينز؟", a: "مختبر هوكينز الوطني", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/At_Manchester_2023_2023_006.jpg/960px-At_Manchester_2023_2023_006.jpg", iq: "laboratory" },
-    { l: 2, q: "ما اسم الفتاة التي انضمت للمجموعة في الموسم الثاني؟", a: "ماكس مايفيلد", img: "https://upload.wikimedia.org/wikipedia/commons/9/94/Sadie_Sink_%2843914734441%29.jpg", iq: "Sadie Sink" },
-    { l: 3, q: "ما اسم الشرير الرئيسي في الموسم الرابع؟", a: "فيكنا", iq: "Stranger Things Vecna" },
-    { l: 3, q: "ما اسم الأغنية التي أنقذت ماكس من قبضة فيكنا؟", a: "Running Up That Hill لكيت بوش", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Kate_Bush_Hounds_of_Love_%281985_EMI_publicity_photo%29_02_%28cropped%29.jpg", iq: "Kate Bush" },
-    { l: 3, q: "ما اسم العالم الذي ربّى إليفن داخل المختبر؟", a: "الدكتور برينر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Matthew_Modine_by_Gage_Skidmore.jpg/960px-Matthew_Modine_by_Gage_Skidmore.jpg", iq: "Matthew Modine" },
-    { l: 3, q: "ما اسم المركز التجاري الذي تدور فيه أحداث الموسم الثالث؟", a: "ستارتكورت مول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Strip_mall.jpg/960px-Strip_mall.jpg", iq: "shopping mall 1980s" },
-    { l: 3, q: "ما اسم الفتاة التي عملت مع ستيف في محل المثلجات؟", a: "روبن باكلي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Maya_Hawke_%40_Sid_The_Cat_Auditorium.jpg/960px-Maya_Hawke_%40_Sid_The_Cat_Auditorium.jpg", iq: "Maya Hawke" },
-    { l: 3, q: "ما اسم الشاب صاحب الشعر المنفوش الذي صار حامياً للأطفال؟", a: "ستيف هارينغتون", img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Joe_Keery_2025.png", iq: "Joe Keery" },
-    { l: 3, q: "ما اسم زعيم نادي هيلفاير في الموسم الرابع؟", a: "إيدي مانسون", iq: "Joseph Quinn actor" },
-    { l: 3, q: "ما اسم الكيان الضخم الشبيه بالعنكبوت في الموسم الثاني؟", a: "سالخ العقول (مايند فلاير)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Stranger_Things_cast_by_Gage_Skidmore.jpg/960px-Stranger_Things_cast_by_Gage_Skidmore.jpg", iq: "Stranger Things Mind Flayer" },
-    { l: 3, q: "ما اسم أخي ماكس غير الشقيق في الموسم الثاني؟", a: "بيلي هارغروف", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Dacre_Montgomery_by_Gage_Skidmore.jpg/960px-Dacre_Montgomery_by_Gage_Skidmore.jpg", iq: "Dacre Montgomery" },
-    { l: 3, q: "ما اسم محل المثلجات الذي عمل فيه ستيف وروبن؟", a: "سكوبس آهوي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Venice_-_Ice_cream_parlor_-_4017.jpg/960px-Venice_-_Ice_cream_parlor_-_4017.jpg", iq: "ice cream shop" },
-    { l: 4, q: "ما اسم الممثلة التي تؤدي دور إليفن؟", a: "ميلي بوبي براون", iq: "Millie Bobby Brown" },
-    { l: 4, q: "ما اسم الممثل الذي يؤدي دور هوبر؟", a: "ديفيد هاربر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/David_Harbour_by_Gage_Skidmore_2.jpg/960px-David_Harbour_by_Gage_Skidmore_2.jpg", iq: "David Harbour" },
-    { l: 4, q: "ما اسم الممثلة التي تؤدي دور جويس بايرز؟", a: "وينونا رايدر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Winona_Ryder-63849.jpg/960px-Winona_Ryder-63849.jpg", iq: "Winona Ryder" },
-    { l: 4, q: "ما الاسم الحقيقي لإليفن؟", a: "جين آيفز", iq: "Millie Bobby Brown" },
-    { l: 4, q: "ما اسم والدة إليفن الحقيقية؟", a: "تيري آيفز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 4, q: "ما اسم الفتاة الأخرى ذات القوى التي التقتها إليفن في شيكاغو؟", a: "كالي — رقم ثمانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 4, q: "ما اسم المخلوق الصغير الذي ربّاه دستن ثم تبيّن أنه وحش؟", a: "دارت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Stranger_Things_cast_by_Gage_Skidmore.jpg/960px-Stranger_Things_cast_by_Gage_Skidmore.jpg", iq: "Stranger Things Dart" },
-    { l: 4, q: "في أي عام بدأ عرض سترينجر ثينجز؟", a: "عام 2016", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/101_Albright_Way.jpg/960px-101_Albright_Way.jpg", iq: "Netflix" },
-    { l: 4, q: "ما اسم مدرّس العلوم الذي يساعد الأطفال بشرح النظريات؟", a: "السيد كلارك", img: "https://upload.wikimedia.org/wikipedia/commons/4/44/T._K._Singh%2C_Indian_science_teacher.jpg", iq: "science teacher" },
-    { l: 4, q: "ما اسم الروسي الذي ساعد هوبر وجويس في الموسم الثالث؟", a: "أليكسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 5, q: "من هو فيكنا في الحقيقة؟", a: "هنري كريل — رقم واحد", iq: "Stranger Things Vecna" },
-    { l: 5, q: "ما اسم المنزل المهجور المرتبط بجرائم عائلة كريل؟", a: "منزل عائلة كريل", iq: "abandoned house" },
-    { l: 5, q: "ما اسم شبه الجزيرة الروسية التي احتُجز فيها هوبر؟", a: "كامتشاتكا", img: "https://upload.wikimedia.org/wikipedia/commons/d/df/Location_Kamchatka_Peninsula.PNG", iq: "Kamchatka" },
-    { l: 5, q: "ما اسم الوحوش الصغيرة التي تسبق مرحلة الديموغورغون؟", a: "الديموغدوغز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 5, q: "ما اسم صديقة نانسي التي اختفت في الموسم الأول؟", a: "باربرا — بارب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Shannon_Purser_by_Gage_Skidmore.jpg/960px-Shannon_Purser_by_Gage_Skidmore.jpg", iq: "Shannon Purser" },
-    { l: 5, q: "كم موسماً عُرض من سترينجر ثينجز حتى نهاية الموسم الرابع؟", a: "أربعة مواسم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/101_Albright_Way.jpg/960px-101_Albright_Way.jpg", iq: "Netflix" },
-    { l: 5, q: "ما اسم الكاتب الأمريكي الذي استوحي منه شكل شعار المسلسل؟", a: "ستيفن كينغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_%28cropped%29.jpg/960px-Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_%28cropped%29.jpg", iq: "Stephen King" },
-    { l: 5, q: "ما اسم البوابة التي تربط هوكينز بالعالم المقلوب؟", a: "البوابة (الغيت)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Fourways_Mall_Stranger_Things_Experience_1.jpg/960px-Fourways_Mall_Stranger_Things_Experience_1.jpg", iq: "Stranger Things" },
-    { l: 5, q: "ما اسم أخت لوكاس الصغيرة؟", a: "إيريكا سينكلير", img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Priah_Ferguson_in_2019.png", iq: "Priah Ferguson" },
-    { l: 5, q: "ما اسم الآلة الموسيقية التي يغلب عليها لحن المقدّمة؟", a: "السينثسايزر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/R.A.Moog_minimoog_2.jpg/960px-R.A.Moog_minimoog_2.jpg", iq: "synthesizer" }
+    /* ===== المستوى الأول ===== */
+    { l: 1, q: "من هذه الشخصية؟", a: "إليفن (الرقم 11)", img: ST_IMG + "e/e2/Eleven_-_Sorcerer.png/revision/latest/scale-to-width-down/444?cb=20260313155200" },
+    { l: 1, q: "من هذه الشخصية؟", a: "مايك ويلر", img: ST_IMG + "9/97/Mike_Wheeler_Finale.png/revision/latest/scale-to-width-down/577?cb=20260313155900" },
+    { l: 1, q: "من هذه الشخصية؟", a: "داستن هندرسون", img: ST_IMG + "4/4f/Dustin_Henderson_1989.png/revision/latest/scale-to-width-down/590?cb=20260313155936" },
+    { l: 1, q: "من هذه الشخصية؟", a: "لوكاس سنكلير", img: ST_IMG + "7/70/Lucas_Sinclair_Finale.png/revision/latest/scale-to-width-down/512?cb=20260313155517" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ويل بايرز", img: ST_IMG + "5/5e/Will_Byers_Finale.png/revision/latest/scale-to-width-down/587?cb=20260313155557" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ستيف هارينغتون", img: ST_IMG + "8/81/Steve_Harrington_1989.png/revision/latest/scale-to-width-down/535?cb=20260112123852" },
+    { l: 1, q: "من هذه الشخصية؟", a: "جيم هوبر — شريف هوكينز", img: ST_IMG + "e/ed/Jim_Hopper_Finale.png/revision/latest/scale-to-width-down/513?cb=20260313155702" },
+    { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تقلب شاحنة الأشرار في الهواء بقواها لتنقذ الأولاد (الموسم الأول)", yt: "0ONZqhTC-PM", ys: 0, ye: 28, clip: true, hide: ST_MASK },
+    { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 40, clip: true, hide: ST_MASK },
+
+    /* ===== المستوى الثاني ===== */
+    { l: 2, q: "من هذه الشخصية؟", a: "ماكس مايفيلد", img: ST_IMG + "2/2a/1989.png/revision/latest/scale-to-width-down/489?cb=20260313154711" },
+    { l: 2, q: "من هذه الشخصية؟", a: "نانسي ويلر — أخت مايك", img: ST_IMG + "3/30/Nancy_Wheeler_Finale.png/revision/latest/scale-to-width-down/600?cb=20260313160024" },
+    { l: 2, q: "من هذه الشخصية؟", a: "جوناثان بايرز — أخو ويل", img: ST_IMG + "2/24/Jonathan_Byers_1989.png/revision/latest/scale-to-width-down/541?cb=20260105150955" },
+    { l: 2, q: "من هذه الشخصية؟", a: "جويس بايرز — أم ويل", img: ST_IMG + "1/15/Joyce_Byers_1989.png/revision/latest/scale-to-width-down/531?cb=20260313155324" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إدي مانسون — رئيس نادي «هيلفاير»", img: ST_IMG + "c/ca/Eddie_Munson.jpg/revision/latest/scale-to-width-down/479?cb=20220608205857" },
+    { l: 2, q: "من هذه الشخصية؟", a: "فيكنا (هنري كريل)", img: ST_IMG + "4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/527?cb=20251229052347" },
+    { l: 2, q: "من هذه الشخصية؟", a: "الديموغورغون — وحش العالم المقلوب", img: ST_IMG + "f/ff/Demogorgon_-_Chapter_Eight.jpg/revision/latest?cb=20221105220915" },
+    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 180, ye: 215, clip: true, hide: ST_MASK },
+    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 0, ye: 39, clip: true, hide: ST_MASK },
+
+    /* ===== المستوى الثالث ===== */
+    { l: 3, q: "من هذه الشخصية؟", a: "روبن باكلي", img: ST_IMG + "6/6f/Robin_Finale.png/revision/latest/scale-to-width-down/545?cb=20260101040655" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إيريكا سنكلير — أخت لوكاس", img: ST_IMG + "4/48/Erica89.png/revision/latest/scale-to-width-down/417?cb=20260101231247" },
+    { l: 3, q: "من هذه الشخصية؟", a: "بيلي هارغروف — أخو ماكس", img: ST_IMG + "a/a3/Billy_Hargrove_-_S3.jpg/revision/latest/scale-to-width-down/443?cb=20230429184614" },
+    { l: 3, q: "من هذه الشخصية؟", a: "الدكتور مارتن برينر («بابا»)", img: ST_IMG + "b/b5/Brenner_-_The_Nina_Project.png/revision/latest/scale-to-width-down/474?cb=20260120195836" },
+    { l: 3, q: "من هذه الشخصية؟", a: "آكل العقول (مايند فلاير)", img: ST_IMG + "b/b0/Mind_Flayer_-_Abyss_form.jpeg/revision/latest/scale-to-width-down/600?cb=20260107051652" },
+    { l: 3, q: "من هذه الشخصية؟", a: "موراي باومان", img: ST_IMG + "8/8e/Murray_1989.png/revision/latest/scale-to-width-down/559?cb=20260109113207" },
+    { l: 3, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?cb=20180327083407" },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 35, clip: true, hide: ST_MASK },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 105, te: 140, band: [10, 92] },
+
+    /* ===== المستوى الرابع ===== */
+    { l: 4, q: "من هذه الشخصية؟", a: "كارين ويلر — أم مايك", img: ST_IMG + "b/b4/Karen_Wheeler_Finale.png/revision/latest/scale-to-width-down/458?cb=20260101053303" },
+    { l: 4, q: "من هذه الشخصية؟", a: "باربرا «بارب» هولاند", img: ST_IMG + "4/46/Barbara_Holland.png/revision/latest/scale-to-width-down/351?cb=20221113000712" },
+    { l: 4, q: "من هذه الشخصية؟", a: "آرغايل", img: ST_IMG + "4/47/Argyle_S4.png/revision/latest/scale-to-width-down/458?cb=20220909212533" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كالي — «إيت» (الرقم 8)", img: ST_IMG + "7/72/Kali_s5_Trailer.png/revision/latest/scale-to-width-down/564?cb=20251219173651" },
+    { l: 4, q: "من هذه الشخصية؟", a: "أليكسي — العالم الروسي", img: ST_IMG + "a/ad/Alexei.JPG/revision/latest/scale-to-width-down/510?cb=20190705023926" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?cb=20260313155747" },
+    { l: 4, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?cb=20221124001121" },
+    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 78, ye: 110, clip: true, hide: ST_MASK },
+
+    /* ===== المستوى الخامس ===== */
+    { l: 5, q: "من هذه الشخصية؟", a: "السيد سكوت كلارك — معلّم العلوم", img: ST_IMG + "b/b6/Mr_Scott_Clarke_1989.png/revision/latest/scale-to-width-down/481?cb=20260101050840" },
+    { l: 5, q: "من هذه الشخصية؟", a: "الدكتور سام أوينز", img: ST_IMG + "3/32/Sam_Owens_-_S4.png/revision/latest/scale-to-width-down/431?cb=20260101065341" },
+    { l: 5, q: "من هذه الشخصية؟", a: "جايسون كارفر", img: ST_IMG + "6/62/Jason_-_The_Piggyback.png/revision/latest/scale-to-width-down/490?cb=20221219190124" },
+    { l: 5, q: "من هذه الشخصية؟", a: "هولي ويلر — أخت مايك الصغيرة", img: ST_IMG + "0/03/Holly_Wheeler_Finale.png/revision/latest/scale-to-width-down/541?cb=20260320014912" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ديمتري «إنزو» أنتونوف — الحارس الروسي", img: ST_IMG + "a/a2/Dmitri.png/revision/latest/scale-to-width-down/569?cb=20220702211146" }
   ];
 
   /* ---------- لورد أوف ذا رينغز (50 سؤالاً) ---------- */
