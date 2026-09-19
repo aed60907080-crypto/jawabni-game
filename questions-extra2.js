@@ -66,6 +66,62 @@
     { l: 5, q: "من هذه الشخصية؟", a: "ماي — تابعة بيلاف", img: "https://s4.anilist.co/file/anilistcdn/character/large/2143.jpg" }
   ];
 
+  /* ---------- ون بيس (50 سؤالاً) ----------
+     «من هذه الشخصية؟» — صورة الشخصية من AniList، من الأشهر (المستوى
+     الأول: طاقم قبعة القش) إلى الأقل ظهوراً. */
+  extra["ون بيس"] = [
+    { l: 1, q: "من هذه الشخصية؟", a: "مونكي دي لوفي — قبطان قراصنة قبعة القش", img: "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "رورونوا زورو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "سانجي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b305-6lisPmHtCnLT.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "نامي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b723-vp5hPptgnNEC.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "أوسوب", img: "https://s4.anilist.co/file/anilistcdn/character/large/b724-GFGgI9AJQkfy.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "توني توني تشوبر", img: "https://s4.anilist.co/file/anilistcdn/character/large/b309-H64NhbJ2ywIQ.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "نيكو روبين", img: "https://s4.anilist.co/file/anilistcdn/character/large/b61-ywXUyyocEEqt.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "بورتغاس دي إيس — أخو لوفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2072-Lc6jEdsueJUK.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "شانكس ذو الشعر الأحمر", img: "https://s4.anilist.co/file/anilistcdn/character/large/b727-wUJx7M1z5xON.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "بروك", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5627-av8oD3zhKvDl.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "فرانكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/n64-ChX6ZzHHjXqA.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "جينبي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b18938-yZANEfjsVhW4.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ترافلغار لو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b13767-U604OJN9dxCn.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "بوا هانكوك", img: "https://s4.anilist.co/file/anilistcdn/character/large/b16342-kVOF6V5Q94go.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إدوارد نيوغيت (اللحية البيضاء)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2751-NnzW0N2vCTjX.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "سابو — أخو لوفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b32893-3weZS61cdwLD.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "باغي المهرّج", img: "https://s4.anilist.co/file/anilistcdn/character/large/n725-g04AaiaK5f9B.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "غول دي روجر — ملك القراصنة", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4883-0t76xH00sehO.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "مونكي دي غارب — جدّ لوفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b8064-dPltKaZ8RAsj.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "دونكيخوتي دوفلامينغو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2754-B4gGSlNYgsyh.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "دراكيول ميهوك", img: "https://s4.anilist.co/file/anilistcdn/character/large/n2064-OpnF4nLi6bvL.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كروكودايل", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2749-e8ebEBN1SlS2.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "نفرتاري فيفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b726-DqAIpscMuYYx.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "مارشال دي تيتش (اللحية السوداء)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3331-7ZJDc4BNv9Yp.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كايدو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b46109-MT7Hm4Bk93In.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "شارلوت لينلين (بيغ مام)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b54495-3x1TzSzPEOLd.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "سيلفرز رايلي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b17142-OXOpztWZIE2A.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "سموكر", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2753-Y2ja8Pl6PRs0.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ياماتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b176840-8KRqXXLJeLOg.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كوبي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b12361-H0SmgKxZ9T61.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "شارلوت كاتاكوري", img: "https://s4.anilist.co/file/anilistcdn/character/large/b124077-TODX2ThCdyx2.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كوزان (الأدميرال أوكيجي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2752-0ENS2a39muDz.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "بورسالينو (الأدميرال كيزارو)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b21093-Pc4kOjUn3ZkZ.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "ساكازوكي (الأدميرال أكاينو)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b22687-tCQVpj6wZhRk.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "بارثولوميو كوما", img: "https://s4.anilist.co/file/anilistcdn/character/large/b7453-c3MArieFBs9w.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "يوستاس كيد", img: "https://s4.anilist.co/file/anilistcdn/character/large/b14989-uykLqnBTdAc2.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "إينيل", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1541-6c8RouunoL88.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "ماركو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b9323-tGArly93xBZv.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "مونكي دي دراغون — والد لوفي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4884-iBn6FzQ2ESLC.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "أوتا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b270493-pviD8gBS5BXW.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "دونكيخوتي روسينانتي (كورازون)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b120536-PxdNxEhQwE8d.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "بيرونا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b7467-0xxnaxQGfhkY.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "بون كلاي (بينثام)", img: "https://s4.anilist.co/file/anilistcdn/character/large/n4875-Ga2TVjP70R6r.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كوزوكي أودين", img: "https://s4.anilist.co/file/anilistcdn/character/large/b149797-UmdR7up3kgoK.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "روب لوتشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5677-ZrZunVe7Kq5P.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "جويلري بوني", img: "https://s4.anilist.co/file/anilistcdn/character/large/b20295-LqpG4Y3HkKxu.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "إيشو (الأدميرال فوجيتورا)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b82259-NFdvvcSHup7Z.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "تاشيغي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2750-j3Rf9SC37ehT.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "لابون — الحوت", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5413-4j9gPyHIiYim.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "شيراهوشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/40273.jpg" }
+  ];
+
   /* ---------- المحقق كونان (42 سؤالاً) ----------
      «من هذه الشخصية؟» — صورة الشخصية من AniList، من الأشهر (المستوى
      الأول) إلى الأقل ظهوراً. */
