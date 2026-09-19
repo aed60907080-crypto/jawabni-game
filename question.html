@@ -195,6 +195,10 @@
       width:132px; height:132px;
       margin:0 auto 26px;
     }
+    /* «ولا كلمة»: الساعة مخفية حتى يُضغط «ابدأ» أسفل الباركود (مكانها محفوظ) */
+    .timer.await-start{ opacity:0; transform:scale(.85); pointer-events:none; }
+    .q-media .qr-start{ display:flex; margin:16px auto 0; min-width:180px; justify-content:center; font-size:20px; }
+    .q-media:has(.qr-start) .zoom-tip{ display:none; }   /* لا حاجة لتكبير الباركود */
     .timer svg{ transform:rotate(-90deg); display:block; }
     .timer circle{ fill:none; stroke-linecap:round; }
     .timer .track{ stroke:rgba(255,255,255,.09); stroke-width:9; }
@@ -2123,7 +2127,28 @@
       renderTimer();
     }, 1000);
   }
-  startTimer();
+
+  /* «ولا كلمة» (qr): الوقت لا يبدأ مع فتح السؤال — يمسح الممثّل الباركود أولاً،
+     ثم يُضغط «ابدأ» أسفله فتظهر الساعة وتعدّ 60 ثانية */
+  if (item && item.qr) {
+    left = timerTotal = 60;
+    renderTimer();
+    timerBox.classList.add("await-start");
+    const go = document.createElement("button");
+    go.type = "button";
+    go.className = "btn btn-gold qr-start";
+    go.innerHTML = '<i class="fa-solid fa-play"></i> ابدأ';
+    go.addEventListener("click", () => {
+      go.remove();
+      timerBox.classList.remove("await-start");
+      if (window.SFX) SFX.click();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: "smooth" });   /* الساعة أعلى الصفحة */
+    });
+    document.getElementById("questionMedia").appendChild(go);
+  } else {
+    startTimer();
+  }
 
   function togglePause(){
     SFX.click();
