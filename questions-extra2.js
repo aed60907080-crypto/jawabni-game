@@ -122,6 +122,62 @@
     { l: 5, q: "من هذه الشخصية؟", a: "شيراهوشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/40273.jpg" }
   ];
 
+  /* ---------- ناروتو (50 سؤالاً) ----------
+     «من هذه الشخصية؟» — صورة الشخصية من AniList (ناروتو وشيبودن)، من
+     الأشهر (المستوى الأول) إلى الأقل ظهوراً. */
+  extra["ناروتو"] = [
+    { l: 1, q: "من هذه الشخصية؟", a: "ناروتو أوزوماكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ساسكي أوتشيها", img: "https://s4.anilist.co/file/anilistcdn/character/large/b13-SISLEw1oAD7a.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ساكورا هارونو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b145-IorfpI8arxeX.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "كاكاشي هاتاكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "إيتاتشي أوتشيها", img: "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "غارا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1662-4E5J0LX9jZKZ.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "جيرايا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2423-RO5MyoXSA9OL.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "هيناتا هيوغا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1555-Q41GLTV3FvYF.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "روك لي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b306-oUTOO45xInXt.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "كوراما — الثعلب ذو الذيول التسعة", img: "https://s4.anilist.co/file/anilistcdn/character/large/b7407-D8MYzhbuy8zu.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "شيكامارو نارا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2007-QaesJlIZDifj.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ميناتو ناميكازي — الهوكاغي الرابع", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2535-Xq9WKNPJQEt3.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "باين", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3180-ITMGBLWNBOgV.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "مادارا أوتشيها", img: "https://s4.anilist.co/file/anilistcdn/character/large/b53901-HnRKSoHMG5Vg.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "مايت غاي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b307-xieUEdhdTVwQ.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "نيجي هيوغا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1694-TL4obouDwJ7k.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "تسونادي — الهوكاغي الخامسة", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2767-r61Cj9v8I0wl.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "أوروتشيمارو", img: "https://s4.anilist.co/file/anilistcdn/character/large/n2455-V9tLMS3TIgJW.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "توبي (أوبيتو أوتشيها)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3149-j6cl8A9yup51.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إيروكا أومينو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2011-WUBm7wMCA6cE.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "تيماري", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2174-XTX0TtzkZCnO.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "زابوزا موموتشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b728-zHw77BzLzQKT.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ديدارا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1902-JsEFRFwjmtZJ.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ساسوري", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1900-Dpd9wVWtlvIx.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كونان", img: "https://s4.anilist.co/file/anilistcdn/character/large/3179-YVD5zJSYrnPg.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "كوشينا أوزوماكي — والدة ناروتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b7302-KQ6ddZtOkvUf.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ساي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1901-vJRGRONNpaiG.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إينو ياماناكا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2009-H7n38Ns1fr0Y.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "هاكو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2039-9NXBvh6H15LD.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "تشوجي أكيميتشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/n2008-j1oCafEGZucg.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "هاشيراما سينجو — الهوكاغي الأول", img: "https://s4.anilist.co/file/anilistcdn/character/large/n12464-fcgqkCPZoREw.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "توبيراما سينجو — الهوكاغي الثاني", img: "https://s4.anilist.co/file/anilistcdn/character/large/n12465-y8ByDAvzC5cA.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "شيسوي أوتشيها", img: "https://s4.anilist.co/file/anilistcdn/character/large/b22893-j0SxfY656SKv.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "تينتين", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3710-OmDNYKi0Xfjk.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كيبا إينوزوكا", img: "https://s4.anilist.co/file/anilistcdn/character/large/n3495-dtw0gHa5SOo6.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كيلر بي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b18473-AiI3mk28a1Nm.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "هيدان", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2792-lyvtbiT4COp0.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كيسامي هوشيغاكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/2672-oxbHx8n3N7WY.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كابوتو ياكوشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2405-CqbcGW2tfaMV.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "هيروزين ساروتوبي — الهوكاغي الثالث", img: "https://s4.anilist.co/file/anilistcdn/character/large/n7571-fKldLuBWUtCO.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "أكامارو — كلب كيبا", img: "https://s4.anilist.co/file/anilistcdn/character/large/n4799-gwSQJlSqWnST.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كيميمارو كاغويا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3438-h1fxTDdwew0h.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ياماتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2006-FTCz2Eu3cXsI.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "أسوما ساروتوبي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4775-skviHvjIQHiE.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "شينو أبورامي", img: "https://s4.anilist.co/file/anilistcdn/character/large/n3428-KVeHMgx0xMqO.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كونوهامارو ساروتوبي", img: "https://s4.anilist.co/file/anilistcdn/character/large/n3889-gCUewPsRY2kD.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كاكوزو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b3178-fCqs5wyV0dlJ.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كانكورو", img: "https://s4.anilist.co/file/anilistcdn/character/large/n4694-2brvNKpdqARU.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "كاغويا أوتسوتسوكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b126069-CYxn8C4AHwiD.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "غامابونتا — الضفدع الزعيم", img: "https://s4.anilist.co/file/anilistcdn/character/large/4223.jpg" }
+  ];
+
   /* ---------- المحقق كونان (42 سؤالاً) ----------
      «من هذه الشخصية؟» — صورة الشخصية من AniList، من الأشهر (المستوى
      الأول) إلى الأقل ظهوراً. */
