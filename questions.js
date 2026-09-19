@@ -454,55 +454,71 @@ const questionsData = {
     { l: 5, q: "ما اسم الدولة صاحبة هذا العلم؟", a: "النرويج", img: "image/flags/no.svg" },
   ],
 
-  /* ---------- خرائط (33 سؤالاً) ----------
-     كل أسئلة هذه الفئة من نوع واحد: خريطة العالم كاملة ودولة واحدة
-     مؤشَّر عليها بحلقة ملوّنة، والمطلوب تحديد اسم الدولة.
+  /* ---------- خرائط (50 سؤالاً) ----------
+     «ما اسم هذه الدولة؟» — خريطة العالم تُرسم في اللعبة، والدولة المقصودة
+     ملوّنة وحدها (والصغيرة جداً عليها حلقة أيضاً).
 
      الحقول:
-       pin   : [س٪, ص٪]  موضع الحلقة كنسبة من عرض/ارتفاع image/maps.webp
-                          (محسوبة بمسقط Robinson ومُعايَرة بصرياً)
-       shape : شكل الدولة الصمّاء يظهر في زاوية الخريطة لإزالة اللبس
-               بين الدول المتجاورة (صربيا/كرواتيا، التشيك/المجر…)
+       world : رمز الدولة الرقمي ISO 3166-1 (مثل "706" للصومال) — تُرسم
+               حدودها من بيانات Natural Earth (انظر drawWorldMap في question.html)
+       aimg  : صورة الإجابة (الدولة في منطقتها) — اختيارية
 
      الدول هنا لا تتكرر مع فئة «خمن اسم الدولة» إطلاقاً. */
   "خرائط": [
-    { l: 1, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "الصومال", img: "image/maps.webp", pin: [59.58, 45.57], shape: "image/maps/so.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Somalia_in_its_region_%28claimed%29.svg/960px-Somalia_in_its_region_%28claimed%29.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "نيجيريا", img: "image/maps.webp", pin: [47.40, 43.29], shape: "image/maps/ng.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nigeria_in_its_region.svg/960px-Nigeria_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "الحلقة تقع على دولة… فما اسمها؟", a: "جنوب أفريقيا", img: "image/maps.webp", pin: [52.48, 64.79], shape: "image/maps/za.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/South_Africa_in_its_region.svg/960px-South_Africa_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "أوكرانيا", img: "image/maps.webp", pin: [53.64, 21.77], shape: "image/maps/ua.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ukraine_in_its_region.svg/960px-Ukraine_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "كوبا", img: "image/maps.webp", pin: [19.79, 36.50], shape: "image/maps/cu.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cuba_in_its_region.svg/960px-Cuba_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "الحلقة تقع على دولة… فما اسمها؟", a: "فيتنام", img: "image/maps.webp", pin: [78.93, 39.73], shape: "image/maps/vn.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Vietnam_in_its_region.svg/960px-Vietnam_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 1, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "تشيلي", img: "image/maps.webp", pin: [23.15, 68.13], shape: "image/maps/cl.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Chile_in_its_region.svg/960px-Chile_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "الصومال", world: "706", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Somalia_in_its_region_%28claimed%29.svg/960px-Somalia_in_its_region_%28claimed%29.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "نيجيريا", world: "566", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nigeria_in_its_region.svg/960px-Nigeria_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "جنوب أفريقيا", world: "710", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/South_Africa_in_its_region.svg/960px-South_Africa_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "أوكرانيا", world: "804", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ukraine_in_its_region.svg/960px-Ukraine_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "كوبا", world: "192", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Cuba_in_its_region.svg/960px-Cuba_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "فيتنام", world: "704", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Vietnam_in_its_region.svg/960px-Vietnam_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "تشيلي", world: "152", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Chile_in_its_region.svg/960px-Chile_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "مدغشقر", world: "450", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "منغوليا", world: "496", map: "خريطة عالمية" },
+    { l: 1, q: "ما اسم هذه الدولة؟", a: "آيسلندا", world: "352", map: "خريطة عالمية" },
 
-    { l: 2, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "كازاخستان", img: "image/maps.webp", pin: [63.84, 21.99], shape: "image/maps/kz.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Kazakhstan_in_its_region.svg/960px-Kazakhstan_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "بولندا", img: "image/maps.webp", pin: [50.16, 19.84], shape: "image/maps/pl.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Poland_in_its_region.svg/960px-Poland_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "الحلقة تقع على دولة… فما اسمها؟", a: "كينيا", img: "image/maps.webp", pin: [57.05, 48.52], shape: "image/maps/ke.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kenya_in_its_region_%28undisputed%29.svg/960px-Kenya_in_its_region_%28undisputed%29.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "إثيوبيا", img: "image/maps.webp", pin: [57.55, 43.85], shape: "image/maps/et.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ethiopia_in_its_region.svg/960px-Ethiopia_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "نيوزيلندا", img: "image/maps.webp", pin: [95.77, 71.73], shape: "image/maps/nz.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/New_Zealand_in_its_region.svg/960px-New_Zealand_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "الحلقة تقع على دولة… فما اسمها؟", a: "بنغلاديش", img: "image/maps.webp", pin: [73.27, 35.44], shape: "image/maps/bd.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Bangladesh_in_its_region.svg/960px-Bangladesh_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 2, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "رومانيا", img: "image/maps.webp", pin: [52.00, 23.13], shape: "image/maps/ro.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Romania_in_its_region.svg/960px-Romania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "كازاخستان", world: "398", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Kazakhstan_in_its_region.svg/960px-Kazakhstan_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "بولندا", world: "616", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Poland_in_its_region.svg/960px-Poland_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "كينيا", world: "404", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kenya_in_its_region_%28undisputed%29.svg/960px-Kenya_in_its_region_%28undisputed%29.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "إثيوبيا", world: "231", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Ethiopia_in_its_region.svg/960px-Ethiopia_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "نيوزيلندا", world: "554", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/New_Zealand_in_its_region.svg/960px-New_Zealand_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "بنغلاديش", world: "050", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Bangladesh_in_its_region.svg/960px-Bangladesh_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "رومانيا", world: "642", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Romania_in_its_region.svg/960px-Romania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "فنزويلا", world: "862", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "بوليفيا", world: "068", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "أنغولا", world: "024", map: "خريطة عالمية" },
+    { l: 2, q: "ما اسم هذه الدولة؟", a: "نيبال", world: "524", map: "خريطة عالمية" },
 
-    { l: 3, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "التشيك", img: "image/maps.webp", pin: [49.15, 21.01], shape: "image/maps/cz.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Czech_Republic_in_its_region.svg/960px-Czech_Republic_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "المجر", img: "image/maps.webp", pin: [50.37, 22.42], shape: "image/maps/hu.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Hungary_in_its_region.svg/960px-Hungary_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "الحلقة تقع على دولة… فما اسمها؟", a: "كرواتيا", img: "image/maps.webp", pin: [49.54, 23.56], shape: "image/maps/hr.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Croatia_in_its_region.svg/960px-Croatia_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "الدنمارك", img: "image/maps.webp", pin: [47.34, 17.67], shape: "image/maps/dk.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Denmark_in_its_region.svg/960px-Denmark_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "بيرو", img: "image/maps.webp", pin: [20.64, 53.76], shape: "image/maps/pe.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Peru_in_its_region.svg/960px-Peru_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "الحلقة تقع على دولة… فما اسمها؟", a: "كولومبيا", img: "image/maps.webp", pin: [21.18, 46.41], shape: "image/maps/co.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Colombia_in_its_region.svg/960px-Colombia_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 3, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "موريتانيا", img: "image/maps.webp", pin: [41.34, 37.33], shape: "image/maps/mr.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Mauritania_in_its_region.svg/960px-Mauritania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "التشيك", world: "203", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Czech_Republic_in_its_region.svg/960px-Czech_Republic_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "المجر", world: "348", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Hungary_in_its_region.svg/960px-Hungary_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "كرواتيا", world: "191", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Croatia_in_its_region.svg/960px-Croatia_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "الدنمارك", world: "208", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Denmark_in_its_region.svg/960px-Denmark_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "بيرو", world: "604", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Peru_in_its_region.svg/960px-Peru_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "كولومبيا", world: "170", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Colombia_in_its_region.svg/960px-Colombia_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "موريتانيا", world: "478", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Mauritania_in_its_region.svg/960px-Mauritania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "سريلانكا", world: "144", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "جمهورية الكونغو الديمقراطية", world: "180", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "مالي", world: "466", map: "خريطة عالمية" },
+    { l: 3, q: "ما اسم هذه الدولة؟", a: "تشاد", world: "148", map: "خريطة عالمية" },
 
-    { l: 4, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "أذربيجان", img: "image/maps.webp", pin: [58.96, 26.21], shape: "image/maps/az.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Azerbaijan_in_its_region.svg/960px-Azerbaijan_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 4, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "أوزبكستان", img: "image/maps.webp", pin: [63.90, 25.60], shape: "image/maps/uz.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Uzbekistan_in_its_region.svg/960px-Uzbekistan_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 4, q: "الحلقة تقع على دولة… فما اسمها؟", a: "صربيا", img: "image/maps.webp", pin: [50.89, 24.17], shape: "image/maps/rs.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Serbia_in_its_region_%28de-facto%29.svg/960px-Serbia_in_its_region_%28de-facto%29.svg.png", map: "خريطة عالمية" },
-    { l: 4, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "غانا", img: "image/maps.webp", pin: [44.47, 44.24], shape: "image/maps/gh.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ghana_in_its_region.svg/960px-Ghana_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 4, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "السنغال", img: "image/maps.webp", pin: [40.15, 40.56], shape: "image/maps/sn.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Senegal_in_its_region.svg/960px-Senegal_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 4, q: "الحلقة تقع على دولة… فما اسمها؟", a: "تنزانيا", img: "image/maps.webp", pin: [56.05, 52.20], shape: "image/maps/tz.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Tanzania_in_its_region.svg/960px-Tanzania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "أذربيجان", world: "031", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Azerbaijan_in_its_region.svg/960px-Azerbaijan_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "أوزبكستان", world: "860", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Uzbekistan_in_its_region.svg/960px-Uzbekistan_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "صربيا", world: "688", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Serbia_in_its_region_%28de-facto%29.svg/960px-Serbia_in_its_region_%28de-facto%29.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "غانا", world: "288", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ghana_in_its_region.svg/960px-Ghana_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "السنغال", world: "686", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Senegal_in_its_region.svg/960px-Senegal_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "تنزانيا", world: "834", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Tanzania_in_its_region.svg/960px-Tanzania_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "ميانمار (بورما)", world: "104", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "كمبوديا", world: "116", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "الإكوادور", world: "218", map: "خريطة عالمية" },
+    { l: 4, q: "ما اسم هذه الدولة؟", a: "باراغواي", world: "600", map: "خريطة عالمية" },
 
-    { l: 5, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "كوريا الشمالية", img: "image/maps.webp", pin: [82.64, 26.37], shape: "image/maps/kp.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/North_Korea_in_its_region.svg/960px-North_Korea_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 5, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "فنلندا", img: "image/maps.webp", pin: [51.25, 13.64], shape: "image/maps/fi.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Finland_in_its_region.svg/960px-Finland_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 5, q: "الحلقة تقع على دولة… فما اسمها؟", a: "أيرلندا", img: "image/maps.webp", pin: [42.55, 19.09], shape: "image/maps/ie.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ireland_in_its_region.svg/960px-Ireland_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 5, q: "ما اسم الدولة المؤشَّر عليها في الخريطة؟", a: "الأوروغواي", img: "image/maps.webp", pin: [27.63, 66.73], shape: "image/maps/uy.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Uruguay_in_its_region.svg/960px-Uruguay_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 5, q: "حدّد اسم الدولة التي تشير إليها الحلقة على خريطة العالم.", a: "جيبوتي", img: "image/maps.webp", pin: [58.48, 42.18], shape: "image/maps/dj.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Djibouti_in_its_region.svg/960px-Djibouti_in_its_region.svg.png", map: "خريطة عالمية" },
-    { l: 5, q: "الحلقة تقع على دولة… فما اسمها؟", a: "جزر القمر", img: "image/maps.webp", pin: [58.74, 55.15], shape: "image/maps/km.svg", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Comoros_in_its_region.svg/960px-Comoros_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "كوريا الشمالية", world: "408", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/North_Korea_in_its_region.svg/960px-North_Korea_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "فنلندا", world: "246", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Finland_in_its_region.svg/960px-Finland_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "أيرلندا", world: "372", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ireland_in_its_region.svg/960px-Ireland_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "الأوروغواي", world: "858", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Uruguay_in_its_region.svg/960px-Uruguay_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "جيبوتي", world: "262", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Djibouti_in_its_region.svg/960px-Djibouti_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "جزر القمر", world: "174", aimg: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Comoros_in_its_region.svg/960px-Comoros_in_its_region.svg.png", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "بلغاريا", world: "100", map: "خريطة عالمية" },
+    { l: 5, q: "ما اسم هذه الدولة؟", a: "جورجيا", world: "268", map: "خريطة عالمية" }
   ],
 
   /* ---------- جغرافيا العالم (50 سؤالاً) ---------- */
