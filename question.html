@@ -442,6 +442,16 @@
     .vid.tt iframe{ aspect-ratio:9/16; }
     .vid.tt > .vid-cover{ top:13%; }
     .vid.clip > .vid-cover{ top:0; }   /* مقطع بصوته بلا شريط تحدٍّ: الغلاف يغطي المشغّل كله */
+    /* مقطع محدود: طبقة الإيقاف والتشغيل وشريط التقدّم الخاص (addClipControls) */
+    .vid > .vid-shield{ position:absolute; inset:0; z-index:2; cursor:pointer; }
+    .vid > .vid-bar{
+      position:absolute; left:10px; right:10px; bottom:10px; z-index:2; height:24px;
+      display:flex; align-items:center; gap:8px; padding:0 10px;
+      border-radius:999px; background:rgba(0,0,0,.62); pointer-events:none; direction:ltr;
+    }
+    .vid > .vid-bar b{ flex:1; height:4px; border-radius:4px; background:rgba(255,255,255,.25); overflow:hidden; }
+    .vid > .vid-bar i{ display:block; width:0; height:100%; background:#e7b740; transition:width .3s linear; }
+    .vid > .vid-bar span{ margin-inline-start:auto; font:700 11px/1 "Cairo",sans-serif; color:#fff; direction:ltr; }
     /* band: المشهد وحده من مقطع تيك توك (الإطار يُقصّ أعلاه وأسفله) */
     .vid.tt.band{ max-width:min(640px, calc(68vh * var(--ar))); }
     .vid.tt.band iframe{ position:absolute; left:0; width:100%; aspect-ratio:auto; }
@@ -1680,6 +1690,29 @@
     });
   }
 
+  /* ---------- مقطع محدود بنافذته (30 ثانية) ----------
+     أزرار يوتيوب وتيك توك نفسها مخفية (شريطها يكشف طول الفيديو كله ويسمح
+     بالقفز خارج المقطع)، وتحلّ محلها: طبقة شفافة فوق المشغّل تُوقف/تُشغّل
+     بالضغط، وشريط تقدّم خاص بالمقطع وحده «0:12 / 0:30». */
+  function addClipControls(box, onToggle) {
+    const shield = document.createElement("div");
+    shield.className = "vid-shield";
+    shield.title = "إيقاف / تشغيل";
+    shield.addEventListener("click", onToggle);
+    box.appendChild(shield);
+    const bar = document.createElement("div");
+    bar.className = "vid-bar";
+    bar.innerHTML = '<b><i></i></b><span data-no-i18n></span>';
+    box.appendChild(bar);
+    const fill = bar.querySelector("i"), txt = bar.querySelector("span");
+    const mmss = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+    return (t, dur) => {
+      t = Math.max(0, Math.min(t, dur));
+      fill.style.width = (dur ? t / dur * 100 : 0) + "%";
+      txt.textContent = mmss(t) + " / " + mmss(dur);
+    };
+  }
+
   function renderMedia(item){
     const media = document.getElementById("questionMedia");
     if (!item) return;
@@ -1937,7 +1970,7 @@
       box.className = 'vid tt' + (item.bw ? ' bw' : '');
       const fr = document.createElement('iframe');
       fr.src = "https://www.tiktok.com/player/v1/" + id +
-               "?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=0" +
+               "?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0" +
                "&fullscreen_button=0&timestamp=0&music_info=0&description=0&rel=0" +
                "&native_context_menu=0&closed_caption=0";
       fr.allow = "autoplay; encrypted-media; picture-in-picture";
@@ -1998,6 +2031,12 @@
         if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
       });
       box.appendChild(cover);
+      /* أزرار تيك توك مخفية (controls=0) — الإيقاف والشريط من عندنا */
+      const setBar = addClipControls(box, () => {
+        if (!started) return;
+        send(playing ? "pause" : "play");
+      });
+      setBar(0, dur || 30);
 
       window.addEventListener("message", (e) => {
         if (e.source !== fr.contentWindow) return;
@@ -2015,6 +2054,9 @@
             const full = endAt(d.value.duration) - ts;
             if (Math.abs(full - dur) > 0.5) { dur = full; setDur(); }
           }
+          setBar(d.value.currentTime - ts, dur || 30);
+          /* خارج نافذة المقطع (قبل بدايته) — نعيده إليها */
+          if (playing && d.value.currentTime < ts - 1.5) send("seekTo", ts);
           if (playing && d.value.currentTime >= endAt(d.value.duration) - 0.15) finish();
         } else if (d.type === "onStateChange") {
           /* المشغّل لا يرسل حالته ولا يقبل الأوامر إلا مع autoplay=1 — فيبدأ صامتاً
@@ -2045,7 +2087,9 @@
       /* song: صامت وتعزف اللعبة أغنيتها — clip: بصوته (مشهد مسلسل). في الحالتين
          enablejsapi يرسل حالة المشغّل فنتحكم به من غلاف «شغّل المقطع» */
       const ctl = !!(item.song || item.clip);
-      const mute = (item.song ? "&mute=1" : "") + (ctl ? "&enablejsapi=1&origin=" + encodeURIComponent(location.origin) : "");
+      /* ctl: أزرار يوتيوب وشريطه مخفية (controls=0) — شريطه يكشف طول الفيديو كله
+         ويسمح بالقفز خارج المقطع؛ الإيقاف والشريط من عندنا (addClipControls) */
+      const mute = (item.song ? "&mute=1" : "") + (ctl ? "&controls=0&disablekb=1&iv_load_policy=3&enablejsapi=1&origin=" + encodeURIComponent(location.origin) : "");
       /* يوتيوب يرفض التشغيل المضمَّن (الخطأ 153) إن لم تُرسل الصفحة عنوانها
          (Referer) — فنطلبه صراحة */
       fr.referrerPolicy = "strict-origin-when-cross-origin";
@@ -2102,6 +2146,13 @@
           if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
         });
         box.appendChild(cover);
+        /* إيقاف/تشغيل بالضغط على المقطع، وشريط المقطع وحده (0 إلى مدته) */
+        let ytPlaying = false;
+        const ys0 = item.ys || 0;
+        const setBar = addClipControls(box, () => {
+          if (cover.hidden) cmd(ytPlaying ? "pauseVideo" : "playVideo");
+        });
+        setBar(0, dur);
 
         fr.addEventListener("load", () => {
           try { fr.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); } catch (e) {}
@@ -2111,6 +2162,20 @@
           let d; try { d = JSON.parse(e.data); } catch (_) { return; }
           const info = d.info || {};
           const st = d.event === "onStateChange" ? d.info : info.playerState;
+          if (st === 1) ytPlaying = true; else if (st === 2 || st === 0) ytPlaying = false;
+          if (typeof info.currentTime === "number") {
+            setBar(info.currentTime - ys0, dur);
+            /* خارج نافذة المقطع — نعيده إلى بدايته ونوقفه */
+            /* ووصول نهايته (يوتيوب يُوقف عند end بدل أن يُنهي) — يعود الغلاف */
+            if (cover.hidden && !revealed && (ytPlaying || st === 2) && (info.currentTime < ys0 - 1.5 || info.currentTime >= end - 0.3)) {
+              cmd("pauseVideo"); cmd("seekTo", [ys0, true]);
+              cover.querySelector("b").textContent = "أعد المقطع";
+              cover.hidden = false;
+              ytPlaying = false;
+              if (item.song && window.SFX) { goalSongOn = false; SFX.music.endClip(); }
+              return;
+            }
+          }
           if (st === 1) cover.hidden = true;
           if (st === 1 && item.song && !goalSongOn && !revealed) {
             /* استئناف من أزرار يوتيوب: الأغنية لما بقي من المقطع */
@@ -2151,7 +2216,7 @@
           ? "https://aed60907080-crypto.github.io/jawabni-game/yt.html?go=1&v=" + id +
             (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
             (item.ye != null ? "&e=" + Math.floor(item.ye) : "") + (item.song ? "&m=1" : "")
-          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1" + range +
+          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1&controls=0&disablekb=1" + range +
             (item.song ? "&mute=1" : "");
         btn.innerHTML = inGame
           ? '<i class="fa-solid fa-up-right-from-square"></i> لا يظهر المقطع؟ افتحه في نافذة'

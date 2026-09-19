@@ -28,7 +28,9 @@
     var s = parseInt(p.get("s"), 10), e = parseInt(p.get("e"), 10);
     var url = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1" +
               (s >= 0 ? "&start=" + s : "") + (e > 0 ? "&end=" + e : "") +
-              (p.get("m") === "1" ? "&mute=1" : "");   /* m=1: صامت (أغنية اللعبة بدل التعليق) */
+              (p.get("m") === "1" ? "&mute=1" : "") +  /* m=1: صامت (أغنية اللعبة بدل التعليق) */
+              /* مقطع محدود: بلا شريط يوتيوب الذي يكشف الفيديو كله ويسمح بالقفز خارجه */
+              ((s >= 0 || e > 0) ? "&controls=0&disablekb=1&iv_load_policy=3" : "");
     /* go=1: ننتقل إلى المشغّل نفسه (نافذة «شغّل المقطع» من لعبة مفتوحة كملف) —
        الانتقال من هذه الصفحة يُرسل عنوان الموقع فيقبله يوتيوب */
     if (p.get("go") === "1") { location.replace(url + "&autoplay=1"); return; }
