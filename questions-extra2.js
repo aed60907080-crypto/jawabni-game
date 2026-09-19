@@ -236,54 +236,54 @@
   var ST_MASK = [[0, 0, 100, 14]];
   extra["سترينجر ثينجز"] = [
     /* ===== المستوى الأول ===== */
-    { l: 1, q: "من هذه الشخصية؟", a: "إليفن (الرقم 11)", img: ST_IMG + "e/e2/Eleven_-_Sorcerer.png/revision/latest/scale-to-width-down/444?cb=20260313155200" },
-    { l: 1, q: "من هذه الشخصية؟", a: "مايك ويلر", img: ST_IMG + "9/97/Mike_Wheeler_Finale.png/revision/latest/scale-to-width-down/577?cb=20260313155900" },
-    { l: 1, q: "من هذه الشخصية؟", a: "داستن هندرسون", img: ST_IMG + "4/4f/Dustin_Henderson_1989.png/revision/latest/scale-to-width-down/590?cb=20260313155936" },
-    { l: 1, q: "من هذه الشخصية؟", a: "لوكاس سنكلير", img: ST_IMG + "7/70/Lucas_Sinclair_Finale.png/revision/latest/scale-to-width-down/512?cb=20260313155517" },
-    { l: 1, q: "من هذه الشخصية؟", a: "ويل بايرز", img: ST_IMG + "5/5e/Will_Byers_Finale.png/revision/latest/scale-to-width-down/587?cb=20260313155557" },
-    { l: 1, q: "من هذه الشخصية؟", a: "ستيف هارينغتون", img: ST_IMG + "8/81/Steve_Harrington_1989.png/revision/latest/scale-to-width-down/535?cb=20260112123852" },
-    { l: 1, q: "من هذه الشخصية؟", a: "جيم هوبر — شريف هوكينز", img: ST_IMG + "e/ed/Jim_Hopper_Finale.png/revision/latest/scale-to-width-down/513?cb=20260313155702" },
+    { l: 1, q: "من هذه الشخصية؟", a: "إليفن (الرقم 11)", img: ST_IMG + "e/e2/Eleven_-_Sorcerer.png/revision/latest/scale-to-width-down/444?nr=1&cb=20260313155200" },
+    { l: 1, q: "من هذه الشخصية؟", a: "مايك ويلر", img: ST_IMG + "9/97/Mike_Wheeler_Finale.png/revision/latest/scale-to-width-down/577?nr=1&cb=20260313155900" },
+    { l: 1, q: "من هذه الشخصية؟", a: "داستن هندرسون", img: ST_IMG + "4/4f/Dustin_Henderson_1989.png/revision/latest/scale-to-width-down/590?nr=1&cb=20260313155936" },
+    { l: 1, q: "من هذه الشخصية؟", a: "لوكاس سنكلير", img: ST_IMG + "7/70/Lucas_Sinclair_Finale.png/revision/latest/scale-to-width-down/512?nr=1&cb=20260313155517" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ويل بايرز", img: ST_IMG + "5/5e/Will_Byers_Finale.png/revision/latest/scale-to-width-down/587?nr=1&cb=20260313155557" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ستيف هارينغتون", img: ST_IMG + "8/81/Steve_Harrington_1989.png/revision/latest/scale-to-width-down/535?nr=1&cb=20260112123852" },
+    { l: 1, q: "من هذه الشخصية؟", a: "جيم هوبر — شريف هوكينز", img: ST_IMG + "e/ed/Jim_Hopper_Finale.png/revision/latest/scale-to-width-down/513?nr=1&cb=20260313155702" },
     { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تقلب شاحنة الأشرار في الهواء بقواها لتنقذ الأولاد (الموسم الأول)", yt: "0ONZqhTC-PM", ys: 0, ye: 28, clip: true, hide: ST_MASK },
     { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 40, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثاني ===== */
-    { l: 2, q: "من هذه الشخصية؟", a: "ماكس مايفيلد", img: ST_IMG + "2/2a/1989.png/revision/latest/scale-to-width-down/489?cb=20260313154711" },
-    { l: 2, q: "من هذه الشخصية؟", a: "نانسي ويلر — أخت مايك", img: ST_IMG + "3/30/Nancy_Wheeler_Finale.png/revision/latest/scale-to-width-down/600?cb=20260313160024" },
-    { l: 2, q: "من هذه الشخصية؟", a: "جوناثان بايرز — أخو ويل", img: ST_IMG + "2/24/Jonathan_Byers_1989.png/revision/latest/scale-to-width-down/541?cb=20260105150955" },
-    { l: 2, q: "من هذه الشخصية؟", a: "جويس بايرز — أم ويل", img: ST_IMG + "1/15/Joyce_Byers_1989.png/revision/latest/scale-to-width-down/531?cb=20260313155324" },
-    { l: 2, q: "من هذه الشخصية؟", a: "إدي مانسون — رئيس نادي «هيلفاير»", img: ST_IMG + "c/ca/Eddie_Munson.jpg/revision/latest/scale-to-width-down/479?cb=20220608205857" },
-    { l: 2, q: "من هذه الشخصية؟", a: "فيكنا (هنري كريل)", img: ST_IMG + "4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/527?cb=20251229052347" },
-    { l: 2, q: "من هذه الشخصية؟", a: "الديموغورغون — وحش العالم المقلوب", img: ST_IMG + "f/ff/Demogorgon_-_Chapter_Eight.jpg/revision/latest?cb=20221105220915" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ماكس مايفيلد", img: ST_IMG + "2/2a/1989.png/revision/latest/scale-to-width-down/489?nr=1&cb=20260313154711" },
+    { l: 2, q: "من هذه الشخصية؟", a: "نانسي ويلر — أخت مايك", img: ST_IMG + "3/30/Nancy_Wheeler_Finale.png/revision/latest/scale-to-width-down/600?nr=1&cb=20260313160024" },
+    { l: 2, q: "من هذه الشخصية؟", a: "جوناثان بايرز — أخو ويل", img: ST_IMG + "2/24/Jonathan_Byers_1989.png/revision/latest/scale-to-width-down/541?nr=1&cb=20260105150955" },
+    { l: 2, q: "من هذه الشخصية؟", a: "جويس بايرز — أم ويل", img: ST_IMG + "1/15/Joyce_Byers_1989.png/revision/latest/scale-to-width-down/531?nr=1&cb=20260313155324" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إدي مانسون — رئيس نادي «هيلفاير»", img: ST_IMG + "c/ca/Eddie_Munson.jpg/revision/latest/scale-to-width-down/479?nr=1&cb=20220608205857" },
+    { l: 2, q: "من هذه الشخصية؟", a: "فيكنا (هنري كريل)", img: ST_IMG + "4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/527?nr=1&cb=20251229052347" },
+    { l: 2, q: "من هذه الشخصية؟", a: "الديموغورغون — وحش العالم المقلوب", img: ST_IMG + "f/ff/Demogorgon_-_Chapter_Eight.jpg/revision/latest?nr=1&cb=20221105220915" },
     { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 180, ye: 215, clip: true, hide: ST_MASK },
     { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 0, ye: 39, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثالث ===== */
-    { l: 3, q: "من هذه الشخصية؟", a: "روبن باكلي", img: ST_IMG + "6/6f/Robin_Finale.png/revision/latest/scale-to-width-down/545?cb=20260101040655" },
-    { l: 3, q: "من هذه الشخصية؟", a: "إيريكا سنكلير — أخت لوكاس", img: ST_IMG + "4/48/Erica89.png/revision/latest/scale-to-width-down/417?cb=20260101231247" },
-    { l: 3, q: "من هذه الشخصية؟", a: "بيلي هارغروف — أخو ماكس", img: ST_IMG + "a/a3/Billy_Hargrove_-_S3.jpg/revision/latest/scale-to-width-down/443?cb=20230429184614" },
-    { l: 3, q: "من هذه الشخصية؟", a: "الدكتور مارتن برينر («بابا»)", img: ST_IMG + "b/b5/Brenner_-_The_Nina_Project.png/revision/latest/scale-to-width-down/474?cb=20260120195836" },
-    { l: 3, q: "من هذه الشخصية؟", a: "آكل العقول (مايند فلاير)", img: ST_IMG + "b/b0/Mind_Flayer_-_Abyss_form.jpeg/revision/latest/scale-to-width-down/600?cb=20260107051652" },
-    { l: 3, q: "من هذه الشخصية؟", a: "موراي باومان", img: ST_IMG + "8/8e/Murray_1989.png/revision/latest/scale-to-width-down/559?cb=20260109113207" },
-    { l: 3, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?cb=20180327083407" },
+    { l: 3, q: "من هذه الشخصية؟", a: "روبن باكلي", img: ST_IMG + "6/6f/Robin_Finale.png/revision/latest/scale-to-width-down/545?nr=1&cb=20260101040655" },
+    { l: 3, q: "من هذه الشخصية؟", a: "إيريكا سنكلير — أخت لوكاس", img: ST_IMG + "4/48/Erica89.png/revision/latest/scale-to-width-down/417?nr=1&cb=20260101231247" },
+    { l: 3, q: "من هذه الشخصية؟", a: "بيلي هارغروف — أخو ماكس", img: ST_IMG + "a/a3/Billy_Hargrove_-_S3.jpg/revision/latest/scale-to-width-down/443?nr=1&cb=20230429184614" },
+    { l: 3, q: "من هذه الشخصية؟", a: "الدكتور مارتن برينر («بابا»)", img: ST_IMG + "b/b5/Brenner_-_The_Nina_Project.png/revision/latest/scale-to-width-down/474?nr=1&cb=20260120195836" },
+    { l: 3, q: "من هذه الشخصية؟", a: "آكل العقول (مايند فلاير)", img: ST_IMG + "b/b0/Mind_Flayer_-_Abyss_form.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260107051652" },
+    { l: 3, q: "من هذه الشخصية؟", a: "موراي باومان", img: ST_IMG + "8/8e/Murray_1989.png/revision/latest/scale-to-width-down/559?nr=1&cb=20260109113207" },
+    { l: 3, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?nr=1&cb=20180327083407" },
     { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 35, clip: true, hide: ST_MASK },
     { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 105, te: 140, band: [10, 92] },
 
     /* ===== المستوى الرابع ===== */
-    { l: 4, q: "من هذه الشخصية؟", a: "كارين ويلر — أم مايك", img: ST_IMG + "b/b4/Karen_Wheeler_Finale.png/revision/latest/scale-to-width-down/458?cb=20260101053303" },
-    { l: 4, q: "من هذه الشخصية؟", a: "باربرا «بارب» هولاند", img: ST_IMG + "4/46/Barbara_Holland.png/revision/latest/scale-to-width-down/351?cb=20221113000712" },
-    { l: 4, q: "من هذه الشخصية؟", a: "آرغايل", img: ST_IMG + "4/47/Argyle_S4.png/revision/latest/scale-to-width-down/458?cb=20220909212533" },
-    { l: 4, q: "من هذه الشخصية؟", a: "كالي — «إيت» (الرقم 8)", img: ST_IMG + "7/72/Kali_s5_Trailer.png/revision/latest/scale-to-width-down/564?cb=20251219173651" },
-    { l: 4, q: "من هذه الشخصية؟", a: "أليكسي — العالم الروسي", img: ST_IMG + "a/ad/Alexei.JPG/revision/latest/scale-to-width-down/510?cb=20190705023926" },
-    { l: 4, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?cb=20260313155747" },
-    { l: 4, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?cb=20221124001121" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كارين ويلر — أم مايك", img: ST_IMG + "b/b4/Karen_Wheeler_Finale.png/revision/latest/scale-to-width-down/458?nr=1&cb=20260101053303" },
+    { l: 4, q: "من هذه الشخصية؟", a: "باربرا «بارب» هولاند", img: ST_IMG + "4/46/Barbara_Holland.png/revision/latest/scale-to-width-down/351?nr=1&cb=20221113000712" },
+    { l: 4, q: "من هذه الشخصية؟", a: "آرغايل", img: ST_IMG + "4/47/Argyle_S4.png/revision/latest/scale-to-width-down/458?nr=1&cb=20220909212533" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كالي — «إيت» (الرقم 8)", img: ST_IMG + "7/72/Kali_s5_Trailer.png/revision/latest/scale-to-width-down/564?nr=1&cb=20251219173651" },
+    { l: 4, q: "من هذه الشخصية؟", a: "أليكسي — العالم الروسي", img: ST_IMG + "a/ad/Alexei.JPG/revision/latest/scale-to-width-down/510?nr=1&cb=20190705023926" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260313155747" },
+    { l: 4, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?nr=1&cb=20221124001121" },
     { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 78, ye: 110, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الخامس ===== */
-    { l: 5, q: "من هذه الشخصية؟", a: "السيد سكوت كلارك — معلّم العلوم", img: ST_IMG + "b/b6/Mr_Scott_Clarke_1989.png/revision/latest/scale-to-width-down/481?cb=20260101050840" },
-    { l: 5, q: "من هذه الشخصية؟", a: "الدكتور سام أوينز", img: ST_IMG + "3/32/Sam_Owens_-_S4.png/revision/latest/scale-to-width-down/431?cb=20260101065341" },
-    { l: 5, q: "من هذه الشخصية؟", a: "جايسون كارفر", img: ST_IMG + "6/62/Jason_-_The_Piggyback.png/revision/latest/scale-to-width-down/490?cb=20221219190124" },
-    { l: 5, q: "من هذه الشخصية؟", a: "هولي ويلر — أخت مايك الصغيرة", img: ST_IMG + "0/03/Holly_Wheeler_Finale.png/revision/latest/scale-to-width-down/541?cb=20260320014912" },
-    { l: 5, q: "من هذه الشخصية؟", a: "ديمتري «إنزو» أنتونوف — الحارس الروسي", img: ST_IMG + "a/a2/Dmitri.png/revision/latest/scale-to-width-down/569?cb=20220702211146" }
+    { l: 5, q: "من هذه الشخصية؟", a: "السيد سكوت كلارك — معلّم العلوم", img: ST_IMG + "b/b6/Mr_Scott_Clarke_1989.png/revision/latest/scale-to-width-down/481?nr=1&cb=20260101050840" },
+    { l: 5, q: "من هذه الشخصية؟", a: "الدكتور سام أوينز", img: ST_IMG + "3/32/Sam_Owens_-_S4.png/revision/latest/scale-to-width-down/431?nr=1&cb=20260101065341" },
+    { l: 5, q: "من هذه الشخصية؟", a: "جايسون كارفر", img: ST_IMG + "6/62/Jason_-_The_Piggyback.png/revision/latest/scale-to-width-down/490?nr=1&cb=20221219190124" },
+    { l: 5, q: "من هذه الشخصية؟", a: "هولي ويلر — أخت مايك الصغيرة", img: ST_IMG + "0/03/Holly_Wheeler_Finale.png/revision/latest/scale-to-width-down/541?nr=1&cb=20260320014912" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ديمتري «إنزو» أنتونوف — الحارس الروسي", img: ST_IMG + "a/a2/Dmitri.png/revision/latest/scale-to-width-down/569?nr=1&cb=20220702211146" }
   ];
 
   /* ---------- لورد أوف ذا رينغز (50 سؤالاً) ---------- */

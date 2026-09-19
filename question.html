@@ -2820,6 +2820,7 @@
 
     holder.hidden = false;
     const img = document.createElement("img");
+    img.setAttribute("referrerpolicy", "no-referrer");   /* صور Fandom — انظر images.js */
     img.alt = "صورة الإجابة: " + (item.a || "");
     if (isLogoCategory) img.className = "logoimg";
     img.src = url;

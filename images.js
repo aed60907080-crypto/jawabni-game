@@ -550,6 +550,9 @@
       var img = document.createElement("img");
       img.alt = "صورة السؤال";
       img.className = opts.className || "";
+      /* بلا Referer: صور ويكي Fandom (static.wikia) تعيد صورة بديلة رمادية لأي
+         موقع آخر يرسل عنوانه — وبدونه تعطي الصورة نفسها. لا يضر المصادر الأخرى */
+      img.setAttribute("referrerpolicy", "no-referrer");
       img.src = (item && item.img) ? item.img : generatedCard(term, category);
       holder.appendChild(img);
 
