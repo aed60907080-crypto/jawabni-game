@@ -428,8 +428,36 @@
     .vid > .vid-mask.cap{
       background:#fff; color:#000; display:flex; align-items:center; justify-content:center;
       font-family:"Cairo",sans-serif; font-weight:900; font-size:clamp(15px, 3.4vw, 24px);
-      box-shadow:0 2px 0 #000;
+      box-shadow:0 2px 0 #000; padding:0 46px; text-align:center;
     }
+    /* مقطع تيك توك: عمودي 9:16 */
+    .vid.tt{ max-width:340px; }
+    .vid.tt iframe{ aspect-ratio:9/16; }
+    .vid.tt > .vid-cover{ top:13%; }
+    .vid.tt > .vid-mask.cap{ font-size:clamp(13px, 4.2vw, 17px); }
+    /* تكبير المقطع: يُكبَّر الغلاف .vid-wrap كله (المشغّل وطبقة «الرسم» والشريط)
+       لا المشغّل وحده — فيبقى بالأبيض والأسود كما هو. ولذلك يُخفى زر التكبير
+       في مشغّل يوتيوب وتيك توك نفسيهما. */
+    .vid-wrap{ position:relative; }
+    .vid-fs{
+      position:absolute; z-index:4; top:8px; left:8px;
+      width:34px; height:34px; border-radius:10px; border:0; cursor:pointer;
+      display:grid; place-items:center; font-size:15px;
+      background:rgba(0,0,0,.72); color:#fff;
+    }
+    .vid-fs:hover{ background:#000; }
+    .vid-wrap:fullscreen{ display:flex; align-items:center; justify-content:center; background:#000; }
+    .vid-wrap.fake-fs{
+      position:fixed; inset:0; z-index:9999;
+      display:flex; align-items:center; justify-content:center; background:#000;
+    }
+    .vid-wrap:fullscreen > .vid, .vid-wrap.fake-fs > .vid{
+      width:min(100vw, 177.78vh); max-width:none; border-radius:0; border:0; box-shadow:none;
+    }
+    .vid-wrap:fullscreen > .vid.tt, .vid-wrap.fake-fs > .vid.tt{ width:min(100vw, 56.25vh); }
+    /* بطاقة السؤال عليها backdrop-filter فتحبس العنصر الثابت داخلها — نلغيه أثناء التكبير */
+    body.vid-fake-fs .q-card{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; z-index:auto !important; transform:none !important; }
+    body.vid-fake-fs{ overflow:hidden; }
     .yt-note{ max-width:640px; margin:10px auto 0; color:var(--muted); font-size:13px; line-height:1.7; text-align:center; }
     .yt-open-row{ display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:12px; }
     .yt-open-row .yt-note{ margin:0; font-size:12px; }
@@ -1500,6 +1528,71 @@
     return d;
   }
 
+  /* تغطية عنوان الفيديو — انظر .vid-mask في التنسيق أعلاه.
+     hide = [[x, y, w, h], …] نسبةً مئوية من مساحة المشغّل. */
+  function addVideoMasks(box, item){
+    if (!Array.isArray(item.hide)) return;
+    item.hide.forEach(r => {
+      if (!Array.isArray(r) || r.length < 4) return;
+      const mask = document.createElement("i");
+      mask.className = "vid-mask";
+      /* cap: شريط الغلاف يحمل عبارة التحدي (كما في مقاطع «اتحداك تعرف…») */
+      if (item.cap && !box.querySelector(".vid-mask.cap")) {
+        mask.classList.add("cap");
+        mask.textContent = item.cap;
+      }
+      mask.style.cssText =
+        "left:" + r[0] + "%;top:" + r[1] + "%;width:" + r[2] + "%;height:" + r[3] + "%;";
+      box.appendChild(mask);
+    });
+  }
+
+  /* يضع المشغّل في الصفحة داخل .vid-wrap مع زر «تكبير»: يُكبَّر الغلاف كله
+     فتبقى طبقة «الرسم» والشريط فوق المقطع (انظر .vid-wrap في التنسيق) */
+  function mountVideo(box){
+    const media = document.getElementById("questionMedia");
+    const wrap = document.createElement("div");
+    wrap.className = "vid-wrap";
+    wrap.appendChild(box);
+    const fs = document.createElement("button");
+    fs.type = "button";
+    fs.className = "vid-fs";
+    fs.title = "تكبير المقطع";
+    fs.setAttribute("aria-label", "تكبير المقطع");
+    const icon = () => {
+      const on = document.fullscreenElement === wrap || wrap.classList.contains("fake-fs");
+      fs.innerHTML = '<i class="fa-solid ' + (on ? 'fa-compress' : 'fa-expand') + '"></i>';
+    };
+    icon();
+    /* ملء النافذة بدل التكبير الحقيقي (انظر .vid-wrap.fake-fs في التنسيق) */
+    const setFake = (on) => {
+      wrap.classList.toggle("fake-fs", on);
+      document.body.classList.toggle("vid-fake-fs", on);
+      icon();
+    };
+    fs.addEventListener("click", () => {
+      if (document.fullscreenElement === wrap) document.exitFullscreen();
+      else if (wrap.classList.contains("fake-fs")) setFake(false);
+      else {
+        /* آيفون وبعض المتصفحات المضمَّنة لا تكبّر عنصراً غير الفيديو (أو لا تردّ
+           أصلاً) — فنملأ النافذة بالمقطع بدلاً من ذلك */
+        const fake = () => { if (document.fullscreenElement !== wrap) setFake(true); };
+        if (wrap.requestFullscreen) { wrap.requestFullscreen().catch(fake); setTimeout(fake, 450); }
+        else fake();
+      }
+      setTimeout(icon, 60);
+    });
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement === wrap) setFake(false);
+      icon();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && wrap.classList.contains("fake-fs")) setFake(false);
+    });
+    box.appendChild(fs);
+    media.appendChild(wrap);
+  }
+
   function renderMedia(item){
     const media = document.getElementById("questionMedia");
     if (!item) return;
@@ -1523,11 +1616,11 @@
        هو وسيط السؤال. أمّا لو كُتبت لها صورة محايدة فهي تُعرض كالمعتاد. */
     /* أسئلة الوسائط (صوت أو فيديو) بلا صورة مكتوبة: لا نجلب لها صورة تلقائياً —
        الوسيط نفسه هو السؤال، وأي صورة إضافية إما تكشف الإجابة أو تشوّش. */
-    const audioOnly = (!!item.audio || !!item.yt || !!item.video) && !item.img;
+    const audioOnly = (!!item.audio || !!item.yt || !!item.tt || !!item.video) && !item.img;
     /* فئة صورتها للإجابة: لا صورة في السؤال — وإن لم يكن فيه وسيط آخر
        نخفي حاوية الوسائط كلها فلا يبقى مكانها فارغاً */
     const noQuestionImage = audioOnly || imageInAnswer;
-    if (imageInAnswer && !item.audio && !item.yt && !item.video) media.hidden = true;
+    if (imageInAnswer && !item.audio && !item.yt && !item.tt && !item.video) media.hidden = true;
 
     const shell = document.createElement('div');
     shell.className = 'q-img-shell';
@@ -1739,6 +1832,93 @@
       questionVideo = v;
     }
 
+    /* مقطع تيك توك (tt: رقم المقطع، te: ثانية التوقّف) — مشغّل تيك توك المضمَّن
+       يرسل حالته ووقته بـ postMessage ويقبل أوامر play/pause/seekTo/mute،
+       فنشغّله صامتاً مع أغنية اللعبة ونوقفه عند te */
+    if (item.tt) {
+      const id = String(item.tt).replace(/\D/g, "");
+      const box = document.createElement('div');
+      box.className = 'vid tt' + (item.bw ? ' bw' : '');
+      const fr = document.createElement('iframe');
+      fr.src = "https://www.tiktok.com/player/v1/" + id +
+               "?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=0" +
+               "&fullscreen_button=0&timestamp=0&music_info=0&description=0&rel=0" +
+               "&native_context_menu=0&closed_caption=0";
+      fr.allow = "autoplay; encrypted-media; picture-in-picture";
+      fr.title = "مقطع السؤال";
+      box.appendChild(fr);
+      addVideoMasks(box, item);
+      if (item.bw) {
+        const sk = document.createElement("div");
+        sk.className = "vid-sketch";
+        box.appendChild(sk);
+      }
+
+      const send = (type, value) => {
+        const m = { type: type, "x-tiktok-player": true };
+        if (value !== undefined) m.value = value;
+        try { fr.contentWindow.postMessage(m, "*"); } catch (e) {}
+      };
+      let dur = item.te || 0;               /* تُعرف المدة الكاملة من المشغّل */
+      let playing = false;
+      let started = false;                  /* لا يعمل المقطع إلا من غلاف «شغّل المقطع» */
+      const cover = document.createElement("button");
+      cover.type = "button";
+      cover.className = "vid-cover";
+      cover.innerHTML = '<span class="pl"><i class="fa-solid fa-play"></i></span><b></b><small></small>';
+      cover.querySelector("b").textContent = "شغّل المقطع";
+      const setDur = () => { cover.querySelector("small").textContent = dur ? Math.round(dur) + " ثانية" : "مقطع قصير"; };
+      setDur();
+      const stopSong = () => { if (goalSongOn) { goalSongOn = false; if (window.SFX) SFX.music.endClip(); } };
+      const finish = () => {
+        playing = false;
+        send("pause");
+        stopSong();
+        if (!revealed) { cover.querySelector("b").textContent = "أعد المقطع"; cover.hidden = false; }
+      };
+      cover.addEventListener("click", () => {
+        cover.hidden = true;
+        started = true;
+        send("mute");
+        send("seekTo", 0);
+        send("play");
+        if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
+      });
+      box.appendChild(cover);
+
+      window.addEventListener("message", (e) => {
+        if (e.source !== fr.contentWindow) return;
+        let d = e.data;
+        if (typeof d === "string") { try { d = JSON.parse(d); } catch (_) { return; } }
+        if (!d || !d["x-tiktok-player"]) return;
+        if (d.type === "onPlayerReady") send("mute");
+        else if (d.type === "onCurrentTime" && d.value && !started) {
+          /* ما زال يعمل خلف الغلاف (لم يقبل أمر الإيقاف الأول) — نعيد المحاولة */
+          if (d.value.currentTime > 0.1) { send("pause"); send("seekTo", 0); }
+          if (!item.te && d.value.duration) { dur = Math.min(d.value.duration, 30); setDur(); }
+        }
+        else if (d.type === "onCurrentTime" && d.value) {
+          const full = Math.min(d.value.duration || 0, 30);
+          if (!item.te && full && Math.abs(full - dur) > 0.5) { dur = full; setDur(); }
+          const end = item.te || Math.min(30, d.value.duration || 30);
+          if (playing && d.value.currentTime >= end - 0.15) finish();
+        } else if (d.type === "onStateChange") {
+          /* المشغّل لا يرسل حالته ولا يقبل الأوامر إلا مع autoplay=1 — فيبدأ صامتاً
+             خلف الغلاف ونوقفه فوراً عند أوله حتى يُضغط «شغّل المقطع» */
+          if (d.value === 1 && !started) { send("pause"); send("seekTo", 0); return; }
+          if (d.value === 1) {
+            playing = true;
+            cover.hidden = true;
+            if (item.song && !goalSongOn && !revealed && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
+          } else if (d.value === 2) { playing = false; stopSong(); }
+          else if (d.value === 0) finish();
+        }
+      });
+
+      mountVideo(box);
+      return;
+    }
+
     /* فيديو يوتيوب */
     if (item.yt) {
       const box = document.createElement('div');
@@ -1754,7 +1934,9 @@
       /* يوتيوب يرفض التشغيل المضمَّن (الخطأ 153) إن لم تُرسل الصفحة عنوانها
          (Referer) — فنطلبه صراحة */
       fr.referrerPolicy = "strict-origin-when-cross-origin";
-      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1" + range + mute;
+      /* fs=0: لا تكبير من مشغّل يوتيوب نفسه (يكبّر المشغّل وحده بالألوان) —
+         زر التكبير في اللعبة يكبّر المقطع مع طبقة «الرسم» */
+      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1&fs=0" + range + mute;
       /* اللعبة مفتوحة كملف من الجهاز (file://): لا عنوان يُرسل فيرفض يوتيوب
          التشغيل (الخطأ 153) — فنمرّ عبر وسيط على موقع اللعبة (yt.html) يضمّن
          يوتيوب بعنوان الموقع فيعمل المقطع */
@@ -1769,26 +1951,8 @@
       fr.allowFullscreen = true;
       fr.title = "مقطع السؤال";
       box.appendChild(fr);
-
-      /* تغطية عنوان الفيديو — انظر .vid-mask في التنسيق أعلاه.
-         hide = [[x, y, w, h], …] نسبةً مئوية من مساحة المشغّل. */
-      if (Array.isArray(item.hide)) {
-        item.hide.forEach(r => {
-          if (!Array.isArray(r) || r.length < 4) return;
-          const mask = document.createElement("i");
-          mask.className = "vid-mask";
-          /* cap: شريط الغلاف يحمل عبارة التحدي (كما في مقاطع «اتحداك تعرف…») */
-          if (item.cap && !box.querySelector(".vid-mask.cap")) {
-            mask.classList.add("cap");
-            mask.textContent = item.cap;
-          }
-          mask.style.cssText =
-            "left:" + r[0] + "%;top:" + r[1] + "%;width:" + r[2] + "%;height:" + r[3] + "%;";
-          box.appendChild(mask);
-        });
-      }
-
-      media.appendChild(box);
+      addVideoMasks(box, item);
+      mountVideo(box);
 
       /* مزامنة الأغنية مع المشغّل المضمَّن: تشغيل ← أغنية حتى نهاية المقطع،
          إيقاف أو انتهاء ← تخفت */
