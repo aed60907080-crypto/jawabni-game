@@ -441,6 +441,10 @@
     .vid.tt{ max-width:340px; }
     .vid.tt iframe{ aspect-ratio:9/16; }
     .vid.tt > .vid-cover{ top:13%; }
+    /* band: المشهد وحده من مقطع تيك توك (الإطار يُقصّ أعلاه وأسفله) */
+    .vid.tt.band{ max-width:min(640px, calc(68vh * var(--ar))); }
+    .vid.tt.band iframe{ position:absolute; left:0; width:100%; aspect-ratio:auto; }
+    .vid.tt.band > .vid-cover{ top:0; }
     .vid.tt > .vid-mask.cap{ font-size:clamp(13px, 4.2vw, 17px); }
     /* تكبير المقطع: يُكبَّر الغلاف .vid-wrap كله (المشغّل وطبقة «الرسم» والشريط)
        لا المشغّل وحده — فيبقى بالأبيض والأسود كما هو. ولذلك يُخفى زر التكبير
@@ -462,6 +466,7 @@
       width:min(100vw, 177.78vh); max-width:none; border-radius:0; border:0; box-shadow:none;
     }
     .vid-wrap:fullscreen > .vid.tt, .vid-wrap.fake-fs > .vid.tt{ width:min(100vw, 56.25vh); }
+    .vid-wrap:fullscreen > .vid.tt.band, .vid-wrap.fake-fs > .vid.tt.band{ width:min(100vw, calc(100vh * var(--ar))); }
     /* بطاقة السؤال عليها backdrop-filter فتحبس العنصر الثابت داخلها — نلغيه أثناء التكبير */
     body.vid-fake-fs .q-card{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; z-index:auto !important; transform:none !important; }
     body.vid-fake-fs{ overflow:hidden; }
@@ -1854,6 +1859,18 @@
       fr.allow = "autoplay; encrypted-media; picture-in-picture";
       fr.title = "مقطع السؤال";
       box.appendChild(fr);
+      /* band: [أعلى، أسفل] نسبةً من ارتفاع المقطع — يُعرض هذا الشريط وحده
+         (المشهد نفسه)، ويُقصّ ما فوقه وتحته: اسم الحساب وعناوين الناشر
+         وشعار المسلسل المكتوب على المقطع */
+      if (Array.isArray(item.band) && item.band.length === 2) {
+        const t = item.band[0], h = item.band[1] - item.band[0];
+        const ar = 900 / (16 * h);                 /* عرض المشهد ÷ ارتفاعه */
+        box.classList.add("band");
+        box.style.aspectRatio = ar.toFixed(4);
+        box.style.setProperty("--ar", ar.toFixed(4));
+        fr.style.height = (10000 / h).toFixed(3) + "%";
+        fr.style.top = (-100 * t / h).toFixed(3) + "%";
+      }
       addVideoMasks(box, item);
       if (item.bw) {
         const sk = document.createElement("div");
@@ -1866,7 +1883,11 @@
         if (value !== undefined) m.value = value;
         try { fr.contentWindow.postMessage(m, "*"); } catch (e) {}
       };
-      let dur = item.te || 0;               /* تُعرف المدة الكاملة من المشغّل */
+      /* ts/te: بداية المقطع ونهايته بالثواني (للمقاطع الطويلة) — وإلا المقطع
+         من أوله حتى 30 ثانية حدّاً أقصى */
+      const ts = item.ts || 0;
+      let dur = item.te ? item.te - ts : 0;  /* وإلا تُعرف المدة من المشغّل */
+      const endAt = (full) => item.te || Math.min(ts + 30, full || ts + 30);
       let playing = false;
       let started = false;                  /* لا يعمل المقطع إلا من غلاف «شغّل المقطع» */
       const cover = document.createElement("button");
@@ -1886,8 +1907,9 @@
       cover.addEventListener("click", () => {
         cover.hidden = true;
         started = true;
-        send("mute");
-        send("seekTo", 0);
+        /* song: صامت وتعزف اللعبة أغنيتها — وإلا بصوته (حوار المشهد) */
+        send(item.song ? "mute" : "unMute");
+        send("seekTo", ts);
         send("play");
         if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
       });
@@ -1902,13 +1924,14 @@
         else if (d.type === "onCurrentTime" && d.value && !started) {
           /* ما زال يعمل خلف الغلاف (لم يقبل أمر الإيقاف الأول) — نعيد المحاولة */
           if (d.value.currentTime > 0.1) { send("pause"); send("seekTo", 0); }
-          if (!item.te && d.value.duration) { dur = Math.min(d.value.duration, 30); setDur(); }
+          if (!item.te && d.value.duration) { dur = endAt(d.value.duration) - ts; setDur(); }
         }
         else if (d.type === "onCurrentTime" && d.value) {
-          const full = Math.min(d.value.duration || 0, 30);
-          if (!item.te && full && Math.abs(full - dur) > 0.5) { dur = full; setDur(); }
-          const end = item.te || Math.min(30, d.value.duration || 30);
-          if (playing && d.value.currentTime >= end - 0.15) finish();
+          if (!item.te && d.value.duration) {
+            const full = endAt(d.value.duration) - ts;
+            if (Math.abs(full - dur) > 0.5) { dur = full; setDur(); }
+          }
+          if (playing && d.value.currentTime >= endAt(d.value.duration) - 0.15) finish();
         } else if (d.type === "onStateChange") {
           /* المشغّل لا يرسل حالته ولا يقبل الأوامر إلا مع autoplay=1 — فيبدأ صامتاً
              خلف الغلاف ونوقفه فوراً عند أوله حتى يُضغط «شغّل المقطع» */
