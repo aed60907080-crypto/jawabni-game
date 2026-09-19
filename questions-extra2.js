@@ -928,10 +928,10 @@
   ];
 
   /* ---------- من صاحب الهدف (14 سؤالاً) ----------
-     «من صاحب هذا الهدف؟» — 20 ثانية من فيديو رسمي حول الهدف: ys/ye بداية
+     «من صاحب هذا الهدف؟» — 30 ثانية (حدّ أقصى) من فيديو رسمي حول الهدف: ys/ye بداية
      المقطع ونهايته بالثواني، مأخوذة من «الأكثر إعادة» في يوتيوب (ذروته هي
      لحظة الهدف)، فيبدأ يوتيوب من ys ويتوقّف عند ye بلا تحميل أي ملف.
-     (مقطعا صلاح أمام إيفرتون وهنري كاملان: 16 و17 ثانية.)
+     (مقطعا صلاح أمام إيفرتون وهنري كاملان: 16 و17 ثانية، ومقطع GNMki7g61Yk كله 22 ثانية.)
      لا تُستعمل مقاطع قناة FIFA: فيفا تمنع عرضها خارج يوتيوب («Video
      unavailable… blocked it from display on this website») رغم أن يوتيوب
      يصفها بأنها قابلة للتضمين — جُرّبت كل المقاطع هنا مضمَّنةً من موقع آخر. يُعرض
@@ -955,39 +955,39 @@
     { l: 1, q: "من صاحب هذا الهدف؟", a: "محمد صلاح — هدفه في مرمى إيفرتون 2017",
       yt: "uD7D5BTgh_Y", hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 1, q: "من صاحب هذا الهدف؟", a: "زين الدين زيدان — تسديدته الطائرة في نهائي دوري الأبطال 2002 أمام ليفركوزن",
-      yt: "rFfomw-Z4uE", ys: 0, ye: 20, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "rFfomw-Z4uE", ys: 0, ye: 30, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 1, q: "من صاحب هذا الهدف؟", a: "واين روني — المقصية في ديربي مانشستر 2011",
-      yt: "yn7dO5iZHYo", ys: 439, ye: 459, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "yn7dO5iZHYo", ys: 434, ye: 464, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "من صاحب هذا الهدف؟", a: "تييري هنري — هدفه في مرمى مانشستر يونايتد",
       yt: "AUTyZVsLxYE", hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 2, q: "من صاحب هذا الهدف؟", a: "كريستيانو رونالدو — مقصّيته في مرمى يوفنتوس 2018",
-      yt: "c_JlCriK3fY", ys: 28, ye: 48, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "c_JlCriK3fY", ys: 23, ye: 53, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 2, q: "من صاحب هذا الهدف؟", a: "سيرخيو أغويرو — هدف اللقب في الدقيقة 93:20",
-      yt: "qrFPRrZLGmU", ys: 584, ye: 604, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "qrFPRrZLGmU", ys: 579, ye: 609, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "من صاحب هذا الهدف؟", a: "سون هيونغ مين — انطلاقته وهدفه في مرمى بيرنلي",
-      yt: "UjJyA19URHY", ys: 43, ye: 63, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "UjJyA19URHY", ys: 38, ye: 68, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 3, q: "من صاحب هذا الهدف؟", a: "إيدين هازارد — هدفه الفردي في مرمى آرسنال 2017",
-      yt: "wIWqvf60NhM", ys: 0, ye: 20, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "wIWqvf60NhM", ys: 0, ye: 30, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 3, q: "من صاحب هذا الهدف؟", a: "واين روني — تسديدته الطائرة في مرمى نيوكاسل 2005",
-      yt: "GNMki7g61Yk", ys: 2, ye: 22, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "GNMki7g61Yk", ys: 0, ye: 22, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "من صاحب هذا الهدف؟", a: "ليونيل ميسي — هدفه الفردي في مرمى خيتافي 2007",
-      yt: "_OlTuc_t_BY", ys: 0, ye: 20, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "_OlTuc_t_BY", ys: 0, ye: 30, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 4, q: "من صاحب هذا الهدف؟", a: "دينيس بيركامب — هدف الدوران في مرمى نيوكاسل 2002",
-      yt: "w7fZJf0eYq8", ys: 475, ye: 495, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "w7fZJf0eYq8", ys: 470, ye: 500, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 4, q: "من صاحب هذا الهدف؟", a: "محمد صلاح — انطلاقته الفردية في مرمى مانشستر سيتي",
-      yt: "2yNnklW5HZU", ys: 58, ye: 78, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "2yNnklW5HZU", ys: 53, ye: 83, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
 
     /* ===== المستوى الخامس ===== */
     { l: 5, q: "من صاحب هذا الهدف؟", a: "ستان كوليمور — هدف الفوز في مباراة ليفربول 4-3 نيوكاسل 1996",
-      yt: "xX6xHnwwLO8", ys: 493, ye: 513, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "xX6xHnwwLO8", ys: 488, ye: 518, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
     { l: 5, q: "من صاحب هذا الهدف؟", a: "إريك لاميلا — هدف «الرابونا» في مرمى آرسنال 2021",
-      yt: "cTidIMc9VPE", ys: 130, ye: 150, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
+      yt: "cTidIMc9VPE", ys: 125, ye: 155, hide: GOAL_MASK, bw: true, song: true, cap: GOAL_CAP },
   ];
 
   /* ---------- ولا كلمة (35 كلمة) ----------
