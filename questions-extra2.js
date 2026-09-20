@@ -178,6 +178,65 @@
     { l: 5, q: "من هذه الشخصية؟", a: "غامابونتا — الضفدع الزعيم", img: "https://s4.anilist.co/file/anilistcdn/character/large/4223.jpg" }
   ];
 
+  /* ---------- كرتون قديم (52 سؤالاً) ----------
+     «من هذه الشخصية؟» — شخصيات الكرتون الذي نشأنا عليه: باباي وميكي
+     وغرندايزر وكابتن ماجد وعدنان ولينا وسالي وهايدي ودورايمون…
+     صور الشخصيات من AniList، وصور الكرتون الغربي القديم من ويكيميديا. */
+  extra["كرتون قديم"] = [
+    { l: 1, q: "من هذه الشخصية؟", a: "باباي البحار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Popeye_transparent.png/500px-Popeye_transparent.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ميكي ماوس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Mickey_Mouse_%28poster_version%29.svg/500px-Mickey_Mouse_%28poster_version%29.svg.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "دورايمون", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4304-4eXX8C1O4Pda.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "كابتن ماجد (تسوباسا)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5620-AATHkO6L6JzX.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "غرندايزر — دوق فليد (دايسكي)", img: "https://s4.anilist.co/file/anilistcdn/character/large/7368.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "ماوكلي — فتى الأدغال", img: "https://s4.anilist.co/file/anilistcdn/character/large/51297.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "هايدي — فتاة الجبل", img: "https://s4.anilist.co/file/anilistcdn/character/large/8827-A3BYwJarqCCF.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "عدنان — من «عدنان ولينا»", img: "https://s4.anilist.co/file/anilistcdn/character/large/b2852-FuIG6orC2MrU.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "سالي — الأميرة سارة", img: "https://s4.anilist.co/file/anilistcdn/character/large/b10054-3XnNgRnU0IhW.png" },
+    { l: 1, q: "من هذه الشخصية؟", a: "نوبيتا — صاحب دورايمون", img: "https://s4.anilist.co/file/anilistcdn/character/large/4303.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ماركو — من «ماركو وأمه»", img: "https://s4.anilist.co/file/anilistcdn/character/large/n4381-MnxWHwbJIpWg.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "كاندي", img: "https://s4.anilist.co/file/anilistcdn/character/large/5459.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "سنان — إيكيو الصغير", img: "https://s4.anilist.co/file/anilistcdn/character/large/b176540-F5loHSgiiqC7.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "لينا — من «عدنان ولينا»", img: "https://s4.anilist.co/file/anilistcdn/character/large/2853.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ريمي — الفتى التائه", img: "https://s4.anilist.co/file/anilistcdn/character/large/14356.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "زينة — النحلة مايا", img: "https://s4.anilist.co/file/anilistcdn/character/large/12540.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "أسترو بوي — الفتى الذرّي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b11686-9FxaQesDT0xB.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ساندي بل", img: "https://s4.anilist.co/file/anilistcdn/character/large/5669.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "توم سوير", img: "https://s4.anilist.co/file/anilistcdn/character/large/9485.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "النحلة هاتش", img: "https://s4.anilist.co/file/anilistcdn/character/large/b241295-18XUDxIKRoaT.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "آن — ذات الشعر الأحمر", img: "https://s4.anilist.co/file/anilistcdn/character/large/b16661-nK6RNy5RTfDF.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "جيم هوكنز — من «جزيرة الكنز»", img: "https://s4.anilist.co/file/anilistcdn/character/large/b31464-M71QLxcalhG6.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "سباستيان — من «بيل وسباستيان»", img: "https://s4.anilist.co/file/anilistcdn/character/large/87575.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "بيرين", img: "https://s4.anilist.co/file/anilistcdn/character/large/b27641-lOlYSDAxqcZW.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "راسكال — الراكون", img: "https://s4.anilist.co/file/anilistcdn/character/large/b290318-7GoG83JKyxmH.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ليدي أوسكار", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1700-VL3pDPCzeMzN.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "لوبان الثالث", img: "https://s4.anilist.co/file/anilistcdn/character/large/1044-UriNGSc2CKPO.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "مازن — تارو ميساكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5906-dGU9ZcMK0J63.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "جابر — كوجيرو هيوغا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b6780-3ATo2nw9HXDR.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "نيلو — من «كلب فلاندرز»", img: "https://s4.anilist.co/file/anilistcdn/character/large/30244.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "لولو — الفتاة الزهرة", img: "https://s4.anilist.co/file/anilistcdn/character/large/36264.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "سيدي — الأمير الصغير", img: "https://s4.anilist.co/file/anilistcdn/character/large/19325.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "هاتوري — النينجا", img: "https://s4.anilist.co/file/anilistcdn/character/large/23936.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "شيزوكا — صديقة نوبيتا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b8260-Hz17eZuElZ7U.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كوجي كابوتو — قائد مازنجر", img: "https://s4.anilist.co/file/anilistcdn/character/large/7372.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "النمر المقنّع", img: "https://s4.anilist.co/file/anilistcdn/character/large/13913.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كابي — «هزيم الرعد»", img: "https://s4.anilist.co/file/anilistcdn/character/large/3264.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "نحول (ويلي) — صاحب زينة", img: "https://s4.anilist.co/file/anilistcdn/character/large/20192.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كلارا — صديقة هايدي", img: "https://s4.anilist.co/file/anilistcdn/character/large/17787.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "جو الملاكم", img: "https://s4.anilist.co/file/anilistcdn/character/large/b11804-iGb4oJ99VCcz.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "وليد — الحارس واكاباياشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b15027-9BTC5INMfjjT.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "القط فيليكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Felix_for_Judy_-_Svg.svg/500px-Felix_for_Judy_-_Svg.svg.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "بيتي بوب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Betty_Boop%2C_April_1932.svg/500px-Betty_Boop%2C_April_1932.svg.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ماري أنطوانيت — من «ليدي أوسكار»", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1701-kDtpupOb1lqL.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "أندريه — من «ليدي أوسكار»", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1699-JWjRmQ1GFevw.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "فيتاليس — معلّم ريمي", img: "https://s4.anilist.co/file/anilistcdn/character/large/32678.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ماريا — شقيقة دوق فليد", img: "https://s4.anilist.co/file/anilistcdn/character/large/42644.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "ديانا — صديقة آن", img: "https://s4.anilist.co/file/anilistcdn/character/large/b38089-B6HB8dIs59rR.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "جيان — من دورايمون", img: "https://s4.anilist.co/file/anilistcdn/character/large/b8262-N2Lsf46EjZBf.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "سونيو — من دورايمون", img: "https://s4.anilist.co/file/anilistcdn/character/large/b8261-qGxKWau5iZrf.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "بيتر — راعي الماعز صديق هايدي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b8828-9e72OxQCl9jt.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "مونسلي — من «عدنان ولينا»", img: "https://s4.anilist.co/file/anilistcdn/character/large/2857.jpg" }
+  ];
+
   /* ---------- المحقق كونان (42 سؤالاً) ----------
      «من هذه الشخصية؟» — صورة الشخصية من AniList، من الأشهر (المستوى
      الأول) إلى الأقل ظهوراً. */

@@ -138,7 +138,8 @@
     { name: "المحقق كونان",            img: "image/المحقق كونان.jpg", emoji: "🔍", tint: "#3b4fa0", group: "anime" },
     /* صورتا «ون بيس» و«ناروتو» غلاف الأنمي من AniList (مصدر صور شخصياتهما) */
     { name: "ون بيس",                  img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg", emoji: "🏴‍☠️", tint: "#b8322a", group: "anime" },
-    { name: "ناروتو",                  img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg", emoji: "🍥", tint: "#d9711f", group: "anime" }
+    { name: "ناروتو",                  img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg", emoji: "🍥", tint: "#d9711f", group: "anime" },
+    { name: "كرتون قديم",              img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1985-BB32YokamiRs.jpg", emoji: "📺", tint: "#9a5a2a", group: "anime" }
   ];
 
   /* ---------- بطاقة مولّدة من الإيموجي (SVG بلا أي ملفات خارجية) ---------- */
@@ -251,6 +252,7 @@
     "المحقق كونان": "صورة شخصية من «المحقق كونان» — من هذه الشخصية؟",
     "ون بيس": "صورة شخصية من «ون بيس» — من هذه الشخصية؟",
     "ناروتو": "صورة شخصية من «ناروتو» — من هذه الشخصية؟",
+    "كرتون قديم": "من هذه الشخصية؟ — شخصيات الكرتون الذي نشأنا عليه.",
     "سترينجر ثينجز": "من هذه الشخصية؟ وماذا حصل في هذا المقطع؟ — شخصيات «سترينجر ثينجز» ومشاهدها المشهورة.",
     "لورد أوف ذا رينغز": "من هذه الشخصية؟ وماذا حصل في هذا المشهد؟ — شخصيات «سيد الخواتم» ومشاهدها المشهورة (مقاطع 30 ثانية).",
     "المملكة العربية السعودية": "مدن ومعالم وتاريخ وتراث السعودية.",
