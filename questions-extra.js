@@ -71,7 +71,9 @@
     { l: 5, q: "ما اسم النجم النيوتروني السريع الدوران الذي يُصدر نبضات إشعاعية؟", a: "النجم النابض (بلسار)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg/960px-PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg" }
   ];
 
-  /* ---------- جسم الإنسان (50 سؤالاً) ---------- */
+  /* ---------- جسم الإنسان (97 سؤالاً) ----------
+     أنواع الأسئلة: «ما اسم هذا العضو؟» (صورة العضو)، و«ماذا يعمل هذا
+     العضو؟»، و«ماذا يحدث إذا توقف هذا العضو؟»، وأسئلة عامة عن الجسم. */
   extra["جسم الإنسان"] = [
     { l: 1, q: "ما العضو المسؤول عن ضخّ الدم في الجسم؟", a: "القلب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Heart_anterior_exterior_view.jpg/960px-Heart_anterior_exterior_view.jpg" },
     { l: 1, q: "كم عدد الرئتين في جسم الإنسان؟", a: "رئتان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Lungs_diagram_simple.svg/960px-Lungs_diagram_simple.svg.png", iq: "الرئة" },
@@ -122,10 +124,65 @@
     { l: 5, q: "ما اسم العملية التي تتبادل فيها الرئتان الأكسجين وثاني أكسيد الكربون؟", a: "التبادل الغازي في الحويصلات الهوائية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Normal_lung_%283660695207%29.jpg/960px-Normal_lung_%283660695207%29.jpg" },
     { l: 5, q: "ما اسم الجزء من الدماغ الذي يؤدي دوراً رئيسياً في تكوين الذكريات الجديدة؟", a: "الحُصين (قرن آمون)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Pyramidal_hippocampal_neuron_40x.jpg/960px-Pyramidal_hippocampal_neuron_40x.jpg" },
     { l: 5, q: "ما اسم أكبر غدة في جسم الإنسان؟", a: "الكبد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Human_Liver_%28NIH_BioArt_230%29.png/960px-Human_Liver_%28NIH_BioArt_230%29.png" },
-    { l: 5, q: "كم يبلغ طول الأمعاء الدقيقة عند الإنسان البالغ تقريباً؟", a: "نحو ستة أمتار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Glandular_tissue_%28small_intestine%29.jpg/960px-Glandular_tissue_%28small_intestine%29.jpg", iq: "الأمعاء الدقيقة" }
+    { l: 5, q: "كم يبلغ طول الأمعاء الدقيقة عند الإنسان البالغ تقريباً؟", a: "نحو ستة أمتار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Glandular_tissue_%28small_intestine%29.jpg/960px-Glandular_tissue_%28small_intestine%29.jpg", iq: "الأمعاء الدقيقة" },
+
+    /* ===== «ما اسم هذا العضو؟» — صورة العضو والإجابة اسمه ===== */
+    { l: 1, q: "ما اسم هذا العضو؟", a: "القلب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Human_Heart_%28NIH_BioArt_228_-_630867%29.png/960px-Human_Heart_%28NIH_BioArt_228_-_630867%29.png" },
+    { l: 1, q: "ما اسم هذا العضو؟", a: "الرئتان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Human_Lungs_%28NIH_BioArt_231_-_630887%29.png/960px-Human_Lungs_%28NIH_BioArt_231_-_630887%29.png" },
+    { l: 1, q: "ما اسم هذا العضو؟", a: "الدماغ", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Human_brain_lateral_view.JPG" },
+    { l: 1, q: "ما اسم هذا العضو؟", a: "العين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Human_eye_close_up%2C_anterior_view.jpg/960px-Human_eye_close_up%2C_anterior_view.jpg" },
+    { l: 1, q: "ما اسم هذا العضو؟", a: "الأذن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Human_right_ear_%28cropped%29.jpg/960px-Human_right_ear_%28cropped%29.jpg" },
+    { l: 2, q: "ما اسم هذا العضو؟", a: "الكبد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Human_Liver_%28NIH_BioArt_230%29.png/960px-Human_Liver_%28NIH_BioArt_230%29.png" },
+    { l: 2, q: "ما اسم هذا العضو؟", a: "الكلية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Human_Kidney_%28NIH_BioArt_229%29.png/960px-Human_Kidney_%28NIH_BioArt_229%29.png" },
+    { l: 2, q: "ما اسم العضو المُلوَّن بالأحمر؟", a: "المعدة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Tractus_intestinalis_ventriculus.svg/960px-Tractus_intestinalis_ventriculus.svg.png" },
+    { l: 2, q: "ما اسم هذا الجهاز في الجسم؟", a: "الجهاز الهضمي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Human_Digestive_Tract_%28NIH_BioArt_212_-_657931%29.png/960px-Human_Digestive_Tract_%28NIH_BioArt_212_-_657931%29.png" },
+    { l: 3, q: "ما اسم العضو المُلوَّن بالأحمر؟", a: "الأمعاء الدقيقة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Tractus_intestinalis_intestinum_tenue.svg/960px-Tractus_intestinalis_intestinum_tenue.svg.png" },
+    { l: 3, q: "ما اسم العضو المُلوَّن بالأحمر؟", a: "الأمعاء الغليظة (القولون)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Tractus_intestinalis_intestinum_crassum.svg/960px-Tractus_intestinalis_intestinum_crassum.svg.png" },
+    { l: 3, q: "ما اسم هذا العضو؟", a: "البنكرياس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Human_Pancreas_%28NIH_BioArt_239%29.png/960px-Human_Pancreas_%28NIH_BioArt_239%29.png" },
+    { l: 3, q: "ما اسم العضو المُلوَّن بالأحمر؟", a: "المريء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Tractus_intestinalis_esophagus.svg/960px-Tractus_intestinalis_esophagus.svg.png" },
+    { l: 3, q: "ما اسم العضلة المُلوَّنة بالأحمر تحت الرئتين؟", a: "الحجاب الحاجز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/3D_Medical_Animation_Diaphragm_Structure.jpg/960px-3D_Medical_Animation_Diaphragm_Structure.jpg" },
+    { l: 4, q: "ما اسم هذا العضو؟", a: "الطحال", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Human_Spleen_%28NIH_BioArt_243%29.png" },
+    { l: 4, q: "ما اسم الغدة المُلوَّنة بالأحمر في الرقبة؟", a: "الغدة الدرقية", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Thyroid2-dumb-no-figures.png" },
+    { l: 4, q: "ما اسم العضو المُلوَّن بالأحمر؟", a: "الزائدة الدودية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Tractus_intestinalis_appendix_vermiformis.svg/960px-Tractus_intestinalis_appendix_vermiformis.svg.png" },
+    { l: 4, q: "ما اسم هذا الجزء من الجهاز العصبي؟", a: "الحبل الشوكي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Diagram_of_the_Spinal_Cord_Unlabeled.jpg/960px-Diagram_of_the_Spinal_Cord_Unlabeled.jpg" },
+    { l: 5, q: "ما اسم الجزء المُلوَّن بالأحمر من الدماغ؟", a: "المخيخ", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Cerebellum.gif" },
+    { l: 5, q: "ما اسم هذا الجزء من الأذن؟", a: "الأذن الداخلية (القوقعة والقنوات الهلالية)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Inner_Ear_%28NIH_BioArt_256%29.png/960px-Inner_Ear_%28NIH_BioArt_256%29.png" },
+    { l: 5, q: "ما اسم هذه العظمة؟", a: "عظمة الفخذ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Femur_-_anterior_view2.png/960px-Femur_-_anterior_view2.png" },
+    { l: 5, q: "ما أسماء عظام الذراع الثلاث؟", a: "العضد والكعبرة والزند", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Human_Arm_Bones_%28NIH_BioArt_208_-_630552%29.png" },
+
+    /* ===== «ماذا يعمل هذا العضو؟» ===== */
+    { l: 1, q: "ماذا يعمل هذا العضو؟", a: "القلب — يضخّ الدم إلى الجسم كلّه", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Human_Heart_%28NIH_BioArt_228_-_630867%29.png/960px-Human_Heart_%28NIH_BioArt_228_-_630867%29.png" },
+    { l: 1, q: "ماذا يعمل هذا العضو؟", a: "الرئتان — تُدخلان الأكسجين وتُخرجان ثاني أكسيد الكربون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Human_Lungs_%28NIH_BioArt_231_-_630887%29.png/960px-Human_Lungs_%28NIH_BioArt_231_-_630887%29.png" },
+    { l: 2, q: "ماذا يعمل هذا العضو؟", a: "الدماغ — يتحكّم بالجسم والتفكير والذاكرة والحواس", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Human_brain_lateral_view.JPG" },
+    { l: 2, q: "ماذا يعمل هذا العضو؟", a: "الكلية — تُنقّي الدم من الفضلات وتصنع البول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Human_Kidney_%28NIH_BioArt_229%29.png/960px-Human_Kidney_%28NIH_BioArt_229%29.png" },
+    { l: 2, q: "ماذا يعمل هذا العضو المُلوَّن بالأحمر؟", a: "المعدة — تخلط الطعام وتهضمه بالأحماض والإنزيمات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Tractus_intestinalis_ventriculus.svg/960px-Tractus_intestinalis_ventriculus.svg.png" },
+    { l: 3, q: "ماذا يعمل هذا العضو؟", a: "الكبد — يُنقّي الدم من السموم ويخزّن السكر ويفرز العصارة الصفراوية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Human_Liver_%28NIH_BioArt_230%29.png/960px-Human_Liver_%28NIH_BioArt_230%29.png" },
+    { l: 3, q: "ماذا يعمل هذا العضو؟", a: "البنكرياس — يفرز الأنسولين وإنزيمات الهضم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Human_Pancreas_%28NIH_BioArt_239%29.png/960px-Human_Pancreas_%28NIH_BioArt_239%29.png" },
+    { l: 3, q: "ماذا يعمل هذا العضو المُلوَّن بالأحمر؟", a: "الأمعاء الدقيقة — تمتصّ الغذاء المهضوم إلى الدم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Tractus_intestinalis_intestinum_tenue.svg/960px-Tractus_intestinalis_intestinum_tenue.svg.png" },
+    { l: 4, q: "ماذا تعمل هذه العضلة المُلوَّنة بالأحمر؟", a: "الحجاب الحاجز — ينزل ويرتفع فيدخل الهواء إلى الرئتين ويخرج منهما", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/3D_Medical_Animation_Diaphragm_Structure.jpg/960px-3D_Medical_Animation_Diaphragm_Structure.jpg" },
+    { l: 4, q: "ماذا تعمل هذه الغدة؟", a: "الغدة الدرقية — تفرز هرموناً ينظّم سرعة حرق الطاقة في الجسم", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Thyroid2-dumb-no-figures.png" },
+    { l: 4, q: "ماذا يعمل هذا العضو؟", a: "الطحال — يصفّي الدم ويتخلّص من الكريات الحمراء التالفة ويساعد المناعة", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Human_Spleen_%28NIH_BioArt_243%29.png" },
+    { l: 5, q: "ماذا يعمل هذا الجزء من الدماغ؟", a: "المخيخ — ينظّم التوازن ودقّة الحركة", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Cerebellum.gif" },
+    { l: 5, q: "ماذا يعمل هذا العضو المُلوَّن بالأحمر؟", a: "الأمعاء الغليظة — تمتصّ الماء وتكوّن الفضلات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Tractus_intestinalis_intestinum_crassum.svg/960px-Tractus_intestinalis_intestinum_crassum.svg.png" },
+    { l: 5, q: "ماذا يعمل هذا الجزء من الجهاز العصبي؟", a: "الحبل الشوكي — ينقل الإشارات بين الدماغ وبقية الجسم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Diagram_of_the_Spinal_Cord_Unlabeled.jpg/960px-Diagram_of_the_Spinal_Cord_Unlabeled.jpg" },
+
+    /* ===== «ماذا يحدث إذا توقف هذا العضو؟» ===== */
+    { l: 1, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "القلب — ينقطع الدم والأكسجين عن الجسم ويحدث الموت خلال دقائق إن لم يُنعَش فوراً", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Human_Heart_%28NIH_BioArt_228_-_630867%29.png/960px-Human_Heart_%28NIH_BioArt_228_-_630867%29.png" },
+    { l: 2, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "الرئتان — ينقطع الأكسجين عن الدم فيختنق الجسم وتتلف خلايا الدماغ سريعاً", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Human_Lungs_%28NIH_BioArt_231_-_630887%29.png/960px-Human_Lungs_%28NIH_BioArt_231_-_630887%29.png" },
+    { l: 2, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "الكلية — تتراكم السموم والماء في الجسم ويحتاج المريض إلى غسيل الكلى أو زراعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Human_Kidney_%28NIH_BioArt_229%29.png/960px-Human_Kidney_%28NIH_BioArt_229%29.png" },
+    { l: 3, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "الكبد — تتراكم السموم ويصفرّ الجلد والعينان (اليرقان) ويضطرب تخثّر الدم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Human_Liver_%28NIH_BioArt_230%29.png/960px-Human_Liver_%28NIH_BioArt_230%29.png" },
+    { l: 3, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "الدماغ — يتوقّف كل شيء: الوعي والتنفّس والحركة (الموت الدماغي)", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Human_brain_lateral_view.JPG" },
+    { l: 3, q: "ماذا يحدث إذا توقف هذا العضو؟", a: "البنكرياس — يرتفع سكر الدم (السكري) ويضعف هضم الدهون والبروتين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Human_Pancreas_%28NIH_BioArt_239%29.png/960px-Human_Pancreas_%28NIH_BioArt_239%29.png" },
+    { l: 4, q: "ماذا يحدث إذا توقفت هذه الغدة؟", a: "الغدة الدرقية — يتباطأ الجسم: تعب وزيادة وزن وبرودة، ويُعالَج بهرمون بديل", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Thyroid2-dumb-no-figures.png" },
+    { l: 4, q: "ماذا يحدث إذا توقفت هذه العضلة؟", a: "الحجاب الحاجز — يتعذّر التنفّس الطبيعي ويحتاج المريض إلى جهاز تنفّس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/3D_Medical_Animation_Diaphragm_Structure.jpg/960px-3D_Medical_Animation_Diaphragm_Structure.jpg" },
+    { l: 4, q: "ماذا يحدث إذا توقف هذا العضو المُلوَّن بالأحمر؟", a: "المعدة — يبقى الطعام بلا هضم فيحدث انتفاخ وغثيان وسوء تغذية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Tractus_intestinalis_ventriculus.svg/960px-Tractus_intestinalis_ventriculus.svg.png" },
+    { l: 5, q: "ماذا يحدث إذا استُؤصل هذا العضو؟", a: "الطحال — يعيش الإنسان بدونه لكن تضعف مناعته أمام بعض أنواع البكتيريا", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Human_Spleen_%28NIH_BioArt_243%29.png" },
+    { l: 5, q: "ماذا يحدث إذا استُؤصل هذا العضو المُلوَّن بالأحمر؟", a: "الزائدة الدودية — لا يتأثر الجسم، وخطرها يكون حين تلتهب فقط", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Tractus_intestinalis_appendix_vermiformis.svg/960px-Tractus_intestinalis_appendix_vermiformis.svg.png" }
   ];
 
-  /* ---------- الكيمياء (50 سؤالاً) ---------- */
+  /* ---------- الكيمياء (81 سؤالاً) ----------
+     أنواع الأسئلة: «ما اسم هذا العنصر؟» (صورة عيّنة نقية من العنصر)،
+     و«ممّ يتكوّن…؟» (عناصر تركيب المادة)، وأسئلة عامة في الكيمياء. */
   extra["الكيمياء"] = [
     { l: 1, q: "ما الرمز الكيميائي للماء؟", a: "H2O", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Water_drop_001.jpg/960px-Water_drop_001.jpg", iq: "الماء" },
     { l: 1, q: "ما الغاز الذي نتنفّسه ونحتاجه للحياة؟", a: "الأكسجين", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg/960px-Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg" },
@@ -176,7 +233,42 @@
     { l: 5, q: "ما اسم المزيج المتجانس من معدنين أو أكثر؟", a: "السبيكة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Roman_copper_alloy_nummus_%28FindID_137609%29.jpg/960px-Roman_copper_alloy_nummus_%28FindID_137609%29.jpg" },
     { l: 5, q: "ما اسم القاعدة التي تنص على أن المادة لا تفنى ولا تُستحدث؟", a: "قانون حفظ الكتلة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/David_-_Portrait_of_Monsieur_Lavoisier_%28cropped%29.jpg/960px-David_-_Portrait_of_Monsieur_Lavoisier_%28cropped%29.jpg" },
     { l: 5, q: "ما اسم العنصر الأكثر وفرة في القشرة الأرضية؟", a: "الأكسجين", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg/960px-Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg" },
-    { l: 5, q: "ما اسم الوحدات البنائية التي تتكوّن منها البروتينات؟", a: "الأحماض الأمينية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/L-leucine-3D-balls.png/960px-L-leucine-3D-balls.png" }
+    { l: 5, q: "ما اسم الوحدات البنائية التي تتكوّن منها البروتينات؟", a: "الأحماض الأمينية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/L-leucine-3D-balls.png/960px-L-leucine-3D-balls.png" },
+
+    /* ===== «ما اسم هذا العنصر؟» — صورة عيّنة نقية من العنصر ===== */
+    { l: 1, q: "ما اسم هذا العنصر؟", a: "الذهب (Au)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/500px-Gold-crystals.jpg" },
+    { l: 1, q: "ما اسم هذا العنصر؟", a: "الكبريت (S)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Sulfur_-_El_Desierto_mine%2C_San_Pablo_de_Napa%2C_Daniel_Campos_Province%2C_Potos%C3%AD%2C_Bolivia.jpg/500px-Sulfur_-_El_Desierto_mine%2C_San_Pablo_de_Napa%2C_Daniel_Campos_Province%2C_Potos%C3%AD%2C_Bolivia.jpg" },
+    { l: 1, q: "ما اسم هذا العنصر؟", a: "النحاس (Cu)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/NatCopper.jpg/500px-NatCopper.jpg" },
+    { l: 2, q: "ما اسم هذا العنصر السائل؟", a: "الزئبق (Hg)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Pouring_liquid_mercury_bionerd.jpg/500px-Pouring_liquid_mercury_bionerd.jpg" },
+    { l: 2, q: "ما اسم هذا العنصر؟", a: "الفضة (Ag)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Silver_crystal.jpg/500px-Silver_crystal.jpg" },
+    { l: 2, q: "ما اسم هذا العنصر؟", a: "الحديد (Fe)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Iron_electrolytic_and_1cm3_cube.jpg/500px-Iron_electrolytic_and_1cm3_cube.jpg" },
+    { l: 3, q: "ما اسم الغاز الذي يتوهّج بهذا اللون الأحمر في الأنبوب؟", a: "النيون (Ne)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Neon_discharge_tube.jpg/500px-Neon_discharge_tube.jpg" },
+    { l: 3, q: "ما اسم هذا العنصر؟", a: "الألومنيوم (Al)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Aluminium-4.jpg/500px-Aluminium-4.jpg" },
+    { l: 3, q: "ما اسم العنصر الذي يتكوّن منه هذا الحجر الكريم؟", a: "الكربون (C) — الألماس كربون نقي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Rough_Diamond.jpg/500px-Rough_Diamond.jpg" },
+    { l: 4, q: "ما اسم هذا العنصر؟", a: "اليود (I)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Sample_of_iodine.jpg/500px-Sample_of_iodine.jpg" },
+    { l: 4, q: "ما اسم هذا العنصر الذي تُصنع منه شرائح الحاسوب؟", a: "السيليكون (Si)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/A_piece_of_zone_refined_silicon.JPG/500px-A_piece_of_zone_refined_silicon.JPG" },
+    { l: 4, q: "ما اسم هذا العنصر الخفيف القوي المستخدم في الطائرات والزراعات الطبية؟", a: "التيتانيوم (Ti)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Titan-crystal_bar.JPG/500px-Titan-crystal_bar.JPG" },
+    { l: 5, q: "ما اسم هذا العنصر ذي البلّورات الملوّنة؟", a: "البزموت (Bi)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Bismuth_crystals_and_1cm3_cube.jpg/500px-Bismuth_crystals_and_1cm3_cube.jpg" },
+    { l: 5, q: "ما اسم هذا العنصر المشعّ المستخدم في المفاعلات النووية؟", a: "اليورانيوم (U)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/HEUraniumC.jpg/500px-HEUraniumC.jpg" },
+    { l: 5, q: "ما اسم هذا العنصر الأحمر الذي يُستعمل في رؤوس أعواد الثقاب؟", a: "الفوسفور (P)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Phosphor_rot.jpg/500px-Phosphor_rot.jpg" },
+    { l: 5, q: "ما اسم هذا العنصر السائل ذي اللون البنّي المحمر؟", a: "البروم (Br)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Bromine_vial_in_acrylic_cube.jpg/500px-Bromine_vial_in_acrylic_cube.jpg" },
+
+    /* ===== «ممّ يتكوّن؟» — العناصر الداخلة في تركيب المادة ===== */
+    { l: 1, q: "ممّ يتكوّن الماء؟", a: "ذرتا هيدروجين وذرة أكسجين (H2O)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Water_drop_001.jpg/500px-Water_drop_001.jpg" },
+    { l: 1, q: "ممّ يتكوّن ملح الطعام؟", a: "الصوديوم والكلور (كلوريد الصوديوم NaCl)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Table_salt_with_salt_shaker_V1.jpg/500px-Table_salt_with_salt_shaker_V1.jpg" },
+    { l: 2, q: "ممّ يتكوّن الصدأ؟", a: "حديد وأكسجين (أكسيد الحديد)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Rust_on_iron.jpg/500px-Rust_on_iron.jpg" },
+    { l: 2, q: "ممّ يتكوّن السكر؟", a: "كربون وهيدروجين وأكسجين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Sugar_2xmacro.jpg/500px-Sugar_2xmacro.jpg" },
+    { l: 2, q: "ممّ يتكوّن الفولاذ (الصلب)؟", a: "حديد مع نسبة قليلة من الكربون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/%D0%90%D1%80%D0%BC%D0%B0%D1%82%D1%83%D1%80%D0%BD%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%BA%D0%B0%D1%82.jpg/500px-%D0%90%D1%80%D0%BC%D0%B0%D1%82%D1%83%D1%80%D0%BD%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%BA%D0%B0%D1%82.jpg" },
+    { l: 3, q: "ممّ يتكوّن الرمل؟", a: "سيليكون وأكسجين (ثاني أكسيد السيليكون)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Libya_4608_Idehan_Ubari_Dunes_Luca_Galuzzi_2007.jpg/500px-Libya_4608_Idehan_Ubari_Dunes_Luca_Galuzzi_2007.jpg" },
+    { l: 3, q: "ممّ يتكوّن الغاز الطبيعي المستخدم في الطبخ؟", a: "الميثان: ذرة كربون وأربع ذرات هيدروجين (CH4)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Cooking_with_gas.jpg/500px-Cooking_with_gas.jpg" },
+    { l: 3, q: "ممّ يتكوّن الورق؟", a: "السليولوز — ألياف مصدرها الخشب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Various_products_made_from_paper.JPG/500px-Various_products_made_from_paper.JPG" },
+    { l: 4, q: "ممّ يتكوّن الثلج الجاف؟", a: "ثاني أكسيد الكربون متجمّداً (كربون وأكسجين)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Dry_Ice_1_%28cropped%29.jpg/500px-Dry_Ice_1_%28cropped%29.jpg" },
+    { l: 4, q: "ممّ تتكوّن صودا الخبز (بيكربونات الصوديوم)؟", a: "صوديوم وهيدروجين وكربون وأكسجين (NaHCO3)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Sodium_bicarbonate.jpg/500px-Sodium_bicarbonate.jpg" },
+    { l: 4, q: "ممّ يتكوّن المطاط الطبيعي؟", a: "كربون وهيدروجين — بوليمر من عصارة شجرة المطاط", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Caoutchouc_naturel.jpg/500px-Caoutchouc_naturel.jpg" },
+    { l: 4, q: "ممّ يتكوّن النحاس الأصفر (البراس)؟", a: "سبيكة من النحاس والزنك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Planispheric_Astrolabe_MET_DP105325.jpg/500px-Planispheric_Astrolabe_MET_DP105325.jpg" },
+    { l: 5, q: "ممّ يتكوّن الحجر الجيري؟", a: "كربونات الكالسيوم: كالسيوم وكربون وأكسجين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/ElTorcal0408.jpg/500px-ElTorcal0408.jpg" },
+    { l: 5, q: "ممّ يتكوّن الجبس؟", a: "كبريتات الكالسيوم مع ماء (كالسيوم وكبريت وأكسجين وماء)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Gypse_Caresse.jpg/500px-Gypse_Caresse.jpg" },
+    { l: 5, q: "ممّ يتكوّن البرونز؟", a: "سبيكة من النحاس والقصدير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Bull%27s_head_ornament_for_a_lyre_MET_DP260070.jpg/500px-Bull%27s_head_ornament_for_a_lyre_MET_DP260070.jpg" }
   ];
 
   /* ---------- الفيزياء (50 سؤالاً) ---------- */
