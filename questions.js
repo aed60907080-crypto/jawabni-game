@@ -1021,58 +1021,66 @@ const questionsData = {
     { l: 5, q: "ما اسم هذا الجهاز؟", a: "جهاز النداء (البيجر)", img: "image/icons/1F4DF.svg" },
   ],
 
-  /* ---------- ألعاب فيديو (50 سؤالاً) ---------- */
+  /* ---------- ألعاب فيديو (42 سؤالاً) ----------
+     نوعان:
+     • «ما اسم هذه اللعبة؟» — لقطة من داخل اللعبة (صور المتجر الرسمية على
+       ستيم)، وcrop يقصّ شعار اللعبة إن كان مكتوباً على الصورة.
+     • «من المشهد: ما اسم هذه اللعبة؟» — 30 ثانية من مقطع لعب على يوتيوب
+       (clip) بغلاف «شغّل المقطع» وشريط العنوان مغطّى — للألعاب التي ليست
+       على ستيم (ماين كرافت، فورتنايت، زيلدا، ماريو كارت…). */
+
   "ألعاب فيديو": [
-    { l: 1, q: "ما اسم الشخصية الشهيرة ذات القبعة الحمراء في ألعاب نينتندو؟", a: "ماريو", img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Firma_Mario.png" },
-    { l: 1, q: "ما اسم الشركة التي تصنع جهاز بلايستيشن؟", a: "سوني", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Sony_headquaters_1.jpg/960px-Sony_headquaters_1.jpg" },
-    { l: 1, q: "ما اسم الشركة التي تصنع جهاز إكس بوكس؟", a: "مايكروسوفت" },
-    { l: 1, q: "ما اسم اللعبة التي تبني فيها عالماً من المكعبات؟", a: "ماينكرافت", img: "image/العاب فيديو.jpg" },
-    { l: 1, q: "ما اسم القنفذ الأزرق السريع في ألعاب سيغا؟", a: "سونيك" },
-    { l: 1, q: "ما اسم لعبة إطلاق النار الشهيرة التي تبدأ بـ«نداء الواجب»؟", a: "كول أوف ديوتي", img: "image/العاب فيديو.jpg" },
-    { l: 1, q: "ما اسم لعبة كرة القدم الشهيرة من EA؟", a: "فيفا (وحالياً EA Sports FC)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/FIFA_World_Museum%2C_Zurich_%28_Ank_Kumar%2C_Infosys%29_04.jpg/960px-FIFA_World_Museum%2C_Zurich_%28_Ank_Kumar%2C_Infosys%29_04.jpg" },
-    { l: 1, q: "ما اسم اللعبة التي يتنافس فيها 100 لاعب حتى يبقى واحد وتشتهر بالبناء؟", a: "فورتنايت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Fortnite_cosplayers_at_Gamescom_2017_%283%29.jpg/960px-Fortnite_cosplayers_at_Gamescom_2017_%283%29.jpg" },
-    { l: 1, q: "ما اسم الشركة اليابانية التي تصنع جهاز الألعاب «سويتش» وسلسلة «ماريو»؟", a: "نينتندو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Headquarters_of_Nintendo_Co.%2C_Ltd.jpg/960px-Headquarters_of_Nintendo_Co.%2C_Ltd.jpg" },
-    { l: 1, q: "ما اسم لعبة السيارات الشهيرة من روكستار التي تدور في مدن مفتوحة؟", a: "جراند ثفت أوتو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Michaelerplatz_Wien_2022-08-08_01.jpg/960px-Michaelerplatz_Wien_2022-08-08_01.jpg" },
-    { l: 2, q: "ما اسم البطل الرئيسي في سلسلة ذا ليجند أوف زيلدا؟", a: "لينك", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4201-VySa1vLuUcwb.jpg" },
-    { l: 2, q: "ما اسم اللعبة التي تشتهر بشخصية كريتوس إله الحرب؟", a: "غاد أوف وور" },
-    { l: 2, q: "ما اسم اللعبة الشهيرة التي تدور حول لصوص الكنوز وبطلها نيثان دريك؟", a: "أنتشارتد" },
-    { l: 2, q: "ما اسم الاستوديو الذي طوّر لعبة ذا لاست أوف أس؟", a: "نوتي دوغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Naughty_Dog_headquarters_2016%2C_1.jpg/960px-Naughty_Dog_headquarters_2016%2C_1.jpg" },
-    { l: 2, q: "ما اسم اللعبة التي تجمع فيها شخصيات بوكيمون في العالم الحقيقي بالهاتف؟", a: "بوكيمون غو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/InclusiveGameLab_Person-Playing-Nintendo-Switch_1_CC-BY-SA.jpg/960px-InclusiveGameLab_Person-Playing-Nintendo-Switch_1_CC-BY-SA.jpg" },
-    { l: 2, q: "ما اسم لعبة الرماية التنافسية الشهيرة من رايوت غيمز؟", a: "فالورانت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Valorant_Champions_Los_Angeles_2023.jpg/960px-Valorant_Champions_Los_Angeles_2023.jpg" },
-    { l: 2, q: "ما اسم اللعبة التي تشتهر بشخصيات مسدّسة وخريطة إيرانجل؟", a: "ببجي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/PUBGCorpABHC.png/960px-PUBGCorpABHC.png" },
-    { l: 2, q: "ما اسم الشركة التي طوّرت لعبة ليغ أوف ليجندز؟", a: "رايوت غيمز" },
-    { l: 2, q: "ما اسم اللعبة التي تقاتل فيها الوحوش وتلعب دور ويتشر يُدعى جيرالت؟", a: "ذا ويتشر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/The_Witcher_Keychain.jpg/960px-The_Witcher_Keychain.jpg" },
-    { l: 2, q: "ما اسم أشهر لعبة سيارات محاكاة على بلايستيشن؟", a: "غران توريزمو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/1959-SAAB93B-750GT.jpg/960px-1959-SAAB93B-750GT.jpg" },
-    { l: 3, q: "ما اسم أول لعبة فيديو تجارية ناجحة عام 1972؟", a: "بونغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Bong_Joon_Ho_at_Busan_Film_Festival%2C_smaller.jpg/960px-Bong_Joon_Ho_at_Busan_Film_Festival%2C_smaller.jpg" },
-    { l: 3, q: "ما اسم الشركة اليابانية التي طوّرت سلسلة فاينل فانتسي؟", a: "سكوير إنكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Square_Enix_HQ_%28Shinjuku_Eastside_Square%29.jpg/960px-Square_Enix_HQ_%28Shinjuku_Eastside_Square%29.jpg" },
-    { l: 3, q: "ما اسم اللعبة التي اشتهرت بصعوبتها الشديدة وطوّرها فروم سوفتوير؟", a: "دارك سولز", img: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Solaire_of_Astora%27s_Sun_without_details.png" },
-    { l: 3, q: "ما اسم لعبة فروم سوفتوير التي فازت بلعبة العام 2022؟", a: "إلدن رينغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/ELDEN_RING_Ming-Na_Wen_02.png/960px-ELDEN_RING_Ming-Na_Wen_02.png" },
-    { l: 3, q: "ما اسم بطل سلسلة ميتال غير سوليد؟", a: "سوليد سنيك", img: "https://s4.anilist.co/file/anilistcdn/character/large/b272535-MdATaTz715Kx.png" },
-    { l: 3, q: "ما اسم مطوّر سلسلة ميتال غير الشهير؟", a: "هيديو كوجيما", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Hideo_Kojima_2025_SXSW_%28cropped%29.jpg/960px-Hideo_Kojima_2025_SXSW_%28cropped%29.jpg" },
-    { l: 3, q: "ما اسم سلسلة ألعاب الرعب اليابانية التي تدور في بلدة ضبابية؟", a: "سايلنت هيل", img: "https://upload.wikimedia.org/wikipedia/commons/2/25/Cosplayer_of_Pyramid_Head%2C_Silent_Hill_20071102b.jpg" },
-    { l: 3, q: "ما اسم سلسلة ألعاب الرعب التي تدور حول فيروس زومبي وشركة أمبريلا؟", a: "ريزدنت إيفل", img: "https://upload.wikimedia.org/wikipedia/commons/5/57/Resident_Evil_Bar.jpg" },
-    { l: 3, q: "ما اسم اللعبة التي بطلتها لارا كروفت؟", a: "تومب رايدر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Tomb_Raider_The_Ride.jpg/960px-Tomb_Raider_The_Ride.jpg" },
-    { l: 3, q: "ما اسم أول جهاز ألعاب منزلي في التاريخ؟", a: "ماغنافوكس أوديسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Magnavox-Odyssey-Console-Set.png/960px-Magnavox-Odyssey-Console-Set.png" },
-    { l: 4, q: "ما اسم الشخصية الرئيسية في سلسلة هالو؟", a: "ماستر تشيف" },
-    { l: 4, q: "ما اسم اللعبة التي صمّمها شيغيرو مياموتو وتُعدّ من أشهر ألعاب نينتندو؟", a: "سوبر ماريو", img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Firma_Mario.png" },
-    { l: 4, q: "ما اسم أكثر لعبة فيديو مبيعاً في التاريخ؟", a: "ماينكرافت", img: "image/العاب فيديو.jpg" },
-    { l: 4, q: "ما اسم اللعبة التي طوّرها المبرمج الروسي أليكسي باجيتنوف؟", a: "تتريس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/960px-Typical_Tetris_Game.svg.png" },
-    { l: 4, q: "ما اسم اللعبة التي فازت بجائزة لعبة العام 2018 وبطلها آرثر مورغان؟", a: "ريد ديد ريدمبشن 2", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Red_Dead_Redemption_at_PAX_East_2010.jpg/960px-Red_Dead_Redemption_at_PAX_East_2010.jpg" },
-    { l: 4, q: "ما اسم شركة الألعاب التي أنتجت سلسلة أساسنز كريد؟", a: "يوبي سوفت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Ubisoft_Toronto_-_2013.jpg/960px-Ubisoft_Toronto_-_2013.jpg" },
-    { l: 4, q: "ما اسم اللعبة التي تدور أحداثها في مدينة نايت سيتي المستقبلية؟", a: "سايبربانك 2077" },
-    { l: 4, q: "ما اسم أول جهاز بلايستيشن وفي أي عام صدر؟", a: "بلايستيشن 1 عام 1994", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/PSX-Original-Controller.jpg/960px-PSX-Original-Controller.jpg" },
-    { l: 4, q: "ما اسم سلسلة الألعاب القتالية التي تشتهر بالضربات القاضية الدموية؟", a: "مورتال كومبات", img: "https://upload.wikimedia.org/wikipedia/commons/9/97/Mortal_Kombat_II_arcade_cabinet.jpg" },
-    { l: 4, q: "ما اسم الشركة التي طوّرت لعبة أوفرواتش؟", a: "بليزارد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Activisionheadquarters.jpg/960px-Activisionheadquarters.jpg" },
-    { l: 5, q: "ما اسم أول لعبة فيديو في التاريخ يُعتقد أنها صُنعت عام 1958؟", a: "تنس فور تو", img: "https://upload.wikimedia.org/wikipedia/commons/5/50/Tennis_For_Two_on_a_DuMont_Lab_Oscilloscope_Type_304-A.jpg" },
-    { l: 5, q: "ما اسم الحدث الذي أدى إلى انهيار سوق ألعاب الفيديو عام 1983؟", a: "انهيار صناعة ألعاب الفيديو في أمريكا الشمالية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Atari-2600-Wood-4Sw-Set.jpg/960px-Atari-2600-Wood-4Sw-Set.jpg" },
-    { l: 5, q: "ما اسم اللعبة التي دُفنت نسخها في صحراء نيو مكسيكو بعد فشلها؟", a: "E.T. the Extra-Terrestrial على أتاري" },
-    { l: 5, q: "ما اسم أول لعبة ثلاثية الأبعاد بمنظور الشخص الأول أطلقتها إد سوفتوير؟", a: "ولفنشتاين ثري دي" },
-    { l: 5, q: "ما اسم مصمم لعبة دووم الشهير؟", a: "جون كارماك (مع جون رومارو)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/John_Carmack_2025.jpg/960px-John_Carmack_2025.jpg" },
-    { l: 5, q: "ما اسم أول لعبة أونلاين متعددة اللاعبين ضخمة حققت انتشاراً عالمياً؟", a: "إيفركويست ثم وورلد أوف ووركرافت" },
-    { l: 5, q: "ما اسم محرّك الألعاب الذي طوّرته إبك غيمز؟", a: "أنريل إنجن", img: "image/العاب فيديو.jpg" },
-    { l: 5, q: "ما اسم محرّك الألعاب الشهير الذي تستخدمه الاستوديوهات الصغيرة بكثرة؟", a: "يونيتي", img: "image/العاب فيديو.jpg" },
-    { l: 5, q: "ما اسم أغلى لعبة فيديو تم تطويرها من حيث الميزانية تاريخياً؟", a: "جراند ثفت أوتو 5 (من أضخم الميزانيات)", img: "https://upload.wikimedia.org/wikipedia/commons/4/47/Grand_Theft_Auto_IV_GameSpot_launch_%28Las_Vegas%29.jpg" },
-    { l: 5, q: "ما اسم الجهاز المحمول من نينتندو الذي صدر عام 1989؟", a: "غيم بوي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Nintendo_Gameboy.jpg/960px-Nintendo_Gameboy.jpg" },
+    /* ===== المستوى 1 ===== */
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "جي تي إيه 5 (Grand Theft Auto V)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_32aa18ab3175e3002217862dd5917646d298ab6b.600x338.jpg", crop: [0, 0, 76, 100] },
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "ببجي (PUBG: Battlegrounds)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/c16e2f2d122cae77a1cbaca19263df0f2d2214fa/ss_c16e2f2d122cae77a1cbaca19263df0f2d2214fa.600x338.jpg" },
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "إي إيه سبورتس إف سي (فيفا سابقاً)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/ss_aeeea35bf96fad387b97befd9a5c4b9d8ee2ac1a.600x338.jpg" },
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "أمونغ أس (Among Us)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/945360/ss_b7374128e5b786a302a716bca038d604b00ffe46.600x338.jpg" },
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "كاونتر سترايك 2", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/ss_13bb35638c0267759276f511ee97064773b37a51.600x338.jpg" },
+    { l: 1, q: "ما اسم هذه اللعبة؟", a: "روكيت ليغ (Rocket League)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252950/23e7d4fcf10475923be9078e55b449b7fc9792d9/ss_23e7d4fcf10475923be9078e55b449b7fc9792d9.600x338.jpg" },
+    { l: 1, q: "من المشهد: ما اسم هذه اللعبة؟", a: "ماين كرافت (Minecraft)", yt: "HSwGH710EgA", ys: 600, ye: 630, clip: true, hide: [[0, 0, 100, 14]] },
+    { l: 1, q: "من المشهد: ما اسم هذه اللعبة؟", a: "فورتنايت (Fortnite)", yt: "yM6hd3rLfVg", ys: 8, ye: 38, clip: true, hide: [[0, 0, 100, 14]] },
+
+    /* ===== المستوى 2 ===== */
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "فول غايز (Fall Guys)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1097150/ss_b695ced32eeef3059970c195b222460990d55401.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "فورزا هورايزن 5", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/ss_00f0090174380eeaf8753bd3d1028b6772c3aebf.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "أبيكس ليجندز (Apex Legends)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/d64ce54903a3ba6429c6e3189ad746a7db70ee3e/ss_d64ce54903a3ba6429c6e3189ad746a7db70ee3e.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "دوتا 2", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/ss_c9118375a2400278590f29a3537769c986ef6e39.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "ريزيدنت إيفل 4", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/ss_0442f7fb4327d79802c2db8ea8d23d228a28d896.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "مارفل سبايدرمان (Marvel's Spider-Man)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/ss_427677cf78195df94702f0a963cd9eaeb9d8935a.600x338.jpg" },
+    { l: 2, q: "ما اسم هذه اللعبة؟", a: "كب هيد (Cuphead)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg" },
+    { l: 2, q: "من المشهد: ما اسم هذه اللعبة؟", a: "كلاش أوف كلانز (Clash of Clans)", yt: "kBbqK8T-tUI", ys: 300, ye: 330, clip: true, hide: [[0, 0, 100, 14]] },
+
+    /* ===== المستوى 3 ===== */
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "ريد ديد ريدمبشن 2", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/ss_bac60bacbf5da8945103648c08d27d5e202444ca.600x338.jpg" },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "ذا ويتشر 3: وايلد هَنت", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/ss_0901e64e9d4b8ebaea8348c194e7a3644d2d832d.600x338.jpg", crop: [0, 0, 75, 100] },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "سايبربانك 2077", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_0e64170751e1ae20ff8fdb7001a8892fd48260e7.600x338.jpg" },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "إلدن رينغ (Elden Ring)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_3c41384a24d86dddd58a8f61db77f9dc0bfda8b5.600x338.jpg", crop: [0, 0, 88, 90] },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "غاد أوف وور (God of War)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/ss_f1bff24d3967a21d303d95e11ed892e3d9113057.600x338.jpg", crop: [0, 0, 88, 90] },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "سكايريم (The Elder Scrolls V: Skyrim)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/ss_921ccea650df936a0b14ebd5dd4ecc73c1d2a12d.600x338.jpg" },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "فولآوت 4 (Fallout 4)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/377160/ss_f7861bd71e6c0c218d8ff69fb1c626aec0d187cf.600x338.jpg" },
+    { l: 3, q: "ما اسم هذه اللعبة؟", a: "هوغوورتس ليغاسي (Hogwarts Legacy)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/ss_94058497bf0f8fabdde17ee8d59bece609a60663.600x338.jpg" },
+    { l: 3, q: "من المشهد: ما اسم هذه اللعبة؟", a: "فالورانت (Valorant)", yt: "7xBBuwyx4s8", ys: 30, ye: 60, clip: true, hide: [[0, 0, 100, 14]] },
+
+    /* ===== المستوى 4 ===== */
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "بورتال 2 (Portal 2)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/620/ss_6a4f5afdaa98402de9cf0b59fed27bab3256a6f4.600x338.jpg" },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "هاف-لايف 2 (Half-Life 2)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/220/ss_47b4105b396de408cb8b6b4f358c69e5e2a62dae.600x338.jpg" },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "ستريت فايتر 6", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1364780/ss_d186566a92ada8cdb08b04769a8c95cd1e380006.600x338.jpg" },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "تيكن 8 (Tekken 8)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1778820/ss_7c55021d3ba8e4f14c6d9dbea9f19d9b7665d5f0.600x338.jpg" },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "سبناوتيكا (Subnautica)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/ss_5f2f2ea498cdc632cbffd6cf37c1a09670eb3272.600x338.jpg", crop: [0, 12, 100, 88] },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "سي أوف ثيفز (Sea of Thieves)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/ss_ec623c77d75dfa098c622b547b1ab21ad4cae0a8.600x338.jpg" },
+    { l: 4, q: "ما اسم هذه اللعبة؟", a: "بالوورلد (Palworld)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/ss_f81b7c4f20be3b99f76a1415c4cdb9b444c99b97.600x338.jpg" },
+    { l: 4, q: "من المشهد: ما اسم هذه اللعبة؟", a: "زيلدا: بريث أوف ذا وايلد", yt: "-AQcohxrdpw", ys: 40, ye: 70, clip: true, hide: [[0, 0, 100, 14]] },
+    { l: 4, q: "من المشهد: ما اسم هذه اللعبة؟", a: "ماريو كارت 8 ديلوكس", yt: "GXOUbna9tIw", ys: 400, ye: 430, clip: true, hide: [[0, 0, 100, 14]] },
+
+    /* ===== المستوى 5 ===== */
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "هولو نايت (Hollow Knight)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "ستاردو فالي (Stardew Valley)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/ss_b887651a93b0525739049eb4194f633de2df75be.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "تيراريا (Terraria)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/ss_8c03886f214d2108cafca13845533eaa3d87d83f.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "سيكيرو (Sekiro: Shadows Die Twice)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/ss_2685dd844a2a523b6c7ec207d46a538db6a908cd.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "هورايزن زيرو داون (Horizon Zero Dawn)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151640/ss_15f5759c441e4e5f51e1a8ee333e4ab9df9aa783.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "ليثال كومباني (Lethal Company)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/ss_51860be59845771c01a3a4d9ab1ebf773f16fef5.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "بالدرز غيت 3 (Baldur's Gate 3)", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/ss_c73bc54415178c07fef85f54ee26621728c77504.600x338.jpg" },
+    { l: 5, q: "ما اسم هذه اللعبة؟", a: "بلاك ميث: ووكونغ", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/ss_86c4b7462bba219a0d0b89931a35812b9f188976.600x338.jpg" }
   ],
 
   /* ---------- أفلام وأنمي ----------
