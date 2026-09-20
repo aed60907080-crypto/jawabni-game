@@ -17,7 +17,9 @@
 
   var extra = {};
 
-  /* ---------- الفضاء والفلك (50 سؤالاً) ---------- */
+  /* ---------- الفضاء والفلك (87 سؤالاً) ----------
+     «ما اسم هذا الكوكب؟» و«ما اسم هذا القمر؟» و«ما اسم هذا الجسم في
+     الفضاء؟» بصور حقيقية، مع أسئلة عامة عن الفضاء والفلك. */
   extra["الفضاء والفلك"] = [
     { l: 1, q: "ما اسم الكوكب الذي نعيش عليه؟", a: "الأرض", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/960px-Meteosat-12-fci-march-equinox-2025-noon.jpg" },
     { l: 1, q: "ما هو النجم الأقرب إلى الأرض؟", a: "الشمس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg" },
@@ -68,7 +70,52 @@
     { l: 5, q: "ما اسم انفجار النجم الضخم في نهاية حياته؟", a: "المستعر الأعظم (سوبرنوفا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/960px-Crab_Nebula.jpg" },
     { l: 5, q: "ما اسم أول مركبة هبطت على سطح كوكب الزهرة؟", a: "فينيرا 7", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Venera-7_spuskaemiy_apparat.jpg/960px-Venera-7_spuskaemiy_apparat.jpg" },
     { l: 5, q: "ما اسم أول مسبار عربي وصل إلى مدار المريخ عام 2021؟", a: "مسبار الأمل الإماراتي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Emirates_Mars_Mission_mockup_at_IAC_2021_01_%28cropped%29.jpg/960px-Emirates_Mars_Mission_mockup_at_IAC_2021_01_%28cropped%29.jpg" },
-    { l: 5, q: "ما اسم النجم النيوتروني السريع الدوران الذي يُصدر نبضات إشعاعية؟", a: "النجم النابض (بلسار)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg/960px-PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg" }
+    { l: 5, q: "ما اسم النجم النيوتروني السريع الدوران الذي يُصدر نبضات إشعاعية؟", a: "النجم النابض (بلسار)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg/960px-PIA18848-PSRB1509-58-ChandraXRay-WiseIR-20141023.jpg" },
+
+    /* ===== «ما اسم هذا الكوكب؟» — صور حقيقية للكواكب ===== */
+    { l: 1, q: "ما اسم هذا الكوكب؟", a: "الأرض", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/960px-Meteosat-12-fci-march-equinox-2025-noon.jpg" },
+    { l: 1, q: "ما اسم هذا الكوكب؟", a: "المريخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png/960px-Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png" },
+    { l: 1, q: "ما اسم هذا الكوكب؟", a: "زحل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png/960px-Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png" },
+    { l: 2, q: "ما اسم هذا الكوكب؟", a: "المشتري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter_OPAL_2024.png/960px-Jupiter_OPAL_2024.png" },
+    { l: 2, q: "ما اسم هذا الكوكب؟", a: "عطارد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Mercury_in_true_color.jpg/960px-Mercury_in_true_color.jpg" },
+    { l: 3, q: "ما اسم هذا الكوكب؟", a: "الزهرة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Venus_from_Mariner_10.jpg/960px-Venus_from_Mariner_10.jpg" },
+    { l: 3, q: "ما اسم هذا الكوكب؟", a: "نبتون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Neptune_Voyager2_color_calibrated.png/960px-Neptune_Voyager2_color_calibrated.png" },
+    { l: 4, q: "ما اسم هذا الكوكب؟", a: "أورانوس", img: "https://upload.wikimedia.org/wikipedia/commons/6/69/Uranus_Voyager2_color_calibrated.png" },
+    { l: 4, q: "ما اسم هذا الجرم؟", a: "بلوتو — كوكب قزم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Pluto_in_True_Color_-_High-Res.png/960px-Pluto_in_True_Color_-_High-Res.png" },
+
+    /* ===== «ما اسم هذا القمر؟» ===== */
+    { l: 1, q: "ما اسم هذا الجرم؟", a: "القمر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/960px-FullMoon2010.jpg" },
+    { l: 4, q: "ما اسم هذا القمر؟ (أكبر أقمار زحل وله غلاف جوي كثيف)", a: "تيتان", img: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Titan_in_true_color_by_Kevin_M._Gill.jpg" },
+    { l: 5, q: "ما اسم هذا القمر الجليدي التابع للمشتري؟", a: "أوروبا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Europa_-_Perijove_45_%28cropped%29.png/960px-Europa_-_Perijove_45_%28cropped%29.png" },
+    { l: 5, q: "ما اسم هذا القمر البركاني التابع للمشتري؟", a: "آيو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Io_highest_resolution_natural_color.png/960px-Io_highest_resolution_natural_color.png" },
+    { l: 5, q: "ما اسم هذا القمر الصغير التابع للمريخ؟", a: "فوبوس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/960px-Phobos_colour_2008.jpg" },
+
+    /* ===== «ما اسم هذا الجسم في الفضاء؟» ===== */
+    { l: 1, q: "ما اسم هذا النجم؟", a: "الشمس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg" },
+    { l: 2, q: "ما اسم هذه المنشأة التي تدور حول الأرض؟", a: "محطة الفضاء الدولية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg/960px-The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg" },
+    { l: 3, q: "ما اسم هذا التلسكوب الفضائي؟", a: "تلسكوب هابل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Hubble_2009_close-up_2.jpg/960px-Hubble_2009_close-up_2.jpg" },
+    { l: 4, q: "ما اسم هذا التلسكوب الذي أُطلق عام 2021؟", a: "تلسكوب جيمس ويب", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/JWST_spacecraft_model_3.png" },
+    { l: 4, q: "ما اسم هذا السديم الذي يُعد مشتلاً لولادة النجوم؟", a: "سديم الجبار (أوريون)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg/960px-Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg" },
+    { l: 5, q: "ما اسم هذه المجرة الأقرب إلى مجرتنا؟", a: "مجرة أندروميدا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Andromeda_Galaxy_2025.png/960px-Andromeda_Galaxy_2025.png" },
+    { l: 5, q: "ما اسم هذا المذنب الذي يزور الأرض كل 76 عاماً تقريباً؟", a: "مذنب هالي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Lspn_comet_halley.jpg/960px-Lspn_comet_halley.jpg" },
+
+    /* ===== أسئلة عامة عن الفضاء ===== */
+    { l: 1, q: "كم قمراً لكوكب المريخ؟", a: "قمران: فوبوس وديموس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/960px-Phobos_colour_2008.jpg" },
+    { l: 1, q: "كم تستغرق الأرض لتدور حول نفسها دورة كاملة؟", a: "نحو 24 ساعة (يوم واحد)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/960px-Meteosat-12-fci-march-equinox-2025-noon.jpg" },
+    { l: 2, q: "ما اسم أشد كواكب المجموعة الشمسية حرارة؟", a: "الزهرة — نحو 465 درجة مئوية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Venus_from_Mariner_10.jpg/960px-Venus_from_Mariner_10.jpg" },
+    { l: 2, q: "ما اسم أول كائن حي دار حول الأرض في الفضاء؟", a: "الكلبة لايكا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Laika_in_1957.jpg/960px-Laika_in_1957.jpg" },
+    { l: 2, q: "ما اسم الأضواء الملوّنة التي تظهر في سماء المناطق القطبية؟", a: "الشفق القطبي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Aurora_borealis_over_Eielson_Air_Force_Base%2C_Alaska.jpg/960px-Aurora_borealis_over_Eielson_Air_Force_Base%2C_Alaska.jpg" },
+    { l: 2, q: "كم تبعد الشمس عن الأرض تقريباً؟", a: "نحو 150 مليون كيلومتر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg" },
+    { l: 3, q: "ما اسم الصخرة الصغيرة التي تحترق في الغلاف الجوي فنراها خطاً مضيئاً؟", a: "الشهاب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Perseid_meteor_2007.jpg/960px-Perseid_meteor_2007.jpg" },
+    { l: 3, q: "ما اسم طبقة الغلاف الجوي التي تحمينا من الأشعة فوق البنفسجية؟", a: "طبقة الأوزون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/ISS041-E-105277_-_View_of_the_Northern_Territory.jpg/960px-ISS041-E-105277_-_View_of_the_Northern_Territory.jpg" },
+    { l: 3, q: "ما سبب حدوث المدّ والجزر في البحار؟", a: "جاذبية القمر (ومعه الشمس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/960px-FullMoon2010.jpg" },
+    { l: 4, q: "كم تبلغ درجة حرارة سطح الشمس تقريباً؟", a: "نحو 5500 درجة مئوية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg" },
+    { l: 4, q: "ما اسم المسبار الذي اقترب من الشمس أكثر من أي مركبة صنعها الإنسان؟", a: "مسبار باركر الشمسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Parker_Solar_Probe_spacecraft_model.png/960px-Parker_Solar_Probe_spacecraft_model.png" },
+    { l: 4, q: "أي كوكب لو وُضع في ماء كبير لطفا فوقه لقلة كثافته؟", a: "زحل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png/960px-Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png" },
+    { l: 5, q: "ما اسم المجرة التي التُقطت فيها أول صورة لثقب أسود عام 2019؟", a: "مجرة M87", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Messier_87_Hubble_WikiSky.jpg/960px-Messier_87_Hubble_WikiSky.jpg" },
+    { l: 5, q: "كم عدد روّاد رحلة أبولو 11؟", a: "ثلاثة: أرمسترونغ وألدرين وكولينز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/A_Man_on_the_Moon%2C_AS11-40-5903_%28cropped%29.jpg/960px-A_Man_on_the_Moon%2C_AS11-40-5903_%28cropped%29.jpg" },
+    { l: 5, q: "كم تبعد الأرض عن القمر تقريباً؟", a: "نحو 384 ألف كيلومتر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/960px-FullMoon2010.jpg" },
+    { l: 5, q: "ما اسم العربة الجوّالة التي تعمل على المريخ منذ 2021 وتجمع عيّنات من صخوره؟", a: "برسيفرانس (المثابرة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Perseverance-Selfie-at-Rochette-Horizontal-V2.gif/960px-Perseverance-Selfie-at-Rochette-Horizontal-V2.gif" }
   ];
 
   /* ---------- جسم الإنسان (97 سؤالاً) ----------

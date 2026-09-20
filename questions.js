@@ -575,7 +575,7 @@ const questionsData = {
     { l: 5, q: "مدينة مراكش تقع في أي دولة؟", a: "المغرب", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Marokko0112_%28retouched%29.jpg/960px-Marokko0112_%28retouched%29.jpg" },
   ],
 
-  /* ---------- علوم (65 سؤالاً) ---------- */
+  /* ---------- علوم (96 سؤالاً) ---------- */
   "علوم": [
     { l: 1, q: "كم عدد كواكب المجموعة الشمسية؟", a: "ثمانية كواكب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Solar_System_true_color.jpg/960px-Solar_System_true_color.jpg" },
     { l: 1, q: "ما هو الكوكب الأقرب إلى الشمس؟", a: "عطارد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Mercury_in_true_color.jpg/960px-Mercury_in_true_color.jpg" },
@@ -642,6 +642,39 @@ const questionsData = {
     { l: 5, q: "ما اسم هذه الأداة أو الظاهرة؟", a: "الإنبيق (جهاز التقطير)", img: "image/icons/2697.svg" },
     { l: 5, q: "ما اسم هذه الأداة أو الظاهرة؟", a: "الجرثومة (الميكروب)", img: "image/icons/1F9A0.svg" },
     { l: 5, q: "ما اسم هذه الأداة أو الظاهرة؟", a: "طبق بتري", img: "image/icons/1F9EB.svg" },
+
+    /* ===== أسئلة عامة إضافية: أحياء وفيزياء وكيمياء وأرض وعلماء ===== */
+    { l: 1, q: "ما اسم المادة التي تعطي أوراق النبات لونها الأخضر؟", a: "الكلوروفيل (اليخضور)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/M%C3%A9lisse_Feuilles_FR_2013b.jpg/960px-M%C3%A9lisse_Feuilles_FR_2013b.jpg" },
+    { l: 1, q: "ما اسم الكائنات الدقيقة التي لا تُرى إلا بالمجهر وقد تسبّب المرض؟", a: "البكتيريا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/E._coli_Bacteria_%287316101966%29.jpg/960px-E._coli_Bacteria_%287316101966%29.jpg" },
+    { l: 1, q: "ما اسم الجزء من النبات الذي يمتصّ الماء من التربة؟", a: "الجذور", img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Primary_and_secondary_cotton_roots.jpg" },
+    { l: 1, q: "ما الفيتامين الموجود بكثرة في البرتقال والليمون؟", a: "فيتامين C", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/960px-Oranges_-_whole-halved-segment.jpg" },
+    { l: 1, q: "ما اسم الأداة التي تحدّد الاتجاهات وتشير إبرتها إلى الشمال؟", a: "البوصلة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/2016_Busola.JPG/960px-2016_Busola.JPG" },
+    { l: 2, q: "ما اسم الظاهرة التي تظهر فيها سبعة ألوان في السماء بعد المطر؟", a: "قوس قزح", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Double-alaskan-rainbow.jpg/960px-Double-alaskan-rainbow.jpg" },
+    { l: 2, q: "لماذا نرى البرق قبل أن نسمع الرعد؟", a: "لأن سرعة الضوء أكبر بكثير من سرعة الصوت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Port_and_lighthouse_overnight_storm_with_lightning_in_Port-la-Nouvelle.jpg/960px-Port_and_lighthouse_overnight_storm_with_lightning_in_Port-la-Nouvelle.jpg" },
+    { l: 2, q: "ما اسم الحالة الرابعة للمادة بعد الصلبة والسائلة والغازية؟", a: "البلازما", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Helium_discharge_tube.jpg/960px-Helium_discharge_tube.jpg" },
+    { l: 2, q: "ما اسم الصفائح العملاقة التي يتكوّن منها سطح الأرض ويسبّب تحرّكها الزلازل؟", a: "الصفائح التكتونية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Tectonic_plates_%282022%29.svg/960px-Tectonic_plates_%282022%29.svg.png" },
+    { l: 2, q: "ما اسم الفتحة في الأرض التي تخرج منها الحمم والرماد؟", a: "البركان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Augustine_volcano_Jan_24_2006_-_Cyrus_Read.jpg/960px-Augustine_volcano_Jan_24_2006_-_Cyrus_Read.jpg" },
+    { l: 2, q: "ما المعدن الذي تُصنع منه أسلاك الكهرباء لأنه موصل ممتاز؟", a: "النحاس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Lautsprecherkabel_Makro_nah.jpg/960px-Lautsprecherkabel_Makro_nah.jpg" },
+    { l: 3, q: "ما اسم العضية التي تنتج الطاقة داخل الخلية وتُسمّى محطة الطاقة؟", a: "الميتوكندريا", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Mitochondria%2C_mammalian_lung_-_TEM.jpg" },
+    { l: 3, q: "من العالم صاحب نظرية التطوّر والانتخاب الطبيعي؟", a: "تشارلز داروين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Charles_Darwin_seated_crop.jpg/960px-Charles_Darwin_seated_crop.jpg" },
+    { l: 3, q: "من العالم الذي طوّر المصباح الكهربائي وسجّل أكثر من ألف براءة اختراع؟", a: "توماس إديسون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Thomas_Edison2.jpg/960px-Thomas_Edison2.jpg" },
+    { l: 3, q: "من العالم الذي يُنسب إليه اختراع الهاتف؟", a: "ألكسندر غراهام بيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Alexander_Graham_Bell_1895_NPG_77_363.jpg/960px-Alexander_Graham_Bell_1895_NPG_77_363.jpg" },
+    { l: 3, q: "ما اسم الأشعة التي تُصوَّر بها العظام داخل الجسم؟", a: "الأشعة السينية (أشعة X)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Color_X-ray_photogram.jpg/960px-Color_X-ray_photogram.jpg" },
+    { l: 3, q: "ما اسم الجهاز الذي يقيس الضغط الجوي؟", a: "البارومتر", img: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Dosen-barometer.jpg" },
+    { l: 3, q: "ضد أي مرض كان أول لقاح في التاريخ؟", a: "الجدري — لقاح إدوارد جينر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Smallpox_vaccine.jpg/960px-Smallpox_vaccine.jpg" },
+    { l: 4, q: "من العالم الذي اكتشف الأشعة السينية ونال أول جائزة نوبل في الفيزياء؟", a: "فيلهلم رونتغن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Wilhelm_Conrad_R%C3%B6ntgen_%281888-1900%29%2C_88374_p.jpg/960px-Wilhelm_Conrad_R%C3%B6ntgen_%281888-1900%29%2C_88374_p.jpg" },
+    { l: 4, q: "ما اسم أكبر خلية في جسم الإنسان؟", a: "البويضة", img: "https://upload.wikimedia.org/wikipedia/commons/8/81/Gray3.png" },
+    { l: 4, q: "ما اسم قانون نيوتن الذي ينصّ على أن لكل فعل ردّ فعل مساوياً له ومضاداً في الاتجاه؟", a: "قانون نيوتن الثالث", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg/960px-Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg" },
+    { l: 4, q: "ما الغاز الذي تُملأ به إطارات الطائرات وهو الأكثر وفرة في الهواء؟", a: "النيتروجين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Fluessiger_Stickstoff.jpg/960px-Fluessiger_Stickstoff.jpg" },
+    { l: 4, q: "ما اسم الظاهرة التي تحبس حرارة الشمس داخل الغلاف الجوي فترتفع حرارة الأرض؟", a: "الاحتباس الحراري (ظاهرة الدفيئة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Air_pollution3.jpg/960px-Air_pollution3.jpg" },
+    { l: 4, q: "كم تبلغ سرعة الصوت في الهواء تقريباً؟", a: "نحو 343 متراً في الثانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/FA-18_Hornet_breaking_sound_barrier_%287_July_1999%29_-_filtered.jpg/960px-FA-18_Hornet_breaking_sound_barrier_%287_July_1999%29_-_filtered.jpg" },
+    { l: 4, q: "ما اسم الطاقة التي تولّدها الألواح الشمسية من ضوء الشمس؟", a: "الطاقة الكهروضوئية (الشمسية)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Dji_fly_20230602_13826_PM_27_1719032149374_photo_optimized.jpg/960px-Dji_fly_20230602_13826_PM_27_1719032149374_photo_optimized.jpg" },
+    { l: 5, q: "من أول من شاهد الخلايا تحت المجهر وأطلق عليها اسم «خلية»؟", a: "روبرت هوك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Portrait_of_a_Mathematician_1680c.jpg/960px-Portrait_of_a_Mathematician_1680c.jpg" },
+    { l: 5, q: "ما سبب تعاقب الفصول الأربعة على الأرض؟", a: "ميل محور الأرض أثناء دورانها حول الشمس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/ChangingSeasons_NH_01.png/960px-ChangingSeasons_NH_01.png" },
+    { l: 5, q: "كم مقدار الجزء الظاهر من جبل الجليد فوق سطح الماء؟", a: "نحو العُشر فقط والباقي تحت الماء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Iceberg_in_the_Arctic_with_its_underside_exposed.jpg/960px-Iceberg_in_the_Arctic_with_its_underside_exposed.jpg" },
+    { l: 5, q: "ما اسم بقايا الكائنات القديمة المحفوظة داخل الصخور؟", a: "الأحافير (المستحاثات)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Fossil_Diversity.png/960px-Fossil_Diversity.png" },
+    { l: 5, q: "ما اسم المرض الذي يسبّبه نقص فيتامين C؟", a: "الإسقربوط", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/960px-Oranges_-_whole-halved-segment.jpg" },
+    { l: 5, q: "ما اسم الفصيلة التي يُسمّى صاحبها «المتبرّع العام» لأن دمه يصلح لجميع الفصائل؟", a: "فصيلة O السالبة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/ABO_blood_type.svg/960px-ABO_blood_type.svg.png" }
   ],
 
   /* ---------- حيوانات (90 سؤالاً) ---------- */
