@@ -975,7 +975,9 @@
         here.checked = !p.absent;
         here.onchange = () => { Teams.setPresent(p.name, here.checked); render(); };
         r.querySelector('.rk').textContent = i + 1;
-        r.querySelector('.nm').textContent = p.name;
+        /* بطاقات الجولة الجارية بجانب الاسم (🟨 لكل إنذار، 🟥 للطرد) */
+        const cards = (p.red ? '🟥' : '') + '🟨'.repeat(Math.min(p.yellow || 0, 2));
+        r.querySelector('.nm').textContent = p.name + (cards ? ' ' + cards : '');
         /* المجموع التراكمي، ونقاط الجولة الجارية إن وُجدت */
         r.querySelector('.pts').innerHTML = p.total + '<small>نقطة</small>' +
           (p.points ? '<b class="now" title="نقاط الجولة الجارية — تُضاف عند انتهاء اللعب">+' + p.points + '</b>' : '');

@@ -156,7 +156,10 @@
           name: String(p.name),
           points: legacy ? 0 : (Number(p.points) || 0),
           total: legacy ? (Number(p.points) || 0) : (Number(p.total) || 0),
-          absent: !!p.absent
+          absent: !!p.absent,
+          /* بطاقات الجولة: صفراء (تنبيه وخصم) وحمراء (اللاعب خارج ما بقي من الجولة) */
+          yellow: Math.max(0, Number(p.yellow) || 0),
+          red: !!p.red
         };
       }) : [];
   }
@@ -234,6 +237,45 @@
     return p ? p.points : 0;
   }
 
+  /* ---------- بطاقات اللاعبين ----------
+     صفراء: تنبيه وخصم CARD_YELLOW من نقاط اللاعب — وصفراوان تساويان حمراء.
+     حمراء: خصم CARD_RED واللاعب خارج ما بقي من الجولة (لا يُسأل ولا يأخذ نقاطاً).
+     البطاقات تُمسح مع بدء جولة جديدة مثل نقاط الجولة. */
+  var CARD_YELLOW = 3, CARD_RED = 6;
+
+  function cardsOf(name) {
+    var p = players().filter(function (x) { return x.name === name; })[0];
+    return p ? { yellow: p.yellow, red: p.red } : { yellow: 0, red: false };
+  }
+
+  function isSentOff(name) { return !!cardsOf(name).red; }
+
+  /* يعطي اللاعب بطاقة: kind = "yellow" أو "red" — ويعيد حالته بعدها */
+  function giveCard(name, kind) {
+    var list = players(), p = null;
+    list.forEach(function (x) { if (x.name === name) p = x; });
+    if (!p) return null;
+    var secondYellow = false;
+    if (kind === "red") {
+      p.red = true;
+      p.points -= CARD_RED;
+    } else {
+      p.yellow += 1;
+      p.points -= CARD_YELLOW;
+      if (p.yellow >= 2 && !p.red) { p.red = true; secondYellow = true; }   /* صفراوان = حمراء */
+    }
+    savePlayers(list);
+    return { yellow: p.yellow, red: p.red, points: p.points, secondYellow: secondYellow };
+  }
+
+  /* إزالة بطاقات لاعب (إن أُعطيت بالخطأ) — بلا إرجاع النقاط المخصومة */
+  function clearCards(name) {
+    savePlayers(players().map(function (p) {
+      if (p.name === name) { p.yellow = 0; p.red = false; }
+      return p;
+    }));
+  }
+
   /* المجموع التراكمي للاعب (بلا نقاط الجولة الجارية) */
   function playerTotal(name) {
     var p = players().filter(function (x) { return x.name === name; })[0];
@@ -274,7 +316,7 @@
 
   /* بدء اللعب: تصفير نقاط الجولة وحدها — المجموع التراكمي يبقى */
   function zeroPlayerPoints() {
-    savePlayers(players().map(function (p) { p.points = 0; return p; }));
+    savePlayers(players().map(function (p) { p.points = 0; p.yellow = 0; p.red = false; return p; }));   /* والبطاقات تُمسح مع بدء الجولة */
     set("playersCommitted", "");
   }
 
@@ -380,6 +422,12 @@
     removePlayer: removePlayer,
     addPlayerPoints: addPlayerPoints,
     playerPoints: playerPoints,
+    CARD_YELLOW: CARD_YELLOW,
+    CARD_RED: CARD_RED,
+    cards: cardsOf,
+    isSentOff: isSentOff,
+    giveCard: giveCard,
+    clearCards: clearCards,
     playerTotal: playerTotal,
     renamePlayer: renamePlayer,
     zeroPlayerPoints: zeroPlayerPoints,

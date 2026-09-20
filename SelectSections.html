@@ -366,6 +366,32 @@
       border:1px solid var(--tc, var(--line));
     }
     .team-members span b{ color:var(--gold); margin-inline-start:5px; font-weight:900; }
+    /* بطاقات اللاعب: اضغط اسم اللاعب فتظهر أزرار البطاقة */
+    .team-members span{ cursor:pointer; }
+    .team-members span:hover{ border-color:var(--gold-soft, #f7dd9c); }
+    .team-members span i.card{
+      display:inline-block; width:8px; height:11px; border-radius:2px;
+      margin-inline-start:4px; vertical-align:-1px;
+    }
+    .team-members span i.card.y{ background:#f4c430; }
+    .team-members span i.card.r{ background:#e4443a; }
+    .team-members span.sent-off{ opacity:.55; text-decoration:line-through; }
+    /* نافذة إعطاء بطاقة */
+    .card-pick{ position:fixed; inset:0; z-index:90; display:grid; place-items:center;
+      background:rgba(2,12,10,.72); backdrop-filter:blur(3px); }
+    .card-pick .cp{
+      background:linear-gradient(180deg,#0e3b33,#04120f); border:1px solid var(--line);
+      border-radius:20px; padding:20px; width:min(92vw,360px); text-align:center;
+      box-shadow:0 24px 60px rgba(0,0,0,.6);
+    }
+    .card-pick h5{ font-family:'Cairo',sans-serif; margin:0 0 14px; color:var(--ivory); font-size:18px; }
+    .card-pick button{
+      display:block; width:100%; margin:8px 0; padding:11px; border-radius:12px; cursor:pointer;
+      font-family:'Cairo',sans-serif; font-weight:800; font-size:15px; border:1px solid var(--line);
+      background:rgba(255,255,255,.06); color:var(--ivory);
+    }
+    .card-pick .yellow{ background:#f4c430; color:#20180a; border-color:#f4c430; }
+    .card-pick .red{ background:#e4443a; color:#fff; border-color:#e4443a; }
 
     .score-card p {
       font-family:'Cairo', sans-serif;
@@ -671,6 +697,15 @@
         const pts = document.createElement('b');
         pts.textContent = Teams.playerPoints(m);
         s.appendChild(pts);
+        /* بطاقات اللاعب: مستطيل أصفر لكل إنذار، وأحمر إن طُرد */
+        const c = Teams.cards(m);
+        for (let i = 0; i < c.yellow; i++) {
+          const y = document.createElement('i'); y.className = 'card y'; s.appendChild(y);
+        }
+        if (c.red) { const r = document.createElement('i'); r.className = 'card r'; s.appendChild(r); }
+        s.classList.toggle('sent-off', c.red);
+        s.title = c.red ? (m + ' — مطرود من بقية الجولة') : 'إعطاء بطاقة';
+        s.onclick = () => pickCard(m);
         memEl.appendChild(s);
       });
       box.appendChild(card);
@@ -752,6 +787,66 @@
       const el = document.getElementById(t + 'Score');
       if (el) el.textContent = scores[t];
     });
+  }
+
+  /* إشعار صغير أعلى الشاشة (البطاقات) */
+  function toast(msg) {
+    let box = document.getElementById('cardToast');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'cardToast';
+      box.style.cssText = 'position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:95;' +
+        'background:rgba(4,18,15,.95);border:1px solid rgba(231,183,64,.45);color:#f3 efe6;' +
+        'font-family:Cairo,sans-serif;font-weight:800;font-size:14px;padding:10px 16px;border-radius:999px;' +
+        'box-shadow:0 12px 30px rgba(0,0,0,.5);opacity:0;transition:opacity .25s';
+      box.style.color = '#f3efe6';
+      document.body.appendChild(box);
+    }
+    box.textContent = msg;
+    box.style.opacity = '1';
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => { box.style.opacity = '0'; }, 2600);
+  }
+
+  /* ---------- بطاقات اللاعبين ----------
+     صفراء: تنبيه وخصم من نقاط اللاعب — وصفراوان تساويان حمراء.
+     حمراء: اللاعب خارج ما بقي من الجولة، فلا يظهر في «من أجاب؟». */
+  function pickCard(player) {
+    const c = Teams.cards(player);
+    const ov = document.createElement('div');
+    ov.className = 'card-pick';
+    ov.innerHTML =
+      '<div class="cp"><h5 data-no-i18n></h5>' +
+      '<button type="button" class="yellow">🟨 بطاقة صفراء · خصم ' + Teams.CARD_YELLOW + ' من اللاعب</button>' +
+      '<button type="button" class="red">🟥 بطاقة حمراء · خصم ' + Teams.CARD_RED + ' وخروج من الجولة</button>' +
+      (c.yellow || c.red ? '<button type="button" class="clear">إزالة بطاقات اللاعب</button>' : '') +
+      '<button type="button" class="cancel">إلغاء</button></div>';
+    ov.querySelector('h5').textContent = player +
+      (c.yellow || c.red ? ' — عنده ' + (c.red ? 'بطاقة حمراء' : c.yellow + ' صفراء') : '');
+    const close = () => ov.remove();
+    ov.querySelector('.yellow').onclick = () => {
+      const r = Teams.giveCard(player, 'yellow');
+      SFX.penaltyCard();
+      toast(r && r.secondYellow
+        ? ('🟥 ' + player + ' — صفراء ثانية فحمراء، وخرج من الجولة')
+        : ('🟨 ' + player + ' — بطاقة صفراء (−' + Teams.CARD_YELLOW + ')'));
+      close(); renderScoreCards();
+    };
+    ov.querySelector('.red').onclick = () => {
+      Teams.giveCard(player, 'red');
+      SFX.penaltyCard();
+      toast('🟥 ' + player + ' — بطاقة حمراء (−' + Teams.CARD_RED + ') وخرج من الجولة');
+      close(); renderScoreCards();
+    };
+    const clearBtn = ov.querySelector('.clear');
+    if (clearBtn) clearBtn.onclick = () => {
+      Teams.clearCards(player);
+      toast('أُزيلت بطاقات ' + player);
+      close(); renderScoreCards();
+    };
+    ov.querySelector('.cancel').onclick = close;
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    document.body.appendChild(ov);
   }
 
   function applyPenalty(team, amount) {
