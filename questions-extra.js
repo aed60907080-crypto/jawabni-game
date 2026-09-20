@@ -895,7 +895,7 @@
     { l: 5, q: "ما اسم أعلى مطار في العالم؟", a: "مطار داوتشنغ ياتينغ في الصين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/DCY_China_Southern.jpg/960px-DCY_China_Southern.jpg" }
   ];
 
-  /* ---------- الحاسوب والبرمجة (85 سؤالاً) ----------
+  /* ---------- الحاسوب والبرمجة (87 سؤالاً) ----------
      ثلاثة أنواع: «ما نوع هذا الحاسوب؟» (صور أنواع الحواسيب: لابتوب،
      عملاق، كمّي، مركزي…)، و«ما نوع البرمجة؟» و«ما لغة البرمجة في هذا
      السطر؟» (سطر شيفرة داخل نص السؤال)، وأسئلة عامة عن الحاسوب. */
@@ -955,37 +955,39 @@
     { l: 1, q: "ما نوع هذا الحاسوب؟", a: "حاسوب لوحي (تابلت)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/12.9_iPad_Pro_1st_Gen_And_Galaxy_Tab_S8_Ultra_Size_Comparison.jpg/960px-12.9_iPad_Pro_1st_Gen_And_Galaxy_Tab_S8_Ultra_Size_Comparison.jpg" },
     { l: 1, q: "ما نوع البرمجة التي تُنشئ صفحات المواقع وما يظهر منها في المتصفح؟", a: "برمجة الويب — الواجهة الأمامية (Front-end)" },
     { l: 1, q: "ما نوع البرمجة التي تصنع تطبيقات الجوال مثل تطبيقات أندرويد وآيفون؟", a: "برمجة تطبيقات الجوال" },
-    { l: 1, q: "ما لغة البرمجة في هذا السطر؟  ⁦print(«مرحبا»)⁩", a: "بايثون (Python)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
-    { l: 1, q: "ما لغة البرمجة في هذا السطر؟  ⁦console.log(«Hi»)⁩", a: "جافاسكربت (JavaScript)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
+    { l: 1, q: "ما لغة البرمجة في هذا السطر؟  ⁦print(«مرحبا»)⁩", a: "بايثون (Python)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/500px-Python-logo-notext.svg.png" },
+    { l: 1, q: "ما لغة البرمجة في هذا السطر؟  ⁦console.log(«Hi»)⁩", a: "جافاسكربت (JavaScript)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/500px-Unofficial_JavaScript_logo_2.svg.png" },
+    { l: 1, q: "ما لغة هذا السطر؟  ⁦<h1>Hello</h1>⁩", a: "HTML — لغة ترميز صفحات الويب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/500px-HTML5_logo_and_wordmark.svg.png" },
     { l: 2, q: "ما نوع هذا الحاسوب؟", a: "حاسوب ألعاب (جيمنغ)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/MSI-Gaming-PC_2024-09-30.png/960px-MSI-Gaming-PC_2024-09-30.png" },
     { l: 2, q: "ما نوع هذا الحاسوب؟", a: "حاسوب الكل في واحد (All-in-One)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Dell_Inspiron_One_23_Touch_AIO_Desktop_PC.png/960px-Dell_Inspiron_One_23_Touch_AIO_Desktop_PC.png" },
     { l: 2, q: "ما نوع هذا الحاسوب؟", a: "حاسوب محمول قابل للطي والتحوّل إلى لوحي (2 في 1)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/HP_Spectre_x360_2016_%2832003550180%29.jpg/960px-HP_Spectre_x360_2016_%2832003550180%29.jpg" },
     { l: 2, q: "ما نوع البرمجة التي تشتغل على الخادم وقواعد البيانات خلف الموقع؟", a: "برمجة الواجهة الخلفية (Back-end)" },
     { l: 2, q: "ما نوع البرمجة التي تُبنى فيها الشيفرة على «كائنات» لكل منها صفات ودوال؟", a: "البرمجة الكائنية (OOP)" },
     { l: 2, q: "ما نوع البرمجة التي تصنع الألعاب وتحرّك شخصياتها؟", a: "برمجة الألعاب" },
-    { l: 2, q: "ما لغة البرمجة في هذا السطر؟  ⁦System.out.println(«Hi»);⁩", a: "جافا (Java)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
-    { l: 2, q: "ما لغة البرمجة في هذا السطر؟  ⁦$name = «Ali»; echo $name;⁩", a: "PHP", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
+    { l: 2, q: "ما لغة البرمجة في هذا السطر؟  ⁦System.out.println(«Hi»);⁩", a: "جافا (Java)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Duke_%28Java_mascot%29_waving.svg/500px-Duke_%28Java_mascot%29_waving.svg.png" },
+    { l: 2, q: "ما لغة البرمجة في هذا السطر؟  ⁦$name = «Ali»; echo $name;⁩", a: "PHP", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/500px-PHP-logo.svg.png" },
     { l: 3, q: "ما نوع هذا الحاسوب؟", a: "حاسوب بلوحة واحدة (راسبيري باي)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Raspberry-Pi-2-Bare-BR.jpg/960px-Raspberry-Pi-2-Bare-BR.jpg" },
     { l: 3, q: "ما نوع هذا الحاسوب؟", a: "حاسوب مكتبي صغير (ميني PC)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/2009_Taipei_IT_Month_Day1_Acer_Aspire_Revo.jpg/960px-2009_Taipei_IT_Month_Day1_Acer_Aspire_Revo.jpg" },
     { l: 3, q: "ما نوع هذا الحاسوب؟", a: "حاسوب عملاق (سوبر كمبيوتر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/IBM_Blue_Gene_P_supercomputer.jpg/960px-IBM_Blue_Gene_P_supercomputer.jpg" },
     { l: 3, q: "ما نوع البرمجة التي تُكتب لأجهزة صغيرة مثل الأردوينو وأجهزة إنترنت الأشياء؟", a: "برمجة الأنظمة المدمجة" },
     { l: 3, q: "ما نوع البرمجة التي تعتمد على الدوال الرياضية وتتجنّب تغيير الحالة؟", a: "البرمجة الوظيفية (Functional)" },
     { l: 3, q: "ما نوع البرمجة التي تُدرّب نماذج تتعلّم من البيانات؟", a: "برمجة الذكاء الاصطناعي وتعلّم الآلة" },
-    { l: 3, q: "ما لغة البرمجة في هذا السطر؟  ⁦printf(«Hi\\n»);⁩", a: "لغة C", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
-    { l: 3, q: "ما لغة البرمجة في هذا السطر؟  ⁦SELECT * FROM users;⁩", a: "SQL — لغة قواعد البيانات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
+    { l: 3, q: "ما لغة البرمجة في هذا السطر؟  ⁦printf(«Hi\\n»);⁩", a: "لغة C", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/C1stEdition.svg/500px-C1stEdition.svg.png" },
+    { l: 3, q: "ما لغة البرمجة في هذا السطر؟  ⁦cout << «Hi» << endl;⁩", a: "سي بلس بلس ⁦(C++)⁩", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/500px-ISO_C%2B%2B_Logo.svg.png" },
+    { l: 3, q: "ما لغة البرمجة في هذا السطر؟  ⁦SELECT * FROM users;⁩", a: "SQL — لغة قواعد البيانات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Sql_data_base_with_logo.png/500px-Sql_data_base_with_logo.png" },
     { l: 4, q: "ما نوع هذا الحاسوب؟", a: "محطة عمل (ورك ستيشن)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/NEXT_Cube-IMG_7157.jpg/960px-NEXT_Cube-IMG_7157.jpg" },
     { l: 4, q: "ما نوع هذا الحاسوب؟", a: "حاسوب كفّي قديم (PDA)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/PalmTX.jpg/960px-PalmTX.jpg" },
     { l: 4, q: "ما نوع هذا الحاسوب؟", a: "حاسوب مركزي ضخم (ميـنفريم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/IBM_Z15_mainframe.jpg/960px-IBM_Z15_mainframe.jpg" },
     { l: 4, q: "ما نوع البرمجة التي تُنفّذ عدة مهام في وقت واحد على أكثر من نواة؟", a: "البرمجة المتوازية (Parallel)" },
     { l: 4, q: "ما نوع البرمجة التي تكتب فيها خطوات مرتّبة تُنفَّذ سطراً بعد سطر؟", a: "البرمجة الإجرائية (Procedural)" },
-    { l: 4, q: "ما لغة البرمجة في هذا السطر؟  ⁦Console.WriteLine(«Hi»);⁩", a: "سي شارب (C#)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
-    { l: 4, q: "ما لغة البرمجة في هذا السطر؟  ⁦puts «Hi»⁩", a: "روبي (Ruby)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
+    { l: 4, q: "ما لغة البرمجة في هذا السطر؟  ⁦Console.WriteLine(«Hi»);⁩", a: "سي شارب (C#)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/C_Sharp_Logo_2023.svg/500px-C_Sharp_Logo_2023.svg.png" },
+    { l: 4, q: "ما لغة البرمجة في هذا السطر؟  ⁦puts «Hi»⁩", a: "روبي (Ruby)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Ruby_logo.svg/500px-Ruby_logo.svg.png" },
     { l: 5, q: "ما نوع هذا الحاسوب؟", a: "حاسوب كمّي (كوانتم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/IBM_Quantum_Computer_Demo_at_ITUWTSA_2024%2C_Delhi_2.jpg/960px-IBM_Quantum_Computer_Demo_at_ITUWTSA_2024%2C_Delhi_2.jpg" },
     { l: 5, q: "ما نوع هذا الحاسوب؟", a: "حاسوب مدمج داخل جهاز (نظام مدمج)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/DHCOM_Computer_On_Module_-_AM35x.jpg/960px-DHCOM_Computer_On_Module_-_AM35x.jpg" },
     { l: 5, q: "ما نوع البرمجة التي تصف «ما المطلوب» لا «كيف يُنفَّذ» مثل لغة SQL؟", a: "البرمجة التصريحية (Declarative)" },
     { l: 5, q: "ما نوع البرمجة التي تُكتب بسحب القطع وتركيبها مثل سكراتش؟", a: "البرمجة المرئية (بالكتل)" },
-    { l: 5, q: "ما لغة البرمجة في هذا السطر؟  ⁦fmt.Println(«Hi»)⁩", a: "غو (Go)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" },
-    { l: 5, q: "ما لغة البرمجة في هذا السطر؟  ⁦println!(«Hi»);⁩", a: "رست (Rust)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Programming_code.jpg/960px-Programming_code.jpg" }
+    { l: 5, q: "ما لغة البرمجة في هذا السطر؟  ⁦fmt.Println(«Hi»)⁩", a: "غو (Go)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/500px-Go_Logo_Blue.svg.png" },
+    { l: 5, q: "ما لغة البرمجة في هذا السطر؟  ⁦println!(«Hi»);⁩", a: "رست (Rust)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/960px-Code_on_computer_monitor_%28Unsplash%29.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/500px-Rust_programming_language_black_logo.svg.png" }
   ];
 
   /* ---------- العملات والاقتصاد (50 سؤالاً) ---------- */
