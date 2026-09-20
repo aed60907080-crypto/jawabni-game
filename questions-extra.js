@@ -318,7 +318,7 @@
     { l: 5, q: "ممّ يتكوّن البرونز؟", a: "سبيكة من النحاس والقصدير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Bull%27s_head_ornament_for_a_lyre_MET_DP260070.jpg/500px-Bull%27s_head_ornament_for_a_lyre_MET_DP260070.jpg" }
   ];
 
-  /* ---------- الفيزياء (50 سؤالاً) ---------- */
+  /* ---------- الفيزياء (84 سؤالاً) ---------- */
   extra["الفيزياء"] = [
     { l: 1, q: "ما اسم القوة التي تجذب الأشياء نحو الأرض؟", a: "الجاذبية", img: "https://upload.wikimedia.org/wikipedia/commons/2/27/Gravity_elevator.gif" },
     { l: 1, q: "ما أسرع شيء في الكون؟", a: "الضوء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Sunbeams_%28crepuscular_rays%29.jpg/960px-Sunbeams_%28crepuscular_rays%29.jpg" },
@@ -369,7 +369,43 @@
     { l: 5, q: "ما اسم التجربة الشهيرة التي أثبتت الطبيعة الموجية للضوء؟", a: "تجربة الشقّين ليونغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Double_slit_interference.png/960px-Double_slit_interference.png" },
     { l: 5, q: "ما اسم القوة الأقوى بين القوى الأربع الأساسية في الطبيعة؟", a: "القوة النووية الشديدة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Atomic_nucleus_simulated_on_a_quantum_computer_-_28434461768.jpg/960px-Atomic_nucleus_simulated_on_a_quantum_computer_-_28434461768.jpg" },
     { l: 5, q: "ما اسم وحدة قياس الجرعة الإشعاعية الممتصة؟", a: "الغراي" },
-    { l: 5, q: "ما اسم العالم المسلم الذي وضع أسس علم البصريات؟", a: "الحسن بن الهيثم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Ibn_Al-Haytham_portrait.jpg/960px-Ibn_Al-Haytham_portrait.jpg" }
+    { l: 5, q: "ما اسم العالم المسلم الذي وضع أسس علم البصريات؟", a: "الحسن بن الهيثم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Ibn_Al-Haytham_portrait.jpg/960px-Ibn_Al-Haytham_portrait.jpg" },
+
+    /* ===== أسئلة عامة إضافية: قوى وطاقة وحرارة وضوء وصوت وكهرباء ===== */
+    { l: 1, q: "لماذا يطفو الخشب على الماء بينما يغرق الحديد؟", a: "لأن كثافة الخشب أقل من كثافة الماء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Der_Stock.jpg/960px-Der_Stock.jpg" },
+    { l: 1, q: "ما اسم الجهاز الذي نزن به الأشياء؟", a: "الميزان", img: "https://upload.wikimedia.org/wikipedia/commons/1/17/Balance_%C3%A0_tabac_1850.JPG" },
+    { l: 1, q: "ما اسم الطاقة التي يمتلكها الجسم بسبب حركته؟", a: "الطاقة الحركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Luna_Park_Melbourne_scenic_railway.jpg/960px-Luna_Park_Melbourne_scenic_railway.jpg" },
+    { l: 1, q: "لماذا يرتفع منطاد الهواء الساخن إلى الأعلى؟", a: "لأن الهواء الساخن أخف من الهواء البارد المحيط", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/2006_Ojiya_balloon_festival_011.jpg/960px-2006_Ojiya_balloon_festival_011.jpg" },
+    { l: 1, q: "ما نوع الأشعة التي يستعملها جهاز التحكّم عن بُعد؟", a: "الأشعة تحت الحمراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Nuon-N2000-Remote-Control.jpg/960px-Nuon-N2000-Remote-Control.jpg" },
+    { l: 1, q: "ما اسم قطبي المغناطيس؟", a: "القطب الشمالي والقطب الجنوبي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Magnetite_sample_with_neodymium_magnet.jpg/960px-Magnetite_sample_with_neodymium_magnet.jpg" },
+    { l: 1, q: "ماذا يحدث إذا قرّبنا قطبين متشابهين من مغناطيسين؟", a: "يتنافران", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Magnetite_sample_with_neodymium_magnet.jpg/960px-Magnetite_sample_with_neodymium_magnet.jpg" },
+    { l: 2, q: "ما اسم الطاقة المخزّنة في جسم مرفوع عن الأرض؟", a: "طاقة الوضع (الكامنة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Luna_Park_Melbourne_scenic_railway.jpg/960px-Luna_Park_Melbourne_scenic_railway.jpg" },
+    { l: 2, q: "لماذا تبدو الملعقة مكسورة داخل كوب الماء؟", a: "بسبب انكسار الضوء عند انتقاله بين الماء والهواء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Refraction_photo.png/960px-Refraction_photo.png" },
+    { l: 2, q: "ما نوع الأشعة غير المرئية في ضوء الشمس التي تسبّب حروق البشرة؟", a: "الأشعة فوق البنفسجية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Pipefitter_welder_kutzo.jpg/960px-Pipefitter_welder_kutzo.jpg" },
+    { l: 2, q: "لماذا لا ينتقل الصوت في الفضاء؟", a: "لأن الصوت يحتاج وسطاً مادياً ولا يوجد هواء في الفضاء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg/960px-The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg" },
+    { l: 2, q: "ما اسم الوحدة التي تُقاس بها شدّة الصوت؟", a: "الديسيبل", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Electrodynamic-loudspeaker.png" },
+    { l: 2, q: "ما اسم المادة التي لا توصل الكهرباء؟", a: "العازل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Insulator_railways.jpg/960px-Insulator_railways.jpg" },
+    { l: 2, q: "ما اسم الطاقة الناتجة عن انشطار نواة الذرّة؟", a: "الطاقة النووية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Centrale-nucl%C3%A9aire-de-saint-alban-1.jpg/960px-Centrale-nucl%C3%A9aire-de-saint-alban-1.jpg" },
+    { l: 3, q: "في أي وسط ينتقل الصوت أسرع: الهواء أم الماء أم الحديد؟", a: "الحديد — الصوت أسرع في المواد الصلبة", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Electrodynamic-loudspeaker.png" },
+    { l: 3, q: "ما اسم الجهاز الذي يرفع جهد الكهرباء أو يخفضه؟", a: "المحوّل الكهربائي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Philips_N4422_-_power_supply_transformer-2098.jpg/960px-Philips_N4422_-_power_supply_transformer-2098.jpg" },
+    { l: 3, q: "لماذا تنطفئ سلسلة الأضواء كاملة إذا احترق مصباح واحد منها؟", a: "لأنها موصولة على التوالي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Neve_a_Verona_17.01.2006_033.jpg/960px-Neve_a_Verona_17.01.2006_033.jpg" },
+    { l: 3, q: "ما الفرق بين الكتلة والوزن؟", a: "الكتلة ثابتة في كل مكان، والوزن يتغيّر بتغيّر الجاذبية", img: "https://upload.wikimedia.org/wikipedia/commons/1/17/Balance_%C3%A0_tabac_1850.JPG" },
+    { l: 3, q: "ما اسم انتقال الحرارة في السوائل بصعود الساخن ونزول البارد؟", a: "الحمل الحراري", img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Ghillie_Kettle_Thermal.jpg" },
+    { l: 3, q: "كيف تصل إلينا حرارة الشمس عبر فراغ الفضاء؟", a: "بالإشعاع", img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Campfire_Pinecone.png" },
+    { l: 3, q: "لماذا تُترك فواصل صغيرة بين قضبان السكك الحديدية وأجزاء الجسور؟", a: "بسبب التمدّد الحراري للمعادن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Dehnungsfuge.jpg/960px-Dehnungsfuge.jpg" },
+    { l: 4, q: "كم يصبح وزن الإنسان على سطح القمر مقارنة بوزنه على الأرض؟", a: "نحو السدس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/960px-FullMoon2010.jpg" },
+    { l: 4, q: "لماذا يطفو روّاد الفضاء داخل المحطة الفضائية؟", a: "لأنهم في سقوط حرّ مستمر حول الأرض (انعدام وزن ظاهري)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Foale_ZeroG.jpg/960px-Foale_ZeroG.jpg" },
+    { l: 4, q: "لماذا يندفع الراكب إلى الأمام عند فرملة السيارة فجأة؟", a: "بسبب القصور الذاتي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Female_driver_buckling_seatbelt.jpg/960px-Female_driver_buckling_seatbelt.jpg" },
+    { l: 4, q: "ما اسم الظاهرة التي تجعل قطرة الماء تأخذ شكلاً كروياً؟", a: "التوتّر السطحي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/RainDrops1.jpg/960px-RainDrops1.jpg" },
+    { l: 4, q: "ما اسم المرآة المستخدمة عند منعطفات الطرق لأنها تُظهر مجالاً واسعاً؟", a: "المرآة المحدّبة", img: "https://upload.wikimedia.org/wikipedia/commons/6/65/Mirror.globe.arp.500pix.jpg" },
+    { l: 4, q: "ما اسم العدسة التي تجمع أشعة الشمس في نقطة واحدة؟", a: "العدسة المحدّبة (اللامّة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Double-lens_burning_apparatus%2C_Ehrenfried_Walther_von_Tschirnhaus%2C_Kieslingswalde_%28today_Slawonice%2C_Poland%29%2C_c._1690_-_Mathematisch-Physikalischer_Salon%2C_Dresden_-_DSC08133.JPG/960px-thumbnail.jpg" },
+    { l: 4, q: "ما الجسيمات الثلاثة التي تتكوّن منها الذرّة؟", a: "البروتون والنيوترون والإلكترون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Helium_atom_QM.svg/960px-Helium_atom_QM.svg.png" },
+    { l: 5, q: "ما اسم الظاهرة التي تتولّد فيها الكهرباء بتحريك مغناطيس داخل ملف سلكي؟", a: "الحث الكهرومغناطيسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Michael_Faraday_sitting_crop.jpg/960px-Michael_Faraday_sitting_crop.jpg" },
+    { l: 5, q: "من العالم الذي اكتشف الحث الكهرومغناطيسي؟", a: "مايكل فاراداي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Michael_Faraday_sitting_crop.jpg/960px-Michael_Faraday_sitting_crop.jpg" },
+    { l: 5, q: "من العالم الذي درس سقوط الأجسام ويُروى أنه جرّب ذلك من برج بيزا المائل؟", a: "غاليليو غاليلي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Galileo_Galilei_%281564-1642%29_RMG_BHC2700.tiff/lossy-page1-960px-Galileo_Galilei_%281564-1642%29_RMG_BHC2700.tiff.jpg" },
+    { l: 5, q: "بماذا تفسّر النظرية النسبية العامة الجاذبية؟", a: "بأنها انحناء الزمان والمكان حول الأجسام الضخمة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/BBH_gravitational_lensing_of_gw150914.webm/960px--BBH_gravitational_lensing_of_gw150914.webm.jpg" },
+    { l: 5, q: "ما اسم الحيّز الخالي تماماً من المادة والهواء؟", a: "الفراغ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Kolbenluftpumpe_hg.jpg/960px-Kolbenluftpumpe_hg.jpg" },
+    { l: 5, q: "ما اسم الجهاز الذي يحوّل الطاقة الكهربائية إلى حركة؟", a: "المحرّك الكهربائي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/VEM_motor_Wernigerode.png/960px-VEM_motor_Wernigerode.png" }
   ];
 
   /* ---------- الديناصورات (50 سؤالاً) ---------- */
@@ -1507,7 +1543,7 @@
     { l: 5, q: "ما اسم مشروع النقل الذي يخدم المشاعر المقدسة؟", a: "قطار المشاعر المقدسة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Some_perspective_on_Mina_-_Flickr_-_Al_Jazeera_English.jpg/960px-Some_perspective_on_Mina_-_Flickr_-_Al_Jazeera_English.jpg" }
   ];
 
-  /* ---------- ألغاز رياضية (50 سؤالاً) ---------- */
+  /* ---------- ألغاز رياضية (80 سؤالاً) ---------- */
   extra["ألغاز رياضية"] = [
     { l: 1, q: "كم يساوي ناتج 7 × 8؟", a: "56", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Closeup_of_Soda_Hall_abacus_%281%29.jpg/960px-Closeup_of_Soda_Hall_abacus_%281%29.jpg", iq: "جدول الضرب" },
     { l: 1, q: "ما اسم الشكل الذي له ثلاثة أضلاع؟", a: "المثلث", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Triangel1.jpg/960px-Triangel1.jpg" },
@@ -1558,7 +1594,39 @@
     { l: 5, q: "ما اسم الحدسية الشهيرة التي تنص على أن كل عدد زوجي أكبر من 2 هو مجموع عددين أوليين؟", a: "حدسية غولدباخ", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/EulerLeonhard.jpg" },
     { l: 5, q: "ما اسم المتطابقة التي تربط بين e و باي و i والواحد والصفر؟", a: "متطابقة أويلر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg/960px-Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg" },
     { l: 5, q: "بأي اسم تُعرف «مفارقة الحلاق» في نظرية المجموعات؟", a: "مفارقة راسل", img: "https://upload.wikimedia.org/wikipedia/commons/1/18/Bertrand_Russell_photo.jpg" },
-    { l: 5, q: "إلى أي نوع من الأعداد تنتمي أكبر الأعداد الأولية المعروفة اليوم؟", a: "أعداد مرسين الأولية", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Marin_mersenne.jpg" }
+    { l: 5, q: "إلى أي نوع من الأعداد تنتمي أكبر الأعداد الأولية المعروفة اليوم؟", a: "أعداد مرسين الأولية", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Marin_mersenne.jpg" },
+
+    /* ===== أسئلة وألغاز عامة إضافية ===== */
+    { l: 1, q: "كم يساوي 9 × 6؟", a: "54", img: "https://upload.wikimedia.org/wikipedia/commons/e/e7/A_Fine_Pair_of_apples_-_geograph.org.uk_-_916522.jpg" },
+    { l: 1, q: "كم يساوي 12 + 19؟", a: "31", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Closeup_of_Soda_Hall_abacus_%281%29.jpg/960px-Closeup_of_Soda_Hall_abacus_%281%29.jpg" },
+    { l: 1, q: "كم دقيقة في ساعتين ونصف؟", a: "150 دقيقة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg/960px-Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg" },
+    { l: 1, q: "كم عدد أضلاع الشكل السداسي؟", a: "ستة أضلاع", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Regular_polygon_6_annotated.svg/960px-Regular_polygon_6_annotated.svg.png" },
+    { l: 1, q: "كم يساوي ربع 80؟", a: "20", img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Cauliflower_crust_pizza_slices_%2816863229380%29.jpg" },
+    { l: 1, q: "كم ثانية في الدقيقة الواحدة؟", a: "60 ثانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/2010-07-20_Black_windup_alarm_clock_face.jpg/960px-2010-07-20_Black_windup_alarm_clock_face.jpg" },
+    { l: 2, q: "كم يساوي 25% من 80؟", a: "20", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Stack_of_coins_0214%28cropped%29.jpg/960px-Stack_of_coins_0214%28cropped%29.jpg" },
+    { l: 2, q: "كم يساوي 11 × 11؟", a: "121", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Casio_calculator_JS-20WK_in_201901_002.jpg/960px-Casio_calculator_JS-20WK_in_201901_002.jpg" },
+    { l: 2, q: "كم يبلغ محيط مربّع طول ضلعه 7 سم؟", a: "28 سم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/A_Square_Tile.svg/960px-A_Square_Tile.svg.png" },
+    { l: 2, q: "ما مساحة مستطيل طوله 6 وعرضه 4؟", a: "24", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Green_mosaic_square_seamless_tiled_floor_texture.jpg/960px-Green_mosaic_square_seamless_tiled_floor_texture.jpg" },
+    { l: 2, q: "كم عدد أضلاع الشكل الخماسي؟", a: "خمسة أضلاع", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/5-gon_cyclic_01.svg/960px-5-gon_cyclic_01.svg.png" },
+    { l: 2, q: "اشتريت ثلاثة أقلام سعر القلم 250 فلساً، فكم تدفع؟", a: "750 فلساً", img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pencils_hb.jpg" },
+    { l: 3, q: "ما العدد التالي في المتتالية: 3، 6، 12، 24؟", a: "48", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Closeup_of_Soda_Hall_abacus_%282%29.jpg/960px-Closeup_of_Soda_Hall_abacus_%282%29.jpg" },
+    { l: 3, q: "ما العدد التالي في المتتالية: 1، 4، 9، 16؟", a: "25 — إنها مربّعات الأعداد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Green_mosaic_square_seamless_tiled_floor_texture.jpg/960px-Green_mosaic_square_seamless_tiled_floor_texture.jpg" },
+    { l: 3, q: "كم يساوي الجذر التربيعي للعدد 169؟", a: "13", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Casio_calculator_JS-20WK_in_201901_002.jpg/960px-Casio_calculator_JS-20WK_in_201901_002.jpg" },
+    { l: 3, q: "إذا أنهى 5 عمّال عملاً في 10 أيام، فكم يوماً يحتاج 10 عمّال للعمل نفسه؟", a: "5 أيام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Diverse%C2%B7Ma%C3%9Fst%C3%A4be%2C15.365.jpg/960px-Diverse%C2%B7Ma%C3%9Fst%C3%A4be%2C15.365.jpg" },
+    { l: 3, q: "قميص ثمنه 40 ديناراً وعليه خصم 25%، فكم يصبح سعره؟", a: "30 ديناراً", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Stack_of_coins_0214%28cropped%29.jpg/960px-Stack_of_coins_0214%28cropped%29.jpg" },
+    { l: 3, q: "كم عدداً أولياً يوجد بين 1 و10؟", a: "أربعة: 2 و3 و5 و7", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/Six_sided_dice.png" },
+    { l: 4, q: "كم مجموع الأعداد من 1 إلى 100؟", a: "5050", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Carl_Friedrich_Gauss_1840_by_Jensen.jpg/960px-Carl_Friedrich_Gauss_1840_by_Jensen.jpg" },
+    { l: 4, q: "كم يساوي 3 أس 4؟", a: "81", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Casio_calculator_JS-20WK_in_201901_002.jpg/960px-Casio_calculator_JS-20WK_in_201901_002.jpg" },
+    { l: 4, q: "في غرفة خمسة أشخاص، صافح كل واحد منهم الآخرين مرة واحدة، فكم عدد المصافحات؟", a: "10 مصافحات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Hermandad_-_friendship.jpg/960px-Hermandad_-_friendship.jpg" },
+    { l: 4, q: "أب عمره 40 سنة وابنه 10 سنوات، بعد كم سنة يصبح عمر الأب ضعف عمر ابنه؟", a: "بعد 20 سنة (60 و30)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg/960px-Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg" },
+    { l: 4, q: "ما احتمال ظهور الرقم 6 عند رمي حجر نرد مرة واحدة؟", a: "واحد من ستة", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/Six_sided_dice.png" },
+    { l: 4, q: "كم زاوية قائمة في المستطيل؟", a: "أربع زوايا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/A_Square_Tile.svg/960px-A_Square_Tile.svg.png" },
+    { l: 5, q: "حلزون في قاع بئر عمقه 10 أمتار يصعد 3 أمتار نهاراً وينزلق مترين ليلاً، في أي يوم يخرج؟", a: "في اليوم الثامن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Snail.jpg/960px-Snail.jpg" },
+    { l: 5, q: "ساعة تدقّ 6 دقّات في 5 ثوانٍ، فكم ثانية تستغرق 12 دقّة؟", a: "11 ثانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/2010-07-20_Black_windup_alarm_clock_face.jpg/960px-2010-07-20_Black_windup_alarm_clock_face.jpg" },
+    { l: 5, q: "دخلت غرفة مظلمة ومعك عود ثقاب واحد، وفيها شمعة ومدفأة ومصباح زيتي، فماذا تُشعل أولاً؟", a: "عود الثقاب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Friction_d%27une_allumette.jpg/960px-Friction_d%27une_allumette.jpg" },
+    { l: 5, q: "ما العدد التالي في المتتالية: 1، 1، 2، 3، 5، 8؟", a: "13 — متتالية فيبوناتشي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/A_Nautilus_macromphalus_shell_inside.jpg/960px-A_Nautilus_macromphalus_shell_inside.jpg" },
+    { l: 5, q: "كم عدد أقطار الشكل الخماسي؟", a: "خمسة أقطار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/5-gon_cyclic_01.svg/960px-5-gon_cyclic_01.svg.png" },
+    { l: 5, q: "عدد إذا أضفت إليه ثلثه صار 40، فما هو؟", a: "30", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Closeup_of_Soda_Hall_abacus_%281%29.jpg/960px-Closeup_of_Soda_Hall_abacus_%281%29.jpg" }
   ];
 
   /* ---------- الدمج داخل بنك الأسئلة الأصلي ---------- */
