@@ -1579,64 +1579,53 @@ const questionsData = {
     { l: 4, q: "ما اسم هذا الصنف؟", a: "جوز الهند", img: "image/icons/1F965.svg" },
   ],
 
-  /* ---------- مشاهير عرب — صور محقّقة من ويكيبيديا ----------
-     كل صورة جُلبت من صفحة الشخص نفسه على ويكيبيديا العربية
-     وتُحقّق من مطابقة عنوان الصفحة للاسم قبل اعتمادها. */
+  /* ---------- مشاهير عرب (34 سؤالاً) ----------
+     «من هذه الشخصية؟» — صورة المشهور من ويكيبيديا العربية، والإجابة
+     اسمه ومجاله وبلده. من الأشهر (المستوى الأول) إلى الأقدم والأقل شهرة. */
   "مشاهير عرب": [
-    { l: 1, q: "من هي الفنانة المصرية الملقّبة بـ«كوكب الشرق»؟", a: "أم كلثوم", img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Umm_Kulthum_as_Fatimah.jpg" },
-    { l: 1, q: "من هو الفنان المصري الملقّب بـ«العندليب الأسمر»؟", a: "عبد الحليم حافظ", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Abdel_Halim_Hafez.jpg" },
-    { l: 1, q: "من هي الفنانة اللبنانية الملقّبة بـ«جارة القمر»؟", a: "فيروز", img: "https://upload.wikimedia.org/wikipedia/commons/1/14/Fairuz_1971.jpg" },
-    { l: 1, q: "من هو المطرب السعودي الملقّب بـ«فنان العرب»؟", a: "محمد عبده", img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Mohammed_Abdu.jpg" },
-    { l: 1, q: "من هو الممثل المصري الملقّب بـ«الزعيم»؟", a: "عادل إمام", img: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Adel_Imam_2009_cropped.jpg" },
-    { l: 1, q: "من هو الممثل الكويتي الراحل الذي يُعدّ أشهر كوميديي الخليج؟", a: "عبد الحسين عبد الرضا", img: "https://upload.wikimedia.org/wikipedia/commons/6/67/Abdulhussain_Abdulredha_2009_%28cropped%29_version.jpg" },
-    { l: 1, q: "من هي الممثلة الكويتية الشهيرة صاحبة شخصية «أم حسين»؟", a: "حياة الفهد", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Hayat_Al-Fahad_%282010%29.jpg" },
-    { l: 1, q: "من هو المطرب المصري الملقّب بـ«الهضبة»؟", a: "عمرو دياب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Amr_Diab_With_World_Music_Awards.jpg/960px-Amr_Diab_With_World_Music_Awards.jpg" },
-    { l: 1, q: "من هو المطرب العراقي الملقّب بـ«قيصر الأغنية العربية»؟", a: "كاظم الساهر", img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kazem_Main.jpg" },
-    { l: 1, q: "من هي المطربة اللبنانية صاحبة أغنية «آه ونص»؟", a: "نانسي عجرم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Nancy_Ajram_signing_ceremony.jpg/960px-Nancy_Ajram_signing_ceremony.jpg" },
+    /* ===== المستوى الأول ===== */
+    { l: 1, q: "من هذه الشخصية؟", a: "محمد صلاح — لاعب كرة قدم مصري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/960px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "عمرو دياب — مطرب مصري", img: "https://upload.wikimedia.org/wikipedia/commons/6/64/Amr_Diab_With_World_Music_Awards_%28cropped%29.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "عادل إمام — ممثل مصري", img: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Adel_Imam_2009_cropped.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "نانسي عجرم — مطربة لبنانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Nancy_Ajram_signing_ceremony.jpg/960px-Nancy_Ajram_signing_ceremony.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "أحمد حلمي — ممثل مصري", img: "https://upload.wikimedia.org/wikipedia/commons/7/78/Ahmed_Helmy_in_Sawiris_2018.jpg" },
+    { l: 1, q: "من هذه الشخصية؟", a: "تامر حسني — مطرب وممثل مصري", img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Tamer_Hosny%27s_NYE_Concert_%282025%29_%28cropped%29.png" },
 
-    { l: 2, q: "من هي الممثلة الكويتية التي جسّدت شخصية «خالتي قماشة»؟", a: "سعاد عبد الله", img: "https://upload.wikimedia.org/wikipedia/commons/4/40/Souad_Abdullah_2008_-_1.jpg" },
-    { l: 2, q: "من هي الممثلة المصرية الملقّبة بـ«سيدة الشاشة العربية»؟", a: "فاتن حمامة", img: "https://upload.wikimedia.org/wikipedia/commons/6/64/Faten_Hamama.jpg" },
-    { l: 2, q: "من هو الممثل المصري الذي رُشّح لجائزة الأوسكار عن دوره في فيلم «لورنس العرب»؟", a: "عمر الشريف", img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Omar_Sharif_1963.JPG" },
-    { l: 2, q: "من هو المطرب السعودي الراحل الملقّب بـ«صوت الأرض»؟", a: "طلال مداح", img: "https://upload.wikimedia.org/wikipedia/commons/3/37/%D8%A7%D9%84%D9%81%D9%86%D8%A7%D9%86_%D8%B7%D9%84%D8%A7%D9%84_%D9%85%D8%AF%D8%A7%D8%AD.png" },
-    { l: 2, q: "من هو الموسيقار المصري الملقّب بـ«موسيقار الأجيال»؟", a: "محمد عبد الوهاب", img: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Abdel_wahab.jpg" },
-    { l: 2, q: "من هو المطرب الكويتي الشهير صاحب أغنية «تعال»؟", a: "عبد الله الرويشد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Jerash_Festival_2018_34.jpg/960px-Jerash_Festival_2018_34.jpg" },
-    { l: 2, q: "من هو المطرب الإماراتي صاحب أغنية «بشرة خير»؟", a: "حسين الجسمي", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Hussain_al-Jassmi%2C_Layali_Al_Qassim_concert%2C_Buraidah_-_Jan_15%2C_2020.jpg" },
-    { l: 2, q: "من هي المطربة الإماراتية الشهيرة التي عملت محكّمة في برامج المواهب الغنائية؟", a: "أحلام", img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/%D8%A3%D8%AD%D9%84%D8%A7%D9%85_3.jpg" },
-    { l: 2, q: "من هي المطربة اللبنانية صاحبة أغنية «عبالي حبيبي»؟", a: "إليسا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Elissa_-_August_24%2C_2012_%282%29.jpg/960px-Elissa_-_August_24%2C_2012_%282%29.jpg" },
-    { l: 2, q: "من هو المطرب السعودي صاحب أغنية «تراك تراك»؟", a: "راشد الماجد", img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Rashed_Al-Majed.jpg" },
+    /* ===== المستوى الثاني ===== */
+    { l: 2, q: "من هذه الشخصية؟", a: "أحمد السقا — ممثل مصري", img: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Ahmed_Elsaqa_in_Dubai_-_ElMaslaha_Premiere.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "كريم عبد العزيز — ممثل مصري", img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/%D9%83%D8%B1%D9%8A%D9%85_%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "محمد هنيدي — ممثل مصري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Mohamed_Henedy.png/960px-Mohamed_Henedy.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "إليسا — مطربة لبنانية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Elissa_-_August_24%2C_2012_%282%29.jpg/960px-Elissa_-_August_24%2C_2012_%282%29.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "حسين الجسمي — مطرب إماراتي", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Hussain_al-Jassmi%2C_Layali_Al_Qassim_concert%2C_Buraidah_-_Jan_15%2C_2020.jpg" },
+    { l: 2, q: "من هذه الشخصية؟", a: "ماجد المهندس — مطرب عراقي", img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Majid_al-Muhandis%2C_Tenadeek_-_Arab_Idol%2C_Feb_18%2C_2017_%2802%29.png" },
+    { l: 2, q: "من هذه الشخصية؟", a: "سالم الدوسري — لاعب كرة قدم سعودي", img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Salem_Al-Dawsari_%28Saudi_Arabia_v_Uruguay%2C_June_2026%29_%28cropped%29.jpg" },
 
-    { l: 3, q: "من هو الأديب المصري الوحيد الحائز على جائزة نوبل في الآداب؟", a: "نجيب محفوظ", img: "https://upload.wikimedia.org/wikipedia/commons/5/57/Naguib_Mahfouz_HR.jpg" },
-    { l: 3, q: "من هو الشاعر الفلسطيني صاحب قصيدة «سجّل أنا عربي»؟", a: "محمود درويش", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/MahmoudDarwish.jpg" },
-    { l: 3, q: "من هو الشاعر السوري الملقّب بـ«شاعر المرأة»؟", a: "نزار قباني", img: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Nizar_qabbani_01.jpg" },
-    { l: 3, q: "من هو المخرج المصري صاحب فيلم «باب الحديد»؟", a: "يوسف شاهين", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Youssef_Chahine_in_Cairo_1986.jpg" },
-    { l: 3, q: "من هو العالم المصري الحائز على نوبل في الكيمياء عن الفيمتوثانية؟", a: "أحمد زويل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Ahmed_Zewail_HD2009_Othmer_Gold_Medal_portrait.JPG/960px-Ahmed_Zewail_HD2009_Othmer_Gold_Medal_portrait.JPG" },
-    { l: 3, q: "من هو جرّاح القلب المصري البريطاني الشهير عالمياً؟", a: "مجدي يعقوب", img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/M_Yacoub.JPG" },
-    { l: 3, q: "من هو الأديب السوداني صاحب رواية «موسم الهجرة إلى الشمال»؟", a: "الطيب صالح", img: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Tayeb_saleh.jpg" },
-    { l: 3, q: "من هي الشاعرة العراقية التي تُعدّ رائدة الشعر الحر في الأدب العربي؟", a: "نازك الملائكة", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/%D8%AA%D9%85%D8%AB%D8%A7%D9%84_%D8%A7%D9%84%D8%B4%D8%A7%D8%B9%D8%B1%D8%A9_%D9%86%D8%A7%D8%B2%D9%83_%D8%A7%D9%84%D9%85%D9%84%D8%A7%D8%A6%D9%83%D8%A9_02.jpg" },
-    { l: 3, q: "من هو الشاعر العراقي صاحب قصيدة «أنشودة المطر»؟", a: "بدر شاكر السياب", img: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sayab0.jpg" },
-    { l: 3, q: "من هو الأديب اللبناني صاحب كتاب «النبي»؟", a: "جبران خليل جبران", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Kahlil_Gibran_1913.jpg" },
+    /* ===== المستوى الثالث ===== */
+    { l: 3, q: "من هذه الشخصية؟", a: "أصالة نصري — مطربة سورية", img: "https://upload.wikimedia.org/wikipedia/commons/8/8c/%D8%A3%D8%B5%D8%A7%D9%84%D8%A9_%D9%86%D8%B5%D8%B1%D9%8A.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "راشد الماجد — مطرب سعودي", img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Rashed_Al-Majed.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "نوال الكويتية — مطربة كويتية", img: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Nawal_El_Kuwaitia.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "منى زكي — ممثلة مصرية", img: "https://upload.wikimedia.org/wikipedia/commons/3/36/Mona_Zaki_2015.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "رياض محرز — لاعب كرة قدم جزائري", img: "https://upload.wikimedia.org/wikipedia/commons/4/45/Mahrez_2021.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "حكيم زياش — لاعب كرة قدم مغربي", img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Hakim_Ziyech_2021.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "يوسف النصيري — لاعب كرة قدم مغربي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Ennesyri.jpg/960px-Ennesyri.jpg" },
 
-    { l: 4, q: "من هي المعمارية العراقية البريطانية أول امرأة تفوز بجائزة بريتزكر للعمارة؟", a: "زها حديد", img: "https://upload.wikimedia.org/wikipedia/commons/9/90/Zaha_Hadid_in_Heydar_Aliyev_Cultural_center_in_Baku_nov_2013_%28cropped%29.jpg" },
-    { l: 4, q: "من هو أول رائد فضاء إماراتي وصل إلى محطة الفضاء الدولية؟", a: "هزاع المنصوري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Hazzaa_AlMansoori.jpg/960px-Hazzaa_AlMansoori.jpg" },
-    { l: 4, q: "من هو أول رائد فضاء عربي ومسلم صعد إلى الفضاء عام ١٩٨٥؟", a: "الأمير سلطان بن سلمان", img: "https://upload.wikimedia.org/wikipedia/commons/6/60/Sultan_bin_Salman.jpg" },
-    { l: 4, q: "من هو الأديب المصري الملقّب بـ«عميد الأدب العربي»؟", a: "طه حسين", img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/TahaHussein.jpg" },
-    { l: 4, q: "من هو لاعب كرة القدم المصري الذي فاز بجائزة الحذاء الذهبي في الدوري الإنجليزي؟", a: "محمد صلاح", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/960px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg" },
-    { l: 4, q: "من هو الرئيس المصري الحائز على جائزة نوبل للسلام عام ١٩٧٨؟", a: "أنور السادات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Official_Portrait_-_Anwar_Sadat.jpg/960px-Official_Portrait_-_Anwar_Sadat.jpg" },
-    { l: 4, q: "من هي الفنانة اللبنانية الراحلة الملقّبة بـ«الشحرورة»؟", a: "صباح", img: "https://upload.wikimedia.org/wikipedia/commons/4/43/Sabah_-_1960s_%281%29.jpg" },
-    { l: 4, q: "من هو المطرب اللبناني الراحل الملقّب بـ«صوت الأرز»؟", a: "وديع الصافي", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Wadih_El_Safi.jpg" },
-    { l: 4, q: "من هي الناشطة اليمنية الحائزة على جائزة نوبل للسلام عام ٢٠١١؟", a: "توكل كرمان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Tawakkol_Karman_Photo.jpg/960px-Tawakkol_Karman_Photo.jpg" },
-    { l: 4, q: "من هي الفنانة اللبنانية التي غنّت «زهرة المدائن» عن القدس؟", a: "فيروز", img: "https://upload.wikimedia.org/wikipedia/commons/1/14/Fairuz_1971.jpg" },
+    /* ===== المستوى الرابع ===== */
+    { l: 4, q: "من هذه الشخصية؟", a: "ياسر القحطاني — لاعب كرة قدم سعودي", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Yasser_Al-Qahtani_2010.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "عصام الحضري — حارس مرمى مصري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Essam_El-Hadary.jpg/960px-Essam_El-Hadary.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "كاظم الساهر — مطرب عراقي", img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kazem_Main.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "فيروز — مطربة لبنانية", img: "https://upload.wikimedia.org/wikipedia/commons/1/14/Fairuz_1971.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "عبد الحليم حافظ — مطرب مصري", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Abdel_Halim_Hafez.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "خالد الصاوي — ممثل مصري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Khaled_el-Sawy_%28cropped%29.jpg/960px-Khaled_el-Sawy_%28cropped%29.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "ناصر القصبي — ممثل سعودي", img: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Naser_AlQasabi.png" },
 
-    { l: 5, q: "من صاحبة ديوان «شظايا ورماد» الذي أرسى قواعد الشعر الحر؟", a: "نازك الملائكة", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/%D8%AA%D9%85%D8%AB%D8%A7%D9%84_%D8%A7%D9%84%D8%B4%D8%A7%D8%B9%D8%B1%D8%A9_%D9%86%D8%A7%D8%B2%D9%83_%D8%A7%D9%84%D9%85%D9%84%D8%A7%D8%A6%D9%83%D8%A9_02.jpg" },
-    { l: 5, q: "من هو الأديب العربي الذي لُقّب بـ«عبقري الرواية العربية»؟", a: "الطيب صالح", img: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Tayeb_saleh.jpg" },
-    { l: 5, q: "من الملحّن المصري الذي لحّن لأم كلثوم أغنية «إنت عمري»؟", a: "محمد عبد الوهاب", img: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Abdel_wahab.jpg" },
-    { l: 5, q: "من صاحبة أغنية «الأطلال» التي كتبها إبراهيم ناجي؟", a: "أم كلثوم", img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Umm_Kulthum_as_Fatimah.jpg" },
-    { l: 5, q: "من هو المخرج المصري الذي قدّم الممثل عمر الشريف إلى السينما؟", a: "يوسف شاهين", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Youssef_Chahine_in_Cairo_1986.jpg" },
-    { l: 5, q: "من هو الشاعر العراقي الذي وُلد في قرية جيكور وتغنّى بها في شعره؟", a: "بدر شاكر السياب", img: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sayab0.jpg" },
-    { l: 5, q: "من هو المطرب السعودي الذي تُوفّي على المسرح أثناء إحيائه حفلاً عام ٢٠٠٠؟", a: "طلال مداح", img: "https://upload.wikimedia.org/wikipedia/commons/3/37/%D8%A7%D9%84%D9%81%D9%86%D8%A7%D9%86_%D8%B7%D9%84%D8%A7%D9%84_%D9%85%D8%AF%D8%A7%D8%AD.png" },
-    { l: 5, q: "من صاحبة تصميم مركز حيدر علييف الثقافي في باكو؟", a: "زها حديد", img: "https://upload.wikimedia.org/wikipedia/commons/9/90/Zaha_Hadid_in_Heydar_Aliyev_Cultural_center_in_Baku_nov_2013_%28cropped%29.jpg" },
-    { l: 5, q: "من هو الشاعر السوري الذي عمل دبلوماسياً قبل تفرّغه للشعر؟", a: "نزار قباني", img: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Nizar_qabbani_01.jpg" },
-    { l: 5, q: "من هو الممثل المصري الذي اشتهر عالمياً بلعب البريدج إلى جانب التمثيل؟", a: "عمر الشريف", img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Omar_Sharif_1963.JPG" },
+    /* ===== المستوى الخامس ===== */
+    { l: 5, q: "من هذه الشخصية؟", a: "سعاد حسني — ممثلة مصرية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Soad_Hosny_%281972%29.jpg/960px-Soad_Hosny_%281972%29.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "فاتن حمامة — ممثلة مصرية", img: "https://upload.wikimedia.org/wikipedia/commons/6/64/Faten_Hamama.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "عمر الشريف — ممثل مصري عالمي", img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Omar_Sharif_1963.JPG" },
+    { l: 5, q: "من هذه الشخصية؟", a: "طلال مداح — مطرب سعودي", img: "https://upload.wikimedia.org/wikipedia/commons/3/37/%D8%A7%D9%84%D9%81%D9%86%D8%A7%D9%86_%D8%B7%D9%84%D8%A7%D9%84_%D9%85%D8%AF%D8%A7%D8%AD.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "حياة الفهد — ممثلة كويتية", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Hayat_Al-Fahad_%282010%29.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "سعاد عبد الله — ممثلة كويتية", img: "https://upload.wikimedia.org/wikipedia/commons/4/40/Souad_Abdullah_2008_-_1.jpg" },
+    { l: 5, q: "من هذه الشخصية؟", a: "عبد الحسين عبد الرضا — ممثل كويتي", img: "https://upload.wikimedia.org/wikipedia/commons/6/67/Abdulhussain_Abdulredha_2009_%28cropped%29_version.jpg" }
   ],
 
   /* ---------- أمثال وألغاز (50 سؤالاً) ---------- */
