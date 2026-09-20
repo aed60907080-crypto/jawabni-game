@@ -755,6 +755,15 @@
         <button class="btn ghost" type="button" id="clearLog"><i class="fa-solid fa-trash"></i> مسح</button>
       </div>
 
+      <!-- ذاكرة الأسئلة: اللعبة لا تعيد سؤالاً طُرح حتى تنتهي أسئلة مستواه -->
+      <div class="row">
+        <div class="txt">
+          <b>الأسئلة المطروحة</b>
+          <span id="seenStatus">…</span>
+        </div>
+        <button class="btn ghost" type="button" id="clearSeen"><i class="fa-solid fa-rotate"></i> ابدأ من جديد</button>
+      </div>
+
       <div class="btn-row">
         <button class="btn danger" type="button" id="resetAll"><i class="fa-solid fa-bomb"></i> إعادة ضبط كل شيء</button>
       </div>
@@ -1289,6 +1298,12 @@
       logStat.textContent = n
         ? (count(n, 'لعبة واحدة', 'لعبتان', 'ألعاب', 'لعبة') + ' محفوظة')
         : 'السجل فارغ';
+
+      /* ذاكرة الأسئلة: كم سؤالاً طُرح ولن يتكرّر */
+      const seenN = (window.readSeenQuestions ? window.readSeenQuestions() : []).length;
+      document.getElementById('seenStatus').textContent = seenN
+        ? (count(seenN, 'سؤال واحد', 'سؤالان', 'أسئلة', 'سؤالاً') + ' طُرحت ولا تتكرّر')
+        : 'لم يُطرح سؤال بعد';
     }
     refresh();
 
@@ -1307,6 +1322,16 @@
       localStorage.removeItem('gameLog');
       refresh();
       toast('مُسح سجل الألعاب', 'fa-trash');
+      click();
+    };
+
+    document.getElementById('clearSeen').onclick = () => {
+      const n = (window.readSeenQuestions ? window.readSeenQuestions() : []).length;
+      if (!n) { toast('لا توجد أسئلة محفوظة', 'fa-circle-info'); return; }
+      if (!confirm('البدء من جديد؟ ستعود كل الأسئلة المطروحة لتظهر في الجولات القادمة.')) return;
+      try { localStorage.removeItem(window.SEEN_QUESTIONS_KEY || 'seenQuestions'); } catch (e) {}
+      refresh();
+      toast('تُمسح ذاكرة الأسئلة — تعود كلها من جديد', 'fa-rotate');
       click();
     };
 

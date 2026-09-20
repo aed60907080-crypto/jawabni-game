@@ -1855,9 +1855,36 @@ const questionsCount = Object.keys(questionsData).reduce((acc, cat) => {
    يمنع تكرار الجواب في الجولة، فيخرج ٥٠٠ و٦٠٠ بسؤالين مختلفين. */
 const POINT_LEVELS = { 100: 1, 200: 2, 300: 3, 400: 4, 500: 5, 600: 5 };
 
+/* ---------- ذاكرة الأسئلة المطروحة ----------
+   حتى لا يتكرّر السؤال نفسه في جولة جديدة ما دام في الفئة أسئلة لم تُطرح.
+   نحفظ بصمة قصيرة لكل سؤال (الفئة + نصّه + جوابه) في المتصفح، وحين تنفد
+   أسئلة مستوى ما في فئة نمسح بصماتها وحدها فتبدأ دورة جديدة. */
+const SEEN_KEY = "seenQuestions";
+
+function qFingerprint(cat, item) {
+  const s = cat + "|" + (item && item.q) + "|" + (item && item.a);
+  let h = 0x811c9dc5;                                  /* FNV-1a */
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+  }
+  return h.toString(36);
+}
+
+function readSeen() {
+  try { return JSON.parse(localStorage.getItem(SEEN_KEY) || "[]"); } catch (e) { return []; }
+}
+
+function writeSeen(list) {
+  /* سقف أمان: أحدث 4000 بصمة تكفي لآلاف الأسئلة ولا تُثقل التخزين */
+  try { localStorage.setItem(SEEN_KEY, JSON.stringify(list.slice(-4000))); } catch (e) {}
+}
+
 /* يبني أسئلة جولة واحدة: سؤال عشوائي من كل مستوى لكل فئة مختارة */
 function buildRoundQuestions(categoryTitles) {
   const round = {};
+  const seenList = readSeen();
+  const seen = new Set(seenList);
   /* تطبيع الجواب للمقارنة: بلا تشكيل ولا علامات، وصيغة واحدة للهمزات والتاء المربوطة */
   const norm = s => String(s || "")
     .replace(/[ً-ْـ«»"'()\[\]،,.؟?!:]/g, "")
@@ -1875,13 +1902,34 @@ function buildRoundQuestions(categoryTitles) {
       let candidates = pool.filter(item => item.l === level);
       if (!candidates.length) candidates = pool;           // احتياط
       if (!candidates.length) return;
-      const fresh = candidates.filter(item => !used.has(norm(item.a)));
-      const from = fresh.length ? fresh : candidates;
+      /* الأسئلة التي لم تُطرح من قبل أولاً — فإن طُرحت كلها في هذا المستوى
+         نمسحها من الذاكرة ونبدأ دورة جديدة بدل أن نكرّر بلا داعٍ */
+      let pool2 = candidates.filter(item => !seen.has(qFingerprint(cat, item)));
+      if (!pool2.length) {
+        candidates.forEach(item => {
+          const f = qFingerprint(cat, item);
+          seen.delete(f);
+          const i = seenList.indexOf(f);
+          if (i >= 0) seenList.splice(i, 1);
+        });
+        pool2 = candidates;
+      }
+      let fresh = pool2.filter(item => !used.has(norm(item.a)));
+      /* مستوى فيه سؤال واحد (و٥٠٠ و٦٠٠ كلاهما من المستوى الخامس): نستعير
+         من بقية مستويات الفئة بدل تكرار السؤال نفسه في الجولة */
+      if (!fresh.length) {
+        fresh = pool.filter(item => !used.has(norm(item.a)) && !seen.has(qFingerprint(cat, item)));
+        if (!fresh.length) fresh = pool.filter(item => !used.has(norm(item.a)));
+      }
+      const from = fresh.length ? fresh : pool2;
       const picked = from[Math.floor(Math.random() * from.length)];
       used.add(norm(picked.a));
+      const fp = qFingerprint(cat, picked);
+      if (!seen.has(fp)) { seen.add(fp); seenList.push(fp); }
       round[cat + "_" + points] = picked;
     });
   });
+  writeSeen(seenList);
   return round;
 }
 
@@ -1889,4 +1937,8 @@ if (typeof window !== "undefined") {
   window.questionsData  = questionsData;
   window.questionsCount = questionsCount;
   window.buildRoundQuestions = buildRoundQuestions;
+  window.qFingerprint = qFingerprint;
+  window.readSeenQuestions = readSeen;
+  window.writeSeenQuestions = writeSeen;
+  window.SEEN_QUESTIONS_KEY = SEEN_KEY;
 }

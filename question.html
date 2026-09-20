@@ -1378,7 +1378,19 @@
     const level = { 100: 1, 200: 2, 300: 3, 400: 4, 500: 5, 600: 5 }[points] || 1;
     let pick = pool.filter(x => x.l === level);
     if (!pick.length) pick = pool;
-    if (pick.length) item = pick[Math.floor(Math.random() * pick.length)];
+    /* لا نكرّر سؤالاً طُرح من قبل ما دام في المستوى سؤال جديد (نفس ذاكرة
+       الجولة في questions.js) */
+    if (pick.length && window.qFingerprint && window.readSeenQuestions) {
+      const seenList = window.readSeenQuestions();
+      const seen = new Set(seenList);
+      const unseen = pick.filter(x => !seen.has(window.qFingerprint(category, x)));
+      if (unseen.length) pick = unseen;
+      item = pick[Math.floor(Math.random() * pick.length)];
+      const fp = window.qFingerprint(category, item);
+      if (!seen.has(fp)) { seenList.push(fp); window.writeSeenQuestions(seenList); }
+    } else if (pick.length) {
+      item = pick[Math.floor(Math.random() * pick.length)];
+    }
   }
 
   /* فئة «ولا كلمة»: الكلمة تصل إلى الممثّل وحده عبر باركود يمسحه
