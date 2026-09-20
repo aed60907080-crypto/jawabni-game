@@ -829,62 +829,44 @@
     { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "قاريسي بك يخضع لعثمان (الحلقة 174)", img: "https://i.ytimg.com/vi/epbTjmeslCY/maxresdefault.jpg", crop: [0, 0, 100, 52] },
   ];
 
-  /* ---------- منتجات (41 سؤالاً) ----------
-     «ما اسم هذا المنتج؟» — منتجات مشهورة نزلت من 2005 إلى اليوم:
-     أجهزة وهواتف وألعاب وسيارات وأدوات بيت وصيحات (فيدجت سبينر،
-     هوفربورد، عصا السيلفي…). الصور من ويكيميديا كومنز، واختيرت صور
-     لا يظهر فيها اسم المنتج مكتوباً. السنة في الإجابة سنة صدور المنتج. */
+  /* ---------- منتجات (21 سؤالاً) ----------
+     «ما اسم هذا المنتج؟» — منتجات الجمعية: شيبس وشوكولاتة ومشروبات
+     ومعلّبات. الصور من ويكيميديا كومنز ومن Open Food Facts (قاعدة
+     بيانات مفتوحة لصور المنتجات).
+     hide يغطّي اسم المنتج المطبوع على العبوة في السؤال [x, y, w, h]
+     نسبةً من عرض الصورة وارتفاعها، ثم تظهر الصورة كاملة مع الإجابة.
+     وما لا اسم ظاهراً فيه (سنيكرز مقطوع، أوريو، كيندر بوينو…) بلا hide. */
   extra["منتجات"] = [
     /* ===== المستوى الأول ===== */
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "آيفون — الجيل الأول (2007)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/IPhone_1st_Gen.svg/960px-IPhone_1st_Gen.svg.png" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "بلايستيشن 5 (2020)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Black_and_white_Playstation_5_base_edition_with_controller.png/960px-Black_and_white_Playstation_5_base_edition_with_controller.png" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "نينتندو سويتش (2017)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Nintendo-Switch-Console-Docked-wJoyConRB.jpg/960px-Nintendo-Switch-Console-Docked-wJoyConRB.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "آيربودز من أبل (أول جيل 2016)", img: "https://upload.wikimedia.org/wikipedia/commons/1/14/AirPods_4_ANC_and_case.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "ساعة أبل (أول جيل 2015)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Apple_Watch_Series_10.jpg/960px-Apple_Watch_Series_10.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "آيباد — الجيل الأول (2010)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/IPad-WiFi-1stGen.jpg/960px-IPad-WiFi-1stGen.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "إكس بوكس 360 (2005)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Xbox-360-Pro-wController.jpg/960px-Xbox-360-Pro-wController.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "بلايستيشن 4 (2013)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/PS4_consoles_montage.jpg/960px-PS4_consoles_montage.jpg" },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "https://images.openfoodfacts.org/images/products/611/125/242/0059/front_fr.4.400.jpg", hide: [[10, 24, 86, 34]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "سفن أب (7Up)", img: "https://images.openfoodfacts.org/images/products/560/104/510/8222/front_fr.4.400.jpg", hide: [[22, 24, 78, 62]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "كت كات (KitKat)", img: "https://images.openfoodfacts.org/images/products/761/303/536/6749/front_en.132.400.jpg", hide: [[20, 18, 50, 64]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "سنيكرز (Snickers)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Snickers-broken.JPG/500px-Snickers-broken.JPG" },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "أوريو (Oreo)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nabisco-Oreo-Cakesters.jpg/500px-Nabisco-Oreo-Cakesters.jpg" },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "شيبس عمان (بطاطس عمان)", img: "https://images.openfoodfacts.org/images/products/950/110/001/4474/front_en.8.400.jpg", hide: [[0, 12, 70, 40]] },
 
     /* ===== المستوى الثاني ===== */
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "بلايستيشن 3 (2006)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/PS3_consoles_montage_HQ.png/960px-PS3_consoles_montage_HQ.png" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "نينتندو Wii (2006)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Wii-Console.png/960px-Wii-Console.png" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "ماك بوك إير (أول جيل 2008)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Macbook_Air_15_inch_-_2_%28blurred%29.jpg/960px-Macbook_Air_15_inch_-_2_%28blurred%29.jpg" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "سامسونغ غالاكسي S (أول جيل 2010)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Galaxy_S26_Ultra_lavender.jpg/960px-Galaxy_S26_Ultra_lavender.jpg" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "كيندل — قارئ أمازون الإلكتروني (أول جيل 2007)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Amazon_Kindle_Paperwhite_5_Eleventh_Generation_%28C2V2L3%29_6-inch_e-reader_in_etui.jpg/960px-Amazon_Kindle_Paperwhite_5_Eleventh_Generation_%28C2V2L3%29_6-inch_e-reader_in_etui.jpg" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "تسلا موديل S (2012)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Tesla_Model_S_%28Facelift_ab_04-2016%29_%28cropped%29.jpg/960px-Tesla_Model_S_%28Facelift_ab_04-2016%29_%28cropped%29.jpg" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "القلاية الهوائية (إير فراير) — انتشرت من 2010", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Tabletop_convection_oven.jpg/960px-Tabletop_convection_oven.jpg" },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "فيدجت سبينر (انتشر 2017)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Fidget_spinner_red%2C_cropped.jpg/960px-Fidget_spinner_red%2C_cropped.jpg" },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "تويكس (Twix)", img: "https://images.openfoodfacts.org/images/products/500/015/955/7658/front_de.26.400.jpg", hide: [[14, 18, 74, 60]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "كيندر بوينو (Kinder Bueno)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Kinder-Bueno-Split.jpg/500px-Kinder-Bueno-Split.jpg" },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "نوتيلا (Nutella)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Nutella_ak.jpg/500px-Nutella_ak.jpg", hide: [[26, 0, 34, 34]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "فيمتو (Vimto)", img: "https://images.openfoodfacts.org/images/products/501/043/801/3638/front_en.31.400.jpg", hide: [[0, 2, 92, 32]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "ريد بُل (Red Bull)", img: "https://images.openfoodfacts.org/images/products/900/249/020/8592/front_fr.23.400.jpg", hide: [[6, 30, 90, 38]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "نسكافيه (Nescafé)", img: "https://images.openfoodfacts.org/images/products/611/101/890/3161/front_fr.48.400.jpg", hide: [[26, 31, 58, 28]] },
 
     /* ===== المستوى الثالث ===== */
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "نينتندو 3DS (2011)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Nintendo-3DS-AquaOpen.png/960px-Nintendo-3DS-AquaOpen.png" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "ستيم ديك (2022)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Steam_Deck_%28front%29.png/960px-Steam_Deck_%28front%29.png" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "نظارة ميتا كويست 2 للواقع الافتراضي (2020)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Oculus_Quest_II_%2850844634326%29.jpg/960px-Oculus_Quest_II_%2850844634326%29.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "أمازون إيكو دوت — مكبّر أليكسا (2016)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Alexa_Amazon_Echo_Dot_3rd_Gen_Smart_Speaker_-_Sandstone_Fabric_%28Creative_Commons%29_%2851048461088%29.jpg/960px-Alexa_Amazon_Echo_Dot_3rd_Gen_Smart_Speaker_-_Sandstone_Fabric_%28Creative_Commons%29_%2851048461088%29.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "كاميرا غو برو (GoPro Hero)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Camera-lens-hero-gopro_%2824031255090%29.jpg/960px-Camera-lens-hero-gopro_%2824031255090%29.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "كروم كاست من غوغل (2013)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Collection_of_Chromecast_devices.jpg/960px-Collection_of_Chromecast_devices.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "تسلا سايبرتراك (2023)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg/960px-2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "سامسونغ غالاكسي فولد — الهاتف القابل للطي (2019)", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Samsung_Galaxy_Fold.png" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "آيفون 4 (2010)", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/IPhone_4_Mock_No_Shadow_PSD.png" },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "ميريندا (Mirinda)", img: "https://images.openfoodfacts.org/images/products/611/125/242/0493/front_ar.16.400.jpg", hide: [[40, 36, 60, 30]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "دوريتوس (Doritos)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Doritos_bag.jpg/500px-Doritos_bag.jpg" },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "برينجلز (Pringles)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/500px-Pringles-165g-to-134g.jpg", hide: [[10, 22, 80, 48]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "ليبتون (Lipton)", img: "https://images.openfoodfacts.org/images/products/506/327/010/7843/front_fr.17.400.jpg", hide: [[26, 22, 54, 28]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "كاتشب هاينز (Heinz)", img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_en.141.400.jpg", hide: [[26, 13, 54, 28]] },
 
     /* ===== المستوى الرابع ===== */
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "ماجيك ماوس من أبل (2009)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Magic_Mouse.jpg/960px-Magic_Mouse.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "ترموستات نست الذكي (2011)", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/4/41/Nest_front_official.png/960px-Nest_front_official.png" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "راسبيري باي — حاسوب بحجم الكف (2012)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Raspberry_Pi_1%2C_Pi_5%2C_Pi_400%2C_Pico_and_Zero_2_%28cropped%29.jpg/960px-Raspberry_Pi_1%2C_Pi_5%2C_Pi_400%2C_Pico_and_Zero_2_%28cropped%29.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "طائرة مسيّرة (درون) — انتشرت من 2013", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Spying_quadcopter_%28cropped%29.jpg/960px-Spying_quadcopter_%28cropped%29.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "قِدر الضغط الكهربائي إنستانت بوت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Instant_Pot_%2849907000991%29.jpg/960px-Instant_Pot_%2849907000991%29.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "الهوفربورد — لوح التوازن الكهربائي (2015)", img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Red_self-balancing_two-wheeled_board_with_a_person_standing_on_it.png" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "عصا السيلفي (انتشرت 2014)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Tourist_taking_selfie_with_stick_atop_Pyramid_of_the_Sun%2C_Teotihuac%C3%A1n.jpg/960px-Tourist_taking_selfie_with_stick_atop_Pyramid_of_the_Sun%2C_Teotihuac%C3%A1n.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "بوب سوكِت — مقبض الجوال (2012)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Swarovski_crystal_PopSockets_grip_.jpg/960px-Swarovski_crystal_PopSockets_grip_.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "أبل فيجن برو — نظارة الواقع المختلط (2024)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Apple_Vision_Pro_with_Solo_Knit_Band.jpg/960px-Apple_Vision_Pro_with_Solo_Knit_Band.jpg" },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "إير تاغ من أبل (2021)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Apple_AirTag.svg/960px-Apple_AirTag.svg.png" },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "جبنة البقرة الضاحكة (La vache qui rit)", img: "https://images.openfoodfacts.org/images/products/307/378/119/2339/front_fr.36.400.jpg", hide: [[26, 4, 64, 26], [52, 60, 40, 22]] },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "غالاكسي (Galaxy)", img: "https://images.openfoodfacts.org/images/products/505/635/799/9677/front_en.5.400.jpg", hide: [[10, 13, 80, 32]] },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "فيريرو روشيه (Ferrero Rocher)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/2023_Ferrero_Rocher_%282%29.jpg/500px-2023_Ferrero_Rocher_%282%29.jpg" },
 
     /* ===== المستوى الخامس ===== */
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "نظارة غوغل جلاس (2013)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Google_Glass_photo.JPG/960px-Google_Glass_photo.JPG" },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "سماعات بيتس (Beats by Dre)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/BEATS_BY_DR.DRE_SOLO_HD_MONSTER_HEADPHONE.jpg/960px-BEATS_BY_DR.DRE_SOLO_HD_MONSTER_HEADPHONE.jpg" },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "مايكروسوفت سيرفس برو (أول جيل 2013)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Microsoft_Surface_Pro_3_with_Type_Cover.jpg/960px-Microsoft_Surface_Pro_3_with_Type_Cover.jpg" },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "هوم بود ميني من أبل (2020)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/HomePod_mini_2024.jpg/960px-HomePod_mini_2024.jpg" },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "قلم أبل (Apple Pencil — 2015)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Apple_pencil.jpg/960px-Apple_pencil.jpg" },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "سوار فيتبِت لتتبّع اللياقة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Fitbit_Alta_HR.jpg/960px-Fitbit_Alta_HR.jpg" }
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "كويكر (Quaker)", img: "https://images.openfoodfacts.org/images/products/316/893/000/9801/front_fr.92.400.jpg", hide: [[16, 2, 68, 22]] }
   ];
 
   /* ---------- أغاني عربية (30 سؤالاً) ----------
