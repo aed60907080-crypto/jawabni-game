@@ -130,7 +130,7 @@
     { name: "السينما العالمية",        img: "image/السينما العالمية.jpg", emoji: "🎞️", tint: "#6a3fa0", group: "media" },
     { name: "سترينجر ثينجز",           img: "image/سترينجر ثنجز.jpg", emoji: "🔦", tint: "#8a2b2b", group: "media" },
     { name: "لورد أوف ذا رينغز",       img: "image/لورد اوف ذا رينق.jpg", emoji: "💍", tint: "#7a6320", group: "media" },
-    { name: "مارفل",                   img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Iron_Man_Infobox.jpg/revision/latest/scale-to-width-down/322?cb=20240802142023", emoji: "🦸", tint: "#b8322a", group: "media" },
+    { name: "مارفل",                   img: "image/مارفل.jpg", emoji: "🦸", tint: "#b8322a", group: "media" },
     { name: "ألعاب فيديو",             img: "image/العاب فيديو.jpg", emoji: "🎮", tint: "#6a3fa0", group: "media" },
 
     /* ===== أنمي وكرتون ===== */
