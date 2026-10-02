@@ -450,8 +450,23 @@
       border-radius:999px; background:rgba(0,0,0,.62); pointer-events:none; direction:ltr;
     }
     .vid > .vid-bar b{ flex:1; height:4px; border-radius:4px; background:rgba(255,255,255,.25); overflow:hidden; }
-    .vid > .vid-bar i{ display:block; width:0; height:100%; background:#e7b740; transition:width .3s linear; }
+    /* داخل b وحده: أيقونة زر الإعادة <i> في الشريط نفسه ليست شريط التقدّم */
+    .vid > .vid-bar b > i{ display:block; width:0; height:100%; background:#e7b740; transition:width .3s linear; }
     .vid > .vid-bar span{ margin-inline-start:auto; font:700 11px/1 "Cairo",sans-serif; color:#fff; direction:ltr; }
+    /* زر إعادة المقطع: يرجع به اللاعبون إلى بداية المقطع في أي لحظة —
+       الشريط نفسه لا يستقبل النقر (pointer-events:none) فنعيدها للزر وحده */
+    .vid .vid-replay{
+      flex:0 0 auto; width:22px; height:22px; padding:0; border:0; border-radius:50%;
+      background:rgba(255,255,255,.16); color:#f7dd9c; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; font-size:11px;
+      pointer-events:auto; transition:background .18s ease, transform .18s ease;
+    }
+    .vid .vid-replay:hover{ background:rgba(231,183,64,.35); transform:rotate(-45deg); }
+    /* الفيديو المحلي بأزرار المتصفح: الزر وحده فوق المقطع بلا شريطنا */
+    .vid > .vid-replay{
+      position:absolute; z-index:3; inset-inline-end:10px; top:10px; width:30px; height:30px;
+      font-size:13px; background:rgba(0,0,0,.62);
+    }
     /* band: المشهد وحده من مقطع تيك توك (الإطار يُقصّ أعلاه وأسفله) */
     .vid.tt.band{ max-width:min(640px, calc(68vh * var(--ar))); }
     .vid.tt.band iframe{ position:absolute; left:0; width:100%; aspect-ratio:auto; }
@@ -1231,10 +1246,11 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="ayah-card.js"></script>
 <script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
-<!-- تعدد اللغات (38 لغة) -->
+<!-- تعدد اللغات (37 لغة) -->
 <!-- شاشة تكبير صورة السؤال — خارج البطاقة حتى تملأ الشاشة كاملة -->
 <div id="imgZoom" role="dialog" aria-modal="true" aria-label="تكبير الصورة">
   <div class="zoom-stage" id="zoomStage"></div>
@@ -1300,6 +1316,9 @@
   let questionAudio = null;   // مشغّل الصوت الحالي (إن وُجد)
   let questionVideo = null;   // مشغّل الفيديو الحالي (إن وُجد)
   let goalSongOn = false;     // أغنية مقطع الهدف تعزف الآن (song)
+  /* مقاطع يوتيوب وتيك توك المضمَّنة تُعاد تلقائياً ما دام السؤال معروضاً،
+     فنحتفظ بأمر إيقاف لكل منها يُستدعى عند كشف الإجابة */
+  const stopClips = [];
 
   /* ---------------- fill header / meta ---------------- */
   document.getElementById("catBadge").textContent = category || "بدون فئة";
@@ -1537,7 +1556,13 @@
   }
 
   if (item) {
-    document.getElementById("questionText").textContent = item.q;
+    /* فئة «أكمل الآية الكريمة»: الآية مرسومة على بطاقة المصحف، فنكتفي
+       بعنوان السؤال فوقها ولا نكرّر نصّها. وإن تعذّر رسم البطاقة أعادت
+       renderMedia النصّ الكامل إلى مكانه فيبقى السؤال صالحاً. */
+    const ayahCard = !!(item.sura && item.aya && window.AyahCard &&
+                        /﴿[\s\S]+\.\.\.﴾/.test(item.q || ""));
+    document.getElementById("questionText").textContent =
+      ayahCard ? "أكمل الآية الكريمة" : item.q;
 
     if (item.map) {
       const mb = document.getElementById("mapBadge");
@@ -1706,7 +1731,7 @@
      أزرار يوتيوب وتيك توك نفسها مخفية (شريطها يكشف طول الفيديو كله ويسمح
      بالقفز خارج المقطع)، وتحلّ محلها: طبقة شفافة فوق المشغّل تُوقف/تُشغّل
      بالضغط، وشريط تقدّم خاص بالمقطع وحده «0:12 / 0:30». */
-  function addClipControls(box, onToggle) {
+  function addClipControls(box, onToggle, onReplay) {
     const shield = document.createElement("div");
     shield.className = "vid-shield";
     shield.title = "إيقاف / تشغيل";
@@ -1715,8 +1740,19 @@
     const bar = document.createElement("div");
     bar.className = "vid-bar";
     bar.innerHTML = '<b><i></i></b><span data-no-i18n></span>';
+    /* زر الإعادة: يرجع بالمقطع إلى بدايته ويشغّله من جديد في أي لحظة */
+    if (onReplay) {
+      const rp = document.createElement("button");
+      rp.type = "button";
+      rp.className = "vid-replay";
+      rp.title = "أعد المقطع من البداية";
+      rp.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+      rp.addEventListener("click", e => { e.stopPropagation(); onReplay(); });
+      bar.prepend(rp);
+    }
     box.appendChild(bar);
-    const fill = bar.querySelector("i"), txt = bar.querySelector("span");
+    /* b > i وحده شريط التقدّم — فأيقونة زر الإعادة <i> أيضاً داخل الشريط */
+    const fill = bar.querySelector("b > i"), txt = bar.querySelector("span");
     const mmss = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
     return (t, dur) => {
       t = Math.max(0, Math.min(t, dur));
@@ -1729,6 +1765,28 @@
     const media = document.getElementById("questionMedia");
     if (!item) return;
     media.hidden = false;
+
+    /* فئة «أكمل الآية الكريمة»: الصورة صفحة مصحف مرسومة في المتصفح —
+       اسم السورة في شريط مزخرف، ثم الآية بخطّ قرآني، وفي آخرها مربّع
+       ونقاط مكان الموضع المطلوب إكماله ورقم الآية في وردة.
+       النص يُؤخذ من نصّ السؤال نفسه (بين ﴿ و ...﴾) فلا يُكتب مرّتين. */
+    if (item.sura && item.aya && !item._ayahCard && window.AyahCard) {
+      const m = String(item.q || "").match(/﴿([\s\S]+?)\s*\.\.\.﴾/);
+      if (m) {
+        /* تعذّر الرسم: نعيد نصّ الآية إلى عنوان السؤال فيبقى صالحاً */
+        const fallback = () => {
+          const qEl = document.getElementById("questionText");
+          if (qEl) qEl.textContent = item.q;
+          renderMedia(Object.assign({}, item, { _ayahCard: true }));
+        };
+        AyahCard.make({ text: m[1], sura: item.sura, aya: item.aya, basmala: !!item.bas })
+          .then(url => url
+            ? renderMedia(Object.assign({}, item, { img: url, _ayahCard: true }))
+            : fallback())
+          .catch(fallback);
+        return;
+      }
+    }
 
     /* صورة مقصوصة: شعار بلا كتابة، أو خريطة مكبّرة عليها حلقة (انظر cropImage) */
     if (item.crop && item.img && !item.streets && !item._cropped) {
@@ -1967,8 +2025,23 @@
       v.controls = true;
       v.playsInline = true;
       v.preload = "metadata";
+      /* المقطع يُعاد من أوله تلقائياً ما دام السؤال معروضاً، فيشاهده
+         الفريقان أكثر من مرة بلا ضغط زر — ويتوقّف عند كشف الإجابة */
+      v.loop = true;
       v.onerror = () => { box.replaceWith(missingNote(item.video, 'مقطع الفيديو')); };
       box.appendChild(v);
+      /* زر الإعادة: يرجع بالمقطع إلى أوله ويشغّله — فوق المقطع لأن أزرار
+         المتصفح نفسها تشغل أسفله */
+      const rp = document.createElement("button");
+      rp.type = "button";
+      rp.className = "vid-replay";
+      rp.title = "أعد المقطع من البداية";
+      rp.innerHTML = '<i class="fa-solid fa-rotate-right"></i>';
+      rp.addEventListener("click", () => {
+        try { v.currentTime = 0; v.play(); } catch (e) {}
+        if (window.SFX) SFX.click();
+      });
+      box.appendChild(rp);
       media.appendChild(box);
       questionVideo = v;
     }
@@ -2027,7 +2100,15 @@
       const setDur = () => { cover.querySelector("small").textContent = dur ? Math.round(dur) + " ثانية" : "مقطع قصير"; };
       setDur();
       const stopSong = () => { if (goalSongOn) { goalSongOn = false; if (window.SFX) SFX.music.endClip(); } };
+      /* نهاية المقطع: نعيده من بدايته ونتركه يعمل، فيتكرّر ما دام السؤال
+         معروضاً وتُعاد معه أغنية اللعبة. وبعد كشف الإجابة يتوقّف ويعود الغلاف. */
       const finish = () => {
+        if (!revealed && started) {
+          send("seekTo", ts);
+          send("play");
+          if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
+          return;
+        }
         playing = false;
         send("pause");
         stopSong();
@@ -2043,11 +2124,29 @@
         if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
       });
       box.appendChild(cover);
-      /* أزرار تيك توك مخفية (controls=0) — الإيقاف والشريط من عندنا */
+      stopClips.push(() => {
+        playing = false;
+        send("pause");
+        stopSong();
+        cover.querySelector("b").textContent = "أعد المقطع";
+        cover.hidden = false;
+      });
+      /* أزرار تيك توك مخفية (controls=0) — الإيقاف والشريط وزر الإعادة من عندنا */
+      const replay = () => {
+        started = true;
+        cover.hidden = true;
+        send(item.song ? "mute" : "unMute");
+        send("seekTo", ts);
+        send("play");
+        setBar(0, dur || 30);
+        /* بعد كشف الإجابة لا تُعاد أغنية اللعبة — المشاهدة وحدها */
+        if (item.song && !revealed && window.SFX) { goalSongOn = true; SFX.music.clip(dur || 30); }
+        if (window.SFX) SFX.click();
+      };
       const setBar = addClipControls(box, () => {
         if (!started) return;
         send(playing ? "pause" : "play");
-      });
+      }, replay);
       setBar(0, dur || 30);
 
       window.addEventListener("message", (e) => {
@@ -2107,7 +2206,11 @@
       fr.referrerPolicy = "strict-origin-when-cross-origin";
       /* fs=0: لا تكبير من مشغّل يوتيوب نفسه (يكبّر المشغّل وحده بالألوان) —
          زر التكبير في اللعبة يكبّر المقطع مع طبقة «الرسم» */
-      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1&fs=0" + range + mute;
+      /* الإعادة التلقائية: يوتيوب يكرّر المقطع إن أُعطي loop=1 ومعه playlist
+         برقم الفيديو نفسه — ومع start/end يعيد المقطع المحدّد وحده.
+         أمّا المقاطع التي نتحكّم بها (ctl) فنعيدها بأنفسنا في معالج الرسائل. */
+      const ytLoop = ctl ? "" : "&loop=1&playlist=" + ytId(item.yt);
+      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1&fs=0" + range + mute + ytLoop;
       /* اللعبة مفتوحة كملف من الجهاز (file://): لا عنوان يُرسل فيرفض يوتيوب
          التشغيل (الخطأ 153) — فنمرّ عبر وسيط على موقع اللعبة (yt.html) يضمّن
          يوتيوب بعنوان الموقع فيعمل المقطع */
@@ -2158,12 +2261,28 @@
           if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
         });
         box.appendChild(cover);
-        /* إيقاف/تشغيل بالضغط على المقطع، وشريط المقطع وحده (0 إلى مدته) */
+        stopClips.push(() => {
+          cmd("pauseVideo");
+          cmd("seekTo", [item.ys || 0, true]);
+          cover.querySelector("b").textContent = "أعد المقطع";
+          cover.hidden = false;
+        });
+        /* إيقاف/تشغيل بالضغط على المقطع، وشريط المقطع وحده (0 إلى مدته)،
+           وزر الإعادة يرجع إلى بداية المقطع (ys) ويشغّله */
         let ytPlaying = false;
         const ys0 = item.ys || 0;
+        const replay = () => {
+          cover.hidden = true;
+          cmd("seekTo", [ys0, true]);
+          cmd("playVideo");
+          setBar(0, dur);
+          /* بعد كشف الإجابة لا تُعاد أغنية اللعبة — المشاهدة وحدها */
+          if (item.song && !revealed && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
+          if (window.SFX) SFX.click();
+        };
         const setBar = addClipControls(box, () => {
           if (cover.hidden) cmd(ytPlaying ? "pauseVideo" : "playVideo");
-        });
+        }, replay);
         setBar(0, dur);
 
         fr.addEventListener("load", () => {
@@ -2177,14 +2296,12 @@
           if (st === 1) ytPlaying = true; else if (st === 2 || st === 0) ytPlaying = false;
           if (typeof info.currentTime === "number") {
             setBar(info.currentTime - ys0, dur);
-            /* خارج نافذة المقطع — نعيده إلى بدايته ونوقفه */
-            /* ووصول نهايته (يوتيوب يُوقف عند end بدل أن يُنهي) — يعود الغلاف */
+            /* خارج نافذة المقطع أو عند نهايته (يوتيوب يُوقف عند end بدل أن
+               يُنهي): نعيده إلى بدايته ونتركه يعمل — فيتكرّر المقطع ما دام
+               السؤال معروضاً، وتُعاد معه أغنية اللعبة. */
             if (cover.hidden && !revealed && (ytPlaying || st === 2) && (info.currentTime < ys0 - 1.5 || info.currentTime >= end - 0.3)) {
-              cmd("pauseVideo"); cmd("seekTo", [ys0, true]);
-              cover.querySelector("b").textContent = "أعد المقطع";
-              cover.hidden = false;
-              ytPlaying = false;
-              if (item.song && window.SFX) { goalSongOn = false; SFX.music.endClip(); }
+              cmd("seekTo", [ys0, true]); cmd("playVideo");
+              if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
               return;
             }
           }
@@ -2199,10 +2316,14 @@
             goalSongOn = false;
             if (item.song && window.SFX) SFX.music.endClip();
           } else if (st === 0) {
-            /* انتهى المقطع: يعود الغلاف فلا تظهر شاشة يوتيوب الختامية (عناوين) */
-            goalSongOn = false;
-            if (item.song && window.SFX) SFX.music.endClip();
+            /* انتهى الفيديو كله: نعيده من بداية المقطع بدل أن تظهر شاشة
+               يوتيوب الختامية (عناوين) — وبعد كشف الإجابة يعود الغلاف */
             if (!revealed) {
+              cmd("seekTo", [ys0, true]); cmd("playVideo");
+              if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
+            } else {
+              goalSongOn = false;
+              if (item.song && window.SFX) SFX.music.endClip();
               cover.querySelector("b").textContent = "أعد المقطع";
               cover.hidden = false;
             }
@@ -2922,7 +3043,9 @@
 
     SFX.reveal();
     try { if (questionAudio) questionAudio.pause(); } catch(e){}
-    try { if (questionVideo) questionVideo.pause(); } catch(e){}
+    /* الإعادة التلقائية تنتهي بكشف الإجابة، فلا يدور المقطع بلا نهاية */
+    try { if (questionVideo) { questionVideo.loop = false; questionVideo.pause(); } } catch(e){}
+    stopClips.forEach(stop => { try { stop(); } catch(e){} });
     /* المقطع بالأبيض والأسود يعود ملوّناً مع الإجابة */
     document.querySelectorAll('.vid.bw').forEach(v => v.classList.add('shown'));
     if (window.SFX && SFX.music.endClip) { goalSongOn = false; SFX.music.endClip(); }

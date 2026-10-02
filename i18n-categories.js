@@ -1,5 +1,5 @@
 /* ============================================================
-   جاوبني — ترجمة أسماء الفئات (54 فئة × 38 لغة)
+   جاوبني — ترجمة أسماء الفئات (54 فئة × 37 لغة)
    ------------------------------------------------------------
    نفس صيغة i18n-langs.js المضغوطة: قائمة مفاتيح واحدة
    ثم مصفوفة قيم لكل لغة بنفس الترتيب.
@@ -188,13 +188,6 @@
           "Dünya futbolu","Dünya Kuboku","Olimpiya Oyunları","Qədim sivilizasiyalar","Dünya abidələri","Aviasiya və təyyarələr","Kompüter və proqramlaşdırma","Valyutalar və iqtisadiyyat","Beynəlxalq təşkilatlar","Ərəb şeiri",
           "Musiqi və alətlər","Dünya kinosu","Peyğəmbərlər və elçilər","Həcc və Ümrə"];
 
-  P.he = ["אסלאם","קוראן וסירה","היסטוריה","השפה הערבית","מדינות ובירות","נחש את המדינה","דגלים","מפות","גאוגרפיה עולמית","מדע",
-          "בעלי חיים","ספורט","נחש את השחקן","מכוניות","טכנולוגיה","משחקי וידאו","סרטים ואנימה","פוקימון","ארטואורול",
-          "צ'וקור","נחש את הסדרה","מי הקורא?","שירי המפרץ","אוכל ובישול","סלבריטאים ערבים","פתגמים וחידות","הדייגים","קניונים בכווית","אזורי כווית",
-          "חלל ואסטרונומיה","גוף האדם","כימיה","פיזיקה","חידות מתמטיות","המצאות וממציאים","דינוזאורים","ציפורים","ימים ואוקיינוסים","צמחים ועצים",
-          "כדורגל עולמי","גביע העולם","המשחקים האולימפיים","תרבויות עתיקות","אתרי עולם","תעופה ומטוסים","מחשבים ותכנות","מטבעות וכלכלה","ארגונים בינלאומיים","שירה ערבית",
-          "מוזיקה וכלי נגינה","קולנוע עולמי","נביאים ושליחים","חג' ועומרה"];
-
   P.fa = ["اسلامی","قرآن و سیره","تاریخ","زبان عربی","کشورها و پایتخت‌ها","کشور را حدس بزن","پرچم‌ها","نقشه‌ها","جغرافیای جهان","علوم",
           "جانوران","ورزش","بازیکن را حدس بزن","خودروها","فناوری","بازی‌های ویدیویی","فیلم و انیمه","پوکمون","ارطغرل",
           "چوکور","سریال را حدس بزن","قاری کیست؟","ترانه‌های خلیج","خوراک و آشپزی","چهره‌های عرب","ضرب‌المثل و معما","ماهیگیران","مراکز خرید کویت","مناطق کویت",
@@ -368,7 +361,6 @@
   P3.ku = ["Dragon Ball","Detektîv Conan","Stranger Things","Xwedanê Gustîlkan","Erebistana Siûdî","Bahreyn","Mîrektiyên Ereb ên Yekbûyî","Uman","Tirkiye","Herêmên Tirkiyeyê","Welatên Kendavê"];
   P3.ur = ["ڈریگن بال","جاسوس کونان","سٹرینجر تھنگز","لارڈ آف دی رنگز","سعودی عرب","بحرین","متحدہ عرب امارات","عمان","ترکیہ","ترکیہ کے علاقے","خلیجی ممالک"];
   P3.ps = ["ډریګن بال","پلټونکی کونان","سټرینجر ثینګز","د ګوتو څښتن","سعودي عربستان","بحرین","متحده عربي امارات","عمان","ترکیه","د ترکیې سیمې","د خلیج هېوادونه"];
-  P3.he = ["דרגון בול","הבלש קונאן","דברים מוזרים","שר הטבעות","ערב הסעודית","בחריין","איחוד האמירויות","עומאן","טורקיה","אזורי טורקיה","מדינות המפרץ"];
   P3.hi = ["ड्रैगन बॉल","जासूस कोनन","स्ट्रेंजर थिंग्स","लॉर्ड ऑफ द रिंग्स","सऊदी अरब","बहरीन","संयुक्त अरब अमीरात","ओमान","तुर्किये","तुर्किये के क्षेत्र","खाड़ी देश"];
   P3.bn = ["ড্রাগন বল","গোয়েন্দা কোনান","স্ট্রেঞ্জার থিংস","লর্ড অব দ্য রিংস","সৌদি আরব","বাহরাইন","সংযুক্ত আরব আমিরাত","ওমান","তুরস্ক","তুরস্কের অঞ্চল","উপসাগরীয় দেশ"];
   P3.ta = ["டிராகன் பால்","துப்பறிவாளர் கோனன்","ஸ்ட்ரேஞ்சர் திங்ஸ்","த லார்ட் ஆஃப் தி ரிங்ஸ்","சவூதி அரேபியா","பஹ்ரைன்","ஐக்கிய அரபு அமீரகம்","ஓமான்","துருக்கி","துருக்கியின் பகுதிகள்","வளைகுடா நாடுகள்"];
@@ -394,47 +386,89 @@
     /* 2 */ "شعارات كويتية",
     /* 3 */ "ون بيس",
     /* 4 */ "ناروتو",
-    /* 5 */ "كرتون قديم"
+    /* 5 */ "كرتون قديم",
+    /* 6 */ "مارفل"
   ];
 
   var P4 = {
-    en: ["Kids","Club logos","Kuwaiti logos","One Piece","Naruto","Classic cartoons"],
-    fr: ["Enfants","Logos de clubs","Logos koweïtiens","One Piece","Naruto","Dessins animés classiques"],
-    es: ["Niños","Escudos de clubes","Logotipos kuwaitíes","One Piece","Naruto","Dibujos animados clásicos"],
-    pt: ["Crianças","Emblemas de clubes","Logótipos kuwaitianos","One Piece","Naruto","Desenhos animados clássicos"],
-    de: ["Kinder","Vereinswappen","Kuwaitische Logos","One Piece","Naruto","Klassische Zeichentrickfilme"],
-    it: ["Bambini","Stemmi dei club","Loghi kuwaitiani","One Piece","Naruto","Cartoni animati classici"],
-    nl: ["Kinderen","Clublogo's","Koeweitse logo's","One Piece","Naruto","Klassieke tekenfilms"],
-    sv: ["Barn","Klubbmärken","Kuwaitiska logotyper","One Piece","Naruto","Klassiska tecknade serier"],
-    pl: ["Dzieci","Herby klubów","Kuwejckie logo","One Piece","Naruto","Klasyczne kreskówki"],
-    cs: ["Děti","Klubové znaky","Kuvajtská loga","One Piece","Naruto","Klasické kreslené filmy"],
-    ro: ["Copii","Embleme de cluburi","Logouri kuweitiene","One Piece","Naruto","Desene animate clasice"],
-    hu: ["Gyerekek","Klubcímerek","Kuvaiti logók","One Piece","Naruto","Klasszikus rajzfilmek"],
-    el: ["Παιδιά","Σήματα ομάδων","Λογότυπα του Κουβέιτ","Ουάν Πις","Νάρουτο","Κλασικά κινούμενα σχέδια"],
-    ru: ["Детям","Эмблемы клубов","Логотипы Кувейта","Ван-Пис","Наруто","Классические мультфильмы"],
-    uk: ["Дітям","Емблеми клубів","Логотипи Кувейту","Ван Піс","Наруто","Класичні мультфільми"],
-    tr: ["Çocuklar","Kulüp logoları","Kuveyt logoları","One Piece","Naruto","Klasik çizgi filmler"],
-    az: ["Uşaqlar","Klub loqoları","Küveyt loqoları","One Piece","Naruto","Klassik cizgi filmlər"],
-    fa: ["کودکان","نشان باشگاه‌ها","لوگوهای کویتی","وان پیس","ناروتو","کارتون‌های قدیمی"],
-    ku: ["Zarok","Logoyên klûban","Logoyên Kuweytê","One Piece","Naruto","Karîkaturên kevn"],
-    ur: ["بچے","کلبوں کے لوگو","کویتی لوگو","ون پیس","ناروٹو","پرانے کارٹون"],
-    ps: ["ماشومان","د کلبونو نښې","کویټي نښې","ون پیس","ناروتو","زاړه کارتونونه"],
-    he: ["ילדים","סמלי מועדונים","לוגואים כוויתיים","וואן פיס","נארוטו","סרטים מצוירים ישנים"],
-    hi: ["बच्चे","क्लबों के लोगो","कुवैती लोगो","वन पीस","नारुतो","पुराने कार्टून"],
-    bn: ["শিশু","ক্লাবের লোগো","কুয়েতি লোগো","ওয়ান পিস","নারুতো","পুরনো কার্টুন"],
-    ta: ["குழந்தைகள்","கழக சின்னங்கள்","குவைத் சின்னங்கள்","ஒன் பீஸ்","நருடோ","பழைய கார்ட்டூன்கள்"],
-    id: ["Anak-anak","Logo klub","Logo Kuwait","One Piece","Naruto","Kartun klasik"],
-    ms: ["Kanak-kanak","Logo kelab","Logo Kuwait","One Piece","Naruto","Kartun klasik"],
-    zh: ["儿童","俱乐部队徽","科威特标志","海贼王","火影忍者","经典动画片"],
-    ja: ["キッズ","クラブのエンブレム","クウェートのロゴ","ワンピース","ナルト","昔のアニメ"],
-    ko: ["어린이","클럽 엠블럼","쿠웨이트 로고","원피스","나루토","옛날 만화"],
-    th: ["เด็ก","โลโก้สโมสร","โลโก้คูเวต","วันพีซ","นารูโตะ","การ์ตูนคลาสสิก"],
-    vi: ["Thiếu nhi","Logo câu lạc bộ","Logo Kuwait","One Piece","Naruto","Hoạt hình xưa"],
-    tl: ["Mga bata","Mga logo ng club","Mga logo ng Kuwait","One Piece","Naruto","Lumang cartoons"],
-    sw: ["Watoto","Nembo za klabu","Nembo za Kuwait","One Piece","Naruto","Katuni za zamani"],
-    ha: ["Yara","Tambarin kulob","Tambarin Kuwait","One Piece","Naruto","Tsoffin zane-zane"],
-    so: ["Carruurta","Astaamaha kooxaha","Astaamaha Kuwayt","One Piece","Naruto","Kartuunada hore"],
-    am: ["ልጆች","የክለብ አርማዎች","የኩዌት አርማዎች","ዋን ፒስ","ናሩቶ","የድሮ ካርቱኖች"]
+    en: ["Kids","Club logos","Kuwaiti logos","One Piece","Naruto","Classic cartoons","Marvel"],
+    fr: ["Enfants","Logos de clubs","Logos koweïtiens","One Piece","Naruto","Dessins animés classiques","Marvel"],
+    es: ["Niños","Escudos de clubes","Logotipos kuwaitíes","One Piece","Naruto","Dibujos animados clásicos","Marvel"],
+    pt: ["Crianças","Emblemas de clubes","Logótipos kuwaitianos","One Piece","Naruto","Desenhos animados clássicos","Marvel"],
+    de: ["Kinder","Vereinswappen","Kuwaitische Logos","One Piece","Naruto","Klassische Zeichentrickfilme","Marvel"],
+    it: ["Bambini","Stemmi dei club","Loghi kuwaitiani","One Piece","Naruto","Cartoni animati classici","Marvel"],
+    nl: ["Kinderen","Clublogo's","Koeweitse logo's","One Piece","Naruto","Klassieke tekenfilms","Marvel"],
+    sv: ["Barn","Klubbmärken","Kuwaitiska logotyper","One Piece","Naruto","Klassiska tecknade serier","Marvel"],
+    pl: ["Dzieci","Herby klubów","Kuwejckie logo","One Piece","Naruto","Klasyczne kreskówki","Marvel"],
+    cs: ["Děti","Klubové znaky","Kuvajtská loga","One Piece","Naruto","Klasické kreslené filmy","Marvel"],
+    ro: ["Copii","Embleme de cluburi","Logouri kuweitiene","One Piece","Naruto","Desene animate clasice","Marvel"],
+    hu: ["Gyerekek","Klubcímerek","Kuvaiti logók","One Piece","Naruto","Klasszikus rajzfilmek","Marvel"],
+    el: ["Παιδιά","Σήματα ομάδων","Λογότυπα του Κουβέιτ","Ουάν Πις","Νάρουτο","Κλασικά κινούμενα σχέδια","Μάρβελ"],
+    ru: ["Детям","Эмблемы клубов","Логотипы Кувейта","Ван-Пис","Наруто","Классические мультфильмы","Марвел"],
+    uk: ["Дітям","Емблеми клубів","Логотипи Кувейту","Ван Піс","Наруто","Класичні мультфільми","Марвел"],
+    tr: ["Çocuklar","Kulüp logoları","Kuveyt logoları","One Piece","Naruto","Klasik çizgi filmler","Marvel"],
+    az: ["Uşaqlar","Klub loqoları","Küveyt loqoları","One Piece","Naruto","Klassik cizgi filmlər","Marvel"],
+    fa: ["کودکان","نشان باشگاه‌ها","لوگوهای کویتی","وان پیس","ناروتو","کارتون‌های قدیمی","مارول"],
+    ku: ["Zarok","Logoyên klûban","Logoyên Kuweytê","One Piece","Naruto","Karîkaturên kevn","Marvel"],
+    ur: ["بچے","کلبوں کے لوگو","کویتی لوگو","ون پیس","ناروٹو","پرانے کارٹون","مارول"],
+    ps: ["ماشومان","د کلبونو نښې","کویټي نښې","ون پیس","ناروتو","زاړه کارتونونه","مارول"],
+    hi: ["बच्चे","क्लबों के लोगो","कुवैती लोगो","वन पीस","नारुतो","पुराने कार्टून","मार्वल"],
+    bn: ["শিশু","ক্লাবের লোগো","কুয়েতি লোগো","ওয়ান পিস","নারুতো","পুরনো কার্টুন","মার্ভেল"],
+    ta: ["குழந்தைகள்","கழக சின்னங்கள்","குவைத் சின்னங்கள்","ஒன் பீஸ்","நருடோ","பழைய கார்ட்டூன்கள்","மார்வெல்"],
+    id: ["Anak-anak","Logo klub","Logo Kuwait","One Piece","Naruto","Kartun klasik","Marvel"],
+    ms: ["Kanak-kanak","Logo kelab","Logo Kuwait","One Piece","Naruto","Kartun klasik","Marvel"],
+    zh: ["儿童","俱乐部队徽","科威特标志","海贼王","火影忍者","经典动画片","漫威"],
+    ja: ["キッズ","クラブのエンブレム","クウェートのロゴ","ワンピース","ナルト","昔のアニメ","マーベル"],
+    ko: ["어린이","클럽 엠블럼","쿠웨이트 로고","원피스","나루토","옛날 만화","마블"],
+    th: ["เด็ก","โลโก้สโมสร","โลโก้คูเวต","วันพีซ","นารูโตะ","การ์ตูนคลาสสิก","มาร์เวล"],
+    vi: ["Thiếu nhi","Logo câu lạc bộ","Logo Kuwait","One Piece","Naruto","Hoạt hình xưa","Marvel"],
+    tl: ["Mga bata","Mga logo ng club","Mga logo ng Kuwait","One Piece","Naruto","Lumang cartoons","Marvel"],
+    sw: ["Watoto","Nembo za klabu","Nembo za Kuwait","One Piece","Naruto","Katuni za zamani","Marvel"],
+    ha: ["Yara","Tambarin kulob","Tambarin Kuwait","One Piece","Naruto","Tsoffin zane-zane","Marvel"],
+    so: ["Carruurta","Astaamaha kooxaha","Astaamaha Kuwayt","One Piece","Naruto","Kartuunada hore","Marvel"],
+    am: ["ልጆች","የክለብ አርማዎች","የኩዌት አርማዎች","ዋን ፒስ","ናሩቶ","የድሮ ካርቱኖች","ማርቭል"]
+  };
+
+  /* ---------- أكمل الآية الكريمة ---------- */
+  var C5 = ["أكمل الآية الكريمة"];
+
+  var P5 = {
+    en: ["Complete the Verse"],
+    fr: ["Complétez le verset"],
+    es: ["Completa la aleya"],
+    pt: ["Complete o versículo"],
+    de: ["Vers vervollständigen"],
+    it: ["Completa il versetto"],
+    nl: ["Maak het vers af"],
+    sv: ["Fullborda versen"],
+    pl: ["Dokończ werset"],
+    cs: ["Doplň verš"],
+    ro: ["Completează versetul"],
+    hu: ["Fejezd be a verset"],
+    el: ["Συμπλήρωσε το εδάφιο"],
+    ru: ["Продолжи аят"],
+    uk: ["Продовж аят"],
+    tr: ["Ayeti tamamla"],
+    az: ["Ayəni tamamla"],
+    fa: ["آیه را کامل کن"],
+    ku: ["Ayetê temam bike"],
+    ur: ["آیت مکمل کریں"],
+    ps: ["آیت بشپړ کړئ"],
+    hi: ["आयत पूरी करें"],
+    bn: ["আয়াত সম্পূর্ণ করুন"],
+    ta: ["வசனத்தை முடிக்கவும்"],
+    id: ["Lengkapi ayat"],
+    ms: ["Lengkapkan ayat"],
+    zh: ["补全经文"],
+    ja: ["節を完成させよう"],
+    ko: ["구절 완성하기"],
+    th: ["เติมอายะฮ์ให้สมบูรณ์"],
+    vi: ["Hoàn thành câu kinh"],
+    tl: ["Buuin ang talata"],
+    sw: ["Kamilisha aya"],
+    ha: ["Cika ayar"],
+    so: ["Dhammaystir aayadda"],
+    am: ["አንቀጹን አጠናቅቅ"]
   };
 
   window.I18N_CAT_KEYS = C;
@@ -443,9 +477,12 @@
   window.I18N_CAT_PACKED3 = P3;
   window.I18N_CAT_KEYS4 = C4;
   window.I18N_CAT_PACKED4 = P4;
+  window.I18N_CAT_KEYS5 = C5;
+  window.I18N_CAT_PACKED5 = P5;
   if (window.I18N && window.I18N.loadPacked) {
     window.I18N.loadPacked(C, P);
     window.I18N.loadPacked(C3, P3);
     window.I18N.loadPacked(C4, P4);
+    window.I18N.loadPacked(C5, P5);
   }
 })();

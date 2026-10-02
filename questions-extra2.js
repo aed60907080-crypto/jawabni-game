@@ -237,6 +237,72 @@
     { l: 5, q: "من هذه الشخصية؟", a: "مونسلي — من «عدنان ولينا»", img: "https://s4.anilist.co/file/anilistcdn/character/large/2857.jpg" }
   ];
 
+  /* ---------- مارفل (60 سؤالاً) ----------
+     «ما اسم هذه الشخصية؟» — أبطال وأشرار عالم مارفل السينمائي.
+     الصور من ويكي مارفل (Fandom) وتحتاج referrerpolicy=no-referrer. */
+  extra["مارفل"] = [
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "آيرون مان — توني ستارك", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Iron_Man_Infobox.jpg/revision/latest/scale-to-width-down/322?cb=20240802142023" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "كابتن أمريكا — ستيف روجرز", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b7/Steve_Rogers_Infobox.jpg/revision/latest/scale-to-width-down/278?cb=20260712215245" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "ثور", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/2b/Thor_Infobox.jpg/revision/latest/scale-to-width-down/326?cb=20231021012616" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "هالك — بروس بانر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/29/Hulk_Infobox.jpg/revision/latest/scale-to-width-down/360?cb=20260721104449" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "سبايدر مان — بيتر باركر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Spider-Man_Infobox.jpg/revision/latest/scale-to-width-down/318?cb=20260601191724" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "بلاك بانثر — تشالا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/T%27Challa_Infobox.jpg/revision/latest/scale-to-width-down/363?cb=20231024023619" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "دكتور سترينج", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/392?cb=20231021153337" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "ثانوس", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/27/Thanos_Infobox.png/revision/latest/scale-to-width-down/370?cb=20250119155740" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "لوكي", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b5/Loki_Infobox.png/revision/latest/scale-to-width-down/374?cb=20250203204518" },
+    { l: 1, q: "ما اسم هذه الشخصية؟", a: "بلاك ويدو — ناتاشا رومانوف", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/3f/Black_Widow_Infobox.jpg/revision/latest/scale-to-width-down/366?cb=20231025163748" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "هوك آي — كلينت بارتون", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/5b/Hawkeye_Infobox.jpg/revision/latest/scale-to-width-down/427?cb=20240222145717" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "سكارليت ويتش — واندا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/60/Scarlet_Witch_Infobox.jpg/revision/latest/scale-to-width-down/391?cb=20250203231704" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "فيجن", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6e/Vision_Infobox.jpg/revision/latest/scale-to-width-down/363?cb=20231024023951" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "جروت", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/57/Groot_Infobox.png/revision/latest/scale-to-width-down/358?cb=20260126002142" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "روكيت", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/30/Rocket_Vol._3.jpg/revision/latest?cb=20231114031203" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "ستار لورد — بيتر كويل", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6c/Star-Lord_Infobox.jpg/revision/latest/scale-to-width-down/383?cb=20241126002144" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "آنت مان — سكوت لانغ", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/46/Ant-Man_Infobox.png/revision/latest/scale-to-width-down/332?cb=20231021014114" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "كابتن مارفل — كارول دانفرز", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/3d/Captain_Marvel_Profile.png/revision/latest/scale-to-width-down/421?cb=20240120054800" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "نيك فيوري", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/a3/Nick_Fury_Infobox.png/revision/latest/scale-to-width-down/393?cb=20240802141551" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "وينتر سولدجر — باكي بارنز", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/21/Winter_Soldier_Infobox.jpg/revision/latest/scale-to-width-down/375?cb=20250425194747" },
+    { l: 2, q: "ما اسم هذه الشخصية؟", a: "جامورا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/70/Gamora_Infobox.jpg/revision/latest/scale-to-width-down/364?cb=20231024023800" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "وور مشين — جيمس رودي", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/77/WarMachine-EndgameProfile.jpg/revision/latest/scale-to-width-down/349?cb=20231025163822" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "دراكس", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/cd/Drax_Vol._3.jpg/revision/latest/scale-to-width-down/305?cb=20231113213618" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "نيبولا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/37/Nebula_Vol._3.jpg/revision/latest/scale-to-width-down/350?cb=20240802144159" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "واسب — هوب فان داين", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Wasp_Quantumania.jpg/revision/latest/scale-to-width-down/347?cb=20231124223547" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "أوكويي — قائدة حرس واكاندا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/25/Black_Panther_Wakanda_Forever_poster_024_Textless.jpg/revision/latest/scale-to-width-down/433?cb=20240802144734" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "هايمدال — حارس بيفروست", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/ea/Heimdall_Infobox.jpg/revision/latest/scale-to-width-down/324?cb=20250203022212" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "بيبر بوتس — بدلة ريسكيو", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d4/Rescue_Infobox.png/revision/latest/scale-to-width-down/286?cb=20231025192612" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "يلينا بيلوفا", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/Yelena_Belova_Infobox.jpg/revision/latest/scale-to-width-down/381?cb=20250425194545" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "شانغ تشي", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/40/Shang-Chi_Profile.jpg/revision/latest?cb=20250318203001" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "وونغ", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/00/Wong_in_She-Hulk.jpg/revision/latest/scale-to-width-down/315?cb=20240802144541" },
+    { l: 3, q: "ما اسم هذه الشخصية؟", a: "فالكيري", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d8/Valkyrie_in_LoveAndThunder_Poster.png/revision/latest/scale-to-width-down/384?cb=20231021012751" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "ألترون", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6a/Ultron_Infobox.jpg/revision/latest/scale-to-width-down/344?cb=20260816161839" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "ريد سكال", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6d/Red_Skull_Infobox.png/revision/latest/scale-to-width-down/345?cb=20190808103105" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "كيلمونجر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Black_Panther_Textless_Character_Poster_03.jpg/revision/latest/scale-to-width-down/477?cb=20231024003905" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "هيلا — إلهة الموت", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ae/Hela_Infobox.png/revision/latest/scale-to-width-down/339?cb=20231021034457" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "ميستيريو", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/51/Mysterio_Infobox.png/revision/latest/scale-to-width-down/343?cb=20250721084821" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "فالتشر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/23/Vulture.jpg/revision/latest/scale-to-width-down/355?cb=20250211071137" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "جرين جوبلن", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/39/Green_Goblin_Infobox.png/revision/latest/scale-to-width-down/393?cb=20231202042217" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "دكتور أوكتوبوس", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/1/15/Doctor_Octopus_Infobox.png/revision/latest/scale-to-width-down/422?cb=20231123042225" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "مون نايت", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/ea/Moon_Knight_Poster_Textless.png/revision/latest/scale-to-width-down/326?cb=20231026000412" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "كانغ الفاتح", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/e4/Kang_the_Conqueror_Infobox.jpg/revision/latest/scale-to-width-down/363?cb=20231124223619" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "شي هالك", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/5a/She-Hulk_-_Infobox.jpg/revision/latest/scale-to-width-down/370?cb=20231020212153" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "مس مارفل — كمالا خان", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Ms._Marvel_Infobox.png/revision/latest/scale-to-width-down/393?cb=20240120054811" },
+    { l: 4, q: "ما اسم هذه الشخصية؟", a: "كورغ", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/80/Korg_-_Infobox.jpg/revision/latest/scale-to-width-down/382?cb=20231021012818" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "ديدبول", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ad/Deadpool_Infobox.png/revision/latest/scale-to-width-down/425?cb=20240522015012" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "وولفرين", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/7c/Wolverine_Infobox.png/revision/latest/scale-to-width-down/425?cb=20260809165635" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "ديرديفل", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d7/Daredevil_Infobox.jpg/revision/latest/scale-to-width-down/375?cb=20260319203044" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "ذا بانشر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/1/1c/Punisher_Infobox.png/revision/latest/scale-to-width-down/379?cb=20260721110020" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "ماغنيتو", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Magneto_Infobox.png/revision/latest/scale-to-width-down/315?cb=20260820032654" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "بروفيسور إكس — تشارلز إكزافير", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/06/Professor_X_Infobox.png/revision/latest/scale-to-width-down/369?cb=20260712214916" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "غالاكتوس", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/a7/Galactus.png/revision/latest/scale-to-width-down/500?cb=20250518161359" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "سيلفر سيرفر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/65/Shalla-Bal_%28Silver_Surfer%29_Infobox.png/revision/latest/scale-to-width-down/401?cb=20250716023128" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "مستر فانتاستيك — ريد ريتشاردز", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9f/Mister_Fantastic_Infobox.png/revision/latest/scale-to-width-down/351?cb=20250716013931" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "ذا ثينغ — بن غريم", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/2a/Thing_Infobox.png/revision/latest/scale-to-width-down/453?cb=20250716011850" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "المرأة الخفية — سو ستورم", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/69/Invisible_Woman_Infobox.png/revision/latest/scale-to-width-down/398?cb=20250716012849" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "الشعلة البشرية — جوني ستورم", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b8/Human_Torch_Infobox.png/revision/latest/scale-to-width-down/364?cb=20250716012601" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "غوست رايدر", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/80/Ghost_Rider_RR.jpg/revision/latest/scale-to-width-down/295?cb=20160927161605" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "أجاثا هاركنس", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/a5/Agatha_Harkness_Infobox.jpg/revision/latest/scale-to-width-down/395?cb=20250404171313" },
+    { l: 5, q: "ما اسم هذه الشخصية؟", a: "إيبوني ماو", img: "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/67/Ebony_Maw_Infobox.jpg/revision/latest/scale-to-width-down/331?cb=20210525202154" }
+  ];
+
   /* ---------- المحقق كونان (42 سؤالاً) ----------
      «من هذه الشخصية؟» — صورة الشخصية من AniList، من الأشهر (المستوى
      الأول) إلى الأقل ظهوراً. */
@@ -888,44 +954,50 @@
     { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "قاريسي بك يخضع لعثمان (الحلقة 174)", img: "https://i.ytimg.com/vi/epbTjmeslCY/maxresdefault.jpg", crop: [0, 0, 100, 52] },
   ];
 
-  /* ---------- منتجات (21 سؤالاً) ----------
+  /* ---------- منتجات (25 سؤالاً) ----------
      «ما اسم هذا المنتج؟» — منتجات الجمعية: شيبس وشوكولاتة ومشروبات
-     ومعلّبات. الصور من ويكيميديا كومنز ومن Open Food Facts (قاعدة
-     بيانات مفتوحة لصور المنتجات).
+     ومعلّبات. كلها ماركات كانت على رفوف الجمعية سنة ٢٠٠٠ وما قبلها،
+     وصورة بيبسي بتصميم التسعينيات نفسه. الصور من ويكيميديا كومنز
+     ومن Open Food Facts (قاعدة بيانات مفتوحة لصور المنتجات).
      hide يغطّي اسم المنتج المطبوع على العبوة في السؤال [x, y, w, h]
      نسبةً من عرض الصورة وارتفاعها، ثم تظهر الصورة كاملة مع الإجابة.
+     المستطيلات مضبوطة بالمعاينة البصرية لكل صورة على حدة.
      وما لا اسم ظاهراً فيه (سنيكرز مقطوع، أوريو، كيندر بوينو…) بلا hide. */
   extra["منتجات"] = [
     /* ===== المستوى الأول ===== */
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "https://images.openfoodfacts.org/images/products/611/125/242/0059/front_fr.4.400.jpg", hide: [[10, 24, 86, 34]] },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "سفن أب (7Up)", img: "https://images.openfoodfacts.org/images/products/560/104/510/8222/front_fr.4.400.jpg", hide: [[22, 24, 78, 62]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Pepsi_Can_Retro_Design_1990s.jpg/960px-Pepsi_Can_Retro_Design_1990s.jpg", hide: [[28, 32, 48, 34]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "سفن أب (7Up)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Can_of_Seven_Up.jpg/960px-Can_of_Seven_Up.jpg", hide: [[5, 22, 92, 46]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "كت كات (KitKat)", img: "https://images.openfoodfacts.org/images/products/761/303/536/6749/front_en.132.400.jpg", hide: [[20, 18, 50, 64]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سنيكرز (Snickers)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Snickers-broken.JPG/500px-Snickers-broken.JPG" },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "أوريو (Oreo)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nabisco-Oreo-Cakesters.jpg/500px-Nabisco-Oreo-Cakesters.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "شيبس عمان (بطاطس عمان)", img: "https://images.openfoodfacts.org/images/products/950/110/001/4474/front_en.8.400.jpg", hide: [[0, 12, 70, 40]] },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "شيبس عمان (بطاطس عمان)", img: "https://images.openfoodfacts.org/images/products/950/110/001/8304/front_fr.3.400.jpg", hide: [[2, 5, 78, 38]] },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "ما اسم هذا المنتج؟", a: "تويكس (Twix)", img: "https://images.openfoodfacts.org/images/products/500/015/955/7658/front_de.26.400.jpg", hide: [[14, 18, 74, 60]] },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "كيندر بوينو (Kinder Bueno)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Kinder-Bueno-Split.jpg/500px-Kinder-Bueno-Split.jpg" },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "نوتيلا (Nutella)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Nutella_ak.jpg/500px-Nutella_ak.jpg", hide: [[26, 0, 34, 34]] },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "فيمتو (Vimto)", img: "https://images.openfoodfacts.org/images/products/501/043/801/3638/front_en.31.400.jpg", hide: [[0, 2, 92, 32]] },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "ريد بُل (Red Bull)", img: "https://images.openfoodfacts.org/images/products/900/249/020/8592/front_fr.23.400.jpg", hide: [[6, 30, 90, 38]] },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "نسكافيه (Nescafé)", img: "https://images.openfoodfacts.org/images/products/611/101/890/3161/front_fr.48.400.jpg", hide: [[26, 31, 58, 28]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "مارس (Mars)", img: "https://images.openfoodfacts.org/images/products/590/095/131/1468/front_fr.20.400.jpg", hide: [[16, 24, 68, 52]] },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "ما اسم هذا المنتج؟", a: "ميريندا (Mirinda)", img: "https://images.openfoodfacts.org/images/products/611/125/242/0493/front_ar.16.400.jpg", hide: [[40, 36, 60, 30]] },
     { l: 3, q: "ما اسم هذا المنتج؟", a: "دوريتوس (Doritos)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Doritos_bag.jpg/500px-Doritos_bag.jpg" },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "برينجلز (Pringles)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/500px-Pringles-165g-to-134g.jpg", hide: [[10, 22, 80, 48]] },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "ليبتون (Lipton)", img: "https://images.openfoodfacts.org/images/products/506/327/010/7843/front_fr.17.400.jpg", hide: [[26, 22, 54, 28]] },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "كاتشب هاينز (Heinz)", img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_en.141.400.jpg", hide: [[26, 13, 54, 28]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "ليبتون (Lipton)", img: "https://images.openfoodfacts.org/images/products/506/327/011/9112/front_pl.13.400.jpg", hide: [[14, 18, 74, 24]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "تانغ (Tang)", img: "https://images.openfoodfacts.org/images/products/762/220/112/8456/front_fr.3.400.jpg", hide: [[16, 40, 64, 36]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "كابري صن (Capri-Sun)", img: "https://images.openfoodfacts.org/images/products/400/017/721/1311/front_en.114.400.jpg", hide: [[15, 20, 70, 25]] },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "ما اسم هذا المنتج؟", a: "جبنة البقرة الضاحكة (La vache qui rit)", img: "https://images.openfoodfacts.org/images/products/307/378/119/2339/front_fr.36.400.jpg", hide: [[26, 4, 64, 26], [52, 60, 40, 22]] },
     { l: 4, q: "ما اسم هذا المنتج؟", a: "غالاكسي (Galaxy)", img: "https://images.openfoodfacts.org/images/products/505/635/799/9677/front_en.5.400.jpg", hide: [[10, 13, 80, 32]] },
     { l: 4, q: "ما اسم هذا المنتج؟", a: "فيريرو روشيه (Ferrero Rocher)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/2023_Ferrero_Rocher_%282%29.jpg/500px-2023_Ferrero_Rocher_%282%29.jpg" },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "فيمتو (Vimto)", img: "https://images.openfoodfacts.org/images/products/501/043/801/3638/front_en.31.400.jpg", hide: [[0, 2, 92, 32]] },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "برينجلز (Pringles)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/500px-Pringles-165g-to-134g.jpg", hide: [[10, 22, 80, 48]] },
 
     /* ===== المستوى الخامس ===== */
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "كويكر (Quaker)", img: "https://images.openfoodfacts.org/images/products/316/893/000/9801/front_fr.92.400.jpg", hide: [[16, 2, 68, 22]] }
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "كويكر (Quaker)", img: "https://images.openfoodfacts.org/images/products/316/893/000/9801/front_fr.92.400.jpg", hide: [[16, 2, 68, 22]] },
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "نسكافيه (Nescafé)", img: "https://images.openfoodfacts.org/images/products/611/101/890/3161/front_fr.48.400.jpg", hide: [[26, 31, 58, 28]] },
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "كاتشب هاينز (Heinz)", img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_en.141.400.jpg", hide: [[26, 13, 54, 28]] },
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "تيك تاك (Tic Tac)", img: "https://images.openfoodfacts.org/images/products/000/008/005/2043/front_en.64.400.jpg", hide: [[25, 5, 50, 25]] }
   ];
 
   /* ---------- أغاني عربية (30 سؤالاً) ----------
@@ -1330,6 +1402,122 @@
     { l: 5, q: "ما اسم الجمعية صاحبة هذا الشعار؟", a: "الرحمة العالمية", img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/%D9%84%D9%88%D8%AC%D9%88_%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85%D9%8A%D8%A9.jpg", crop: [0, 0, 100, 62] },
     { l: 5, q: "ما اسم الجهة الحكومية صاحبة هذا الشعار؟", a: "الهيئة العامة لشؤون ذوي الإعاقة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_%D9%84%D8%B4%D8%A4%D9%88%D9%86_%D8%B0%D9%88%D9%8A_%D8%A7%D9%84%D8%A5%D8%B9%D8%A7%D9%82%D8%A9_%28%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA%29.png/500px-%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_%D9%84%D8%B4%D8%A4%D9%88%D9%86_%D8%B0%D9%88%D9%8A_%D8%A7%D9%84%D8%A5%D8%B9%D8%A7%D9%82%D8%A9_%28%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA%29.png", crop: [15, 5, 70, 62] },
     { l: 5, q: "ما اسم الجهة التعليمية صاحبة هذا الشعار؟", a: "الجامعة الأمريكية في الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/American_University_of_Kuwait.svg/500px-American_University_of_Kuwait.svg.png", crop: [35, 0, 30, 38] },
+  ];
+
+  /* ---------- أكمل الآية الكريمة (102 سؤالاً) ----------
+     نوعان: آية يُطلب إكمالها بالتي تليها، وآية يُعرض صدرها
+     ويُطلب عجزها من داخلها. النص من المصحف العثماني كما ترويه
+     واجهة alquran.cloud — مجلوب آلياً لا مكتوباً يدوياً، فلا يقع
+     فيه تحريف، والبسملة تُحذف من أوّل السورة آلياً.
+     الصورة تُرسم في المتصفح صفحةَ مصحف (ayah-card.js) من حقول
+     sura و aya ونصّ السؤال نفسه. */
+  extra["أكمل الآية الكريمة"] = [
+    { l: 1, q: "أكمل الآية الكريمة: ﴿قُلْ هُوَ ٱللَّهُ أَحَدٌ ...﴾", a: "﴿ٱللَّهُ ٱلصَّمَدُ﴾ — سورة الإخلاص، الآية 2", sura: "الإخلاص", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿لَمْ يَلِدْ وَلَمْ يُولَدْ ...﴾", a: "﴿وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ﴾ — سورة الإخلاص، الآية 4", sura: "الإخلاص", aya: 4, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ ...﴾", a: "﴿فَصَلِّ لِرَبِّكَ وَٱنْحَرْ﴾ — سورة الكوثر، الآية 2", sura: "الكوثر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿إِذَا جَآءَ نَصْرُ ٱللَّهِ وَٱلْفَتْحُ ...﴾", a: "﴿وَرَأَيْتَ ٱلنَّاسَ يَدْخُلُونَ فِى دِينِ ٱللَّهِ أَفْوَاجًۭا﴾ — سورة النصر، الآية 2", sura: "النصر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿وَٱلْعَصْرِ ...﴾", a: "﴿إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ﴾ — سورة العصر، الآية 2", sura: "العصر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ...﴾", a: "﴿ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ﴾ — سورة الفاتحة، الآية 6", sura: "الفاتحة", aya: 6, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ...﴾", a: "﴿مَلِكِ ٱلنَّاسِ﴾ — سورة الناس، الآية 2", sura: "الناس", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ ...﴾", a: "﴿مِن شَرِّ مَا خَلَقَ﴾ — سورة الفلق، الآية 2", sura: "الفلق", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿قُلْ يَٰٓأَيُّهَا ٱلْكَٰفِرُونَ ...﴾", a: "﴿لَآ أَعْبُدُ مَا تَعْبُدُونَ﴾ — سورة الكافرون، الآية 2", sura: "الكافرون", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَٰبِ ٱلْفِيلِ ...﴾", a: "﴿أَلَمْ يَجْعَلْ كَيْدَهُمْ فِى تَضْلِيلٍۢ﴾ — سورة الفيل، الآية 2", sura: "الفيل", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿تَبَّتْ يَدَآ أَبِى لَهَبٍۢ وَتَبَّ ...﴾", a: "﴿مَآ أَغْنَىٰ عَنْهُ مَالُهُۥ وَمَا كَسَبَ﴾ — سورة المسد، الآية 2", sura: "المسد", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿مَآ أَغْنَىٰ عَنْهُ مَالُهُۥ وَمَا كَسَبَ ...﴾", a: "﴿سَيَصْلَىٰ نَارًۭا ذَاتَ لَهَبٍۢ﴾ — سورة المسد، الآية 3", sura: "المسد", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿لَمْ يَكُنِ ٱلَّذِينَ كَفَرُوا۟ مِنْ أَهْلِ ٱلْكِتَٰبِ وَٱلْمُشْرِكِينَ مُنفَكِّينَ حَتَّىٰ تَأْتِيَهُمُ ٱلْبَيِّنَةُ ...﴾", a: "﴿رَسُولٌۭ مِّنَ ٱللَّهِ يَتْلُوا۟ صُحُفًۭا مُّطَهَّرَةًۭ﴾ — سورة البينة، الآية 2", sura: "البينة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿مَلِكِ ٱلنَّاسِ ...﴾", a: "﴿إِلَٰهِ ٱلنَّاسِ﴾ — سورة الناس، الآية 3", sura: "الناس", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿مِن شَرِّ مَا خَلَقَ ...﴾", a: "﴿وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ﴾ — سورة الفلق، الآية 3", sura: "الفلق", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿فَصَلِّ لِرَبِّكَ وَٱنْحَرْ ...﴾", a: "﴿إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ﴾ — سورة الكوثر، الآية 3", sura: "الكوثر", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ ...﴾", a: "﴿صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ﴾ — سورة الفاتحة، الآية 7", sura: "الفاتحة", aya: 7, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ...﴾", a: "﴿ٱلْءَاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ﴾ — سورة البقرة، الآية 201", sura: "البقرة", aya: 201, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبًۭا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِى ٱلظُّلُمَٰتِ أَن ...﴾", a: "﴿لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ﴾ — سورة الأنبياء، الآية 87", sura: "الأنبياء", aya: 87, bas: false, img: "image/Quraan.png" },
+    { l: 1, q: "أكمل الآية الكريمة: ﴿قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ ...﴾", a: "﴿لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ﴾ — سورة الأعراف، الآية 23", sura: "الأعراف", aya: 23, bas: false, img: "image/Quraan.png" },
+
+    { l: 2, q: "أكمل الآية الكريمة: ﴿لِإِيلَٰفِ قُرَيْشٍ ...﴾", a: "﴿إِۦلَٰفِهِمْ رِحْلَةَ ٱلشِّتَآءِ وَٱلصَّيْفِ﴾ — سورة قريش، الآية 2", sura: "قريش", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿أَرَءَيْتَ ٱلَّذِى يُكَذِّبُ بِٱلدِّينِ ...﴾", a: "﴿فَذَٰلِكَ ٱلَّذِى يَدُعُّ ٱلْيَتِيمَ﴾ — سورة الماعون، الآية 2", sura: "الماعون", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَيْلٌۭ لِّكُلِّ هُمَزَةٍۢ لُّمَزَةٍ ...﴾", a: "﴿ٱلَّذِى جَمَعَ مَالًۭا وَعَدَّدَهُۥ﴾ — سورة الهمزة، الآية 2", sura: "الهمزة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿أَلْهَىٰكُمُ ٱلتَّكَاثُرُ ...﴾", a: "﴿حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ﴾ — سورة التكاثر، الآية 2", sura: "التكاثر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿ٱلْقَارِعَةُ ...﴾", a: "﴿مَا ٱلْقَارِعَةُ﴾ — سورة القارعة، الآية 2", sura: "القارعة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَٱلْعَٰدِيَٰتِ ضَبْحًۭا ...﴾", a: "﴿فَٱلْمُورِيَٰتِ قَدْحًۭا﴾ — سورة العاديات، الآية 2", sura: "العاديات", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿إِذَا زُلْزِلَتِ ٱلْأَرْضُ زِلْزَالَهَا ...﴾", a: "﴿وَأَخْرَجَتِ ٱلْأَرْضُ أَثْقَالَهَا﴾ — سورة الزلزلة، الآية 2", sura: "الزلزلة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿إِنَّآ أَنزَلْنَٰهُ فِى لَيْلَةِ ٱلْقَدْرِ ...﴾", a: "﴿وَمَآ أَدْرَىٰكَ مَا لَيْلَةُ ٱلْقَدْرِ﴾ — سورة القدر، الآية 2", sura: "القدر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ ...﴾", a: "﴿خَلَقَ ٱلْإِنسَٰنَ مِنْ عَلَقٍ﴾ — سورة العلق، الآية 2", sura: "العلق", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَٱلتِّينِ وَٱلزَّيْتُونِ ...﴾", a: "﴿وَطُورِ سِينِينَ﴾ — سورة التين، الآية 2", sura: "التين", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿إِذَا ٱلسَّمَآءُ ٱنفَطَرَتْ ...﴾", a: "﴿وَإِذَا ٱلْكَوَاكِبُ ٱنتَثَرَتْ﴾ — سورة الانفطار، الآية 2", sura: "الانفطار", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿عَبَسَ وَتَوَلَّىٰٓ ...﴾", a: "﴿أَن جَآءَهُ ٱلْأَعْمَىٰ﴾ — سورة عبس، الآية 2", sura: "عبس", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَٱلنَّٰزِعَٰتِ غَرْقًۭا ...﴾", a: "﴿وَٱلنَّٰشِطَٰتِ نَشْطًۭا﴾ — سورة النازعات، الآية 2", sura: "النازعات", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿ٱلْحَآقَّةُ ...﴾", a: "﴿مَا ٱلْحَآقَّةُ﴾ — سورة الحاقة، الآية 2", sura: "الحاقة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿مَا ٱلْحَآقَّةُ ...﴾", a: "﴿وَمَآ أَدْرَىٰكَ مَا ٱلْحَآقَّةُ﴾ — سورة الحاقة، الآية 3", sura: "الحاقة", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن ...﴾", a: "﴿لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ ٱلْوَهَّابُ﴾ — سورة آل عمران، الآية 8", sura: "آل عمران", aya: 8, bas: false, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿إِذْ أَوَى ٱلْفِتْيَةُ إِلَى ٱلْكَهْفِ فَقَالُوا۟ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ ...﴾", a: "﴿رَحْمَةًۭ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًۭا﴾ — سورة الكهف، الآية 10", sura: "الكهف", aya: 10, bas: false, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَٱلَّذِينَ يَقُولُونَ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَٰجِنَا وَذُرِّيَّٰتِنَا ...﴾", a: "﴿قُرَّةَ أَعْيُنٍۢ وَٱجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا﴾ — سورة الفرقان، الآية 74", sura: "الفرقان", aya: 74, bas: false, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿فَتَعَٰلَى ٱللَّهُ ٱلْمَلِكُ ٱلْحَقُّ ۗ وَلَا تَعْجَلْ بِٱلْقُرْءَانِ مِن قَبْلِ أَن يُقْضَىٰٓ ...﴾", a: "﴿إِلَيْكَ وَحْيُهُۥ ۖ وَقُل رَّبِّ زِدْنِى عِلْمًۭا﴾ — سورة طه، الآية 114", sura: "طه", aya: 114, bas: false, img: "image/Quraan.png" },
+    { l: 2, q: "أكمل الآية الكريمة: ﴿وَقُل رَّبِّ ٱغْفِرْ وَٱرْحَمْ ...﴾", a: "﴿وَأَنتَ خَيْرُ ٱلرَّٰحِمِينَ﴾ — سورة المؤمنون، الآية 118", sura: "المؤمنون", aya: 118, bas: false, img: "image/Quraan.png" },
+
+    { l: 3, q: "أكمل الآية الكريمة: ﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ ...﴾", a: "﴿وَوَضَعْنَا عَنكَ وِزْرَكَ﴾ — سورة الشرح، الآية 2", sura: "الشرح", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلضُّحَىٰ ...﴾", a: "﴿وَٱلَّيْلِ إِذَا سَجَىٰ﴾ — سورة الضحى، الآية 2", sura: "الضحى", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلَّيْلِ إِذَا يَغْشَىٰ ...﴾", a: "﴿وَٱلنَّهَارِ إِذَا تَجَلَّىٰ﴾ — سورة الليل، الآية 2", sura: "الليل", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلشَّمْسِ وَضُحَىٰهَا ...﴾", a: "﴿وَٱلْقَمَرِ إِذَا تَلَىٰهَا﴾ — سورة الشمس، الآية 2", sura: "الشمس", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿لَآ أُقْسِمُ بِهَٰذَا ٱلْبَلَدِ ...﴾", a: "﴿وَأَنتَ حِلٌّۢ بِهَٰذَا ٱلْبَلَدِ﴾ — سورة البلد، الآية 2", sura: "البلد", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلْفَجْرِ ...﴾", a: "﴿وَلَيَالٍ عَشْرٍۢ﴾ — سورة الفجر، الآية 2", sura: "الفجر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿هَلْ أَتَىٰكَ حَدِيثُ ٱلْغَٰشِيَةِ ...﴾", a: "﴿وُجُوهٌۭ يَوْمَئِذٍ خَٰشِعَةٌ﴾ — سورة الغاشية، الآية 2", sura: "الغاشية", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿سَبِّحِ ٱسْمَ رَبِّكَ ٱلْأَعْلَى ...﴾", a: "﴿ٱلَّذِى خَلَقَ فَسَوَّىٰ﴾ — سورة الأعلى، الآية 2", sura: "الأعلى", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلسَّمَآءِ وَٱلطَّارِقِ ...﴾", a: "﴿وَمَآ أَدْرَىٰكَ مَا ٱلطَّارِقُ﴾ — سورة الطارق، الآية 2", sura: "الطارق", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿وَٱلسَّمَآءِ ذَاتِ ٱلْبُرُوجِ ...﴾", a: "﴿وَٱلْيَوْمِ ٱلْمَوْعُودِ﴾ — سورة البروج، الآية 2", sura: "البروج", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿هَلْ أَتَىٰ عَلَى ٱلْإِنسَٰنِ حِينٌۭ مِّنَ ٱلدَّهْرِ لَمْ يَكُن شَيْـًۭٔا مَّذْكُورًا ...﴾", a: "﴿إِنَّا خَلَقْنَا ٱلْإِنسَٰنَ مِن نُّطْفَةٍ أَمْشَاجٍۢ نَّبْتَلِيهِ فَجَعَلْنَٰهُ سَمِيعًۢا بَصِيرًا﴾ — سورة الإنسان، الآية 2", sura: "الإنسان", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿يَٰٓأَيُّهَا ٱلْمُدَّثِّرُ ...﴾", a: "﴿قُمْ فَأَنذِرْ﴾ — سورة المدثر، الآية 2", sura: "المدثر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿قُلْ أُوحِىَ إِلَىَّ أَنَّهُ ٱسْتَمَعَ نَفَرٌۭ مِّنَ ٱلْجِنِّ فَقَالُوٓا۟ إِنَّا سَمِعْنَا قُرْءَانًا عَجَبًۭا ...﴾", a: "﴿يَهْدِىٓ إِلَى ٱلرُّشْدِ فَـَٔامَنَّا بِهِۦ ۖ وَلَن نُّشْرِكَ بِرَبِّنَآ أَحَدًۭا﴾ — سورة الجن، الآية 2", sura: "الجن", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿نٓ ۚ وَٱلْقَلَمِ وَمَا يَسْطُرُونَ ...﴾", a: "﴿مَآ أَنتَ بِنِعْمَةِ رَبِّكَ بِمَجْنُونٍۢ﴾ — سورة القلم، الآية 2", sura: "القلم", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿ٱقْتَرَبَتِ ٱلسَّاعَةُ وَٱنشَقَّ ٱلْقَمَرُ ...﴾", a: "﴿وَإِن يَرَوْا۟ ءَايَةًۭ يُعْرِضُوا۟ وَيَقُولُوا۟ سِحْرٌۭ مُّسْتَمِرٌّۭ﴾ — سورة القمر، الآية 2", sura: "القمر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿رَبِّ ٱجْعَلْنِى مُقِيمَ ٱلصَّلَوٰةِ وَمِن ذُرِّيَّتِى ...﴾", a: "﴿رَبَّنَا وَتَقَبَّلْ دُعَآءِ﴾ — سورة إبراهيم، الآية 40", sura: "إبراهيم", aya: 40, bas: false, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿مَنْ عَمِلَ صَٰلِحًۭا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌۭ فَلَنُحْيِيَنَّهُۥ حَيَوٰةًۭ طَيِّبَةًۭ ...﴾", a: "﴿وَلَنَجْزِيَنَّهُمْ أَجْرَهُم بِأَحْسَنِ مَا كَانُوا۟ يَعْمَلُونَ﴾ — سورة النحل، الآية 97", sura: "النحل", aya: 97, bas: false, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ ...﴾", a: "﴿أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ﴾ — سورة الرعد، الآية 28", sura: "الرعد", aya: 28, bas: false, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿رَّبَّنَآ إِنَّنَا سَمِعْنَا مُنَادِيًۭا يُنَادِى لِلْإِيمَٰنِ أَنْ ءَامِنُوا۟ بِرَبِّكُمْ فَـَٔامَنَّا ۚ رَبَّنَا فَٱغْفِرْ ...﴾", a: "﴿لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّـَٔاتِنَا وَتَوَفَّنَا مَعَ ٱلْأَبْرَارِ﴾ — سورة آل عمران، الآية 193", sura: "آل عمران", aya: 193, bas: false, img: "image/Quraan.png" },
+    { l: 3, q: "أكمل الآية الكريمة: ﴿هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَٰهَ إِلَّا هُوَ ٱلْمَلِكُ ٱلْقُدُّوسُ ٱلسَّلَٰمُ ٱلْمُؤْمِنُ ٱلْمُهَيْمِنُ ...﴾", a: "﴿ٱلْعَزِيزُ ٱلْجَبَّارُ ٱلْمُتَكَبِّرُ ۚ سُبْحَٰنَ ٱللَّهِ عَمَّا يُشْرِكُونَ﴾ — سورة الحشر، الآية 23", sura: "الحشر", aya: 23, bas: false, img: "image/Quraan.png" },
+
+    { l: 4, q: "أكمل الآية الكريمة: ﴿الٓمٓ ...﴾", a: "﴿ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى لِّلْمُتَّقِينَ﴾ — سورة البقرة، الآية 2", sura: "البقرة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿يسٓ ...﴾", a: "﴿وَٱلْقُرْءَانِ ٱلْحَكِيمِ﴾ — سورة يس، الآية 2", sura: "يس", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿ٱلرَّحْمَٰنُ ...﴾", a: "﴿عَلَّمَ ٱلْقُرْءَانَ﴾ — سورة الرحمن، الآية 2", sura: "الرحمن", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿تَبَٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ ...﴾", a: "﴿ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًۭا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ﴾ — سورة الملك، الآية 2", sura: "الملك", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا ۜ ...﴾", a: "﴿قَيِّمًۭا لِّيُنذِرَ بَأْسًۭا شَدِيدًۭا مِّن لَّدُنْهُ وَيُبَشِّرَ ٱلْمُؤْمِنِينَ ٱلَّذِينَ يَعْمَلُونَ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ أَجْرًا حَسَنًۭا﴾ — سورة الكهف، الآية 2", sura: "الكهف", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿عَمَّ يَتَسَآءَلُونَ ...﴾", a: "﴿عَنِ ٱلنَّبَإِ ٱلْعَظِيمِ﴾ — سورة النبأ، الآية 2", sura: "النبأ", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَٱلْمُرْسَلَٰتِ عُرْفًۭا ...﴾", a: "﴿فَٱلْعَٰصِفَٰتِ عَصْفًۭا﴾ — سورة المرسلات، الآية 2", sura: "المرسلات", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿لَآ أُقْسِمُ بِيَوْمِ ٱلْقِيَٰمَةِ ...﴾", a: "﴿وَلَآ أُقْسِمُ بِٱلنَّفْسِ ٱللَّوَّامَةِ﴾ — سورة القيامة، الآية 2", sura: "القيامة", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿يَٰٓأَيُّهَا ٱلْمُزَّمِّلُ ...﴾", a: "﴿قُمِ ٱلَّيْلَ إِلَّا قَلِيلًۭا﴾ — سورة المزمل، الآية 2", sura: "المزمل", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿سَأَلَ سَآئِلٌۢ بِعَذَابٍۢ وَاقِعٍۢ ...﴾", a: "﴿لِّلْكَٰفِرِينَ لَيْسَ لَهُۥ دَافِعٌۭ﴾ — سورة المعارج، الآية 2", sura: "المعارج", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَٱلنَّجْمِ إِذَا هَوَىٰ ...﴾", a: "﴿مَا ضَلَّ صَاحِبُكُمْ وَمَا غَوَىٰ﴾ — سورة النجم، الآية 2", sura: "النجم", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَٱلطُّورِ ...﴾", a: "﴿وَكِتَٰبٍۢ مَّسْطُورٍۢ﴾ — سورة الطور، الآية 2", sura: "الطور", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَٱلذَّٰرِيَٰتِ ذَرْوًۭا ...﴾", a: "﴿فَٱلْحَٰمِلَٰتِ وِقْرًۭا﴾ — سورة الذاريات، الآية 2", sura: "الذاريات", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿فَٱلْحَٰمِلَٰتِ وِقْرًۭا ...﴾", a: "﴿فَٱلْجَٰرِيَٰتِ يُسْرًۭا﴾ — سورة الذاريات، الآية 3", sura: "الذاريات", aya: 3, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿قٓ ۚ وَٱلْقُرْءَانِ ٱلْمَجِيدِ ...﴾", a: "﴿بَلْ عَجِبُوٓا۟ أَن جَآءَهُم مُّنذِرٌۭ مِّنْهُمْ فَقَالَ ٱلْكَٰفِرُونَ هَٰذَا شَىْءٌ عَجِيبٌ﴾ — سورة ق، الآية 2", sura: "ق", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿حمٓ ...﴾", a: "﴿وَٱلْكِتَٰبِ ٱلْمُبِينِ﴾ — سورة الدخان، الآية 2", sura: "الدخان", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ ...﴾", a: "﴿خَلَقَ ٱلْإِنسَٰنَ مِن صَلْصَٰلٍۢ كَٱلْفَخَّارِ﴾ — سورة الرحمن، الآية 14", sura: "الرحمن", aya: 14, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ ...﴾", a: "﴿إِلَّا عَلَى ٱلْخَٰشِعِينَ﴾ — سورة البقرة، الآية 45", sura: "البقرة", aya: 45, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى ...﴾", a: "﴿وَلَا تَكْفُرُونِ﴾ — سورة البقرة، الآية 152", sura: "البقرة", aya: 152, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿قُلِ ٱللَّهُمَّ مَٰلِكَ ٱلْمُلْكِ تُؤْتِى ٱلْمُلْكَ مَن تَشَآءُ وَتَنزِعُ ٱلْمُلْكَ مِمَّن تَشَآءُ وَتُعِزُّ مَن تَشَآءُ وَتُذِلُّ مَن ...﴾", a: "﴿تَشَآءُ ۖ بِيَدِكَ ٱلْخَيْرُ ۖ إِنَّكَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ﴾ — سورة آل عمران، الآية 26", sura: "آل عمران", aya: 26, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَقَالَ رَبُّكُمُ ٱدْعُونِىٓ أَسْتَجِبْ لَكُمْ ۚ إِنَّ ٱلَّذِينَ يَسْتَكْبِرُونَ ...﴾", a: "﴿عَنْ عِبَادَتِى سَيَدْخُلُونَ جَهَنَّمَ دَاخِرِينَ﴾ — سورة غافر، الآية 60", sura: "غافر", aya: 60, bas: false, img: "image/Quraan.png" },
+    { l: 4, q: "أكمل الآية الكريمة: ﴿وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ ...﴾", a: "﴿بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا﴾ — سورة الطلاق، الآية 3", sura: "الطلاق", aya: 3, bas: false, img: "image/Quraan.png" },
+
+    { l: 5, q: "أكمل الآية الكريمة: ﴿قَدْ أَفْلَحَ مَن تَزَكَّىٰ ...﴾", a: "﴿وَذَكَرَ ٱسْمَ رَبِّهِۦ فَصَلَّىٰ﴾ — سورة الأعلى، الآية 15", sura: "الأعلى", aya: 15, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿سَبَّحَ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۖ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ ...﴾", a: "﴿لَهُۥ مُلْكُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۖ يُحْىِۦ وَيُمِيتُ ۖ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ﴾ — سورة الحديد، الآية 2", sura: "الحديد", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿إِذَا ٱلشَّمْسُ كُوِّرَتْ ...﴾", a: "﴿وَإِذَا ٱلنُّجُومُ ٱنكَدَرَتْ﴾ — سورة التكوير، الآية 2", sura: "التكوير", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿يُسَبِّحُ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۖ لَهُ ٱلْمُلْكُ وَلَهُ ٱلْحَمْدُ ۖ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ ...﴾", a: "﴿هُوَ ٱلَّذِى خَلَقَكُمْ فَمِنكُمْ كَافِرٌۭ وَمِنكُم مُّؤْمِنٌۭ ۚ وَٱللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ﴾ — سورة التغابن، الآية 2", sura: "التغابن", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿سَبَّحَ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۖ وَهُوَ ٱلْعَزِيزُ ٱلْحَكِيمُ ...﴾", a: "﴿يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ﴾ — سورة الصف، الآية 2", sura: "الصف", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿قَدْ أَفْلَحَ ٱلْمُؤْمِنُونَ ...﴾", a: "﴿ٱلَّذِينَ هُمْ فِى صَلَاتِهِمْ خَٰشِعُونَ﴾ — سورة المؤمنون، الآية 2", sura: "المؤمنون", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿وَعِبَادُ ٱلرَّحْمَٰنِ ٱلَّذِينَ يَمْشُونَ عَلَى ٱلْأَرْضِ هَوْنًۭا وَإِذَا خَاطَبَهُمُ ٱلْجَٰهِلُونَ قَالُوا۟ سَلَٰمًۭا ...﴾", a: "﴿وَٱلَّذِينَ يَبِيتُونَ لِرَبِّهِمْ سُجَّدًۭا وَقِيَٰمًۭا﴾ — سورة الفرقان، الآية 64", sura: "الفرقان", aya: 64, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿إِذَا ٱلسَّمَآءُ ٱنشَقَّتْ ...﴾", a: "﴿وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ﴾ — سورة الانشقاق، الآية 2", sura: "الانشقاق", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿وَيْلٌۭ لِّلْمُطَفِّفِينَ ...﴾", a: "﴿ٱلَّذِينَ إِذَا ٱكْتَالُوا۟ عَلَى ٱلنَّاسِ يَسْتَوْفُونَ﴾ — سورة المطففين، الآية 2", sura: "المطففين", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿وَإِذْ قَالَ لُقْمَٰنُ لِٱبْنِهِۦ وَهُوَ يَعِظُهُۥ يَٰبُنَىَّ لَا تُشْرِكْ بِٱللَّهِ ۖ إِنَّ ٱلشِّرْكَ لَظُلْمٌ عَظِيمٌۭ ...﴾", a: "﴿وَوَصَّيْنَا ٱلْإِنسَٰنَ بِوَٰلِدَيْهِ حَمَلَتْهُ أُمُّهُۥ وَهْنًا عَلَىٰ وَهْنٍۢ وَفِصَٰلُهُۥ فِى عَامَيْنِ أَنِ ٱشْكُرْ لِى وَلِوَٰلِدَيْكَ إِلَىَّ ٱلْمَصِيرُ﴾ — سورة لقمان، الآية 14", sura: "لقمان", aya: 14, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿صٓ ۚ وَٱلْقُرْءَانِ ذِى ٱلذِّكْرِ ...﴾", a: "﴿بَلِ ٱلَّذِينَ كَفَرُوا۟ فِى عِزَّةٍۢ وَشِقَاقٍۢ﴾ — سورة ص، الآية 2", sura: "ص", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿طه ...﴾", a: "﴿مَآ أَنزَلْنَا عَلَيْكَ ٱلْقُرْءَانَ لِتَشْقَىٰٓ﴾ — سورة طه، الآية 2", sura: "طه", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿كٓهيعٓصٓ ...﴾", a: "﴿ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُۥ زَكَرِيَّآ﴾ — سورة مريم، الآية 2", sura: "مريم", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿الٓر ۚ تِلْكَ ءَايَٰتُ ٱلْكِتَٰبِ وَقُرْءَانٍۢ مُّبِينٍۢ ...﴾", a: "﴿رُّبَمَا يَوَدُّ ٱلَّذِينَ كَفَرُوا۟ لَوْ كَانُوا۟ مُسْلِمِينَ﴾ — سورة الحجر، الآية 2", sura: "الحجر", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿الٓر ۚ تِلْكَ ءَايَٰتُ ٱلْكِتَٰبِ ٱلْمُبِينِ ...﴾", a: "﴿إِنَّآ أَنزَلْنَٰهُ قُرْءَٰنًا عَرَبِيًّۭا لَّعَلَّكُمْ تَعْقِلُونَ﴾ — سورة يوسف، الآية 2", sura: "يوسف", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿إِنَّآ أَرْسَلْنَا نُوحًا إِلَىٰ قَوْمِهِۦٓ أَنْ أَنذِرْ قَوْمَكَ مِن قَبْلِ أَن يَأْتِيَهُمْ عَذَابٌ أَلِيمٌۭ ...﴾", a: "﴿قَالَ يَٰقَوْمِ إِنِّى لَكُمْ نَذِيرٌۭ مُّبِينٌ﴾ — سورة نوح، الآية 2", sura: "نوح", aya: 2, bas: true, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿ٱتْلُ مَآ أُوحِىَ إِلَيْكَ مِنَ ٱلْكِتَٰبِ وَأَقِمِ ٱلصَّلَوٰةَ ۖ إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ ...﴾", a: "﴿وَلَذِكْرُ ٱللَّهِ أَكْبَرُ ۗ وَٱللَّهُ يَعْلَمُ مَا تَصْنَعُونَ﴾ — سورة العنكبوت، الآية 45", sura: "العنكبوت", aya: 45, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿إِنَّ ٱللَّهَ وَمَلَٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِىِّ ۚ يَٰٓأَيُّهَا ٱلَّذِينَ ...﴾", a: "﴿ءَامَنُوا۟ صَلُّوا۟ عَلَيْهِ وَسَلِّمُوا۟ تَسْلِيمًا﴾ — سورة الأحزاب، الآية 56", sura: "الأحزاب", aya: 56, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿يَٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقْنَٰكُم مِّن ذَكَرٍۢ وَأُنثَىٰ وَجَعَلْنَٰكُمْ شُعُوبًۭا وَقَبَآئِلَ لِتَعَارَفُوٓا۟ ۚ إِنَّ أَكْرَمَكُمْ ...﴾", a: "﴿عِندَ ٱللَّهِ أَتْقَىٰكُمْ ۚ إِنَّ ٱللَّهَ عَلِيمٌ خَبِيرٌۭ﴾ — سورة الحجرات، الآية 13", sura: "الحجرات", aya: 13, bas: false, img: "image/Quraan.png" },
+    { l: 5, q: "أكمل الآية الكريمة: ﴿وَقُل رَّبِّ أَدْخِلْنِى مُدْخَلَ صِدْقٍۢ وَأَخْرِجْنِى مُخْرَجَ صِدْقٍۢ وَٱجْعَل ...﴾", a: "﴿لِّى مِن لَّدُنكَ سُلْطَٰنًۭا نَّصِيرًۭا﴾ — سورة الإسراء، الآية 80", sura: "الإسراء", aya: 80, bas: false, img: "image/Quraan.png" }
   ];
 
   /* ---------- التسجيل والدمج ---------- */

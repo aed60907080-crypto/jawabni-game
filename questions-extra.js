@@ -516,7 +516,11 @@
     { l: 5, q: "ما اسم الطائر الذي يحرّك فكّه العلوي بقوة ويستخدم منقاره كيد ثالثة في التسلّق؟", a: "الببغاء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Scarlet_macaw_%28Ara_macao_cyanopterus%29_head_Copan.jpg/960px-Scarlet_macaw_%28Ara_macao_cyanopterus%29_head_Copan.jpg" }
   ];
 
-  /* ---------- البحار والمحيطات (50 سؤالاً) ---------- */
+  /* ---------- البحار والمحيطات (70 سؤالاً) ----------
+     معلومات المحيطات والبحار، ومعها 20 سؤالاً بصورة سمكة:
+     «ما نوع هذه السمكة؟» و«أين تعيش هذه السمكة؟» — فيها أسماك
+     الخليج المعروفة (الهامور والزبيدي والشعري والميد).
+     كل الصور من ويكيميديا كومنز برخص حرّة. */
   extra["البحار والمحيطات"] = [
     { l: 1, q: "ما اسم أكبر محيط في العالم؟", a: "المحيط الهادئ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/ISS034E016601_-_Stratocumulus_Clouds_-_Pacific_Ocean.jpg/960px-ISS034E016601_-_Stratocumulus_Clouds_-_Pacific_Ocean.jpg" },
     { l: 1, q: "ما اسم أكبر حيوان على وجه الأرض؟", a: "الحوت الأزرق", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Bluewhale877.jpg/960px-Bluewhale877.jpg" },
@@ -528,6 +532,11 @@
     { l: 1, q: "ما اسم الكائن البحري ذي الأذرع الخمس النجمي الشكل؟", a: "نجم البحر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Royal_starfish_%28Astropecten_articulatus%29_on_the_beach.jpg/960px-Royal_starfish_%28Astropecten_articulatus%29_on_the_beach.jpg" },
     { l: 1, q: "ما اسم الزاحف البحري الذي يحمل على ظهره درعاً صلباً ويعود إلى الشاطئ ليضع بيضه؟", a: "السلحفاة البحرية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Green_Sea_Turtle_Swimming_in_the_Gal%C3%A1pagos.jpg/960px-Green_Sea_Turtle_Swimming_in_the_Gal%C3%A1pagos.jpg" },
     { l: 1, q: "ما اسم الحركة اليومية لارتفاع وانخفاض مستوى البحر؟", a: "المد والجزر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Boats_stranded_by_low_tide_in_Tobermory_Harbour_-_panoramio.jpg/960px-Boats_stranded_by_low_tide_in_Tobermory_Harbour_-_panoramio.jpg" },
+    /* ===== صور الأسماك ===== */
+    { l: 1, q: "ما نوع هذه السمكة؟", a: "سمكة المهرج", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Amphiprion_ocellaris_%28Clown_anemonefish%29_Nemo.jpg/960px-Amphiprion_ocellaris_%28Clown_anemonefish%29_Nemo.jpg" },
+    { l: 1, q: "ما نوع هذه السمكة؟", a: "القرش الأبيض الكبير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/960px-White_shark.jpg" },
+    { l: 1, q: "أين تعيش هذه السمكة؟", a: "في المياه العذبة — أحواض الزينة والبرك والبحيرات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Carassius_auratus_auratus_%28goldfish%29_2.jpg/960px-Carassius_auratus_auratus_%28goldfish%29_2.jpg" },
+
     { l: 2, q: "ما اسم أعمق خندق في المحيطات؟", a: "خندق ماريانا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Bathyscaphe_Trieste_with_USS_Lewis_%28DE-535%29_over_the_Marianas_Trench%2C_23_January_1960_%28NH_96797%29.jpg/960px-Bathyscaphe_Trieste_with_USS_Lewis_%28DE-535%29_over_the_Marianas_Trench%2C_23_January_1960_%28NH_96797%29.jpg" },
     { l: 2, q: "ما اسم أكبر بحر مغلق في العالم؟", a: "بحر قزوين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Caspian_Sea_from_orbit-NoRedLines.jpg/960px-Caspian_Sea_from_orbit-NoRedLines.jpg" },
     { l: 2, q: "ما اسم البحر الذي تبلغ ملوحته أعلى مستوى فلا يغرق فيه الإنسان؟", a: "البحر الميت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Floating_in_the_Dead_Sea_1507_%28509725107%29.jpg/960px-Floating_in_the_Dead_Sea_1507_%28509725107%29.jpg" },
@@ -538,6 +547,12 @@
     { l: 2, q: "ما اسم الحيوان البحري الذي يستطيع تغيير لونه للتمويه؟", a: "الحبار (السيبيا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Sepia_com%C3%BAn_%28Sepia_officinalis%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_62.jpg/960px-Sepia_com%C3%BAn_%28Sepia_officinalis%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_62.jpg" },
     { l: 2, q: "ما اسم القناة التي تربط البحر الأحمر بالبحر المتوسط؟", a: "قناة السويس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Suez_Canal_traffic_jam_seen_from_space.jpg/960px-Suez_Canal_traffic_jam_seen_from_space.jpg" },
     { l: 2, q: "ما اسم الخليج الذي تطلّ عليه الكويت؟", a: "الخليج العربي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/PersianGulf_vue_satellite_du_golfe_persique.jpg/960px-PersianGulf_vue_satellite_du_golfe_persique.jpg" },
+    /* ===== صور الأسماك ===== */
+    { l: 2, q: "ما نوع هذه السمكة؟", a: "سمكة الأسد (الدجاجة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Pterois_volitans_Manado-e.jpg/960px-Pterois_volitans_Manado-e.jpg" },
+    { l: 2, q: "ما نوع هذه السمكة؟", a: "سمكة المنفاخ (النفيخة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Inflated_pufferfish.jpg/960px-Inflated_pufferfish.jpg" },
+    { l: 2, q: "أين تعيش هذه السمكة؟", a: "في أنهار أمريكا الجنوبية العذبة وعلى رأسها الأمازون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Pygocentrus_nattereri_-_Karlsruhe_Zoo_01.jpg/960px-Pygocentrus_nattereri_-_Karlsruhe_Zoo_01.jpg" },
+    { l: 2, q: "أين تعيش هذه السمكة؟", a: "في المياه الدافئة المفتوحة بالمحيطات الاستوائية", img: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Dharavandhoo_Thila_-_Whale_Shark.jpg" },
+
     { l: 3, q: "ما اسم التيار البحري الدافئ الذي يلطّف مناخ أوروبا الغربية؟", a: "تيار الخليج", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Golfstrom.jpg" },
     { l: 3, q: "ما اسم أصغر محيط في العالم؟", a: "المحيط المتجمد الشمالي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Sea_Ice_off_Baffin_Island.jpg/960px-Sea_Ice_off_Baffin_Island.jpg" },
     { l: 3, q: "ما اسم الظاهرة المناخية التي ترتبط بتغيّر حرارة المحيط الهادئ؟", a: "ظاهرة النينيو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/The_Pacific_Ocean-_Viewed_from_Space.png/960px-The_Pacific_Ocean-_Viewed_from_Space.png" },
@@ -548,6 +563,12 @@
     { l: 3, q: "ما اسم البحر الذي لا شواطئ له ويقع داخل المحيط الأطلسي؟", a: "بحر سارغاسو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Sargassum_seaweed_blob.jpg/960px-Sargassum_seaweed_blob.jpg" },
     { l: 3, q: "ما اسم المضيق الذي يفصل بين أوروبا وأفريقيا عند أقصى الغرب؟", a: "مضيق جبل طارق", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/STS059-238-074_Strait_of_Gibraltar.jpg/960px-STS059-238-074_Strait_of_Gibraltar.jpg" },
     { l: 3, q: "ما اسم العلم الذي يدرس البحار والمحيطات؟", a: "علم المحيطات (الأوقيانوغرافيا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Oceanography_Meteorological_Research_Vessel_RYOFU_MARU_in_Jan_2025.jpg/960px-Oceanography_Meteorological_Research_Vessel_RYOFU_MARU_in_Jan_2025.jpg" },
+    /* ===== صور الأسماك ===== */
+    { l: 3, q: "ما نوع هذه السمكة؟", a: "القرش المطرقي (أبو مطرقة)", img: "https://upload.wikimedia.org/wikipedia/commons/0/01/Sphyrna_mokarran_at_georgia.jpg" },
+    { l: 3, q: "ما نوع هذه السمكة؟", a: "سمكة الببغاء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Maldives_Parrotfish_%28Scaridae%29.jpg/960px-Maldives_Parrotfish_%28Scaridae%29.jpg" },
+    { l: 3, q: "أين تعيش هذه السمكة؟", a: "في الشعاب المرجانية الضحلة الدافئة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Chaetodon_sedentarius.jpg/960px-Chaetodon_sedentarius.jpg" },
+    { l: 3, q: "أين تعيش هذه السمكة؟", a: "في جحور الصخور والشعاب — البحر المتوسط وشرق الأطلسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Morena_del_Mediterr%C3%A1neo_%28Muraena_helena%29%2C_Cabo_de_Palos%2C_Espa%C3%B1a%2C_2022-07-15%2C_DD_89.jpg/960px-Morena_del_Mediterr%C3%A1neo_%28Muraena_helena%29%2C_Cabo_de_Palos%2C_Espa%C3%B1a%2C_2022-07-15%2C_DD_89.jpg" },
+
     { l: 4, q: "كم تبلغ نسبة المحيطات من مساحة سطح الأرض تقريباً؟", a: "نحو 71 بالمئة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/960px-Meteosat-12-fci-march-equinox-2025-noon.jpg", iq: "الأرض من الفضاء" },
     { l: 4, q: "ما اسم أعمق حفرة في خندق ماريانا؟", a: "عمق تشالنجر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Deepsea_Challenger_-_Cit%C3%A9_de_la_Mer-7935.jpg/960px-Deepsea_Challenger_-_Cit%C3%A9_de_la_Mer-7935.jpg" },
     { l: 4, q: "ما اسم الحيوان البحري صاحب أكبر عين في مملكة الحيوان؟", a: "الحبار العملاق", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_squid_Ranheim.jpg/960px-Giant_squid_Ranheim.jpg" },
@@ -558,6 +579,12 @@
     { l: 4, q: "ما اسم أكبر خليج في العالم؟", a: "خليج البنغال", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/India_satellite_image.png/960px-India_satellite_image.png" },
     { l: 4, q: "ما اسم التجمّع الضخم من النفايات البلاستيكية في المحيط الهادئ؟", a: "بقعة القمامة العظمى في المحيط الهادئ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Plastic_Ocean_%284408273247%29.jpg/960px-Plastic_Ocean_%284408273247%29.jpg" },
     { l: 4, q: "ما اسم الموجة العملاقة الناتجة عن زلزال تحت البحر؟", a: "تسونامي", img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/2004_Indian_Ocean_earthquake_Maldives_tsunami_wave.jpg" },
+    /* ===== صور الأسماك ===== */
+    { l: 4, q: "ما نوع هذه السمكة؟", a: "الهامور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Epinephelus_lanceolatus.jpeg/960px-Epinephelus_lanceolatus.jpeg" },
+    { l: 4, q: "ما نوع هذه السمكة؟", a: "الزبيدي", img: "https://upload.wikimedia.org/wikipedia/commons/4/48/Silver_Pomfret_%28Pampus_argenteus%29.jpg" },
+    { l: 4, q: "أين تعيش هذه السمكة؟", a: "في أعالي البحار — المياه المفتوحة بعيداً عن الشاطئ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Pacific_bluefin_tuna.jpg/960px-Pacific_bluefin_tuna.jpg" },
+    { l: 4, q: "أين تعيش هذه السمكة؟", a: "على القاع الرملي في المياه الضحلة الدافئة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Dasyatis_guttata.jpg/960px-Dasyatis_guttata.jpg" },
+
     { l: 5, q: "ما اسم الحوت الذي يمتلك أكبر دماغ بين الكائنات الحية؟", a: "حوت العنبر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Sperm_whale_pod.jpg/960px-Sperm_whale_pod.jpg" },
     { l: 5, q: "ما اسم السمكة التي يُعتقد أنها انقرضت ثم اكتُشفت حية عام 1938؟", a: "سمكة السيلاكانث", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Comoran_Coelacanth_Latimeria_chalumnae_Comoros_Pavilion_Expo_2020_Dubai_Photo_by_Prof_Dr_Norman_Ali_Khalaf.jpg/960px-Comoran_Coelacanth_Latimeria_chalumnae_Comoros_Pavilion_Expo_2020_Dubai_Photo_by_Prof_Dr_Norman_Ali_Khalaf.jpg" },
     { l: 5, q: "ما اسم الكائن البحري الذي يُعد الأطول عمراً بين الفقاريات؟", a: "قرش غرينلاند", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Somniosus_microcephalus_okeanos.jpg/960px-Somniosus_microcephalus_okeanos.jpg" },
@@ -567,10 +594,18 @@
     { l: 5, q: "ما اسم أخطر قنديل بحر في العالم؟", a: "دبور البحر (قنديل الصندوق)", img: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Avispa_marina_cropped.png" },
     { l: 5, q: "ما اسم النبات البحري الذي يشكّل غابات تحت الماء؟", a: "عشب البحر العملاق (الكِلب)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Macrocystis_pyrifera_kelp_forest_Cojo_Anchorage.jpg/960px-Macrocystis_pyrifera_kelp_forest_Cojo_Anchorage.jpg" },
     { l: 5, q: "ما اسم البحر الأشد ملوحة بين البحار المفتوحة؟", a: "البحر الأحمر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Coral_%28Acropora_hemprichii%29%2C_Ras_Katy%2C_Sharm_el-Sheij%2C_Egipto%2C_2022-03-26%2C_DD_108.jpg/960px-Coral_%28Acropora_hemprichii%29%2C_Ras_Katy%2C_Sharm_el-Sheij%2C_Egipto%2C_2022-03-26%2C_DD_108.jpg" },
-    { l: 5, q: "ما اسم أول رحلة علمية بحرية شاملة درست أعماق المحيطات في القرن التاسع عشر؟", a: "رحلة تشالنجر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Challenger_expedition.jpg/960px-Challenger_expedition.jpg" }
-  ];
+    { l: 5, q: "ما اسم أول رحلة علمية بحرية شاملة درست أعماق المحيطات في القرن التاسع عشر؟", a: "رحلة تشالنجر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Challenger_expedition.jpg/960px-Challenger_expedition.jpg" },    /* ===== صور الأسماك ===== */
+    { l: 5, q: "ما نوع هذه السمكة؟", a: "الشعري (الشعم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Lethrinus_nebulosus_Spangled_Emperor.jpg/960px-Lethrinus_nebulosus_Spangled_Emperor.jpg" },
+    { l: 5, q: "ما نوع هذه السمكة؟", a: "الميد (البياح)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/M%C3%BAjol_%28Mugil_cephalus%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2021-09-09%2C_DD_25.jpg/960px-M%C3%BAjol_%28Mugil_cephalus%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2021-09-09%2C_DD_25.jpg" },
+    { l: 5, q: "أين تعيش هذه السمكة؟", a: "تولد في الأنهار العذبة وتعيش في البحر ثم تعود للأنهار لتتكاثر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Salmo_salar_smolts.jpg/960px-Salmo_salar_smolts.jpg" },
+    { l: 5, q: "أين تعيش هذه السمكة؟", a: "قرب سطح المياه المفتوحة الدافئة والمعتدلة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Xiphias_gladius_stuffed.jpg/960px-Xiphias_gladius_stuffed.jpg" },
+    { l: 5, q: "أين تعيش هذه السمكة؟", a: "في المياه السطحية الدافئة بالمحيطين الهندي والهادئ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Istiophorus_platypterus.jpg/960px-Istiophorus_platypterus.jpg" }  ];
 
-  /* ---------- النباتات والأشجار (50 سؤالاً) ---------- */
+  /* ---------- النباتات والأشجار (70 سؤالاً) ----------
+     معلومات النبات والشجر، ومعها 20 سؤالاً بصورة:
+     «ما نوع هذه الشجرة؟» و«ما نوع هذا النبات؟» — فيها شجر
+     الخليج والعرب المعروف (النخلة والسدر والقرم والأرز اللبناني).
+     كل الصور من ويكيميديا كومنز برخص حرّة. */
   extra["النباتات والأشجار"] = [
     { l: 1, q: "ما اسم العملية التي تصنع بها النباتات غذاءها من ضوء الشمس؟", a: "البناء الضوئي", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Leaf_1_web.jpg/960px-Leaf_1_web.jpg" },
     { l: 1, q: "ما اسم الشجرة التي تنتج التمر؟", a: "النخلة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Phoenix_dactylifera%2C_date_palm_Half_Moon_Cay_7027.jpg/960px-Phoenix_dactylifera%2C_date_palm_Half_Moon_Cay_7027.jpg" },
@@ -582,6 +617,12 @@
     { l: 1, q: "ما اسم أشهر زهرة حمراء ترمز إلى الحب؟", a: "الوردة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Red_rose_with_black_background.jpg/960px-Red_rose_with_black_background.jpg" },
     { l: 1, q: "من أي جزء من النبات تُصنع الحبوب مثل القمح؟", a: "من البذور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Wheat_close-up.JPG/960px-Wheat_close-up.JPG", iq: "القمح" },
     { l: 1, q: "ما الغاز الذي تمتصّه النباتات من الهواء نهاراً؟", a: "ثاني أكسيد الكربون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Sunlight_through_the_Canopy.jpg/960px-Sunlight_through_the_Canopy.jpg" },
+    /* ===== صور النباتات والأشجار ===== */
+    { l: 1, q: "ما نوع هذه الشجرة؟", a: "النخلة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/4_date_palms_1.jpg/960px-4_date_palms_1.jpg" },
+    { l: 1, q: "ما نوع هذه الشجرة؟", a: "شجرة الزيتون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Lun_olive_tree_1600_years.jpg/960px-Lun_olive_tree_1600_years.jpg" },
+    { l: 1, q: "ما نوع هذا النبات؟", a: "الوردة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Red_Rose_-_Flickr_-_maticsteve.jpg/960px-Red_Rose_-_Flickr_-_maticsteve.jpg" },
+    { l: 1, q: "ما نوع هذا النبات؟", a: "عبّاد الشمس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Sunflowers_helianthus_annuus.jpg/960px-Sunflowers_helianthus_annuus.jpg" },
+
     { l: 2, q: "ما اسم أطول شجرة في العالم؟", a: "شجرة السيكويا الساحلية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Redwood_National_Park%2C_fog_in_the_forest.jpg/960px-Redwood_National_Park%2C_fog_in_the_forest.jpg" },
     { l: 2, q: "ما اسم الشجرة الضخمة ذات الجذع المنتفخ في أفريقيا؟", a: "شجرة الباوباب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Adansonia_grandidieri04.jpg/960px-Adansonia_grandidieri04.jpg" },
     { l: 2, q: "ما اسم أسرع نبات نموّاً في العالم؟", a: "الخيزران (البامبو)", img: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Bamboo_forest.jpg" },
@@ -592,6 +633,12 @@
     { l: 2, q: "ما اسم النبات الذي تُصنع منه الأقمشة القطنية؟", a: "القطن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Cotton.JPG/960px-Cotton.JPG" },
     { l: 2, q: "ما اسم النبات آكل الحشرات المشهور بفكّيه المطبقين؟", a: "خنّاق الذباب (فينوس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Venus_Flytrap_Dionaea_muscipula_%2826455092815%29.jpg/960px-Venus_Flytrap_Dionaea_muscipula_%2826455092815%29.jpg" },
     { l: 2, q: "ما اسم الشجرة دائمة الخضرة التي ترتبط بأعياد الشتاء؟", a: "شجرة التنّوب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Snow_on_fir_trees.jpg/960px-Snow_on_fir_trees.jpg" },
+    /* ===== صور النباتات والأشجار ===== */
+    { l: 2, q: "ما نوع هذه الشجرة؟", a: "شجرة الكرز (الساكورا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/High_Park_Cherry_Blossoms.jpg/960px-High_Park_Cherry_Blossoms.jpg" },
+    { l: 2, q: "ما نوع هذه الشجرة؟", a: "شجرة الصفصاف الباكي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Salix_babylonica_%28Saule_pleureur%29_-_20150810_10h23_%2811045%29.jpg/960px-Salix_babylonica_%28Saule_pleureur%29_-_20150810_10h23_%2811045%29.jpg" },
+    { l: 2, q: "ما نوع هذا النبات؟", a: "الصبّار (الصبّار الساغوارو)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Carnegiea_gigantea_or_Sahuaro_or_Saguaro.jpg/960px-Carnegiea_gigantea_or_Sahuaro_or_Saguaro.jpg" },
+    { l: 2, q: "ما نوع هذا النبات؟", a: "التوليب (الخزامى الهولندية)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Dsc00356_Red_Tulip_%28222852399%29.jpeg/960px-Dsc00356_Red_Tulip_%28222852399%29.jpeg" },
+
     { l: 3, q: "ما اسم أقدم شجرة حيّة معروفة في العالم؟", a: "الصنوبر المعمّر (ميثوسيلاح)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Methuselah_Tree.jpg/960px-Methuselah_Tree.jpg" },
     { l: 3, q: "ما اسم أكبر زهرة في العالم؟", a: "زهرة الرافليسيا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Rafflesia_arnoldii%2C_Sumatra.jpg/960px-Rafflesia_arnoldii%2C_Sumatra.jpg" },
     { l: 3, q: "ما اسم العملية التي يفقد فيها النبات الماء عبر أوراقه؟", a: "النتح", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Water_droplets_on_a_leaf.jpg/960px-Water_droplets_on_a_leaf.jpg" },
@@ -602,6 +649,12 @@
     { l: 3, q: "ما اسم أكبر بذرة في مملكة النبات؟", a: "جوز الهند المزدوج (كوكو دي مير)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Female_coco_de_mer_seed.jpg/960px-Female_coco_de_mer_seed.jpg" },
     { l: 3, q: "ما اسم النبات الذي يُستخرج منه السكر في المناطق الحارة؟", a: "قصب السكر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Cut_sugarcane.jpg/960px-Cut_sugarcane.jpg" },
     { l: 3, q: "ما اسم الغابة الأكبر في العالم والمعروفة برئة الأرض؟", a: "غابة الأمازون", img: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Amazon_rainforest.jpg" },
+    /* ===== صور النباتات والأشجار ===== */
+    { l: 3, q: "ما نوع هذه الشجرة؟", a: "شجرة السدر (النبق)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Sidr_Tree_and_me_connected_with_eachother_through_the_early_morning_sun.jpg/960px-Sidr_Tree_and_me_connected_with_eachother_through_the_early_morning_sun.jpg" },
+    { l: 3, q: "ما نوع هذه الشجرة؟", a: "شجرة الباوباب", img: "https://upload.wikimedia.org/wikipedia/commons/2/23/Adansonia_Grandidieri_Baobab_Morondava_Madagascar.jpg" },
+    { l: 3, q: "ما نوع هذا النبات؟", a: "القمح", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/11186Harvested_Wheat3.jpg/960px-11186Harvested_Wheat3.jpg" },
+    { l: 3, q: "ما نوع هذا النبات؟", a: "الخيزران (البامبو)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Bamboo_Grove%2C_Arashiyama%2C_Kyoto%2C_Japan.jpg/960px-Bamboo_Grove%2C_Arashiyama%2C_Kyoto%2C_Japan.jpg" },
+
     { l: 4, q: "ما اسم الجزء الأنثوي من الزهرة الذي يستقبل حبوب اللقاح؟", a: "الميسم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Stigma_of_hibiscus_flower.jpg/960px-Stigma_of_hibiscus_flower.jpg" },
     { l: 4, q: "ما اسم العالم الذي اكتشف قوانين الوراثة من تجاربه على البازلاء؟", a: "غريغور مندل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Gregor_Mendel_2.jpg/960px-Gregor_Mendel_2.jpg" },
     { l: 4, q: "ما اسم أثقل شجرة معروفة كتلة والتي تُعد كائناً واحداً؟", a: "شجرة باندو (غابة الحور الرجراج)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/FallPando02.jpg/960px-FallPando02.jpg" },
@@ -612,6 +665,12 @@
     { l: 4, q: "ما اسم الشجرة التي تعيش في مياه مالحة على السواحل بجذور هوائية؟", a: "أشجار المانغروف (القرم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Detail_of_mangrove_roots.jpg/960px-Detail_of_mangrove_roots.jpg" },
     { l: 4, q: "ما اسم الهرمون النباتي المسؤول عن استطالة الساق نحو الضوء؟", a: "الأوكسين", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Positive_phototropism_in_Quercus_humboldtii_seedlings.jpg/960px-Positive_phototropism_in_Quercus_humboldtii_seedlings.jpg" },
     { l: 4, q: "ما اسم النباتات التي لا تنتج بذوراً وتتكاثر بالأبواغ؟", a: "السرخسيات", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Fiddlehead_closeup.png/960px-Fiddlehead_closeup.png" },
+    /* ===== صور النباتات والأشجار ===== */
+    { l: 4, q: "ما نوع هذه الشجرة؟", a: "شجرة الأرز اللبناني", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Cedrus_libani_-_Lebanon_cedar_01.jpg/960px-Cedrus_libani_-_Lebanon_cedar_01.jpg" },
+    { l: 4, q: "ما نوع هذه الشجرة؟", a: "شجرة السيكويا العملاقة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Yosemite_National_Park_%28CA%2C_USA%29%2C_Mariposa_Grove_of_Giant_Sequoias_--_2022_--_2766-8.jpg/960px-Yosemite_National_Park_%28CA%2C_USA%29%2C_Mariposa_Grove_of_Giant_Sequoias_--_2022_--_2766-8.jpg" },
+    { l: 4, q: "ما نوع هذا النبات؟", a: "القطن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/CSIRO_ScienceImage_1366_Cotton_boll.jpg/960px-CSIRO_ScienceImage_1366_Cotton_boll.jpg" },
+    { l: 4, q: "ما نوع هذا النبات؟", a: "الخزامى (اللافندر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Lavender_field_in_bloom.jpg/960px-Lavender_field_in_bloom.jpg" },
+
     { l: 5, q: "ما اسم البنك العالمي للبذور في النرويج؟", a: "قبو سفالبارد العالمي للبذور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Svalbard_Global_Seed_Vault_Exterior_2020.jpg/960px-Svalbard_Global_Seed_Vault_Exterior_2020.jpg" },
     { l: 5, q: "ما اسم الظاهرة التي تنمو فيها جذور النبات نحو الجاذبية؟", a: "الانتحاء الأرضي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Delonix_regia_germinating_seeds.jpg/960px-Delonix_regia_germinating_seeds.jpg" },
     { l: 5, q: "ما اسم العلاقة التبادلية بين جذور النبات والفطريات؟", a: "الميكوريزا (الجذور الفطرية)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Mycelium_in_forest_floor.jpg/960px-Mycelium_in_forest_floor.jpg" },
@@ -621,7 +680,12 @@
     { l: 5, q: "ما اسم المسار الكيميائي الذي تثبّت به معظم النباتات الكربون؟", a: "دورة كالفن", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Chloroplasts_under_microscope.jpg/960px-Chloroplasts_under_microscope.jpg" },
     { l: 5, q: "ما اسم الشجرة التي تنتج أكبر ثمرة تنمو على الأشجار في العالم؟", a: "شجرة الكاكايا (الجاك فروت)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Jackfruit_tree_with_fruit.jpg/960px-Jackfruit_tree_with_fruit.jpg" },
     { l: 5, q: "ما اسم علم دراسة النباتات؟", a: "علم النبات (البوتانيا)", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Botanist_collecting_and_pressing_plants_%283796303642%29.jpg" },
-    { l: 5, q: "ما اسم العملية التي تصنع بها بعض البكتيريا غذاءها دون ضوء؟", a: "التركيب الكيميائي (الكيموسينثيسيس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Vers_tubicoles_g%C3%A9ants_%28Riftia_pachyptila%29_%28Ifremer_00568-67973_-_25087%29.jpg/960px-Vers_tubicoles_g%C3%A9ants_%28Riftia_pachyptila%29_%28Ifremer_00568-67973_-_25087%29.jpg" }
+    { l: 5, q: "ما اسم العملية التي تصنع بها بعض البكتيريا غذاءها دون ضوء؟", a: "التركيب الكيميائي (الكيموسينثيسيس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Vers_tubicoles_g%C3%A9ants_%28Riftia_pachyptila%29_%28Ifremer_00568-67973_-_25087%29.jpg/960px-Vers_tubicoles_g%C3%A9ants_%28Riftia_pachyptila%29_%28Ifremer_00568-67973_-_25087%29.jpg" },
+    /* ===== صور النباتات والأشجار ===== */
+    { l: 5, q: "ما نوع هذه الشجرة؟", a: "شجرة القرم (المانغروف)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Avicennia_marina_%28grey_mangrove%29.JPG/960px-Avicennia_marina_%28grey_mangrove%29.JPG" },
+    { l: 5, q: "ما نوع هذه الشجرة؟", a: "شجرة التنّوب (شجرة عيد الميلاد)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Kuusk_Keila-Paldiski_rdt_%C3%A4%C3%A4res.jpg/960px-Kuusk_Keila-Paldiski_rdt_%C3%A4%C3%A4res.jpg" },
+    { l: 5, q: "ما نوع هذا النبات؟", a: "خنّاق الذباب (نبات فينوس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Venus_Flytrap_showing_trigger_hairs.jpg/960px-Venus_Flytrap_showing_trigger_hairs.jpg" },
+    { l: 5, q: "ما نوع هذا النبات؟", a: "النبتة المستحية (نبات اللمس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Touch_Me_not.jpg/960px-Touch_Me_not.jpg" }
   ];
 
   /* ---------- كرة القدم العالمية (65 سؤالاً) ----------

@@ -1,7 +1,7 @@
 /* ============================================================
    جاوبني — محرّك تعدد اللغات (i18n)
    ------------------------------------------------------------
-   يترجم كامل واجهة اللعبة إلى 38 لغة دون الحاجة لتعديل صفحات HTML:
+   يترجم كامل واجهة اللعبة إلى 37 لغة دون الحاجة لتعديل صفحات HTML:
    المحرّك يمشي على عُقد النص في الصفحة ويستبدل العبارات العربية
    المعروفة بترجمتها، ثم يراقب التغييرات الديناميكية ويترجمها أيضاً.
 
@@ -48,7 +48,6 @@
     { code: "ku", native: "Kurdî",             en: "Kurdish",    dir: "ltr", flag: "🟨" },
     { code: "ur", native: "اردو",              en: "Urdu",       dir: "rtl", flag: "🇵🇰" },
     { code: "ps", native: "پښتو",              en: "Pashto",     dir: "rtl", flag: "🇦🇫" },
-    { code: "he", native: "עברית",             en: "Hebrew",     dir: "rtl", flag: "🇮🇱" },
     { code: "hi", native: "हिन्दी",              en: "Hindi",      dir: "ltr", flag: "🇮🇳" },
     { code: "bn", native: "বাংলা",              en: "Bengali",    dir: "ltr", flag: "🇧🇩" },
     { code: "ta", native: "தமிழ்",              en: "Tamil",      dir: "ltr", flag: "🇱🇰" },
@@ -72,7 +71,6 @@
     fa: "'Tajawal','Cairo',sans-serif",
     ur: "'Noto Nastaliq Urdu','Tajawal',sans-serif",
     ps: "'Tajawal','Cairo',sans-serif",
-    he: "'Noto Sans Hebrew',system-ui,sans-serif",
     zh: "'Noto Sans SC',system-ui,sans-serif",
     ja: "'Noto Sans JP',system-ui,sans-serif",
     ko: "'Noto Sans KR',system-ui,sans-serif",
@@ -274,7 +272,6 @@
 
   var FONT_URLS = {
     ur: "Noto+Nastaliq+Urdu:wght@400;700",
-    he: "Noto+Sans+Hebrew:wght@400;700",
     zh: "Noto+Sans+SC:wght@400;700",
     ja: "Noto+Sans+JP:wght@400;700",
     ko: "Noto+Sans+KR:wght@400;700",
