@@ -1873,12 +1873,37 @@ const questionsCount = Object.keys(questionsData).reduce((acc, cat) => {
   return acc;
 }, {});
 
-/* قيم النقاط الخمس ومستوياتها */
+/* قيم النقاط الست ومستوياتها */
 /* قيمة الزرّ ← مستوى صعوبة السؤال في البنك.
    ٦٠٠ يأخذ من المستوى الخامس أيضاً: البنك أصعب ما فيه هو المستوى ٥،
    وكل فئة فيها خمسة أسئلة منه على الأقل (الوسيط عشرة)، والبانيّ أدناه
    يمنع تكرار الجواب في الجولة، فيخرج ٥٠٠ و٦٠٠ بسؤالين مختلفين. */
 const POINT_LEVELS = { 100: 1, 200: 2, 300: 3, 400: 4, 500: 5, 600: 5 };
+
+/* ---------- درجات الصعوبة الثلاث ----------
+   القيم الست موزّعة على ثلاث درجات، درجتان لكل مستوى من مستويات البنك:
+     ١٠٠ و٢٠٠  سهل    (المستويان ١ و٢)
+     ٣٠٠ و٤٠٠  متوسط  (المستويان ٣ و٤)
+     ٥٠٠ و٦٠٠  صعب    (المستوى ٥)
+   تُعرض الدرجة على لوحة اللعب فوق كل صفّ وفي شارة السؤال. */
+const POINT_TIERS = [
+  { key: "easy", label: "سهل",   points: [100, 200], levels: [1, 2] },
+  { key: "mid",  label: "متوسط", points: [300, 400], levels: [3, 4] },
+  { key: "hard", label: "صعب",   points: [500, 600], levels: [5]    }
+];
+
+function pointTier(points) {
+  const p = Number(points);
+  for (let i = 0; i < POINT_TIERS.length; i++) {
+    if (POINT_TIERS[i].points.indexOf(p) >= 0) return POINT_TIERS[i];
+  }
+  return POINT_TIERS[0];
+}
+
+if (typeof window !== "undefined") {
+  window.POINT_TIERS = POINT_TIERS;
+  window.pointTier = pointTier;
+}
 
 /* ---------- ذاكرة الأسئلة المطروحة ----------
    حتى لا يتكرّر السؤال نفسه في جولة جديدة ما دام في الفئة أسئلة لم تُطرح.
@@ -1900,6 +1925,21 @@ function readSeen() {
   try { return JSON.parse(localStorage.getItem(SEEN_KEY) || "[]"); } catch (e) { return []; }
 }
 
+/* ---------- أسئلة الجولة السابقة ----------
+   ذاكرة SEEN وحدها لا تكفي: حين تنفد أسئلة مستوى في فئة نمسح بصماته
+   ونبدأ دورة جديدة، فقد يُسحب في الجولة التالية السؤالُ نفسه الذي خرج
+   للتوّ. فنحتفظ ببصمات الجولة الأخيرة ونتجنّبها ما دام في المستوى بديل. */
+const RECENT_KEY = "recentQuestions";
+
+function readRecent() {
+  try { return new Set(JSON.parse(localStorage.getItem(RECENT_KEY) || "[]")); }
+  catch (e) { return new Set(); }
+}
+
+function writeRecent(fps) {
+  try { localStorage.setItem(RECENT_KEY, JSON.stringify(fps.slice(-400))); } catch (e) {}
+}
+
 function writeSeen(list) {
   /* سقف أمان: أحدث 4000 بصمة تكفي لآلاف الأسئلة ولا تُثقل التخزين */
   try { localStorage.setItem(SEEN_KEY, JSON.stringify(list.slice(-4000))); } catch (e) {}
@@ -1910,6 +1950,12 @@ function buildRoundQuestions(categoryTitles) {
   const round = {};
   const seenList = readSeen();
   const seen = new Set(seenList);
+  const recent = readRecent();          /* بصمات الجولة الماضية — نتجنّبها */
+  const picked = [];                    /* بصمات هذه الجولة */
+  /* أسئلة الجولة كلها بصيغة «نص السؤال + جوابه»: في البنك قوالب متكرّرة
+     («ما اسم هذا الحيوان؟») تتبدّل صورها وأجوبتها، فلا يصحّ المنع بنصّ
+     السؤال وحده — إنما بالسؤال وجوابه معاً. */
+  const roundQs = new Set();
   /* تطبيع الجواب للمقارنة: بلا تشكيل ولا علامات، وصيغة واحدة للهمزات والتاء المربوطة */
   const norm = s => String(s || "")
     .replace(/[ً-ْـ«»"'()\[\]،,.؟?!:]/g, "")
@@ -1939,22 +1985,31 @@ function buildRoundQuestions(categoryTitles) {
         });
         pool2 = candidates;
       }
-      let fresh = pool2.filter(item => !used.has(norm(item.a)));
+      /* لا جواب مكرّراً داخل الفئة، ولا نصّ سؤال مكرّراً في الجولة كلها */
+      const pairOf = item => norm(item.q) + "|" + norm(item.a);
+      const free = item => !used.has(norm(item.a)) && !roundQs.has(pairOf(item));
+      let fresh = pool2.filter(free);
       /* مستوى فيه سؤال واحد (و٥٠٠ و٦٠٠ كلاهما من المستوى الخامس): نستعير
          من بقية مستويات الفئة بدل تكرار السؤال نفسه في الجولة */
       if (!fresh.length) {
-        fresh = pool.filter(item => !used.has(norm(item.a)) && !seen.has(qFingerprint(cat, item)));
-        if (!fresh.length) fresh = pool.filter(item => !used.has(norm(item.a)));
+        fresh = pool.filter(item => free(item) && !seen.has(qFingerprint(cat, item)));
+        if (!fresh.length) fresh = pool.filter(free);
       }
-      const from = fresh.length ? fresh : pool2;
-      const picked = from[Math.floor(Math.random() * from.length)];
-      used.add(norm(picked.a));
-      const fp = qFingerprint(cat, picked);
+      let from = fresh.length ? fresh : pool2;
+      /* وبين المتاح: ما لم يخرج في الجولة الماضية أولاً */
+      const notRecent = from.filter(item => !recent.has(qFingerprint(cat, item)));
+      if (notRecent.length) from = notRecent;
+      const pick = from[Math.floor(Math.random() * from.length)];
+      used.add(norm(pick.a));
+      roundQs.add(pairOf(pick));
+      const fp = qFingerprint(cat, pick);
       if (!seen.has(fp)) { seen.add(fp); seenList.push(fp); }
-      round[cat + "_" + points] = picked;
+      picked.push(fp);
+      round[cat + "_" + points] = pick;
     });
   });
   writeSeen(seenList);
+  writeRecent(picked);
   return round;
 }
 
@@ -1965,5 +2020,6 @@ if (typeof window !== "undefined") {
   window.qFingerprint = qFingerprint;
   window.readSeenQuestions = readSeen;
   window.writeSeenQuestions = writeSeen;
+  window.readRecentQuestions = readRecent;
   window.SEEN_QUESTIONS_KEY = SEEN_KEY;
 }

@@ -187,6 +187,22 @@
       padding:9px 22px;
       box-shadow:0 10px 26px rgba(231,183,64,.35);
     }
+    /* درجة صعوبة السؤال: ١٠٠ و٢٠٠ سهل، ٣٠٠ و٤٠٠ متوسط، ٥٠٠ و٦٠٠ صعب */
+    .tier-badge{
+      font-family:'Cairo', sans-serif;
+      font-weight:800; font-size:13px;
+      display:inline-flex; align-items:center; gap:7px;
+      color:var(--tier); border:1px solid color-mix(in srgb, var(--tier) 45%, transparent);
+      background:color-mix(in srgb, var(--tier) 14%, transparent);
+      border-radius:999px; padding:8px 16px;
+    }
+    .tier-badge::before{
+      content:""; width:7px; height:7px; border-radius:50%;
+      background:var(--tier); box-shadow:0 0 10px var(--tier);
+    }
+    .tier-badge.easy{ --tier:#6fd49a; }
+    .tier-badge.mid { --tier:#e7b740; }
+    .tier-badge.hard{ --tier:#ff8a6b; }
 
     /* ---------- timer ---------- */
     .timer{
@@ -1118,6 +1134,7 @@
   <div class="meta">
     <span class="cat-badge" id="catBadge">الفئة</span>
     <span class="pts-badge" id="ptsBadge">100 نقطة</span>
+    <span class="tier-badge" id="tierBadge" hidden></span>
     <span id="mtBadge" hidden data-no-i18n title="مترجم آلياً"><i class="fa-solid fa-language"></i> <span class="lg"></span></span>
     <span class="map-badge" id="mapBadge" hidden></span>
   </div>
@@ -1323,6 +1340,15 @@
   /* ---------------- fill header / meta ---------------- */
   document.getElementById("catBadge").textContent = category || "بدون فئة";
   document.getElementById("ptsBadge").textContent = points + " نقطة";
+
+  /* شارة درجة الصعوبة بجانب النقاط — تُخفى في سؤال العجلة لأن قيمته مضاعفة */
+  if (window.pointTier && !bonusMode) {
+    const tier = pointTier(points);
+    const tb = document.getElementById("tierBadge");
+    tb.className = "tier-badge " + tier.key;
+    tb.textContent = tier.label;
+    tb.hidden = false;
+  }
   /* أزرار «من أجاب إجابة صحيحة؟» — زر لكل فريق منافس */
   (function buildTeamButtons() {
     const box = document.getElementById("teamBtns");
@@ -1404,6 +1430,13 @@
       const seen = new Set(seenList);
       const unseen = pick.filter(x => !seen.has(window.qFingerprint(category, x)));
       if (unseen.length) pick = unseen;
+      /* وما لم يخرج في الجولة الماضية أولاً — فلا يعود السؤال نفسه مباشرةً
+         بعد أن تنفد أسئلة المستوى وتُمسح ذاكرته */
+      if (window.readRecentQuestions) {
+        const recent = window.readRecentQuestions();
+        const notRecent = pick.filter(x => !recent.has(window.qFingerprint(category, x)));
+        if (notRecent.length) pick = notRecent;
+      }
       item = pick[Math.floor(Math.random() * pick.length)];
       const fp = window.qFingerprint(category, item);
       if (!seen.has(fp)) { seenList.push(fp); window.writeSeenQuestions(seenList); }

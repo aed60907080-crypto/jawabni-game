@@ -1613,6 +1613,47 @@
   window.I18N_PACKED2 = P2;
   window.I18N_KEYS3 = K3;
   window.I18N_PACKED3 = P3;
+  /* ---------- درجات الصعوبة الثلاث ---------- */
+  var K10 = ["سهل", "متوسط", "صعب"];
+  var P10 = {
+    en: ["Easy","Medium","Hard"],
+    fr: ["Facile","Moyen","Difficile"],
+    es: ["Fácil","Medio","Difícil"],
+    pt: ["Fácil","Médio","Difícil"],
+    de: ["Leicht","Mittel","Schwer"],
+    it: ["Facile","Medio","Difficile"],
+    nl: ["Makkelijk","Gemiddeld","Moeilijk"],
+    sv: ["Lätt","Medel","Svår"],
+    pl: ["Łatwy","Średni","Trudny"],
+    cs: ["Snadné","Střední","Těžké"],
+    ro: ["Ușor","Mediu","Greu"],
+    hu: ["Könnyű","Közepes","Nehéz"],
+    el: ["Εύκολο","Μέτριο","Δύσκολο"],
+    ru: ["Лёгкий","Средний","Сложный"],
+    uk: ["Легкий","Середній","Складний"],
+    tr: ["Kolay","Orta","Zor"],
+    az: ["Asan","Orta","Çətin"],
+    fa: ["آسان","متوسط","سخت"],
+    ku: ["Hêsan","Navîn","Zehmet"],
+    ur: ["آسان","درمیانہ","مشکل"],
+    ps: ["اسانه","منځنی","ګران"],
+    hi: ["आसान","मध्यम","कठिन"],
+    bn: ["সহজ","মাঝারি","কঠিন"],
+    ta: ["எளிது","நடுத்தரம்","கடினம்"],
+    id: ["Mudah","Sedang","Sulit"],
+    ms: ["Mudah","Sederhana","Sukar"],
+    zh: ["简单","中等","困难"],
+    ja: ["やさしい","ふつう","むずかしい"],
+    ko: ["쉬움","보통","어려움"],
+    th: ["ง่าย","ปานกลาง","ยาก"],
+    vi: ["Dễ","Trung bình","Khó"],
+    tl: ["Madali","Katamtaman","Mahirap"],
+    sw: ["Rahisi","Wastani","Ngumu"],
+    ha: ["Sauƙi","Matsakaici","Wuya"],
+    so: ["Fudud","Dhexdhexaad","Adag"],
+    am: ["ቀላል","መካከለኛ","ከባድ"]
+  };
+
   if (window.I18N && window.I18N.loadPacked) {
     window.I18N.loadPacked(K, P);
     window.I18N.loadPacked(K2, P2);
@@ -1623,5 +1664,6 @@
     window.I18N.loadPacked(K7, P7);
     window.I18N.loadPacked(K8, P8);
     window.I18N.loadPacked(K9, P9);
+    window.I18N.loadPacked(K10, P10);
   }
 })();
