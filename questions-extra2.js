@@ -846,66 +846,68 @@
     { l: 5, q: "ما اسم الطبق الشعبي المشترك في مطابخ الخليج؟", a: "المجبوس — الكبسة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Kabsa.jpg/960px-Kabsa.jpg", iq: "كبسة" }
   ];
 
-  /* ---------- قصص الأنبياء (50 سؤالاً) ----------
-     فئة عن أحداث القصص كما وردت في القرآن الكريم — لا عن أسماء الأنبياء
-     وألقابهم (تلك فئة «الأنبياء والرسل»).
-     كل الأسئلة تشير إلى صورة الفئة عمداً: لا صورة تجسّد نبياً، ولا بحث
-     تلقائي يجلب أيقونات تجسّده. */
+  /* ---------- قصص الأنبياء (53 سؤالاً) ----------
+     عن الأنبياء أنفسهم فقط: اسم النبي، أو فعله، أو معجزته، أو ابتلاؤه،
+     أو دعاؤه. ما كان جوابه شخصية أخرى (حوّاء، فرعون، بلقيس، السامري،
+     آزر، الحواريون) أو قوماً أو حيواناً أو مكاناً — أُخرج من الفئة.
+     والصعوبة مرتّبة: ١٠٠ و٢٠٠ سهل، ٣٠٠ و٤٠٠ متوسط، ٥٠٠ و٦٠٠ صعب.
+     كل الأسئلة تشير إلى صورة (خطّ عربي لاسم النبي أو صورة الفئة): لا
+     صورة تجسّد نبياً، والفئة في IMAGE_IN_ANSWER_CATEGORIES فلا تظهر
+     الصورة إلا مع الإجابة — وإلا كتب الخطّ الجواب على السؤال. */
   extra["قصص الأنبياء"] = [
     { l: 1, q: "ما اسم النبي الذي صنع السفينة ونجا بمن آمن معه من الطوفان؟", a: "نوح عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/The_Prophet_Nuh_%28Noah_In_Islam%29.png/960px-The_Prophet_Nuh_%28Noah_In_Islam%29.png" },
-    { l: 1, q: "أي نبي ألقاه قومه في النار فجعلها الله برداً وسلاماً عليه؟", a: "إبراهيم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
     { l: 1, q: "ما اسم النبي الذي ابتلعه الحوت؟", a: "يونس عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/The_Prophet_Yunus_%28Jonah_In_Islam%29.png/960px-The_Prophet_Yunus_%28Jonah_In_Islam%29.png" },
+    { l: 1, q: "ما اسم النبي الذي أسكنه الله الجنة فأكل من الشجرة فأُهبط إلى الأرض؟", a: "آدم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/The_Prophet_Adam_%28Adam_In_Islam%29.png/960px-The_Prophet_Adam_%28Adam_In_Islam%29.png" },
     { l: 1, q: "أي نبي ألقاه إخوته في البئر؟", a: "يوسف عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/The_Prophet_Yusuf_%28Joseph_In_Islam%29.png/960px-The_Prophet_Yusuf_%28Joseph_In_Islam%29.png" },
-    { l: 1, q: "ما المعجزة التي انشقّ بها البحر لبني إسرائيل؟", a: "عصا موسى عليه السلام", img: "image/قصص الانبياء.jpg" },
-    { l: 1, q: "ما اسم النبي الذي سُخِّرت له الريح والجن وعلّمه الله منطق الطير؟", a: "سليمان عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png/960px-The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png" },
-    { l: 1, q: "ما اسم أول امرأة، وقد خلقها الله من آدم عليه السلام؟", a: "حواء", img: "image/قصص الانبياء.jpg" },
+    { l: 1, q: "ما المعجزة التي انشقّ بها البحر لبني إسرائيل؟", a: "عصا موسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Prophet_Musa_%28Moses_In_Islam%29.png/960px-The_Prophet_Musa_%28Moses_In_Islam%29.png" },
+    { l: 1, q: "أي نبي ألقاه قومه في النار فجعلها الله برداً وسلاماً عليه؟", a: "إبراهيم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
+    { l: 1, q: "ما اسم النبي الذي ألقى عصاه فإذا هي ثعبان مبين؟", a: "موسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Prophet_Musa_%28Moses_In_Islam%29.png/960px-The_Prophet_Musa_%28Moses_In_Islam%29.png" },
+    { l: 1, q: "ما اسم النبي الذي تكلّم في المهد صبياً؟", a: "عيسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/The_Prophet_Isa_%28Jesus_In_Islam%29.png/960px-The_Prophet_Isa_%28Jesus_In_Islam%29.png" },
+    { l: 1, q: "ما اسم النبي الذي سُخِّرت له الريح تجري بأمره؟", a: "سليمان عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png/960px-The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png" },
     { l: 1, q: "ما اسم ابن إبراهيم عليه السلام الذي أُمر بذبحه ففداه الله بذبح عظيم؟", a: "إسماعيل عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Prophet_Ismail_%28Ishmael_In_Islam%29.png/960px-The_Prophet_Ismail_%28Ishmael_In_Islam%29.png" },
-    { l: 1, q: "ما اسم الطاغية الذي أرسل الله إليه موسى عليه السلام؟", a: "فرعون", img: "image/قصص الانبياء.jpg" },
-    { l: 1, q: "ما اسم الناقة التي كانت معجزة النبي صالح عليه السلام؟", a: "ناقة الله", img: "image/قصص الانبياء.jpg" },
-
-    { l: 2, q: "ما اسم قوم النبي هود عليه السلام؟", a: "قوم عاد", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "ما اسم قوم النبي صالح عليه السلام؟", a: "قوم ثمود", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "أي نبي أُرسل إلى أهل مدين؟", a: "شعيب عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/The_Prophet_Shuaib_%28Jethro_In_Islam%29.png/960px-The_Prophet_Shuaib_%28Jethro_In_Islam%29.png" },
-    { l: 2, q: "ما الشجرة التي أنبتها الله على يونس عليه السلام بعد خروجه من الحوت؟", a: "شجرة من يقطين", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "ما اسم الملكة التي أسلمت مع سليمان عليه السلام لله رب العالمين؟", a: "بلقيس ملكة سبأ", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "ما الطائر الذي حمل خبر مملكة سبأ إلى سليمان عليه السلام؟", a: "الهدهد", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "كم لبث نوح عليه السلام يدعو قومه كما ذُكر في القرآن؟", a: "ألف سنة إلا خمسين عاماً", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "ما اسم النبي الذي رُفع إلى السماء ولم يُقتل ولم يُصلب؟", a: "عيسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/The_Prophet_Isa_%28Jesus_In_Islam%29.png/960px-The_Prophet_Isa_%28Jesus_In_Islam%29.png" },
-    { l: 2, q: "ما اسم أم عيسى عليه السلام؟", a: "مريم عليها السلام", img: "image/قصص الانبياء.jpg" },
-    { l: 2, q: "ما الثمر الذي أُمرت مريم عليها السلام أن تهزّ إليه بجذع النخلة؟", a: "الرطب", img: "image/قصص الانبياء.jpg" },
-
-    { l: 3, q: "أي نبي رزقه الله يحيى عليه السلام على الكبر بعد دعائه؟", a: "زكريا عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png/960px-The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png" },
-    { l: 3, q: "ما اسم النبي الذي كان يعمل في الحدادة ويصنع الدروع، وأُلين له الحديد؟", a: "داود عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/The_Prophet_Dawud_%28David_In_Islam%29.png/960px-The_Prophet_Dawud_%28David_In_Islam%29.png" },
-    { l: 3, q: "ما اسم الوادي المقدّس الذي كلّم الله فيه موسى عليه السلام؟", a: "الوادي المقدّس طوى", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "من هو أخو موسى عليه السلام الذي طلب من الله أن يكون وزيراً له؟", a: "هارون عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/The_Prophet_Harun_%28Aaron_In_Islam%29.png/960px-The_Prophet_Harun_%28Aaron_In_Islam%29.png" },
-    { l: 3, q: "من الذي صنع لبني إسرائيل عجلاً من الذهب يعبدونه في غياب موسى عليه السلام؟", a: "السامري", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "كم سنة من الرخاء ثم الشدّة فسّرها يوسف عليه السلام في رؤيا الملك؟", a: "سبع سنين رخاء ثم سبع شداد", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "بماذا ارتدّ بصر يعقوب عليه السلام بصيراً في آخر قصة يوسف؟", a: "بقميص يوسف عليه السلام", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "ما اسم زوجة إبراهيم عليه السلام التي بُشّرت بإسحاق على الكبر؟", a: "سارة", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "ما اسم البئر التي تفجّرت لهاجر وإسماعيل في مكة؟", a: "بئر زمزم", img: "image/قصص الانبياء.jpg" },
-    { l: 3, q: "أي نبي دخل قرية خاوية فأماته الله مئة عام ثم بعثه؟", a: "عزير عليه السلام (على قول المفسّرين)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Prophet_Uzair_Name.svg/960px-Prophet_Uzair_Name.svg.png" },
-
-    { l: 4, q: "ما الدعاء الذي دعا به يونس عليه السلام في بطن الحوت؟", a: "لا إله إلا أنت سبحانك إني كنت من الظالمين", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "ما اسم العبد الصالح الذي رافقه موسى عليه السلام ليتعلّم منه؟", a: "الخضر عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/The_Prophet_Khidr.png/960px-The_Prophet_Khidr.png" },
-    { l: 4, q: "كم عدد المعجزات (الآيات) التي أُعطيها موسى عليه السلام أمام فرعون كما في القرآن؟", a: "تسع آيات", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "ما الحشرة التي تكلّمت فسمع سليمان عليه السلام قولها؟", a: "النملة", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "ما اسم أبي إبراهيم عليه السلام كما ورد في القرآن؟", a: "آزر", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "بأي شيء حطّم إبراهيم عليه السلام أصنام قومه وترك كبيرهم؟", a: "بالفأس (وجعل الفأس في يد كبيرهم)", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "ماذا طلب إبراهيم عليه السلام من ربه فأحيا له الطير الأربعة؟", a: "قال: ربِّ أرني كيف تحيي الموتى", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "من هو النبي الذي ابتُلي في ماله وولده وجسده فصبر؟", a: "أيوب عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/The_Prophet_Ayub_%28Job_In_Islam%29.png/960px-The_Prophet_Ayub_%28Job_In_Islam%29.png" },
-    { l: 4, q: "ما العلامة التي جعلها الله لزكريا عليه السلام حين بُشّر بيحيى؟", a: "ألا يكلّم الناس ثلاث ليال سوياً", img: "image/قصص الانبياء.jpg" },
-    { l: 4, q: "ما اسم الجبل الذي استوت عليه سفينة نوح عليه السلام؟", a: "الجودي", img: "image/قصص الانبياء.jpg" },
-
-    { l: 5, q: "بماذا ردّ ابن نوح عليه السلام حين دعاه أبوه إلى ركوب السفينة؟", a: "قال: سآوي إلى جبل يعصمني من الماء", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "ما المعجزات التي أُعطيها عيسى عليه السلام كما ذُكرت في القرآن؟", a: "إبراء الأكمه والأبرص وإحياء الموتى بإذن الله", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "من الذين طلبوا من عيسى عليه السلام أن يُنزّل عليهم مائدة من السماء؟", a: "الحواريون (وبها سُمّيت سورة المائدة)", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "ما العذاب الذي أُهلك به قوم لوط عليه السلام؟", a: "قُلبت قريتهم وأُمطروا حجارة من سجّيل", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "بأي شيء أُهلك قوم عاد قوم هود عليه السلام؟", a: "بريح صرصر عاتية", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "بأي شيء أُهلك قوم ثمود قوم صالح عليه السلام؟", a: "بالصيحة (الرجفة)", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "ما اسم النبي الذي حاجّ الملك في ربه فقال: «ربي الذي يحيي ويميت»؟", a: "إبراهيم عليه السلام (حاجّه النمرود)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
-    { l: 5, q: "ماذا طلب بنو إسرائيل من موسى عليه السلام بدلاً من المنّ والسلوى؟", a: "البقل والقثّاء والفوم والعدس والبصل", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "ما اسم السورة التي قصّ الله فيها قصة كاملة وسمّاها «أحسن القصص»؟", a: "سورة يوسف", img: "image/قصص الانبياء.jpg" },
-    { l: 5, q: "ما اسم الغلام الذي بشّرت الملائكة إبراهيم عليه السلام به من سارة؟", a: "إسحاق عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/The_Prophet_Ishaq_%28Isaac_In_Islam%29.png/960px-The_Prophet_Ishaq_%28Isaac_In_Islam%29.png" },
+    { l: 1, q: "من هو أخو موسى عليه السلام الذي طلب أن يكون معه وزيراً؟", a: "هارون عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/The_Prophet_Harun_%28Aaron_In_Islam%29.png/960px-The_Prophet_Harun_%28Aaron_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي رفعه الله إليه فلم يُقتل ولم يُصلب؟", a: "عيسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/The_Prophet_Isa_%28Jesus_In_Islam%29.png/960px-The_Prophet_Isa_%28Jesus_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي فسّر رؤيا ملك مصر فجعله على خزائن الأرض؟", a: "يوسف عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/The_Prophet_Yusuf_%28Joseph_In_Islam%29.png/960px-The_Prophet_Yusuf_%28Joseph_In_Islam%29.png" },
+    { l: 2, q: "من هو النبي الذي ابتُلي في ماله وولده وجسده فصبر؟", a: "أيوب عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/The_Prophet_Ayub_%28Job_In_Islam%29.png/960px-The_Prophet_Ayub_%28Job_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي ابيضّت عيناه من الحزن على ولده؟", a: "يعقوب عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/The_Prophet_Yaqub_%28Jacob_In_Islam%29.png/960px-The_Prophet_Yaqub_%28Jacob_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي سخّر الله له الجنّ يعملون له ما يشاء؟", a: "سليمان عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png/960px-The_Prophet_Sulaiman_%28Solomon_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي كان يعمل في الحديد وقد ألانه الله له؟", a: "داود عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/The_Prophet_Dawud_%28David_In_Islam%29.png/960px-The_Prophet_Dawud_%28David_In_Islam%29.png" },
+    { l: 2, q: "ما اسم النبي الذي خُسف بقومه وأُمطروا حجارة من سجّيل؟", a: "لوط عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/The_Prophet_Lut_%28Lot_In_Islam%29.png/960px-The_Prophet_Lut_%28Lot_In_Islam%29.png" },
+    { l: 2, q: "ما الدعاء الذي دعا به يونس عليه السلام في بطن الحوت؟", a: "«لا إله إلا أنت سبحانك إني كنت من الظالمين»", img: "image/قصص الانبياء.jpg" },
+    { l: 2, q: "بماذا ارتدّ بصر يعقوب عليه السلام بعد فقد بصره؟", a: "بقميص يوسف عليه السلام", img: "image/قصص الانبياء.jpg" },
+    { l: 2, q: "بماذا أُمر نوح عليه السلام أن يحمل في السفينة؟", a: "من كل زوجين اثنين وأهله ومن آمن معه", img: "image/قصص الانبياء.jpg" },
+    { l: 2, q: "ما اسم النبي الذي أُهلك قومه عادٌ بريح صرصر عاتية؟", a: "هود عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/The_Prophet_Hud_%28Houd_In_Islam%29.png/960px-The_Prophet_Hud_%28Houd_In_Islam%29.png" },
+    { l: 3, q: "أي نبي رزقه الله يحيى عليه السلام على الكبر؟", a: "زكريا عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png/960px-The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png" },
+    { l: 3, q: "كم لبث نوح عليه السلام يدعو قومه؟", a: "ألف سنة إلا خمسين عاماً", img: "image/قصص الانبياء.jpg" },
+    { l: 3, q: "بأي شيء حطّم إبراهيم عليه السلام أصنام قومه؟", a: "بالفأس (وجعل الفأس على كبيرهم)", img: "image/قصص الانبياء.jpg" },
+    { l: 3, q: "ما المعجزات التي أُعطيها عيسى عليه السلام بإذن الله؟", a: "إبراء الأكمه والأبرص وإحياء الموتى", img: "image/قصص الانبياء.jpg" },
+    { l: 3, q: "أي نبي أسكن ذرّيته بوادٍ غير ذي زرع عند البيت المحرّم؟", a: "إبراهيم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
+    { l: 3, q: "ما اسم النبي الذي أُهلك قومه بالصيحة بعد أن عقروا الناقة؟", a: "صالح عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/The_Prophet_Salih_%28Saleh_In_Islam%29.png/960px-The_Prophet_Salih_%28Saleh_In_Islam%29.png" },
+    { l: 3, q: "أي نبي أُرسل إلى أهل مدين؟", a: "شعيب عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/The_Prophet_Shuaib_%28Jethro_In_Islam%29.png/960px-The_Prophet_Shuaib_%28Jethro_In_Islam%29.png" },
+    { l: 3, q: "ما اسم العبد الصالح الذي رافقه موسى عليه السلام ليتعلّم منه؟", a: "الخضر عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/The_Prophet_Khidr.png/960px-The_Prophet_Khidr.png" },
+    { l: 3, q: "ما اسم الغلام الذي بشّرت الملائكة إبراهيم عليه السلام به وامرأته عجوز؟", a: "إسحاق عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/The_Prophet_Ishaq_%28Isaac_In_Islam%29.png/960px-The_Prophet_Ishaq_%28Isaac_In_Islam%29.png" },
+    { l: 3, q: "كم سنة من الرخاء ثم الشدّة فسّرها يوسف عليه السلام في رؤيا الملك؟", a: "سبع سنين رخاءً ثم سبع شداد", img: "image/قصص الانبياء.jpg" },
+    { l: 3, q: "ما اسم النبي الذي خرج مغاضباً فظنّ ألّا نقدر عليه؟", a: "يونس عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/The_Prophet_Yunus_%28Jonah_In_Islam%29.png/960px-The_Prophet_Yunus_%28Jonah_In_Islam%29.png" },
+    { l: 4, q: "ماذا سأل موسى عليه السلام ربّه ليشدّ به أزره في الرسالة؟", a: "أن يجعل أخاه هارون وزيراً له", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "ماذا سأل موسى عليه السلام ربّه فجاءه الجواب «لن تراني»؟", a: "أن ينظر إليه سبحانه", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "ما اسم النبي الذي حاجّ الملك في ربه فقال «ربي الذي يحيي ويميت»؟", a: "إبراهيم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
+    { l: 4, q: "ماذا طلب إبراهيم عليه السلام من ربه ليطمئنّ قلبه؟", a: "قال: ربِّ أرني كيف تحيي الموتى", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "ماذا سأل سليمان عليه السلام ربّه ممّا لا ينبغي لأحد من بعده؟", a: "مُلكاً لا ينبغي لأحد من بعده", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "بماذا أجاب يوسف عليه السلام امرأة العزيز حين راودته؟", a: "«معاذ الله إنه ربي أحسن مثواي»", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "ما الدعاء الذي دعا به موسى عليه السلام حين أُرسل إلى فرعون؟", a: "«ربِّ اشرح لي صدري ويسّر لي أمري»", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Prophet_Musa_%28Moses_In_Islam%29.png/960px-The_Prophet_Musa_%28Moses_In_Islam%29.png" },
+    { l: 4, q: "بماذا خاطب يوسف عليه السلام إخوته حين عرّفهم بنفسه؟", a: "«لا تثريب عليكم اليوم»", img: "image/قصص الانبياء.jpg" },
+    { l: 4, q: "بماذا عوّض الله أيوب عليه السلام بعد صبره على البلاء؟", a: "آتاه أهله ومثلهم معهم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/The_Prophet_Ayub_%28Job_In_Islam%29.png/960px-The_Prophet_Ayub_%28Job_In_Islam%29.png" },
+    { l: 4, q: "ما اسم النبي الذي بشّر برسول يأتي من بعده اسمه أحمد؟", a: "عيسى عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/The_Prophet_Isa_%28Jesus_In_Islam%29.png/960px-The_Prophet_Isa_%28Jesus_In_Islam%29.png" },
+    { l: 5, q: "كم عدد المعجزات (الآيات) التي أُعطيها موسى عليه السلام؟", a: "تسع آيات", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "ما العلامة التي جعلها الله لزكريا عليه السلام حين بُشّر بيحيى؟", a: "ألا يكلّم الناس ثلاثة أيام إلا رمزاً", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "ما اسم النبي الذي قال «إني ذاهب إلى ربي سيهدين»؟", a: "إبراهيم عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png/960px-The_Prophet_Ibrahim_%28Abraham_In_Islam%29.png" },
+    { l: 5, q: "بماذا أُمر إبراهيم عليه السلام في الطير الأربعة ليريه الله إحياء الموتى؟", a: "أن يجعل على كل جبل منهنّ جزءاً ثم يدعوهنّ", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "بماذا أُمر أيوب عليه السلام فكان فيه شفاؤه؟", a: "«اركض برجلك هذا مغتسل بارد وشراب»", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "بماذا خاطب إبراهيم عليه السلام أباه داعياً إياه إلى التوحيد؟", a: "«يا أبتِ لم تعبد ما لا يسمع ولا يبصر»", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "ما الدعاء الذي دعا به زكريا عليه السلام طالباً الذرّية؟", a: "«ربِّ لا تذرني فرداً وأنت خير الوارثين»", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png/960px-The_Prophet_Zakariya_%28Zechariah_In_Islam%29.png" },
+    { l: 5, q: "كم كان ميقات موسى عليه السلام لربه؟", a: "ثلاثون ليلة أتمّها الله بعشر فتمّ أربعين", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "ما الذي دلّ الجنّ على موت سليمان عليه السلام؟", a: "دابّة الأرض التي أكلت منسأته", img: "image/قصص الانبياء.jpg" },
+    { l: 5, q: "أي نبي دخل قرية خاوية فأماته الله مئة عام ثم بعثه؟", a: "عزير عليه السلام", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Prophet_Uzair_Name.svg/960px-Prophet_Uzair_Name.svg.png" }
   ];
 
   /* ---------- المؤسس عثمان (30 سؤالاً) ----------
