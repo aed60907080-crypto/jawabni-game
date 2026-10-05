@@ -491,7 +491,7 @@
     { l: 4, q: "ما اسم المدينة السعودية التي تضم مقر أرامكو الرئيسي؟", a: "الظهران", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/AramcoCoreArea.jpg" },
     { l: 2, q: "ما اسم مشروع المدينة المستقبلية شمال غرب السعودية؟", a: "نيوم", img: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Neom_location-ar.jpg" },
     { l: 3, q: "ما اسم الموقع النبطي الأثري المدرج في التراث العالمي؟", a: "الحِجر — مدائن صالح في العلا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Qasr_al_Farid.JPG/960px-Qasr_al_Farid.JPG" },
-    { l: 4, q: "ما اسم حي الدرعية التاريخي المدرج في التراث العالمي؟", a: "حي الطريف", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/At-Turaif_District.jpg/960px-At-Turaif_District.jpg" },
+    { l: 4, q: "ما اسم الحي التاريخي شمال غرب الرياض المدرج في التراث العالمي؟", a: "حي الطريف", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/At-Turaif_District.jpg/960px-At-Turaif_District.jpg" },
     { l: 2, q: "ما اسم أطول برج في السعودية ويطلّ على الحرم؟", a: "برج ساعة مكة", img: "https://upload.wikimedia.org/wikipedia/commons/2/22/%D9%85%D9%83%D8%A9_%D8%A7%D9%84%D9%85%D9%83%D8%B1%D9%85%D8%A9_meca.jpg" },
     { l: 3, q: "ما اسم أكبر واحة نخيل في العالم وتقع في السعودية؟", a: "واحة الأحساء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Al_Hasa_Cave.jpg/960px-Al_Hasa_Cave.jpg" },
     { l: 4, q: "ما اسم أكبر جزيرة سعودية في البحر الأحمر؟", a: "جزيرة فرسان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Farasan_Island_3.jpg/960px-Farasan_Island_3.jpg" },
