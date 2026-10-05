@@ -1855,6 +1855,9 @@
     let cls = '';
     if (item.img) {
       if (isLogoCategory)                  cls = 'logoimg';
+      /* logo: true — صورة شفافة داكنة (رمز عملة مثلاً) تختفي على
+         خلفية اللعبة الداكنة، فتُعرض على أرضية بيضاء كالشعارات */
+      else if (item.logo)                  cls = 'logoimg';
       else if (/icons?\//i.test(item.img)) cls = 'iconimg';
       else if (/flag/i.test(item.img))     cls = 'flagimg';
       else if (/maps?\//i.test(item.img))  cls = 'mapimg';
@@ -3055,7 +3058,7 @@
     const img = document.createElement("img");
     img.setAttribute("referrerpolicy", "no-referrer");   /* صور Fandom — انظر images.js */
     img.alt = "صورة الإجابة: " + (item.a || "");
-    if (isLogoCategory) img.className = "logoimg";
+    if (isLogoCategory || item.logo) img.className = "logoimg";
     img.src = url;
     enlargeSmallLogo(img);
     img.onerror = () => { holder.hidden = true; };
