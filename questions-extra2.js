@@ -54,7 +54,7 @@
     { l: 4, q: "من هذه الشخصية؟", a: "أولونغ", img: "https://s4.anilist.co/file/anilistcdn/character/large/2108.jpg" },
     { l: 4, q: "من هذه الشخصية؟", a: "بوار", img: "https://s4.anilist.co/file/anilistcdn/character/large/b677-PTNZaPeuV1Dx.jpg" },
     { l: 4, q: "من هذه الشخصية؟", a: "ياجيروبي", img: "https://s4.anilist.co/file/anilistcdn/character/large/2097.jpg" },
-    { l: 4, q: "من هذه الشخصية؟", a: "برولي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4945-iE59qIP7TxPu.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "برولي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4945-iE59qIP7TxPu.png" },
     { l: 5, q: "من هذه الشخصية؟", a: "الرجل الآلي 16 (أندرويد 16)", img: "https://s4.anilist.co/file/anilistcdn/character/large/2099.jpg" },
     { l: 5, q: "من هذه الشخصية؟", a: "كارين — القط حارس البرج", img: "https://s4.anilist.co/file/anilistcdn/character/large/7309.jpg" },
     { l: 5, q: "من هذه الشخصية؟", a: "تاو باي باي", img: "https://s4.anilist.co/file/anilistcdn/character/large/2131.jpg" },
@@ -212,7 +212,7 @@
     { l: 3, q: "من هذه الشخصية؟", a: "لوبان الثالث", img: "https://s4.anilist.co/file/anilistcdn/character/large/1044-UriNGSc2CKPO.jpg" },
     { l: 3, q: "من هذه الشخصية؟", a: "مازن — تارو ميساكي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b5906-dGU9ZcMK0J63.jpg" },
     { l: 3, q: "من هذه الشخصية؟", a: "جابر — كوجيرو هيوغا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b6780-3ATo2nw9HXDR.jpg" },
-    { l: 4, q: "من هذه الشخصية؟", a: "نيلو — من «كلب فلاندرز»", img: "https://s4.anilist.co/file/anilistcdn/character/large/30244.jpg" },
+    { l: 3, q: "من هذه الشخصية؟", a: "نيلو — من «كلب فلاندرز»", img: "https://s4.anilist.co/file/anilistcdn/character/large/30244.jpg" },
     { l: 4, q: "من هذه الشخصية؟", a: "لولو — الفتاة الزهرة", img: "https://s4.anilist.co/file/anilistcdn/character/large/36264.jpg" },
     { l: 4, q: "من هذه الشخصية؟", a: "سيدي — الأمير الصغير", img: "https://s4.anilist.co/file/anilistcdn/character/large/19325.jpg" },
     { l: 4, q: "من هذه الشخصية؟", a: "هاتوري — النينجا", img: "https://s4.anilist.co/file/anilistcdn/character/large/23936.jpg" },
@@ -323,16 +323,16 @@
     { l: 2, q: "من هذه الشخصية؟", a: "فيرموث", img: "https://s4.anilist.co/file/anilistcdn/character/large/b6307-enm7W6Cus3FF.jpg" },
     { l: 2, q: "من هذه الشخصية؟", a: "فودكا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b6306-zNmkrOdL8YlF.png" },
     { l: 2, q: "من هذه الشخصية؟", a: "أيومي يوشيدا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4228-c6vBLrG3AGdN.png" },
-    { l: 2, q: "من هذه الشخصية؟", a: "غينتا كوجيما", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4251-CK1ibFjPW7Kx.png" },
-    { l: 2, q: "من هذه الشخصية؟", a: "ميتسوهيكو تسوبورايا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4252-eHo7i4WDIdQv.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "غينتا كوجيما", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4251-CK1ibFjPW7Kx.png" },
+    { l: 3, q: "من هذه الشخصية؟", a: "ميتسوهيكو تسوبورايا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b4252-eHo7i4WDIdQv.png" },
     { l: 3, q: "من هذه الشخصية؟", a: "ماسومي سيرا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b41833-h5eU0760M5Sj.png" },
     { l: 3, q: "من هذه الشخصية؟", a: "المحقق واتارو تاكاغي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b9421-q1USRmSvw7BF.jpg" },
     { l: 3, q: "من هذه الشخصية؟", a: "المحققة ميواكو ساتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b13975-0vSVf8z18ghU.png" },
     { l: 3, q: "من هذه الشخصية؟", a: "إيري كيساكي — والدة ران", img: "https://s4.anilist.co/file/anilistcdn/character/large/b1744-otjI6lcPBAzf.png" },
     { l: 3, q: "من هذه الشخصية؟", a: "يوكيكو كودو — والدة شينيتشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b20372-UvED45jqnAfv.png" },
     { l: 3, q: "من هذه الشخصية؟", a: "يوساكو كودو — والد شينيتشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/9177.jpg" },
-    { l: 3, q: "من هذه الشخصية؟", a: "ماكوتو كيوغوكو", img: "https://s4.anilist.co/file/anilistcdn/character/large/30368.jpg" },
-    { l: 3, q: "من هذه الشخصية؟", a: "جودي ستارلينغ", img: "https://s4.anilist.co/file/anilistcdn/character/large/b26754-73EPyg9Mkb1m.png" },
+    { l: 4, q: "من هذه الشخصية؟", a: "ماكوتو كيوغوكو", img: "https://s4.anilist.co/file/anilistcdn/character/large/30368.jpg" },
+    { l: 4, q: "من هذه الشخصية؟", a: "جودي ستارلينغ", img: "https://s4.anilist.co/file/anilistcdn/character/large/b26754-73EPyg9Mkb1m.png" },
     { l: 4, q: "من هذه الشخصية؟", a: "ساغورو هاكوبا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b12129-qMd0K2FhKt1c.png" },
     { l: 4, q: "من هذه الشخصية؟", a: "آوكو ناكاموري", img: "https://s4.anilist.co/file/anilistcdn/character/large/b13972-IsOmi5I4SN6A.png" },
     { l: 4, q: "من هذه الشخصية؟", a: "المفتش غينزو ناكاموري", img: "https://s4.anilist.co/file/anilistcdn/character/large/b13973-0RmL2qQY0xxI.png" },
@@ -340,7 +340,7 @@
     { l: 4, q: "من هذه الشخصية؟", a: "المفتش كانسكي ياماتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30359-ct9ed6E3AC3w.png" },
     { l: 4, q: "من هذه الشخصية؟", a: "أكيمي ميانو — أخت هايبارا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30343-aNkiB1cO0nKP.png" },
     { l: 4, q: "من هذه الشخصية؟", a: "هيدمي هوندو (كير)", img: "https://s4.anilist.co/file/anilistcdn/character/large/b26755-SaPTeSG111g8.jpg" },
-    { l: 4, q: "من هذه الشخصية؟", a: "جينبي ماتسودا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30364-nzrh2LrBvl1E.png" },
+    { l: 5, q: "من هذه الشخصية؟", a: "جينبي ماتسودا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30364-nzrh2LrBvl1E.png" },
     { l: 5, q: "من هذه الشخصية؟", a: "تاكاكي موروفوشي", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30376-DlsVJyjXOCVS.png" },
     { l: 5, q: "من هذه الشخصية؟", a: "الشرطية يومي مياموتو", img: "https://s4.anilist.co/file/anilistcdn/character/large/b28418-eP9a6vMUbl0k.png" },
     { l: 5, q: "من هذه الشخصية؟", a: "يوي أوهارا", img: "https://s4.anilist.co/file/anilistcdn/character/large/b30360-rZSYmdvXDxES.png" },
@@ -369,7 +369,7 @@
     { l: 1, q: "من هذه الشخصية؟", a: "ستيف هارينغتون", img: ST_IMG + "8/81/Steve_Harrington_1989.png/revision/latest/scale-to-width-down/535?nr=1&cb=20260112123852" },
     { l: 1, q: "من هذه الشخصية؟", a: "جيم هوبر — شريف هوكينز", img: ST_IMG + "e/ed/Jim_Hopper_Finale.png/revision/latest/scale-to-width-down/513?nr=1&cb=20260313155702" },
     { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تقلب شاحنة الأشرار في الهواء بقواها لتنقذ الأولاد (الموسم الأول)", yt: "0ONZqhTC-PM", ys: 0, ye: 28, clip: true, hide: ST_MASK },
-    { l: 1, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 30, clip: true, hide: ST_MASK },
+    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "إليفن تسرق فطائر «إيغو» من البقالة وتحطّم الزجاج بقواها (الموسم الأول)", yt: "p0jDRJ6-xuE", ys: 0, ye: 30, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "من هذه الشخصية؟", a: "ماكس مايفيلد", img: ST_IMG + "2/2a/1989.png/revision/latest/scale-to-width-down/489?nr=1&cb=20260313154711" },
@@ -379,8 +379,8 @@
     { l: 2, q: "من هذه الشخصية؟", a: "إدي مانسون — رئيس نادي «هيلفاير»", img: ST_IMG + "c/ca/Eddie_Munson.jpg/revision/latest/scale-to-width-down/479?nr=1&cb=20220608205857" },
     { l: 2, q: "من هذه الشخصية؟", a: "فيكنا (هنري كريل)", img: ST_IMG + "4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/527?nr=1&cb=20251229052347" },
     { l: 2, q: "من هذه الشخصية؟", a: "الديموغورغون — وحش العالم المقلوب", img: ST_IMG + "f/ff/Demogorgon_-_Chapter_Eight.jpg/revision/latest?nr=1&cb=20221105220915" },
-    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 183, ye: 213, clip: true, hide: ST_MASK },
-    { l: 2, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 4, ye: 34, clip: true, hide: ST_MASK },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "جويس تكلّم ابنها ويل عبر أضواء الزينة على جدار الحروف (الموسم الأول)", yt: "jIQ9z2bxXyg", ys: 183, ye: 213, clip: true, hide: ST_MASK },
+    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "هوبر يرقص على أغنية «You Don't Mess Around With Jim» ليُضحك إليفن في الكوخ (الموسم الثاني)", yt: "e-wqBxtyziY", ys: 4, ye: 34, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "من هذه الشخصية؟", a: "روبن باكلي", img: ST_IMG + "6/6f/Robin_Finale.png/revision/latest/scale-to-width-down/545?nr=1&cb=20260101040655" },
@@ -389,9 +389,9 @@
     { l: 3, q: "من هذه الشخصية؟", a: "الدكتور مارتن برينر («بابا»)", img: ST_IMG + "b/b5/Brenner_-_The_Nina_Project.png/revision/latest/scale-to-width-down/474?nr=1&cb=20260120195836" },
     { l: 3, q: "من هذه الشخصية؟", a: "آكل العقول (مايند فلاير)", img: ST_IMG + "b/b0/Mind_Flayer_-_Abyss_form.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260107051652" },
     { l: 3, q: "من هذه الشخصية؟", a: "موراي باومان", img: ST_IMG + "8/8e/Murray_1989.png/revision/latest/scale-to-width-down/559?nr=1&cb=20260109113207" },
-    { l: 3, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?nr=1&cb=20180327083407" },
-    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 30, clip: true, hide: ST_MASK },
-    { l: 3, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 108, te: 138, band: [10, 92] },
+    { l: 4, q: "من هذه الشخصية؟", a: "بوب نيوبي — صديق جويس", img: ST_IMG + "d/d0/Bob_Newby_S2.png/revision/latest?nr=1&cb=20180327083407" },
+    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "إدي يعزف «Master of Puppets» على الغيتار في العالم المقلوب ليُلهي الخفافيش (الموسم الرابع)", yt: "E4ScPro8YcI", ys: 0, ye: 30, clip: true, hide: ST_MASK },
+    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "ماكس تهرب من فيكنا على أغنية «Running Up That Hill» (الموسم الرابع)", tt: "7104997284772842795", ts: 108, te: 138, band: [10, 92] },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "من هذه الشخصية؟", a: "كارين ويلر — أم مايك", img: ST_IMG + "b/b4/Karen_Wheeler_Finale.png/revision/latest/scale-to-width-down/458?nr=1&cb=20260101053303" },
@@ -399,9 +399,9 @@
     { l: 4, q: "من هذه الشخصية؟", a: "آرغايل", img: ST_IMG + "4/47/Argyle_S4.png/revision/latest/scale-to-width-down/458?nr=1&cb=20220909212533" },
     { l: 4, q: "من هذه الشخصية؟", a: "كالي — «إيت» (الرقم 8)", img: ST_IMG + "7/72/Kali_s5_Trailer.png/revision/latest/scale-to-width-down/564?nr=1&cb=20251219173651" },
     { l: 4, q: "من هذه الشخصية؟", a: "أليكسي — العالم الروسي", img: ST_IMG + "a/ad/Alexei.JPG/revision/latest/scale-to-width-down/510?nr=1&cb=20190705023926" },
-    { l: 4, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260313155747" },
-    { l: 4, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?nr=1&cb=20221124001121" },
-    { l: 4, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 80, ye: 110, clip: true, hide: ST_MASK },
+    { l: 5, q: "من هذه الشخصية؟", a: "كريسي كانينغهام", img: ST_IMG + "d/d1/Chrissy_ST4.jpeg/revision/latest/scale-to-width-down/600?nr=1&cb=20260313155747" },
+    { l: 5, q: "من هذه الشخصية؟", a: "سوزي — صديقة داستن", img: ST_IMG + "0/03/Suzie_on_the_roof.jpg/revision/latest/scale-to-width-down/600?nr=1&cb=20221124001121" },
+    { l: 5, q: "ماذا حصل في هذا المقطع؟", a: "بيلي يضحّي بنفسه ليحمي إليفن من آكل العقول (الموسم الثالث)", yt: "gXdA18JCJqY", ys: 80, ye: 110, clip: true, hide: ST_MASK },
 
     /* ===== المستوى الخامس ===== */
     { l: 5, q: "من هذه الشخصية؟", a: "السيد سكوت كلارك — معلّم العلوم", img: ST_IMG + "b/b6/Mr_Scott_Clarke_1989.png/revision/latest/scale-to-width-down/481?nr=1&cb=20260101050840" },
@@ -428,7 +428,7 @@
     { l: 1, q: "من هذه الشخصية؟", a: "أراغورن — ملك غوندور", img: "https://static.wikia.nocookie.net/lotr/images/d/de/Viggo_Mortensen_as_Aragorn_in-chainmail-waist_up.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20240829043758" },
     { l: 1, q: "من هذه الشخصية؟", a: "غيملي — القزم", img: "https://static.wikia.nocookie.net/lotr/images/a/a5/Lotr_movie_gimli.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20060228022700" },
     { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "غاندالف يقف أمام البالروغ على الجسر ويصرخ «لن تمر!» ثم يسقط معه (رفقة الخاتم)", yt: "3bReJswiMGM", ys: 70, ye: 100, clip: true, hide: LOTR_MASK },
-    { l: 1, q: "ماذا حصل في هذا المشهد؟", a: "بيلبو يلبس الخاتم في حفل عيد ميلاده ويختفي أمام الجميع (رفقة الخاتم)", yt: "Cvr5Nf8eUpg", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
+    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "بيلبو يلبس الخاتم في حفل عيد ميلاده ويختفي أمام الجميع (رفقة الخاتم)", yt: "Cvr5Nf8eUpg", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
 
     /* ===== المستوى 2 ===== */
     { l: 2, q: "من هذه الشخصية؟", a: "سام (سامْوايز غامجي) — رفيق فرودو", img: "https://static.wikia.nocookie.net/lotr/images/5/52/Samwise_Gamgee_1.PNG/revision/latest?nr=1&cb=20200617172124" },
@@ -437,8 +437,8 @@
     { l: 2, q: "من هذه الشخصية؟", a: "بيلبو باغينز — عمّ فرودو", img: "https://static.wikia.nocookie.net/lotr/images/8/87/Bilbo_Ian_Holm.png/revision/latest/scale-to-width-down/500?nr=1&cb=20240716164413" },
     { l: 2, q: "من هذه الشخصية؟", a: "بورومير", img: "https://static.wikia.nocookie.net/lotr/images/d/de/Boromir_-_FOTR.png/revision/latest/scale-to-width-down/500?nr=1&cb=20121023114949" },
     { l: 2, q: "من هذه الشخصية؟", a: "آروين — الأميرة الجنّية", img: "https://static.wikia.nocookie.net/lotr/images/6/64/Arwen_-_The_Fellowship_Of_The_Ring.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20210625164207" },
-    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "موت بورومير بعد أن دافع عن ميري وبيبن، وأراغورن بجانبه (رفقة الخاتم)", yt: "ALaPeQxQMM0", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
-    { l: 2, q: "ماذا حصل في هذا المشهد؟", a: "غولوم يعضّ إصبع فرودو ويأخذ الخاتم ثم يسقط معه في نار جبل الهلاك (عودة الملك)", yt: "7curfSGOhPI", ys: 150, ye: 180, clip: true, hide: LOTR_MASK },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "موت بورومير بعد أن دافع عن ميري وبيبن، وأراغورن بجانبه (رفقة الخاتم)", yt: "ALaPeQxQMM0", ys: 60, ye: 90, clip: true, hide: LOTR_MASK },
+    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "غولوم يعضّ إصبع فرودو ويأخذ الخاتم ثم يسقط معه في نار جبل الهلاك (عودة الملك)", yt: "7curfSGOhPI", ys: 150, ye: 180, clip: true, hide: LOTR_MASK },
 
     /* ===== المستوى 3 ===== */
     { l: 3, q: "من هذه الشخصية؟", a: "غالادرييل — سيدة لوثلورين", img: "https://static.wikia.nocookie.net/lotr/images/c/cb/Galadriel.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20151015204512" },
@@ -446,19 +446,19 @@
     { l: 3, q: "من هذه الشخصية؟", a: "سورون — سيد الظلام", img: "https://static.wikia.nocookie.net/lotr/images/9/90/Sauron-2.jpg/revision/latest?nr=1&cb=20110508182634" },
     { l: 3, q: "من هذه الشخصية؟", a: "البالروغ — شيطان موريا الناري", img: "https://static.wikia.nocookie.net/lotr/images/c/c4/Balrog_-_FOTR.png/revision/latest/scale-to-width-down/500?nr=1&cb=20210916195941" },
     { l: 3, q: "من هذه الشخصية؟", a: "إلروند — سيد ريفندل", img: "https://static.wikia.nocookie.net/lotr/images/2/2b/Elrond%27s_armor_-_halfbody.jpg/revision/latest?nr=1&cb=20130202121256" },
-    { l: 3, q: "من هذه الشخصية؟", a: "ثيودن — ملك روهان", img: "https://static.wikia.nocookie.net/lotr/images/1/13/King_Theoden_1.jpg/revision/latest?nr=1&cb=20150313135224" },
-    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "إيوين تقتل ملك الساحرة (قائد النازغول) وتقول «لستُ رجلاً» (عودة الملك)", yt: "W7_c-R7i8F4", ys: 145, ye: 175, clip: true, hide: LOTR_MASK },
-    { l: 3, q: "ماذا حصل في هذا المشهد؟", a: "إشعال منارات غوندور واحدة تلو الأخرى لطلب نجدة روهان (عودة الملك)", yt: "agBtXRChsJM", ys: 95, ye: 125, clip: true, hide: LOTR_MASK },
+    { l: 4, q: "من هذه الشخصية؟", a: "ثيودن — ملك روهان", img: "https://static.wikia.nocookie.net/lotr/images/1/13/King_Theoden_1.jpg/revision/latest?nr=1&cb=20150313135224" },
+    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "إيوين تقتل ملك الساحرة (قائد النازغول) وتقول «لستُ رجلاً» (عودة الملك)", yt: "W7_c-R7i8F4", ys: 145, ye: 175, clip: true, hide: LOTR_MASK },
+    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "إشعال منارات غوندور واحدة تلو الأخرى لطلب نجدة روهان (عودة الملك)", yt: "agBtXRChsJM", ys: 95, ye: 125, clip: true, hide: LOTR_MASK },
 
     /* ===== المستوى 4 ===== */
     { l: 4, q: "من هذه الشخصية؟", a: "إيومر — فارس روهان", img: "https://static.wikia.nocookie.net/lotr/images/b/b9/Eomer_-_Close_up.PNG/revision/latest?nr=1&cb=20120922113500" },
     { l: 4, q: "من هذه الشخصية؟", a: "فارامير — أخو بورومير", img: "https://static.wikia.nocookie.net/lotr/images/4/43/Faramir.jpg/revision/latest?nr=1&cb=20071211235438" },
     { l: 4, q: "من هذه الشخصية؟", a: "غريما «لسان الدودة»", img: "https://static.wikia.nocookie.net/lotr/images/2/27/Gr%C3%ADma_Wormtongue_Lotr_Movie.png/revision/latest?nr=1&cb=20240715214830" },
     { l: 4, q: "من هذه الشخصية؟", a: "اللحية الشجرية (تريبيرد) — زعيم الإنتس", img: "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/500?nr=1&cb=20210117035345" },
-    { l: 4, q: "من هذه الشخصية؟", a: "النازغول — أشباح الخاتم السوداء", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Nazgul.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20150423205044" },
-    { l: 4, q: "من هذه الشخصية؟", a: "لورتز — قائد الأوروك هاي", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Lurtz_2.jpg/revision/latest?nr=1&cb=20110527083830" },
-    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "فرسان روهان يهاجمون جيش موردور في معركة حقول بيلينور (عودة الملك)", yt: "Pis3veqKl8k", ys: 130, ye: 160, clip: true, hide: LOTR_MASK },
-    { l: 4, q: "ماذا حصل في هذا المشهد؟", a: "تدمير الخاتم وانهيار برج سورون «باراد-دور» (عودة الملك)", yt: "0wgkg3-bMEA", ys: 82, ye: 112, clip: true, hide: LOTR_MASK },
+    { l: 5, q: "من هذه الشخصية؟", a: "النازغول — أشباح الخاتم السوداء", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Nazgul.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20150423205044" },
+    { l: 5, q: "من هذه الشخصية؟", a: "لورتز — قائد الأوروك هاي", img: "https://static.wikia.nocookie.net/lotr/images/b/bf/Lurtz_2.jpg/revision/latest?nr=1&cb=20110527083830" },
+    { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "فرسان روهان يهاجمون جيش موردور في معركة حقول بيلينور (عودة الملك)", yt: "Pis3veqKl8k", ys: 130, ye: 160, clip: true, hide: LOTR_MASK },
+    { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "تدمير الخاتم وانهيار برج سورون «باراد-دور» (عودة الملك)", yt: "0wgkg3-bMEA", ys: 82, ye: 112, clip: true, hide: LOTR_MASK },
 
     /* ===== المستوى 5 ===== */
     { l: 5, q: "من هذه الشخصية؟", a: "دينيثور — حاكم غوندور", img: "https://static.wikia.nocookie.net/lotr/images/9/98/Lord_Denethor.jpg/revision/latest/scale-to-width-down/500?nr=1&cb=20150330023544" },
@@ -974,28 +974,28 @@
     { l: 1, q: "ما اسم هذا المنتج؟", a: "كت كات (KitKat)", img: "https://images.openfoodfacts.org/images/products/761/303/536/6749/front_en.132.400.jpg", hide: [[20, 18, 50, 64]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سنيكرز (Snickers)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Snickers-broken.JPG/500px-Snickers-broken.JPG" },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "أوريو (Oreo)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nabisco-Oreo-Cakesters.jpg/500px-Nabisco-Oreo-Cakesters.jpg" },
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "شيبس عمان (بطاطس عمان)", img: "https://images.openfoodfacts.org/images/products/950/110/001/8304/front_fr.3.400.jpg", hide: [[2, 5, 78, 38]] },
+    { l: 2, q: "ما اسم هذا المنتج؟", a: "شيبس عمان (بطاطس عمان)", img: "https://images.openfoodfacts.org/images/products/950/110/001/8304/front_fr.3.400.jpg", hide: [[2, 5, 78, 38]] },
 
     /* ===== المستوى الثاني ===== */
     { l: 2, q: "ما اسم هذا المنتج؟", a: "تويكس (Twix)", img: "https://images.openfoodfacts.org/images/products/500/015/955/7658/front_de.26.400.jpg", hide: [[14, 18, 74, 60]] },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "كيندر بوينو (Kinder Bueno)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Kinder-Bueno-Split.jpg/500px-Kinder-Bueno-Split.jpg" },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "نوتيلا (Nutella)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Nutella_ak.jpg/500px-Nutella_ak.jpg", hide: [[26, 0, 34, 34]] },
     { l: 2, q: "ما اسم هذا المنتج؟", a: "ريد بُل (Red Bull)", img: "https://images.openfoodfacts.org/images/products/900/249/020/8592/front_fr.23.400.jpg", hide: [[6, 30, 90, 38]] },
-    { l: 2, q: "ما اسم هذا المنتج؟", a: "مارس (Mars)", img: "https://images.openfoodfacts.org/images/products/590/095/131/1468/front_fr.20.400.jpg", hide: [[16, 24, 68, 52]] },
+    { l: 3, q: "ما اسم هذا المنتج؟", a: "مارس (Mars)", img: "https://images.openfoodfacts.org/images/products/590/095/131/1468/front_fr.20.400.jpg", hide: [[16, 24, 68, 52]] },
 
     /* ===== المستوى الثالث ===== */
     { l: 3, q: "ما اسم هذا المنتج؟", a: "ميريندا (Mirinda)", img: "https://images.openfoodfacts.org/images/products/611/125/242/0493/front_ar.16.400.jpg", hide: [[40, 36, 60, 30]] },
     { l: 3, q: "ما اسم هذا المنتج؟", a: "دوريتوس (Doritos)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Doritos_bag.jpg/500px-Doritos_bag.jpg" },
     { l: 3, q: "ما اسم هذا المنتج؟", a: "ليبتون (Lipton)", img: "https://images.openfoodfacts.org/images/products/506/327/011/9112/front_pl.13.400.jpg", hide: [[14, 18, 74, 24]] },
     { l: 3, q: "ما اسم هذا المنتج؟", a: "تانغ (Tang)", img: "https://images.openfoodfacts.org/images/products/762/220/112/8456/front_fr.3.400.jpg", hide: [[16, 40, 64, 36]] },
-    { l: 3, q: "ما اسم هذا المنتج؟", a: "كابري صن (Capri-Sun)", img: "https://images.openfoodfacts.org/images/products/400/017/721/1311/front_en.114.400.jpg", hide: [[15, 20, 70, 25]] },
+    { l: 4, q: "ما اسم هذا المنتج؟", a: "كابري صن (Capri-Sun)", img: "https://images.openfoodfacts.org/images/products/400/017/721/1311/front_en.114.400.jpg", hide: [[15, 20, 70, 25]] },
 
     /* ===== المستوى الرابع ===== */
     { l: 4, q: "ما اسم هذا المنتج؟", a: "جبنة البقرة الضاحكة (La vache qui rit)", img: "https://images.openfoodfacts.org/images/products/307/378/119/2339/front_fr.36.400.jpg", hide: [[26, 4, 64, 26], [52, 60, 40, 22]] },
     { l: 4, q: "ما اسم هذا المنتج؟", a: "غالاكسي (Galaxy)", img: "https://images.openfoodfacts.org/images/products/505/635/799/9677/front_en.5.400.jpg", hide: [[10, 13, 80, 32]] },
     { l: 4, q: "ما اسم هذا المنتج؟", a: "فيريرو روشيه (Ferrero Rocher)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/2023_Ferrero_Rocher_%282%29.jpg/500px-2023_Ferrero_Rocher_%282%29.jpg" },
     { l: 4, q: "ما اسم هذا المنتج؟", a: "فيمتو (Vimto)", img: "https://images.openfoodfacts.org/images/products/501/043/801/3638/front_en.31.400.jpg", hide: [[0, 2, 92, 32]] },
-    { l: 4, q: "ما اسم هذا المنتج؟", a: "برينجلز (Pringles)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/500px-Pringles-165g-to-134g.jpg", hide: [[10, 22, 80, 48]] },
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "برينجلز (Pringles)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/500px-Pringles-165g-to-134g.jpg", hide: [[10, 22, 80, 48]] },
 
     /* ===== المستوى الخامس ===== */
     { l: 5, q: "ما اسم هذا المنتج؟", a: "كويكر (Quaker)", img: "https://images.openfoodfacts.org/images/products/316/893/000/9801/front_fr.92.400.jpg", hide: [[16, 2, 68, 22]] },
