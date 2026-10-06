@@ -1504,77 +1504,78 @@ const questionsData = {
     { l: 5, q: "استمع إلى تلاوة سورة العصر — من هو القارئ؟", a: "محمود علي البنا", img: "image/Quraan.png", audio: "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudalialbanna/103.mp3" },
   ],
 
-  /* ---------- عدنيات (45 سؤالاً) ----------
-     الفئة صوتية بالكامل ونوعها واحد: يُشغَّل مقطع غنائي والمطلوب معرفة
-     المطرب. لا صور ولا آلات ولا مقامات — صوت المطرب فقط.
+  /* ---------- عدنيات (40 سؤالاً) ----------
+     الفئة صوتية بالكامل ونوعها واحد: يُشغَّل مقطع من جلسة عود والمطلوب
+     معرفة صاحبه. لا صور ولا آلات ولا مقامات — الصوت والعود فقط.
 
-     المصدر: معاينات آبل الرسمية (30 ثانية لكل أغنية) عبر
+     أربعة فنانين لا غير، وهم أعلام العدنيات والعود في الخليج:
+       عبادي الجوهر (11) · خالد الملا (10) · مطرف المطرف (10) · يوسف المطرف (9)
+
+     والمقاطع من جلسات العود لا من الأغاني المُوزَّعة بالأوركسترا:
+     «جلسة مسقط» و«جلسة طرب» لعبادي، وألبوم «يا مسافر» وتسجيلات ٩٣
+     لخالد الملا، و«جلسات وناسة» لمطرف، و«الله عظيم» ليوسف. ومعها
+     مقطوعة «تقاسيم عود» لعبادي الجوهر: عزف خالص بلا غناء.
+
+     المصدر: معاينات آبل الرسمية (30 ثانية لكل مقطع) عبر
      itunes.apple.com/search — مفتوحة للعموم بلا حساب، وتُبثّ من خوادم
-     آبل مباشرة بلا نسخ محلي. والمشغّل عندنا لا يعرض اسم الأغنية ولا
+     آبل مباشرة بلا نسخ محلي. والمشغّل عندنا لا يعرض اسم المقطوعة ولا
      صورة الغلاف، فلا تنكشف الإجابة.
 
      t1: 20 يوقف المقطع عند 20 ثانية.
 
-     ترتيب مقصود: كل مطرب موضوع كاملاً في مستوى واحد بأغانيه الثلاث،
-     لأن اللعبة تسحب سؤالاً واحداً من كل مستوى — فلا يتكرر المطرب
-     نفسه مرتين في الجولة الواحدة.
+     ترتيب الصعوبة: شهرةُ المقطوعة لا هُويّةُ صاحبها — ففي كل مستوى
+     مقطوعتان لكل فنان تقريباً، حتى لا يصير المستوى نفسه دالّاً على
+     الفنان بعد جولة واحدة. وبما أن الفنانين أربعة والجولة ستة أسئلة،
+     فلا بدّ أن يتكرّر فنان أو اثنان في الجولة الواحدة — وهذا لازمُ
+     حصر الفئة في أربعة.
 
-     لتحديث رابط توقّف أو لإضافة مطرب جديد: audio/README.txt */
+     لتحديث رابط توقّف أو لإضافة مقطوعة: audio/README.txt */
   "عدنيات": [
-    /* ===== 100 نقطة — محمد عبده / راشد الماجد / عبدالمجيد عبدالله ===== */
-    { l: 1, q: "استمع إلى هذا المقطع — من المطرب؟", a: "محمد عبده — «ليلة خميس»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/cb/20/83/cb208324-43d3-c172-8439-b302c48822dd/mzaf_11756627665207364867.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "من صاحب هذا الصوت؟", a: "محمد عبده — «صوتك يناديني»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/45/aa/2f/45aa2ff5-153a-963b-8405-a21689c57de1/mzaf_18432173575536434823.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "استمعوا جيداً — من المطرب؟", a: "محمد عبده — «كفاني عذاب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/00/0b/f8/000bf8ac-4c22-4289-fe81-9c796dfe10c6/mzaf_17985508490015257929.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "استمع إلى هذا المقطع — من المطرب؟", a: "راشد الماجد — «غير الناس»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/43/f1/a3/43f1a39f-e3a1-d8eb-ff5b-72354e3b0cfc/mzaf_15024218585696580851.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "من صاحب هذا الصوت؟", a: "راشد الماجد — «قادر»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8c/70/56/8c705659-5366-8af0-edb6-74b80864c131/mzaf_4257705621444323584.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "استمعوا جيداً — من المطرب؟", a: "راشد الماجد — «يا طير»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/61/2b/44/612b44aa-29f4-bac5-8f3a-8b116edaa43e/mzaf_11624071264662927717.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "استمع إلى هذا المقطع — من المطرب؟", a: "عبدالمجيد عبدالله — «عوّدت قلبي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/02/d2/ad/02d2add8-8065-70ac-a946-133423ccfaf1/mzaf_7106180361730711890.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "من صاحب هذا الصوت؟", a: "عبدالمجيد عبدالله — «آسف»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a4/30/f7/a430f77a-ef03-aae7-a11f-8155c8faa4a1/mzaf_3038213483232539931.plus.aac.p.m4a", t1: 20 },
-    { l: 1, q: "استمعوا جيداً — من المطرب؟", a: "عبدالمجيد عبدالله — «قالوها»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c1/5b/e1/c15be1da-0d36-84e9-474a-e64c11359c1f/mzaf_13815121222981625768.plus.aac.p.m4a", t1: 20 },
-
-    /* ===== 200 نقطة — طلال مداح / حسين الجسمي / نوال الكويتية ===== */
-    { l: 2, q: "استمع إلى هذا المقطع — من المطرب؟", a: "طلال مداح — «مقادير»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ac/dd/d1/acddd1ed-4adc-12e7-5dd8-8f96a57f0973/mzaf_7821703054229805275.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "من صاحب هذا الصوت؟", a: "طلال مداح — «تصدق ولا احلفلك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e2/0c/22/e20c2246-e8b3-bed6-1e3a-86aaf3bffb27/mzaf_6362288274912691285.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "استمعوا جيداً — من المطرب؟", a: "طلال مداح — «وردك يا زارع الورد»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/31/75/a0/3175a0be-4e16-a2ef-b483-6574fec33fcd/mzaf_10560597892441906432.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "استمع إلى هذا المقطع — من المطرب؟", a: "حسين الجسمي — «بلغ حبيبك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6f/d1/07/6fd107ff-6df8-5f02-d369-05f460a89664/mzaf_11547922390681108938.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "من صاحب هذا الصوت؟", a: "حسين الجسمي — «بالبنط العريض»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c2/ae/1d/c2ae1d6e-b10a-74b5-0d53-6dfae013a8a1/mzaf_7179156399724832527.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "استمعوا جيداً — من المطرب؟", a: "حسين الجسمي — «أحبك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/38/47/9f/38479fd6-768e-ea62-910f-5ce607d36608/mzaf_10814301093549494294.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "استمع إلى هذا المقطع — من المطربة؟", a: "نوال الكويتية — «مثل النسيم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9f/5f/3c/9f5f3c46-6aef-60c4-e487-008f1e8288a7/mzaf_4565641063340927012.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "من صاحبة هذا الصوت؟", a: "نوال الكويتية — «طيب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fc/b3/1d/fcb31dc6-f564-ae36-55b2-a4108c9e5009/mzaf_1415383591844642322.plus.aac.p.m4a", t1: 20 },
-    { l: 2, q: "استمعوا جيداً — من المطربة؟", a: "نوال الكويتية — «قدّى عمري»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/94/c6/86/94c68628-0099-6f9d-ab3b-ea541cda14c0/mzaf_2343279003727455775.plus.aac.p.m4a", t1: 20 },
-
-    /* ===== 300 نقطة — عبدالله الرويشد / نبيل شعيل / عبادي الجوهر ===== */
-    { l: 3, q: "استمع إلى هذا المقطع — من المطرب؟", a: "عبدالله الرويشد — «دنيا الوله»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/76/4a/f6/764af640-6f15-ddc3-4eb1-b4251693edb5/mzaf_17694082230888255535.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "من صاحب هذا الصوت؟", a: "عبدالله الرويشد — «العيون»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/07/34/54/0734546b-6df7-ce5d-57c8-818b7273f56c/mzaf_16306082946619633857.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "استمعوا جيداً — من المطرب؟", a: "عبدالله الرويشد — «أنا بطبع قلبي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/94/4d/ad/944dad03-af78-5df2-0b9b-b266ed61c387/mzaf_18036335531696140053.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "استمع إلى هذا المقطع — من المطرب؟", a: "نبيل شعيل — «أبانسكم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/12/bb/56/12bb56bb-1cf2-15bd-0579-227a1177a8f4/mzaf_17722159196236815585.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "من صاحب هذا الصوت؟", a: "نبيل شعيل — «يا عسل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f3/45/53/f345538e-0671-50de-691e-d629833c438d/mzaf_665033206926041803.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "استمعوا جيداً — من المطرب؟", a: "نبيل شعيل — «وش مسوي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c2/ba/44/c2ba4402-87e3-d07a-75f2-e87beb98fbf7/mzaf_386415012211194591.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "استمع إلى هذا المقطع — من المطرب؟", a: "عبادي الجوهر — «من بعد مزح ولعب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/57/ca/0d/57ca0df9-9ea5-948d-9531-b552a7182c61/mzaf_10275082029407327554.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "من صاحب هذا الصوت؟", a: "عبادي الجوهر — «قالوا ترى»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/33/e5/a1/33e5a1fb-de6c-29c7-ee95-eaacac246b72/mzaf_10151220902175025937.plus.aac.p.m4a", t1: 20 },
-    { l: 3, q: "استمعوا جيداً — من المطرب؟", a: "عبادي الجوهر — «الجرح أرحم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0e/37/39/0e373955-6444-afd0-a63b-e24b77f506c2/mzaf_8084755531700407205.plus.aac.p.m4a", t1: 20 },
-
-    /* ===== 400 نقطة — أبو بكر سالم / عبدالكريم عبدالقادر / خالد عبدالرحمن ===== */
-    { l: 4, q: "استمع إلى هذا المقطع — من المطرب؟", a: "أبو بكر سالم بلفقيه — «لو خيروني»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/75/2d/61/752d616e-21c0-e32a-70fa-d020507731a2/mzaf_1757568170265169277.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "من صاحب هذا الصوت؟", a: "أبو بكر سالم بلفقيه — «يا سهران»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/1f/80/ec1f80c6-d4fb-7656-6bb1-3f0e48b0cfe8/mzaf_18093905921557747294.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "استمعوا جيداً — من المطرب؟", a: "أبو بكر سالم بلفقيه — «يا بلادي واصلي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/69/b0/27/69b027b1-c06b-0101-6de5-129239cd9b7a/mzaf_4317781299215283365.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "استمع إلى هذا المقطع — من المطرب؟", a: "عبدالكريم عبدالقادر — «محال»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e3/09/e3/e309e330-01a6-6dda-4c58-0916f79fa152/mzaf_10428953578916298031.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "من صاحب هذا الصوت؟", a: "عبدالكريم عبدالقادر — «رد الزيارة»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c2/8e/31/c28e3178-8fef-f222-36db-8aaef6a266b4/mzaf_6049439283860167648.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "استمعوا جيداً — من المطرب؟", a: "عبدالكريم عبدالقادر — «من بين الناس»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/50/7c/d8/507cd80d-3c18-72b6-be4f-fd94146dd405/mzaf_191640036489949405.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "استمع إلى هذا المقطع — من المطرب؟", a: "خالد عبدالرحمن — «خبروه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d3/3a/6b/d33a6bee-7cc7-dd5c-c338-4faf76bfbe04/mzaf_500267885140203115.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "من صاحب هذا الصوت؟", a: "خالد عبدالرحمن — «تقوى الهجر»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/30/41/9b/30419b15-61f0-051d-e9dc-052513da4131/mzaf_9799651073294615745.plus.aac.p.m4a", t1: 20 },
-    { l: 4, q: "استمعوا جيداً — من المطرب؟", a: "خالد عبدالرحمن — «الذاهبة»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/d3/67/01/d367018d-4c3d-91d2-aa03-b3cbe7ad7bc4/mzaf_18145593572029835390.plus.aac.p.m4a", t1: 20 },
-
-    /* ===== 500 نقطة — مطرف المطرف / يوسف المطرف / خالد الشيخ ===== */
-    { l: 5, q: "استمع إلى هذا المقطع — من المطرب؟", a: "مطرف المطرف — «يا نور العين»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c9/b1/28/c9b128af-b658-54c9-53e3-79c208f2a1e6/mzaf_12737719535677265290.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "من صاحب هذا الصوت؟", a: "مطرف المطرف — «غرام أو عشق»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/59/00/8d/59008de4-e8a9-3b44-8300-524ee57e8857/mzaf_10915376421125201077.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "استمعوا جيداً — من المطرب؟", a: "مطرف المطرف — «لا تهجى في كفوفي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/07/39/1f/07391f2b-9711-e307-5adb-c4be9a8b64c4/mzaf_10122295483558258699.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "استمع إلى هذا المقطع — من المطرب؟", a: "يوسف المطرف — «انت مرادي يا فاتني»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/cc/2a/58/cc2a58c1-24d1-afb9-3098-eddf71151522/mzaf_9143495399451233824.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "من صاحب هذا الصوت؟", a: "يوسف المطرف — «سميت حبي تسليه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f2/5a/0e/f25a0e57-369d-848d-0725-a92918a14074/mzaf_4158983775727319276.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "استمعوا جيداً — من المطرب؟", a: "يوسف المطرف — «ودي أقول»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e1/e3/cf/e1e3cf39-cf68-ed73-372a-6b4c02e0d411/mzaf_17884296365475317598.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "استمع إلى هذا المقطع — من المطرب؟", a: "خالد الشيخ — «عيناكِ»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/dd/3d/dd/dd3ddd44-709b-1b02-c690-97e935abee31/mzaf_4391812016983599025.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "من صاحب هذا الصوت؟", a: "خالد الشيخ — «يا مالق»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8f/98/4a/8f984a1d-dde0-8152-f4ad-0865176d7943/mzaf_71215026375882776.plus.aac.p.m4a", t1: 20 },
-    { l: 5, q: "استمعوا جيداً — من المطرب؟", a: "خالد الشيخ — «نعم نعم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/86/bd/00/86bd009d-209e-5a31-26b2-354c56934d8c/mzaf_6364681568543174835.plus.aac.p.m4a", t1: 20 },
+    /* ===== 100 نقطة ===== */
+    { l: 1, q: "استمعوا إلى العود — من صاحبه؟", a: "عبادي الجوهر — «الحل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/25/6d/8a/256d8ad1-8e27-becf-4b05-9206aa4ca808/mzaf_7016317424317274069.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "من صاحب هذا الصوت والعود؟", a: "خالد الملا — «يا مسافر»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/14/02/0c/14020c8a-22eb-e6ef-7193-883182f534e3/mzaf_2487155272045802355.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "استمع جيداً — من المطرب؟", a: "يوسف المطرف — «الله عظيم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/0d/c5/540dc5b9-bc2e-2723-c765-471b54c79a74/mzaf_11433438968714825507.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "استمعوا إلى العود — من صاحبه؟", a: "مطرف المطرف — «زينه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c4/49/92/c44992ac-1d65-8016-22f2-dbb2fc2b36c4/mzaf_3922567095794048160.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "من صاحب هذا الصوت والعود؟", a: "عبادي الجوهر — «على المحبة»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/da/cd/89/dacd89d0-4370-3d15-0b3e-457884a067f6/mzaf_16020270245114467434.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "استمع جيداً — من المطرب؟", a: "خالد الملا — «قولوا لها»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/22/0d/24/220d24b2-d6a5-d8b3-8e4b-acd98007afbe/mzaf_12811981015461467039.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "استمعوا إلى العود — من صاحبه؟", a: "يوسف المطرف — «معذور»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f9/9b/2f/f99b2fc4-acf5-04f5-cf6c-a0d20aa7d40f/mzaf_14290737596738422140.plus.aac.p.m4a", t1: 20 },
+    { l: 1, q: "من صاحب هذا الصوت والعود؟", a: "مطرف المطرف — «خساره»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/64/2e/06/642e06ac-8076-42ba-1b4d-615698260520/mzaf_4194308681521492887.plus.aac.p.m4a", t1: 20 },
+    /* ===== 200 نقطة ===== */
+    { l: 2, q: "استمع جيداً — من المطرب؟", a: "عبادي الجوهر — «أنصاف الحلول»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/cd/f7/ce/cdf7ce60-8e60-b3bd-dd05-9e36239e7eea/mzaf_14332671708722527194.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "استمعوا إلى العود — من صاحبه؟", a: "خالد الملا — «منيتي بالهوى»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/09/b1/20/09b12008-80bf-00e3-1fa9-85c669c04855/mzaf_3370833147474517647.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "من صاحب هذا الصوت والعود؟", a: "يوسف المطرف — «سمّيت حبي تسليه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f2/5a/0e/f25a0e57-369d-848d-0725-a92918a14074/mzaf_4158983775727319276.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "استمع جيداً — من المطرب؟", a: "مطرف المطرف — «ليش يا ظالم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b1/df/f2/b1dff2da-3e12-8306-f475-eaac9c40992a/mzaf_14719991197241298980.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "استمعوا إلى العود — من صاحبه؟", a: "عبادي الجوهر — «يا شوق»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/70/a3/c7/70a3c7f6-a98d-95f7-b049-3af93c5ddda5/mzaf_1443907175684514201.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "من صاحب هذا الصوت والعود؟", a: "خالد الملا — «إذا الهجر طال»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f7/c0/94/f7c0944f-c9f3-eb54-18bd-dd544366ad2b/mzaf_11269991375465857538.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "استمع جيداً — من المطرب؟", a: "يوسف المطرف — «شيللاه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/37/1d/7d/371d7dd5-db93-6f43-d951-48925329655c/mzaf_5185405334225667000.plus.aac.p.m4a", t1: 20 },
+    { l: 2, q: "استمعوا إلى العود — من صاحبه؟", a: "مطرف المطرف — «ولا راح الأمل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0a/ed/bb/0aedbb8c-17fc-4901-419d-e15cc8dda575/mzaf_14173549726341460908.plus.aac.p.m4a", t1: 20 },
+    /* ===== 300 نقطة ===== */
+    { l: 3, q: "من صاحب هذا الصوت والعود؟", a: "عبادي الجوهر — «رحّال»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/7b/68/60/7b686038-dbc2-1d59-bb6d-ca88792a2d25/mzaf_1907518648905006801.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "استمع جيداً — من المطرب؟", a: "خالد الملا — «على من نوم»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/be/a1/1b/bea11b42-e420-937c-d338-7b36f7afb838/mzaf_17455055810503828642.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "استمعوا إلى العود — من صاحبه؟", a: "يوسف المطرف — «مسكين راعي الهوى»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7b/b7/e6/7bb7e6e2-9693-798e-e6c4-a5aaa05eedf8/mzaf_8182173077689690820.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "من صاحب هذا الصوت والعود؟", a: "مطرف المطرف — «لا تهجى في كفوفي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/07/39/1f/07391f2b-9711-e307-5adb-c4be9a8b64c4/mzaf_10122295483558258699.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "استمع جيداً — من المطرب؟", a: "عبادي الجوهر — «سرى الليل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/e8/33/16/e8331688-e7dd-8ff8-fc34-6f9071dadef3/mzaf_8013970897200290532.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "استمعوا إلى العود — من صاحبه؟", a: "خالد الملا — «نصيحة»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/12/d7/7d/12d77da2-7510-7149-44c5-9709fb80fa98/mzaf_9274985271729118048.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "من صاحب هذا الصوت والعود؟", a: "يوسف المطرف — «مشّى دمعتك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/eb/29/98/eb299864-73c4-afbb-1977-5bbc8dc51376/mzaf_5386775740356339822.plus.aac.p.m4a", t1: 20 },
+    { l: 3, q: "استمع جيداً — من المطرب؟", a: "مطرف المطرف — «يا نور العين»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c9/b1/28/c9b128af-b658-54c9-53e3-79c208f2a1e6/mzaf_12737719535677265290.plus.aac.p.m4a", t1: 20 },
+    /* ===== 400 نقطة ===== */
+    { l: 4, q: "استمعوا إلى العود — من صاحبه؟", a: "عبادي الجوهر — «كل العواذل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/a2/08/e6/a208e6e7-7bda-3350-d835-e823f95782b5/mzaf_6138440083514420773.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "من صاحب هذا الصوت والعود؟", a: "خالد الملا — «انخدع القلب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/41/2c/ff/412cff4e-e36a-e1f9-b810-306aaeb21608/mzaf_11788080512138366953.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "استمع جيداً — من المطرب؟", a: "يوسف المطرف — «ودّي أقول»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e1/e3/cf/e1e3cf39-cf68-ed73-372a-6b4c02e0d411/mzaf_17884296365475317598.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "استمعوا إلى العود — من صاحبه؟", a: "مطرف المطرف — «منهاك غرام»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0b/6a/fc/0b6afc04-6de1-2b90-a906-9b9245da7a3b/mzaf_7369519396296261982.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "من صاحب هذا الصوت والعود؟", a: "عبادي الجوهر — «مو غريب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/c4/97/bf/c497bfc2-08f2-e3d5-8bbc-01349a16f9ca/mzaf_13331788370888196716.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "استمع جيداً — من المطرب؟", a: "خالد الملا — «الثوب المنقّط»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/60/3e/55/603e5575-e7ac-e318-e244-bffa0431e8dc/mzaf_18161625088056290029.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "استمعوا إلى العود — من صاحبه؟", a: "يوسف المطرف — «إنت جمال الروح»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b7/b4/7c/b7b47ca8-390b-7009-4eb3-59b7f3339307/mzaf_8282806620865217170.plus.aac.p.m4a", t1: 20 },
+    { l: 4, q: "من صاحب هذا الصوت والعود؟", a: "مطرف المطرف — «فاقدك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/52/f7/fd/52f7fd5a-a1db-c98f-53d9-86b4c51a4262/mzaf_12062210953511556095.plus.aac.p.m4a", t1: 20 },
+    /* ===== 500 و600 نقطة ===== */
+    { l: 5, q: "استمع جيداً — من المطرب؟", a: "عبادي الجوهر — «مالي في الطيب نصيب»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/97/74/03/977403f4-0f24-277e-6a73-b48c15fe4808/mzaf_1198042483318755400.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "استمعوا إلى العود — من صاحبه؟", a: "خالد الملا — «قمري الوادي»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/bf/23/8e/bf238e17-cf75-c9dc-cf94-1f33eba34b4e/mzaf_17752850197918740734.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "من صاحب هذا الصوت والعود؟", a: "يوسف المطرف — «عظّم الله أجرك»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/1a/e0/1c/1ae01cf9-1546-2481-6d5a-ad4457bb6b61/mzaf_1105417906118593853.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "استمع جيداً — من المطرب؟", a: "مطرف المطرف — «حاضر وتمّ»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/90/4b/62/904b62a0-4681-3a07-8c6c-9f5934093544/mzaf_3567845975691053344.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "استمعوا إلى العود — من صاحبه؟", a: "عبادي الجوهر — «محد بنصف الليل»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/a4/06/76/a4067634-e432-f597-c6df-2f1ac24385d8/mzaf_13504305688000283424.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "من صاحب هذا الصوت والعود؟", a: "خالد الملا — «في صحف صنعا»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/12/67/a7/1267a720-f753-4b16-8e97-641f1d830275/mzaf_1212140810248587306.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "استمع جيداً — من المطرب؟", a: "مطرف المطرف — «يا غلبه»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8e/c9/04/8ec90434-1768-313c-a3bf-ddeee510eb3c/mzaf_6892514513509700119.plus.aac.p.m4a", t1: 20 },
+    { l: 5, q: "تقاسيم عود بلا غناء — من العازف؟", a: "عبادي الجوهر — «تقاسيم عود»", audio: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/4e/87/f5/4e87f540-0213-fd65-8469-d5583ebbdd3e/mzaf_5937161384644931609.plus.aac.p.m4a", t1: 20 },
   ],
 
   /* ---------- طعام ومطبخ (74 سؤالاً) ---------- */
