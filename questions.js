@@ -930,68 +930,81 @@ const questionsData = {
   ],
 
   /* ---------- سيارات (50 سؤالاً) ----------
-     أربعة أنواع من الأسئلة، ولكل سؤال صورة السيارة نفسها (صور مقالات
-     ويكيبيديا من ويكيميديا كومنز)، عشرة لكل مستوى:
+     أربعة أنواع من الأسئلة، ولكل سؤال صورة السيارة نفسها (من ويكيميديا
+     كومنز)، عشرة لكل مستوى:
        «ما نوع هذه السيارة؟»   الجواب الشركة (3 لكل مستوى)
        «ما اسم هذه السيارة؟»   الجواب اسم الطراز (3)
        «أين صُنعت هذه السيارة؟» الجواب بلد الشركة (3)
        «ما موديل هذه السيارة؟» الجواب سنة الموديل — سيارات كلاسيكية
-                                تُعرف سنتها من شكلها (1) */
-  "سيارات": [
-    { l: 1, q: "ما نوع هذه السيارة؟", a: "تويوتا (لاند كروزر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/2021_Toyota_Land_Cruiser_300_3.4_ZX_%28Colombia%29_front_view_04.png/960px-2021_Toyota_Land_Cruiser_300_3.4_ZX_%28Colombia%29_front_view_04.png" },
-    { l: 1, q: "ما نوع هذه السيارة؟", a: "نيسان (باترول)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/2016_Nissan_Patrol_%28Y62%29_Ti-L_wagon_%282018-09-17%29_01.jpg/960px-2016_Nissan_Patrol_%28Y62%29_Ti-L_wagon_%282018-09-17%29_01.jpg" },
-    { l: 1, q: "ما نوع هذه السيارة؟", a: "مرسيدس-بنز (G-Class)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Mercedes-Benz_W463_G_350_BlueTEC_01.jpg/960px-Mercedes-Benz_W463_G_350_BlueTEC_01.jpg" },
-    { l: 1, q: "ما اسم هذه السيارة؟", a: "فولكس فاجن بيتل (الخنفساء)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/VW_K%C3%A4fer_Baujahr_1966.jpg/960px-VW_K%C3%A4fer_Baujahr_1966.jpg" },
-    { l: 1, q: "ما اسم هذه السيارة؟", a: "فورد موستانج", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Ford_Mustang_VII_GT_Rutesheimer_Autoschau_2025_DSC_9234.jpg/960px-Ford_Mustang_VII_GT_Rutesheimer_Autoschau_2025_DSC_9234.jpg" },
-    { l: 1, q: "ما اسم هذه السيارة؟", a: "جيب رانجلر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/2018_Jeep_Wrangler_Sahara_Unlimited_Multijet_2.1_Front.jpg/960px-2018_Jeep_Wrangler_Sahara_Unlimited_Multijet_2.1_Front.jpg" },
-    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "اليابان — تويوتا كامري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/2018_Toyota_Camry_%28ASV70R%29_Ascent_sedan_%282018-08-27%29_01.jpg/960px-2018_Toyota_Camry_%28ASV70R%29_Ascent_sedan_%282018-08-27%29_01.jpg" },
-    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "ألمانيا — بي إم دبليو الفئة الثالثة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/BMW_G20_%282022%29_IMG_7316_%282%29.jpg/960px-BMW_G20_%282022%29_IMG_7316_%282%29.jpg" },
-    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "الولايات المتحدة — شفروليه تاهو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/2022_Chevrolet_Tahoe_RST%2C_front_3.7.22.jpg/960px-2022_Chevrolet_Tahoe_RST%2C_front_3.7.22.jpg" },
-    { l: 1, q: "ما موديل هذه السيارة؟", a: "موديل 1957 — شفروليه بيل إير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/1957_Chevrolet_Bel_Air_Sport_Coupe_P5200937.jpg/960px-1957_Chevrolet_Bel_Air_Sport_Coupe_P5200937.jpg" },
+                                تُعرف سنتها من شكلها (1)
 
-    { l: 2, q: "ما نوع هذه السيارة؟", a: "بورشه (911)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Porsche_911_No_1000000%2C_70_Years_Porsche_Sports_Car%2C_Berlin_%281X7A3888%29.jpg/960px-Porsche_911_No_1000000%2C_70_Years_Porsche_Sports_Car%2C_Berlin_%281X7A3888%29.jpg" },
-    { l: 2, q: "ما نوع هذه السيارة؟", a: "لامبورغيني (أفينتادور)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Lamborghini_Aventador_S_%2844554%29.jpg/960px-Lamborghini_Aventador_S_%2844554%29.jpg" },
-    { l: 2, q: "ما نوع هذه السيارة؟", a: "فيراري (488)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/2018_Ferrari_488_GTB_Spider_S-A_3.9_Front.jpg/960px-2018_Ferrari_488_GTB_Spider_S-A_3.9_Front.jpg" },
-    { l: 2, q: "ما اسم هذه السيارة؟", a: "ميني كوبر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Mini_Hatch_%28J01%29_Ditzingen_Mobil_IMG_9772_%28cropped%29.jpg/960px-Mini_Hatch_%28J01%29_Ditzingen_Mobil_IMG_9772_%28cropped%29.jpg" },
-    { l: 2, q: "ما اسم هذه السيارة؟", a: "تسلا سايبرترك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg/960px-2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg" },
-    { l: 2, q: "ما اسم هذه السيارة؟", a: "همر H1", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/94-00_AM_General_Hummer_soft_top.jpg/960px-94-00_AM_General_Hummer_soft_top.jpg" },
-    { l: 2, q: "أين صُنعت هذه السيارة؟", a: "كوريا الجنوبية — هيونداي سوناتا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/2024_Hyundai_Sonata_SEL%2C_front_right.jpg/960px-2024_Hyundai_Sonata_SEL%2C_front_right.jpg" },
-    { l: 2, q: "أين صُنعت هذه السيارة؟", a: "إيطاليا — فيات 500 (شركة إيطالية، وتُجمَّع في بولندا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Fiat_500_%282007%29_02.JPG/960px-Fiat_500_%282007%29_02.JPG" },
+     الصور جانبية لا أمامية: اللقطة الأمامية تُظهر شعار الشركة في الشبك
+     فيُقرأ الجوابُ بدل أن يُعرف، واللقطة الخلفية تُظهر الشعار واسم الطراز
+     معاً. فصار الأصل لقطةَ البروفايل: هيكل السيارة هو الدليل. ٤٤ صورة
+     من الخمسين استُبدلت بهذا، وكلها مفحوصة بالعين صورةً صورةً.
+
+     وبقيت ستّ على حالها لعدم وجود لقطة جانبية نظيفة لها في كومنز:
+       فولفو XC90 · بوغاتي شيرون · ماكلارين 720S ·
+       بي واي دي هان · مازيراتي MC20 — كل بديل لها خلفيٌّ يحمل اسم
+       الشركة مكتوباً وهو أسوأ من الشعار؛ وكورفيت 1963 أُبقيت لأن
+       جوابها سنةُ الموديل وصورتها موثّقة بالنافذة المنقسمة.
+     وتاهو صورتها سيارةُ شرطةٍ جانبية: بلا شعار، لكنّ طلاءها يدلّ
+     على أمريكا وهو جوابها — والأمامية كانت تدلّ عليها بالشعار. */
+  "سيارات": [
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "تويوتا (لاند كروزر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/2018_Toyota_Land_Cruiser_200_Executive_Lounge_white_side.jpg/960px-2018_Toyota_Land_Cruiser_200_Executive_Lounge_white_side.jpg" },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "نيسان (باترول)", img: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Barbados_Police_Nissan_Patrol_002.jpg" },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "مرسيدس-بنز (G-Class)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Mercedes-Benz_Gel%C3%A4ndewagen_Norwegian_military_MB240GD_side.jpg/960px-Mercedes-Benz_Gel%C3%A4ndewagen_Norwegian_military_MB240GD_side.jpg" },
+    { l: 1, q: "ما اسم هذه السيارة؟", a: "فولكس فاجن بيتل (الخنفساء)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Blue_Volkswagen_Beetle_side_view.jpg/960px-Blue_Volkswagen_Beetle_side_view.jpg" },
+    { l: 1, q: "ما اسم هذه السيارة؟", a: "فورد موستانج", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/1971_Ford_Mustang_Grande%2C_right_side%2C_blue%2C_Golden_Super_Cruise_2026-07-04.jpg/960px-1971_Ford_Mustang_Grande%2C_right_side%2C_blue%2C_Golden_Super_Cruise_2026-07-04.jpg" },
+    { l: 1, q: "ما اسم هذه السيارة؟", a: "جيب رانجلر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Jeep_Wrangler_%28JK%29_Sahara_side.jpg/960px-Jeep_Wrangler_%28JK%29_Sahara_side.jpg" },
+    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "اليابان — تويوتا كامري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/1997_Toyota_Camry_2.0_Lumiere_side.jpg/960px-1997_Toyota_Camry_2.0_Lumiere_side.jpg" },
+    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "ألمانيا — بي إم دبليو الفئة الثالثة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/BMW_3-Series_%28G21%2C_side%29.jpg/960px-BMW_3-Series_%28G21%2C_side%29.jpg" },
+    { l: 1, q: "أين صُنعت هذه السيارة؟", a: "الولايات المتحدة — شفروليه تاهو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Colorado_State_Patrol_Chevrolet_Tahoe_Patrol_Vehicle_-_Side_View_1.jpg/960px-Colorado_State_Patrol_Chevrolet_Tahoe_Patrol_Vehicle_-_Side_View_1.jpg" },
+    { l: 1, q: "ما موديل هذه السيارة؟", a: "موديل 1957 — شفروليه بيل إير", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/1957_Chevrolet_Bel_Air_Sport_Sedan_Sunoco_Station_Putney_VT_October_2017.jpg/960px-1957_Chevrolet_Bel_Air_Sport_Sedan_Sunoco_Station_Putney_VT_October_2017.jpg" },
+
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "بورشه (911)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Silver_911_right_side_profile_%286282853063%29.jpg/960px-Silver_911_right_side_profile_%286282853063%29.jpg" },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "لامبورغيني (أفينتادور)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/2022_Lambo_Aventador_Ultimae_Side_FOS22.jpg/960px-2022_Lambo_Aventador_Ultimae_Side_FOS22.jpg" },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "فيراري (488)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Ferrari-Monaco-4071008.jpg/960px-Ferrari-Monaco-4071008.jpg" },
+    { l: 2, q: "ما اسم هذه السيارة؟", a: "ميني كوبر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Blazing_Red_2015_MINI_Cooper_S_Countryman_R60_Side_View_Photographed_in_Felixstow%2C_South_Australia.jpg/960px-Blazing_Red_2015_MINI_Cooper_S_Countryman_R60_Side_View_Photographed_in_Felixstow%2C_South_Australia.jpg" },
+    { l: 2, q: "ما اسم هذه السيارة؟", a: "تسلا سايبرترك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Tesla_Cybertruck_-_Side_6_-_Tesla_Store_Athens_2024.jpg/960px-Tesla_Cybertruck_-_Side_6_-_Tesla_Store_Athens_2024.jpg" },
+    { l: 2, q: "ما اسم هذه السيارة؟", a: "همر H1", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Hummer_H1_%28Pick-Up%29_%28side%29.jpg/960px-Hummer_H1_%28Pick-Up%29_%28side%29.jpg" },
+    { l: 2, q: "أين صُنعت هذه السيارة؟", a: "كوريا الجنوبية — هيونداي سوناتا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Hyundai_Sonata_Hybrid_WAS_2012_0684.JPG/960px-Hyundai_Sonata_Hybrid_WAS_2012_0684.JPG" },
+    { l: 2, q: "أين صُنعت هذه السيارة؟", a: "إيطاليا — فيات 500 (شركة إيطالية، وتُجمَّع في بولندا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Fiat_500_side.JPG/960px-Fiat_500_side.JPG" },
     { l: 2, q: "أين صُنعت هذه السيارة؟", a: "السويد — فولفو XC90", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Volvo_XC90_T8_AWD_Plug-in_Hybrid_Plus_%28II%2C_2._Facelift%29_%E2%80%93_f_03102025.jpg/960px-Volvo_XC90_T8_AWD_Plug-in_Hybrid_Plus_%28II%2C_2._Facelift%29_%E2%80%93_f_03102025.jpg" },
     { l: 2, q: "ما موديل هذه السيارة؟", a: "موديل 1963 — شفروليه كورفيت (النافذة الخلفية المقسومة)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/1963_Chevrolet_Corvette_Split-Window_Coupe_-_03.jpg/960px-1963_Chevrolet_Corvette_Split-Window_Coupe_-_03.jpg" },
 
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "رولز رويس (فانتوم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg/960px-2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg" },
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "بنتلي (كونتيننتال GT)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Bentley_Continental_GT_First_Edition_%2849919050697%29_%28cropped%29_%28cropped%29.jpg/960px-Bentley_Continental_GT_First_Edition_%2849919050697%29_%28cropped%29_%28cropped%29.jpg" },
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "كاديلاك (إسكاليد)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/2026_Cadillac_Escalade_ESV.jpg/960px-2026_Cadillac_Escalade_ESV.jpg" },
-    { l: 3, q: "ما اسم هذه السيارة؟", a: "نيسان GT-R", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/2009-2010_Nissan_GT-R_%28R35%29_coupe_01.jpg/960px-2009-2010_Nissan_GT-R_%28R35%29_coupe_01.jpg" },
-    { l: 3, q: "ما اسم هذه السيارة؟", a: "تويوتا هايلكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/2016_Toyota_HiLux_Invincible_D-4D_4WD_2.4_Front.jpg/960px-2016_Toyota_HiLux_Invincible_D-4D_4WD_2.4_Front.jpg" },
-    { l: 3, q: "ما اسم هذه السيارة؟", a: "شفروليه كابريس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/2011_Chevrolet_Caprice_PPV_--_12-06-2010_front.jpg/960px-2011_Chevrolet_Caprice_PPV_--_12-06-2010_front.jpg" },
-    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "بريطانيا — رنج روفر (لاند روفر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/2022_Land_Rover_Range_Rover_SE_P440e_AWD_Automatic_3.0_Front.jpg/960px-2022_Land_Rover_Range_Rover_SE_P440e_AWD_Automatic_3.0_Front.jpg" },
-    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "فرنسا — بيجو 208", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Peugeot_208_PureTech_130_EAT8_Allure_GT-Line_%28II%29_%E2%80%93_f_17102021.jpg/960px-Peugeot_208_PureTech_130_EAT8_Allure_GT-Line_%28II%29_%E2%80%93_f_17102021.jpg" },
-    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "الهند — تاتا نانو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Tata_-_Nano_-_Kolkata_2011-09-15_5184.JPG/960px-Tata_-_Nano_-_Kolkata_2011-09-15_5184.JPG" },
-    { l: 3, q: "ما موديل هذه السيارة؟", a: "موديل 1969 — دودج تشارجر R/T", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/1969_Dodge_Charger_R-T%2C_front_right_%282022_Ellwood_City_Fall_Fest_%26_Car_Cruise%29.jpg/960px-1969_Dodge_Charger_R-T%2C_front_right_%282022_Ellwood_City_Fall_Fest_%26_Car_Cruise%29.jpg" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "رولز رويس (فانتوم)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Rolls-Royce_Phantom-Coup%C3%A9_Side-view.JPG/960px-Rolls-Royce_Phantom-Coup%C3%A9_Side-view.JPG" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "بنتلي (كونتيننتال GT)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Bentley_Continental_GT_%28II%29_%E2%80%93_Seitenansicht%2C_30._August_2011%2C_D%C3%BCsseldorf.jpg/960px-Bentley_Continental_GT_%28II%29_%E2%80%93_Seitenansicht%2C_30._August_2011%2C_D%C3%BCsseldorf.jpg" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "كاديلاك (إسكاليد)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Dsc02941_%283290551631%29.jpg/960px-Dsc02941_%283290551631%29.jpg" },
+    { l: 3, q: "ما اسم هذه السيارة؟", a: "نيسان GT-R", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Nissan_GT-R_side.jpg/960px-Nissan_GT-R_side.jpg" },
+    { l: 3, q: "ما اسم هذه السيارة؟", a: "تويوتا هايلكس", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Toyota_Hilux_PNP_truck_side_view.JPG/960px-Toyota_Hilux_PNP_truck_side_view.JPG" },
+    { l: 3, q: "ما اسم هذه السيارة؟", a: "شفروليه كابريس", img: "https://upload.wikimedia.org/wikipedia/commons/7/7d/1972_Chevrolet_Caprice_coupe%2C_left_side.jpg" },
+    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "بريطانيا — رنج روفر (لاند روفر)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Land_Rover_Range_Rover_Evoque_Convertible_2016_-_side.jpg/960px-Land_Rover_Range_Rover_Evoque_Convertible_2016_-_side.jpg" },
+    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "فرنسا — بيجو 208", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Peugeot_208_GTi_%28side%29.JPG/960px-Peugeot_208_GTi_%28side%29.JPG" },
+    { l: 3, q: "أين صُنعت هذه السيارة؟", a: "الهند — تاتا نانو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Tata_Nano_.jpg/960px-Tata_Nano_.jpg" },
+    { l: 3, q: "ما موديل هذه السيارة؟", a: "موديل 1969 — دودج تشارجر R/T", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/1969_Dodge_Charger_green_F.jpg/960px-1969_Dodge_Charger_green_F.jpg" },
 
     { l: 4, q: "ما نوع هذه السيارة؟", a: "بوغاتي (شيرون)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/960px-Bugatti_Chiron_1.jpg" },
     { l: 4, q: "ما نوع هذه السيارة؟", a: "ماكلارين (720S)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/2018_McLaren_720S_V8_S-A_4.0.jpg/960px-2018_McLaren_720S_V8_S-A_4.0.jpg" },
-    { l: 4, q: "ما نوع هذه السيارة؟", a: "أستون مارتن (DB11)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2018_Aston_Martin_DB11_V8_Automatic_4.0_Front.jpg/960px-2018_Aston_Martin_DB11_V8_Automatic_4.0_Front.jpg" },
-    { l: 4, q: "ما اسم هذه السيارة؟", a: "ميتسوبيشي باجيرو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Mitsubishi_V98_Pajero_Long_Body_Super_Exceed_3200_DI-D.JPG/960px-Mitsubishi_V98_Pajero_Long_Body_Super_Exceed_3200_DI-D.JPG" },
-    { l: 4, q: "ما اسم هذه السيارة؟", a: "تويوتا سوبرا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/2020_Toyota_GR_Supra_%28United_States%29.png/960px-2020_Toyota_GR_Supra_%28United_States%29.png" },
-    { l: 4, q: "ما اسم هذه السيارة؟", a: "مازدا MX-5", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Mazda_Roadster_%28MX-5%29_by_Negawa_Bridge_%28cropped%29.jpg/960px-Mazda_Roadster_%28MX-5%29_by_Negawa_Bridge_%28cropped%29.jpg" },
-    { l: 4, q: "أين صُنعت هذه السيارة؟", a: "التشيك — سكودا أوكتافيا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Skoda_Octavia_IV_liftback_%28cropped%29.jpg/960px-Skoda_Octavia_IV_liftback_%28cropped%29.jpg" },
-    { l: 4, q: "أين صُنعت هذه السيارة؟", a: "روسيا — لادا نيفا (صُنعت أيام الاتحاد السوفييتي)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/1987_Lada_Niva_1600.jpg/960px-1987_Lada_Niva_1600.jpg" },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "أستون مارتن (DB11)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/2018_Aston_Martin_DB11_V8_Automatic_4.0_Side.jpg/960px-2018_Aston_Martin_DB11_V8_Automatic_4.0_Side.jpg" },
+    { l: 4, q: "ما اسم هذه السيارة؟", a: "ميتسوبيشي باجيرو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/2026_Mitsubishi_event_in_Tokyo_-_Pajero_left_-_POV_L%C3%81I_TH%E1%BB%AC.jpg/960px-2026_Mitsubishi_event_in_Tokyo_-_Pajero_left_-_POV_L%C3%81I_TH%E1%BB%AC.jpg" },
+    { l: 4, q: "ما اسم هذه السيارة؟", a: "تويوتا سوبرا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/D%C3%BClmen%2C_Auto_Bertels%2C_Toyota_GR_Supra_--_2021_--_9552-4.jpg/960px-D%C3%BClmen%2C_Auto_Bertels%2C_Toyota_GR_Supra_--_2021_--_9552-4.jpg" },
+    { l: 4, q: "ما اسم هذه السيارة؟", a: "مازدا MX-5", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Mazda_MX-5_Superlight_%28side%29.jpg/960px-Mazda_MX-5_Superlight_%28side%29.jpg" },
+    { l: 4, q: "أين صُنعت هذه السيارة؟", a: "التشيك — سكودا أوكتافيا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/2020_Skoda_Octavia_vRS_Challenge_TSI_-_1984cc_2.0_%28245PS%29_Petrol_-_White_-_05-2024%2C_Side.jpg/960px-2020_Skoda_Octavia_vRS_Challenge_TSI_-_1984cc_2.0_%28245PS%29_Petrol_-_White_-_05-2024%2C_Side.jpg" },
+    { l: 4, q: "أين صُنعت هذه السيارة؟", a: "روسيا — لادا نيفا (صُنعت أيام الاتحاد السوفييتي)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Lada_Niva_Sport_brown_side.jpg/960px-Lada_Niva_Sport_brown_side.jpg" },
     { l: 4, q: "أين صُنعت هذه السيارة؟", a: "الصين — بي واي دي هان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/2023_BYD_Han_DM-i_%28facelift%29%2C_front_8.17.23.jpg/960px-2023_BYD_Han_DM-i_%28facelift%29%2C_front_8.17.23.jpg" },
-    { l: 4, q: "ما موديل هذه السيارة؟", a: "موديل 1959 — كاديلاك إلدورادو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/1959_Cadillac_Eldorado_Biarritz.jpg/960px-1959_Cadillac_Eldorado_Biarritz.jpg" },
+    { l: 4, q: "ما موديل هذه السيارة؟", a: "موديل 1959 — كاديلاك إلدورادو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/1959_Cadillac_Eldorado_Biarritz_convertible_in_Warsaw.jpg/960px-1959_Cadillac_Eldorado_Biarritz_convertible_in_Warsaw.jpg" },
 
-    { l: 5, q: "ما نوع هذه السيارة؟", a: "باغاني", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Pagani%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0023%29.jpg/960px-Pagani%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0023%29.jpg" },
-    { l: 5, q: "ما نوع هذه السيارة؟", a: "كونيجسيج (أجيرا)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Agera_RST_Koenigsegg.jpg/960px-Agera_RST_Koenigsegg.jpg" },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "باغاني", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Pagani_Huayra_Roadster_Side.jpg/960px-Pagani_Huayra_Roadster_Side.jpg" },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "كونيجسيج (CC8S)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Koenigsegg_CC8S_-_Side_01.jpg/960px-Koenigsegg_CC8S_-_Side_01.jpg" },
     { l: 5, q: "ما نوع هذه السيارة؟", a: "مازيراتي (MC20)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Maserati_MC20_IAA_2021_1X7A0087.jpg/960px-Maserati_MC20_IAA_2021_1X7A0087.jpg" },
-    { l: 5, q: "ما اسم هذه السيارة؟", a: "فورد GT40", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/GT40_at_Goodwood.jpg/960px-GT40_at_Goodwood.jpg" },
-    { l: 5, q: "ما اسم هذه السيارة؟", a: "مرسيدس-بنز 300 SL (جناح النورس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Mercedes_Benz_300_SL_Gullwing_%288649257974%29.jpg/960px-Mercedes_Benz_300_SL_Gullwing_%288649257974%29.jpg" },
-    { l: 5, q: "ما اسم هذه السيارة؟", a: "ديلوريان DMC-12", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/DeLorean_DMC-12_Classic-Days_2022_DSC_0050.jpg/960px-DeLorean_DMC-12_Classic-Days_2022_DSC_0050.jpg" },
-    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "ماليزيا — بروتون ساغا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Three_generations_of_Proton_Saga_%2830383928616%29.jpg/960px-Three_generations_of_Proton_Saga_%2830383928616%29.jpg" },
-    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "رومانيا — داتشيا داستر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Dacia_Duster_TCe_130_Extreme_%28III%29_%E2%80%93_f_13102024.jpg/960px-Dacia_Duster_TCe_130_Extreme_%28III%29_%E2%80%93_f_13102024.jpg" },
-    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "أستراليا — هولدن كومودور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/2017_Holden_Commodore_%28VF_II_MY17%29_SV6_sedan_%282017-11-18%29_01.jpg/960px-2017_Holden_Commodore_%28VF_II_MY17%29_SV6_sedan_%282017-11-18%29_01.jpg" },
-    { l: 5, q: "ما موديل هذه السيارة؟", a: "موديل 1970 — بلايموث سوبربيرد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/1970_Plymouth_Superbird_LC23.jpg/960px-1970_Plymouth_Superbird_LC23.jpg" },
+    { l: 5, q: "ما اسم هذه السيارة؟", a: "فورد GT40", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/View_of_a_side-on_view_of_the_Ford_GT40_in_the_%22For_Sale%22_section_of_the_Classic_Car_Boot_Sale_-_geograph.org.uk_-_4922818.jpg/960px-View_of_a_side-on_view_of_the_Ford_GT40_in_the_%22For_Sale%22_section_of_the_Classic_Car_Boot_Sale_-_geograph.org.uk_-_4922818.jpg" },
+    { l: 5, q: "ما اسم هذه السيارة؟", a: "مرسيدس-بنز 300 SL (جناح النورس)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Mercedes-Benz_W198_300_SL_Gullwing_Genf_2019_1Y7A5009.jpg/960px-Mercedes-Benz_W198_300_SL_Gullwing_Genf_2019_1Y7A5009.jpg" },
+    { l: 5, q: "ما اسم هذه السيارة؟", a: "ديلوريان DMC-12", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/DeLorean_DMC-12_Side_View.jpg/960px-DeLorean_DMC-12_Side_View.jpg" },
+    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "ماليزيا — بروتون ساغا", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Proton_Saga_Sedan_in_Malaysia_%289%29.jpg/960px-Proton_Saga_Sedan_in_Malaysia_%289%29.jpg" },
+    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "رومانيا — داتشيا داستر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Dacia_Duster_Extreme_Mk2_-_Side_View.jpg/960px-Dacia_Duster_Extreme_Mk2_-_Side_View.jpg" },
+    { l: 5, q: "أين صُنعت هذه السيارة؟", a: "أستراليا — هولدن كومودور", img: "https://upload.wikimedia.org/wikipedia/commons/e/ee/1994_Holden_VR_Commodore_Executive_sedan_01.jpg" },
+    { l: 5, q: "ما موديل هذه السيارة؟", a: "موديل 1970 — بلايموث سوبربيرد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/1970_Plymouth_Superbird_in_Sky_Blue.jpg/960px-1970_Plymouth_Superbird_in_Sky_Blue.jpg" },
   ],
 
   /* ---------- تقنية (95 سؤالاً) ----------
