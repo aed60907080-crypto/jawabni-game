@@ -566,11 +566,12 @@
     .customize-btn.on{ background:rgba(231,183,64,.18); border-color:var(--gold); }
 
     .cz-wrap{
-      display:flex; align-items:center; justify-content:center;
-      flex-wrap:wrap; gap:10px;
-      margin:-4px 0 16px;
+      display:flex; flex-direction:column; align-items:center;
+      gap:9px; margin:-4px 0 16px;
     }
-    .cz-label{ color:var(--muted); font-size:13px; }
+    .cz-row{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .cz-label{ color:var(--muted); font-size:13px; min-width:88px; text-align:start; }
+    .cz-label small{ opacity:.7; font-size:11px; }
     .cz-seg{ display:inline-flex; gap:4px; background:rgba(0,0,0,.28);
              border:1px solid var(--line); border-radius:999px; padding:4px; }
     .cz-seg button{
@@ -859,10 +860,16 @@
       </button>
     </p>
 
-    <!-- كوستمايز: اختيار عدد الفرق دون مغادرة الصفحة -->
+    <!-- كوستمايز: عدد الفرق وعدد الفئات دون مغادرة الصفحة -->
     <div class="cz-wrap" id="czWrap" hidden>
-      <span class="cz-label">عدد الفرق</span>
-      <div class="cz-seg" id="czSeg"></div>
+      <div class="cz-row">
+        <span class="cz-label">عدد الفرق</span>
+        <div class="cz-seg" id="czSeg"></div>
+      </div>
+      <div class="cz-row">
+        <span class="cz-label">عدد الفئات <small>(لفريقين)</small></span>
+        <div class="cz-seg" id="czCatSeg"></div>
+      </div>
       <span class="cz-hint" id="czHint"></span>
     </div>
 
@@ -1003,43 +1010,46 @@
                          : n <= 10 ? AR(n) + ' فئات'
                          : AR(n) + ' فئة';
 
-    /* ---------- كوستمايز: عدد الفرق من هذه الصفحة ----------
-       يكتب teamCount (اختيار الجولة القادمة) كما تفعل الإعدادات تماماً،
-       ثم يُعيد رسم خانات الأسماء والسقف. ولا يمسّ gameTeamCount: ذاك
-       يُثبَّت عند بدء الجولة في Teams.startRound.
+    /* ---------- كوستمايز: عدد الفرق وعدد الفئات من هذه الصفحة ----------
+       يكتب teamCount و maxCategories — وهما اختيارُ الجولة القادمة —
+       كما تفعل الإعدادات تماماً، ثم يُعيد رسم ما يتبعهما. ولا يمسّ
+       gameTeamCount: ذاك يُثبَّت عند بدء الجولة في Teams.startRound،
+       فلا يتغيّر شيءٌ في لعبةٍ جارية.
 
-       والسقف يكبر مع الفرق، فإن نقص العدد نقص السقف — وقد تكون الفئات
-       المختارة أكثر منه. فتُقتطع الزائدة ويُنبَّه اللاعب، ولا تُترك
-       اختياراتٌ لا تُلعب. */
+       والسقفُ حاصلُ الاثنين: أساسُ الفئات × (عدد الفرق ÷ ٢). فإن نقص
+       أحدُهما نقص السقف، وقد تكون المختاراتُ أكثر منه — فتُقتطع
+       الزائدة ويُنبَّه اللاعب، ولا تُترك اختياراتٌ لا تُلعب. */
     function setupCustomize() {
       const btn  = document.getElementById('customizeTeams');
       const wrap = document.getElementById('czWrap');
       const seg  = document.getElementById('czSeg');
+      const cseg = document.getElementById('czCatSeg');
       const hint = document.getElementById('czHint');
-      if (!btn || !wrap || !seg) return;
+      if (!btn || !wrap || !seg || !cseg) return;
 
-
-      function paint() {
-        const cur = Teams.setting();
-        seg.innerHTML = '';
-        Teams.ALLOWED.forEach(n => {
+      /* يبني شريطَ اختيارٍ: القيمُ، والمختارُ منها، وماذا يقع عند النقر */
+      function fill(host, values, current, label, onPick) {
+        host.innerHTML = '';
+        values.forEach(v => {
           const b = document.createElement('button');
           b.type = 'button';
-          b.textContent = AR(n);
-          b.setAttribute('aria-pressed', n === cur ? 'true' : 'false');
-          b.setAttribute('aria-label', 'عدد الفرق ' + n);
-          b.onclick = () => choose(n);
-          seg.appendChild(b);
+          b.textContent = AR(v);
+          b.setAttribute('aria-pressed', v === current ? 'true' : 'false');
+          b.setAttribute('aria-label', label + ' ' + v);
+          b.onclick = () => onPick(v);
+          host.appendChild(b);
         });
-        hint.textContent = 'حتى ' + catsWord(Teams.maxCategories(cur));
       }
 
-      function choose(n) {
-        if (n === Teams.setting()) return;
-        localStorage.setItem('teamCount', String(n));
-        MAX_SELECTIONS = Teams.maxCategories(n);
+      function paint() {
+        fill(seg,  Teams.ALLOWED,      Teams.setting(),        'عدد الفرق',  pickTeams);
+        fill(cseg, Teams.BASE_ALLOWED, Teams.baseCategories(), 'عدد الفئات', pickCats);
+        hint.textContent = 'السقف الآن: ' + catsWord(Teams.maxCategories());
+      }
 
-        /* الزائد عن السقف الجديد يُقتطع من المختارات */
+      /* يُطبّق السقف الجديد: يقتطع الزائد ويُعيد الرسم ويُخبر */
+      function apply(lead) {
+        MAX_SELECTIONS = Teams.maxCategories();
         let dropped = 0;
         if (picked.size > MAX_SELECTIONS) {
           const keep = [...picked].slice(0, MAX_SELECTIONS);
@@ -1047,15 +1057,26 @@
           picked.clear();
           keep.forEach(k => picked.add(k));
         }
-
-        SFX.click && SFX.click();
+        if (SFX.click) SFX.click();
         paint();
         renderTeamInputs();
         renderCards();
         updateCounter();
         showToast(dropped
-          ? ('صارت اللعبة ' + teamsWord(n) + ' — وأُزيلت ' + catsWord(dropped) + ' لتجاوز السقف')
-          : ('صارت اللعبة ' + teamsWord(n) + ' · حتى ' + catsWord(Teams.maxCategories(n))));
+          ? (lead + ' — وأُزيلت ' + catsWord(dropped) + ' لتجاوز السقف')
+          : (lead + ' · حتى ' + catsWord(MAX_SELECTIONS)));
+      }
+
+      function pickTeams(n) {
+        if (n === Teams.setting()) return;
+        localStorage.setItem('teamCount', String(n));
+        apply('صارت اللعبة ' + teamsWord(n));
+      }
+
+      function pickCats(n) {
+        if (n === Teams.baseCategories()) return;
+        localStorage.setItem('maxCategories', String(n));
+        apply('أساسُ الفئات ' + catsWord(n));
       }
 
       btn.onclick = () => {

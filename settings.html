@@ -446,6 +446,8 @@
         <div class="seg" id="maxCatSeg">
           <button type="button" class="seg-btn" data-val="6">٦ فئات</button>
           <button type="button" class="seg-btn" data-val="8">٨ فئات</button>
+          <button type="button" class="seg-btn" data-val="10">١٠ فئات</button>
+          <button type="button" class="seg-btn" data-val="12">١٢ فئة</button>
         </div>
       </div>
 
@@ -881,7 +883,7 @@
 
     /* السقف الفعلي = سقف الفريقين × (عدد الفرق ÷ ٢) — نفس حساب Teams.maxCategories */
     const capNow = () => {
-      const base = localStorage.getItem('maxCategories') === '8' ? 8 : 6;
+      const base = Teams.baseCategories();
       const teams = Teams.ALLOWED.indexOf(+localStorage.getItem('teamCount')) >= 0 ? +localStorage.getItem('teamCount') : 2;
       return { base, teams, cap: base * teams / 2 };
     };
