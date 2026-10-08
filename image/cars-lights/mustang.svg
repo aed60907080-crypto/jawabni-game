@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
+  <rect width="1200" height="760" fill="#000"/>
+  <defs>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="26" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="b"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#glow)" fill="none" stroke="#ff2a28" stroke-width="30"
+     stroke-linecap="round" stroke-linejoin="round">
+    <g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g>
+    <g transform="translate(1200,0) scale(-1,1)"><g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g></g>
+  </g>
+  <g fill="none" stroke="#ff2a28" stroke-width="30" opacity=".85"
+     stroke-linecap="round" stroke-linejoin="round">
+    <g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g>
+    <g transform="translate(1200,0) scale(-1,1)"><g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g></g>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-width="10.2" opacity=".92"
+     stroke-linecap="round" stroke-linejoin="round">
+    <g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g>
+    <g transform="translate(1200,0) scale(-1,1)"><g><path d="M150 300 L178 300 L178 460 L150 460 Z"/><path d="M225 300 L253 300 L253 460 L225 460 Z"/><path d="M300 300 L328 300 L328 460 L300 460 Z"/></g></g>
+  </g>
+</svg>
