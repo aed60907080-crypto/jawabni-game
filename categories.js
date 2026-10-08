@@ -110,7 +110,7 @@
     { name: "تقنية",                   img: "image/تقنية.jpg", emoji: "💻", tint: "#3b6fb5", group: "tech" },
     { name: "الحاسوب والبرمجة",        img: "image/الحاسوب والبرمجة.jpg", emoji: "🖥️", tint: "#3b6fb5", group: "tech" },
     { name: "سيارات",                  img: "image/cars.jpg", emoji: "🚗", tint: "#8a3d3d", group: "tech" },
-    { name: "خمن اسم السيارة",       img: "image/cars-lights/cover.jpg", emoji: "💡", tint: "#8a3d3d", group: "tech" },
+    { name: "خمن اسم السيارة",       img: "image/cover.jpg", emoji: "💡", tint: "#8a3d3d", group: "tech" },
     { name: "الطيران والطائرات",       img: "image/الطيران و الطائرات.jpg", emoji: "✈️", tint: "#3b6fb5", group: "tech" },
 
     /* ===== ثقافة وفنون ===== */
