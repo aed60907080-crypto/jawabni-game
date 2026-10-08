@@ -242,7 +242,8 @@
      حمراء: عقوبتها على **الفريق** لا على اللاعب، وأثرها ثلاثة معاً:
               • خصم CARD_RED من نقاط اللاعب نفسه،
               • خصم CARD_RED_TEAM من نقاط **فريقه** على اللوحة،
-              • إيقاف دور الفريق: يفقد دوره القادم.
+              • تجميد دور الفريق: إن كان صاحبَ الدور بُدّل الدور الآن
+                تلقائياً، وإلا فقَد دورَه القادم.
             واللاعب نفسه يبقى في الجولة ويظهر في «من أجاب؟» — الموقوف
             هو دور الفريق لا اللاعب.
      وصفراوان تصيران حمراء، فيقع أثرها كاملاً عند الصفراء الثانية.
@@ -261,8 +262,41 @@
     return found;
   }
 
-  /* عقوبة الفريق عند الحمراء: خصم النقاط وإيقاف الدور القادم.
-     تُعيد اسم الفريق، أو null إن لم يكن اللاعب في فريق. */
+  /* عقوبة الفريق عند الحمراء: خصمُ النقاط وتجميدُ دوره.
+     وللتجميد وجهان لا يجتمعان، لئلا يُعاقَب الفريق مرّتين:
+       • إن كانت البطاقة على **صاحب الدور** بُدّل الدور تلقائياً الآن،
+         فيخسر دوره الجاري ويمضي اللعب إلى غيره.
+       • وإلا جُمّد دورُه القادم — التجميدُ نفسه الذي تستعمله المفاجآت،
+         و nextTurn يتخطّى المجمَّد ويستهلك تجميده.
+     تُعيد { team, switched } — و switched اسمُ الفريق الذي انتقل إليه
+     الدور، أو null إن جُمّد القادم بدل التبديل. أو null كلَّها إن لم
+     يكن اللاعب في فريق. */
+  /* تجميدُ دور فريق — تستعمله البطاقتان الحمراوان كلتاهما: التي
+     تُعطى للاعب، والتي تُعطى للفريق من بطاقته على اللوحة.
+     تُعيد اسم الفريق الذي انتقل إليه الدور، أو null إن جُمّد القادم. */
+  function freezeTeamTurn(team) {
+    if (!team) return null;
+    var switched = null;
+    if ((get("currentTurn") || ids()[0]) === team) {
+      var nxt = (global.Powerups && typeof global.Powerups.nextTurn === "function")
+        ? global.Powerups.nextTurn(team)
+        : next(team);
+      /* قد يعود الدورُ إليه إن كان الباقون مجمَّدين — فلا تبديل حينئذ */
+      if (nxt && nxt !== team) { set("currentTurn", nxt); switched = nxt; }
+    }
+    if (!switched) {
+      if (global.Powerups && typeof global.Powerups.freeze === "function") {
+        global.Powerups.freeze(team, 1);
+      } else {
+        var f = {};
+        try { f = JSON.parse(get("frozenTeams") || "{}") || {}; } catch (e) { f = {}; }
+        f[team] = (f[team] || 0) + 1;
+        set("frozenTeams", JSON.stringify(f));
+      }
+    }
+    return switched;
+  }
+
   function redCardTeamPenalty(name) {
     var team = teamOfPlayer(name);
     if (!team) return null;
@@ -271,17 +305,7 @@
     s[team] = Math.max(0, (s[team] || 0) - CARD_RED_TEAM);
     saveScores(s);
 
-    /* إيقاف الدور — التجميد نفسه الذي يستعمله نظام المفاجآت،
-       و nextTurn يتخطّى الفريق المجمّد ويستهلك تجميده */
-    if (global.Powerups && typeof global.Powerups.freeze === "function") {
-      global.Powerups.freeze(team, 1);
-    } else {
-      var f = {};
-      try { f = JSON.parse(get("frozenTeams") || "{}") || {}; } catch (e) { f = {}; }
-      f[team] = (f[team] || 0) + 1;
-      set("frozenTeams", JSON.stringify(f));
-    }
-    return team;
+    return { team: team, switched: freezeTeamTurn(team) };
   }
 
   function cardsOf(name) {
@@ -310,12 +334,16 @@
     }
     savePlayers(list);
 
-    /* أول حمراء للاعب: خصم من نقاط فريقه وإيقاف دوره القادم */
-    var team = null;
-    if (p.red && !wasRed) team = redCardTeamPenalty(name);
+    /* أول حمراء للاعب: خصمٌ من نقاط فريقه وتجميدُ دوره */
+    var pen = null;
+    if (p.red && !wasRed) pen = redCardTeamPenalty(name);
+    var team = pen ? pen.team : null;
 
     return { yellow: p.yellow, red: p.red, points: p.points, secondYellow: secondYellow,
-             team: team, teamPenalty: team ? CARD_RED_TEAM : 0, turnStopped: !!team };
+             team: team, teamPenalty: team ? CARD_RED_TEAM : 0, turnStopped: !!team,
+             /* اسمُ الفريق الذي انتقل إليه الدور تلقائياً، أو null إن
+                جُمّد الدور القادم بدلاً من التبديل */
+             switchedTo: pen ? pen.switched : null };
   }
 
   /* إزالة بطاقات لاعب (إن أُعطيت بالخطأ) — بلا إرجاع النقاط المخصومة */
@@ -477,6 +505,7 @@
     CARD_RED_TEAM: CARD_RED_TEAM,
     cards: cardsOf,
     teamOfPlayer: teamOfPlayer,
+    freezeTeamTurn: freezeTeamTurn,
     hasRed: hasRed,
     giveCard: giveCard,
     clearCards: clearCards,
