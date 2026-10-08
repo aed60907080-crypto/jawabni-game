@@ -1016,7 +1016,7 @@ const questionsData = {
   ],
 
 
-  /* ---------- خمن اسم السيارة (18 سؤالاً) ----------
+  /* ---------- خمن اسم السيارة (19 سؤالاً) ----------
      نوع واحد: **وحدةُ إضاءة السيارة مضيئةً في الظلام** — أمامية أو
      خلفية — والمطلوب معرفة السيارة. لا هيكل ولا شبك ولا شعار: بصمةُ
      الضوء وحدها هي الدليل، كما أن شكل الدولة الصمّاء دليلُ «خمن اسم
@@ -1070,12 +1070,13 @@ const questionsData = {
     { l: 1, q: "ما نوع هذه السيارة؟", a: "فورد موستانج", img: "image/cars-lights/mustang.svg" },
     { l: 1, q: "ما نوع هذه السيارة؟", a: "بورشه 911", img: "image/cars-lights/porsche.svg" },
     { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب رانجلر", img: "image/cars-lights/wrangler.svg" },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب جراند شيروكي", img: "image/cars-lights/grand-cherokee.jpg" },
     { l: 2, q: "ما نوع هذه السيارة؟", a: "دودج تشارجر", img: "image/cars-lights/charger.svg" },
     { l: 2, q: "ما نوع هذه السيارة؟", a: "نيسان GT-R", img: "image/cars-lights/gtr.svg" },
     { l: 2, q: "ما نوع هذه السيارة؟", a: "كاديلاك إسكاليد", img: "image/cars-lights/escalade.svg" },
     { l: 2, q: "ما نوع هذه السيارة؟", a: "تسلا سايبرترك", img: "image/cars-lights/cybertruck.svg" },
     { l: 3, q: "ما نوع هذه السيارة؟", a: "شفروليه كامارو", img: "image/cars-lights/camaro.svg" },
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "فيراري", img: "image/cars-lights/ferrari.svg" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "فيراري", img: "image/cars-lights/ferrari.jpg" },
     { l: 3, q: "ما نوع هذه السيارة؟", a: "أودي", img: "image/cars-lights/audi.svg" },
     { l: 3, q: "ما نوع هذه السيارة؟", a: "فولفو", img: "image/cars-lights/volvo.svg" },
     { l: 4, q: "ما نوع هذه السيارة؟", a: "مرسيدس-بنز", img: "image/cars-lights/mercedes.svg" },
