@@ -452,11 +452,13 @@
       <div class="row">
         <div class="txt">
           <b>عدد الفرق</b>
-          <span>فريقان أو ٤ أو ٦ فرق تتناوب على الدور، وكل زيادة في الفرق تزيد عدد الفئات حتى يبقى لكل فريق عدد الأسئلة نفسه. يُطبَّق عند بدء الجولة القادمة، وتظهر خانة اسم لكل فريق في صفحة «اختر فئاتك».</span>
+          <span>من فريقين إلى ستّة تتناوب على الدور، وكل زيادة في الفرق تزيد عدد الفئات حتى يبقى لكل فريق عدد الأسئلة نفسه. يُطبَّق عند بدء الجولة القادمة، وتظهر خانة اسم لكل فريق في صفحة «اختر فئاتك».</span>
         </div>
         <div class="seg" id="teamCountSeg">
           <button type="button" class="seg-btn" data-val="2">٢</button>
+          <button type="button" class="seg-btn" data-val="3">٣</button>
           <button type="button" class="seg-btn" data-val="4">٤</button>
+          <button type="button" class="seg-btn" data-val="5">٥</button>
           <button type="button" class="seg-btn" data-val="6">٦</button>
         </div>
       </div>
@@ -880,7 +882,7 @@
     /* السقف الفعلي = سقف الفريقين × (عدد الفرق ÷ ٢) — نفس حساب Teams.maxCategories */
     const capNow = () => {
       const base = localStorage.getItem('maxCategories') === '8' ? 8 : 6;
-      const teams = [2, 4, 6].indexOf(+localStorage.getItem('teamCount')) >= 0 ? +localStorage.getItem('teamCount') : 2;
+      const teams = Teams.ALLOWED.indexOf(+localStorage.getItem('teamCount')) >= 0 ? +localStorage.getItem('teamCount') : 2;
       return { base, teams, cap: base * teams / 2 };
     };
     const paintCap = () => {
@@ -1289,7 +1291,7 @@
     function refresh(){
       const running = localStorage.getItem('gameStarted') === 'true'
                    || localStorage.getItem('gameStarted') === '1';
-      const teamN = [2, 4, 6].indexOf(+localStorage.getItem('gameTeamCount')) >= 0 ? +localStorage.getItem('gameTeamCount') : 2;
+      const teamN = Teams.ALLOWED.indexOf(+localStorage.getItem('gameTeamCount')) >= 0 ? +localStorage.getItem('gameTeamCount') : 2;
       const names = [];
       for (let i = 1; i <= teamN; i++) { const v = localStorage.getItem('team' + i); if (v) names.push(v); }
       gameStat.textContent = running

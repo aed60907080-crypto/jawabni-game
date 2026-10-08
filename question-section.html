@@ -554,6 +554,35 @@
     .team-count-note{ text-align:center; color:var(--muted); font-size:13px; margin:-6px 0 14px; }
     .team-count-note a{ color:var(--gold); }
 
+    /* ---------- كوستمايز عدد الفرق ---------- */
+    .customize-btn{
+      margin-inline-start:10px;
+      background:transparent; color:var(--gold);
+      border:1px solid rgba(231,183,64,.45); border-radius:999px;
+      padding:4px 12px; font:inherit; font-size:12.5px; cursor:pointer;
+      transition:background .18s ease, border-color .18s ease;
+    }
+    .customize-btn:hover{ background:rgba(231,183,64,.12); border-color:var(--gold); }
+    .customize-btn.on{ background:rgba(231,183,64,.18); border-color:var(--gold); }
+
+    .cz-wrap{
+      display:flex; align-items:center; justify-content:center;
+      flex-wrap:wrap; gap:10px;
+      margin:-4px 0 16px;
+    }
+    .cz-label{ color:var(--muted); font-size:13px; }
+    .cz-seg{ display:inline-flex; gap:4px; background:rgba(0,0,0,.28);
+             border:1px solid var(--line); border-radius:999px; padding:4px; }
+    .cz-seg button{
+      min-width:38px; padding:5px 0;
+      background:transparent; color:var(--muted);
+      border:0; border-radius:999px; font:inherit; font-size:14px; cursor:pointer;
+      transition:background .18s ease, color .18s ease;
+    }
+    .cz-seg button:hover{ color:#fff; }
+    .cz-seg button[aria-pressed="true"]{ background:var(--gold); color:#14201d; font-weight:800; }
+    .cz-hint{ color:var(--muted); font-size:12px; opacity:.85; }
+
 
     /* ---------- start bar ---------- */
     .start-dock{
@@ -697,8 +726,9 @@
 
   <script>
     /* سقف الفئات: 6 أو 8 للفريقين (من الإعدادات)، ويكبر مع عدد الفرق —
-       ١٢ أو ١٦ لأربعة فرق، و١٨ أو ٢٤ لستة (teams.js) */
-    const MAX_SELECTIONS = Teams.maxCategories();
+       ٩ أو ١٢ لثلاثة، و١٢ أو ١٦ لأربعة، وهكذا إلى ستة (teams.js).
+       وهو let لا const: زرّ «كوستمايز» يغيّر عدد الفرق فيتبعه السقف. */
+    let MAX_SELECTIONS = Teams.maxCategories();
 
     function showToast(msg, type){
       const box = document.getElementById('toastBox');
@@ -822,7 +852,19 @@
       <input type="text" id="gameName" class="form-control" placeholder="اسم اللعبة" oninput="autoSaveGameInfo()" />
     </div>
 
-    <p class="team-count-note"><span id="teamCountNote"></span> — <a href="settings.html">غيّر عدد الفرق من الإعدادات</a></p>
+    <p class="team-count-note">
+      <span id="teamCountNote"></span>
+      <button type="button" class="customize-btn" id="customizeTeams">
+        <i class="fa-solid fa-sliders"></i> كوستمايز
+      </button>
+    </p>
+
+    <!-- كوستمايز: اختيار عدد الفرق دون مغادرة الصفحة -->
+    <div class="cz-wrap" id="czWrap" hidden>
+      <span class="cz-label">عدد الفرق</span>
+      <div class="cz-seg" id="czSeg"></div>
+      <span class="cz-hint" id="czHint"></span>
+    </div>
 
     <!-- تقسيم اللاعبين (قائمة الإعدادات) على الفرق -->
     <div class="split-row" id="splitRow" hidden>
@@ -951,6 +993,80 @@
       if (window.I18N) I18N.apply(box);
     }
 
+    const AR = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+
+    /* تمييز العدد في العربية: للمثنّى صيغته، و٣..١٠ جمعٌ، و١١ فأكثر
+       مفردٌ منصوب. فلا يُقال «٢ فرق» ولا «٤ فئة». */
+    const teamsWord = n => n === 2 ? 'فريقين' : AR(n) + ' فرق';
+    const catsWord  = n => n === 1 ? 'فئة واحدة'
+                         : n === 2 ? 'فئتين'
+                         : n <= 10 ? AR(n) + ' فئات'
+                         : AR(n) + ' فئة';
+
+    /* ---------- كوستمايز: عدد الفرق من هذه الصفحة ----------
+       يكتب teamCount (اختيار الجولة القادمة) كما تفعل الإعدادات تماماً،
+       ثم يُعيد رسم خانات الأسماء والسقف. ولا يمسّ gameTeamCount: ذاك
+       يُثبَّت عند بدء الجولة في Teams.startRound.
+
+       والسقف يكبر مع الفرق، فإن نقص العدد نقص السقف — وقد تكون الفئات
+       المختارة أكثر منه. فتُقتطع الزائدة ويُنبَّه اللاعب، ولا تُترك
+       اختياراتٌ لا تُلعب. */
+    function setupCustomize() {
+      const btn  = document.getElementById('customizeTeams');
+      const wrap = document.getElementById('czWrap');
+      const seg  = document.getElementById('czSeg');
+      const hint = document.getElementById('czHint');
+      if (!btn || !wrap || !seg) return;
+
+
+      function paint() {
+        const cur = Teams.setting();
+        seg.innerHTML = '';
+        Teams.ALLOWED.forEach(n => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = AR(n);
+          b.setAttribute('aria-pressed', n === cur ? 'true' : 'false');
+          b.setAttribute('aria-label', 'عدد الفرق ' + n);
+          b.onclick = () => choose(n);
+          seg.appendChild(b);
+        });
+        hint.textContent = 'حتى ' + catsWord(Teams.maxCategories(cur));
+      }
+
+      function choose(n) {
+        if (n === Teams.setting()) return;
+        localStorage.setItem('teamCount', String(n));
+        MAX_SELECTIONS = Teams.maxCategories(n);
+
+        /* الزائد عن السقف الجديد يُقتطع من المختارات */
+        let dropped = 0;
+        if (picked.size > MAX_SELECTIONS) {
+          const keep = [...picked].slice(0, MAX_SELECTIONS);
+          dropped = picked.size - keep.length;
+          picked.clear();
+          keep.forEach(k => picked.add(k));
+        }
+
+        SFX.click && SFX.click();
+        paint();
+        renderTeamInputs();
+        renderCards();
+        updateCounter();
+        showToast(dropped
+          ? ('صارت اللعبة ' + teamsWord(n) + ' — وأُزيلت ' + catsWord(dropped) + ' لتجاوز السقف')
+          : ('صارت اللعبة ' + teamsWord(n) + ' · حتى ' + catsWord(Teams.maxCategories(n))));
+      }
+
+      btn.onclick = () => {
+        const open = wrap.hasAttribute('hidden');
+        wrap.toggleAttribute('hidden', !open);
+        btn.classList.toggle('on', open);
+        if (open) paint();
+      };
+      paint();
+    }
+
     /* خانات أسماء الفرق حسب العدد المختار في الإعدادات (لا حسب جولة سابقة) */
     function renderTeamInputs() {
       const n = Teams.setting();
@@ -959,13 +1075,13 @@
       grid.classList.toggle('many', n > 2);
       grid.classList.toggle('four', n === 4);
       document.getElementById('teamsTitle').textContent = n > 2 ? 'أسماء اللعبة والفرق' : 'أسماء اللعبة والفريقين';
-      document.getElementById('teamCountNote').textContent = 'عدد الفرق: ' + n + ' · حتى ' + MAX_SELECTIONS + ' فئة';
-      /* السقف يكبر مع عدد الفرق — نص «حتى ٦ فئات» الأصلي يبقى كما هو (مترجَم) للسقف ٦ */
-      if (MAX_SELECTIONS !== 6) {
-        const digits = String(MAX_SELECTIONS).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
-        document.getElementById('catSub').textContent =
-          'اختر حتى ' + digits + ' فئة لتبدأ الجولة — كل فئة تحمل ٦ أسئلة بقيم مختلفة';
-      }
+      document.getElementById('teamCountNote').textContent =
+        'اللعبة ' + teamsWord(n) + ' · حتى ' + catsWord(MAX_SELECTIONS);
+      /* السقف يكبر مع عدد الفرق. ويُكتب دائماً لا عند تجاوز الستّ فقط:
+         «كوستمايز» قد يُنقص العدد فيعود السقف ستّاً، فلو لم يُكتب بقي
+         نصُّ السقف السابق ظاهراً. */
+      document.getElementById('catSub').textContent =
+        'اختر حتى ' + catsWord(MAX_SELECTIONS) + ' لتبدأ الجولة — كل فئة تحمل ٦ أسئلة بقيم مختلفة';
       Teams.ids(n).forEach(t => {
         const c = Teams.color(t);
         const col = document.createElement('div');
@@ -1425,6 +1541,7 @@
       const g = localStorage.getItem("gameName");
       if (g) document.getElementById("gameName").value = g;
       renderTeamInputs();
+      setupCustomize();
 
       /* أزرار تقسيم اللاعبين على الفرق */
       document.getElementById('splitRandom').onclick   = () => splitPlayersInto('random');
