@@ -1796,12 +1796,12 @@ const questionsData = {
     { l: 2, q: "شيء يرى ولا يُلمس، ما هو؟", a: "الظل", img: "image/امثال و الغاز.jpg" },
     { l: 2, q: "ما هو الشيء الذي يحمل الماء ولا يشربه؟", a: "الغيم", img: "image/امثال و الغاز.jpg" },
     { l: 2, q: "أكمل المثل: «إذا كان الكلام من فضة فالسكوت من ...»", a: "ذهب", img: "image/امثال و الغاز.jpg" },
-    { l: 2, q: "شيء يطير بلا جناح ويبكي بلا عين، ما هو؟", a: "السحاب", img: "image/امثال و الغاز.jpg" },
+    { l: 2, q: "شيء يُسمع ولا يُرى ولا يُمسك، ما هو؟", a: "الصوت", img: "image/امثال و الغاز.jpg" },
     { l: 2, q: "ما هو الشيء الذي كلما ضربته بكى وسكت؟", a: "الطبل", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "أكمل المثل: «من شبّ على شيء ...»", a: "شاب عليه", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "أكمل المثل: «الحاجة أم ...»", a: "الاختراع", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "ما هو الشيء الذي يقرصك ولا تراه؟", a: "الجوع", img: "image/امثال و الغاز.jpg" },
-    { l: 3, q: "شيء أوله حرف واحد وآخره حرف واحد وهو موجود في كل بيت، ما هو؟", a: "الباب", img: "image/امثال و الغاز.jpg" },
+    { l: 3, q: "ما الشيء الذي يبدأ وينتهي بالحرف نفسه وهو في كل بيت؟", a: "الباب", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "ما هو الشيء الذي يزداد بالإنفاق؟", a: "العلم", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "أكمل المثل الخليجي: «اللي ما يعرف الصقر ...»", a: "يشويه", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "ما هو الشيء الذي إذا أخذته لن تراه؟", a: "النوم", img: "image/امثال و الغاز.jpg" },
@@ -1809,14 +1809,14 @@ const questionsData = {
     { l: 3, q: "ما هو الشيء الذي يسمع بلا أذن ويتكلم بلا لسان؟", a: "الهاتف", img: "image/امثال و الغاز.jpg" },
     { l: 3, q: "أكمل المثل: «أعط الخبز لخبازه ولو ...»", a: "أكل نصفه", img: "image/امثال و الغاز.jpg" },
     { l: 4, q: "ما هو الشيء الذي يدخل الماء ولا يبتل؟", a: "الضوء", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "أكمل المثل: «الأعمال بخواتيمها» ما معناه؟", a: "العبرة بالنهايات لا بالبدايات", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "ما هو الشيء الذي كلما أخذت منه طال؟", a: "الطريق (والحبل)", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "ما معنى المثل «الأعمال بخواتيمها»؟", a: "العبرة بالنهايات لا بالبدايات", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "ما هو الشيء الذي له أوراقٌ وليس نباتاً؟", a: "الكتاب", img: "image/امثال و الغاز.jpg" },
     { l: 4, q: "أكمل المثل: «كما تدين ...»", a: "تُدان", img: "image/امثال و الغاز.jpg" },
     { l: 4, q: "ما هو الشيء الذي له عين واحدة ولا يرى؟", a: "الإبرة", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "أكمل المثل الشعبي الخليجي: «اللي ما يشوف من الغربال ...»", a: "أعمى", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "ما هو الشيء الذي يوجد مرة في الدقيقة ومرتين في اللحظة ولا يوجد في الساعة؟", a: "حرف القاف", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "أكمل المثل: «لا يُلدغ المؤمن من جحر ...»", a: "مرتين", img: "image/امثال و الغاز.jpg" },
-    { l: 4, q: "ما هو الشيء الذي يرتفع ولا ينزل أبداً؟", a: "العمر", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "أكمل المثل الشعبي الخليجي: «اللي ما يشوف من الغربال ...»", a: "يكون أعمى", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "ما الحرف الذي يوجد مرّتين في كلمة «الدقيقة» ولا يوجد في «الساعة»؟", a: "حرف القاف", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "أكمل الحديث: «لا يُلدغ المؤمن من جُحرٍ واحدٍ ...»", a: "مرتين", img: "image/امثال و الغاز.jpg" },
+    { l: 4, q: "ما هو الشيء الذي يكون أخضرَ في الأرض وأسودَ في السوق وأحمرَ في البيت؟", a: "الشاي", img: "image/امثال و الغاز.jpg" },
     { l: 4, q: "أكمل المثل: «خير الكلام ما قلّ ...»", a: "ودلّ", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "ما أصل المثل «رجع بخفّي حنين»؟", a: "قصة الإسكافي حنين الذي خدع أعرابياً فعاد بلا شيء", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "ما أصل المثل «وافق شنٌّ طبقة»؟", a: "رجل اسمه شنّ تزوج امرأة اسمها طبقة فتوافقا في الذكاء", img: "image/امثال و الغاز.jpg" },
@@ -1824,8 +1824,8 @@ const questionsData = {
     { l: 5, q: "ما معنى المثل «الصيف ضيّعتِ اللبن»؟", a: "يُضرب لمن فرّط في فرصة ثم ندم", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "ما معنى المثل «على أهلها جنت براقش»؟", a: "يُضرب لمن يجلب الضرر على أهله بفعله", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "ما معنى المثل «جزاء سنمّار»؟", a: "مقابلة الإحسان بالإساءة", img: "image/امثال و الغاز.jpg" },
-    { l: 5, q: "لغز: ثلاثة أشخاص وثلاث قبعات، كيف يعرف الأخير لون قبعته إن سكت الأولان؟", a: "بالاستنتاج من صمتهما أن قبعته تختلف عن أحدهما", img: "image/امثال و الغاز.jpg" },
-    { l: 5, q: "لغز: ما هو العدد الذي إذا قسمته على نفسه وأضفت إليه نفسه صار العدد نفسه زائد واحد؟", a: "العدد 1", img: "image/امثال و الغاز.jpg" },
+    { l: 5, q: "لغز: ثلاثة مصابيح في غرفة مغلقة ومفاتيحها الثلاثة خارجها، ولك أن تدخل مرّة واحدة فقط. كيف تعرف مفتاح كل مصباح؟", a: "تُشعل الأول دقائق ثم تطفئه وتُشعل الثاني وتدخل: المضيء للثاني، والمطفأ الساخن للأول، والمطفأ البارد للثالث", img: "image/امثال و الغاز.jpg" },
+    { l: 5, q: "لغز: تسعُ كراتٍ متساوية إلا واحدةً أثقل، ومعك ميزانُ كفّتين. كم وزنةً تكفي لتجدها يقيناً؟", a: "وزنتان — تُقسم ثلاثاً ثلاثاً", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "لغز: أب وابنه عمرهما معاً 60 سنة والأب يكبر الابن بأربعين، كم عمر الابن؟", a: "عشر سنوات", img: "image/امثال و الغاز.jpg" },
     { l: 5, q: "لغز: ما الشيء الذي إذا وضعته في برميل جعله أخف؟", a: "ثقب", img: "image/امثال و الغاز.jpg" },
   ],
@@ -1921,7 +1921,7 @@ const questionsData = {
     { l: 4, q: "أين يقع سوق الكوت (الكوت مول)؟", a: "الفحيحيل", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg/960px-Al_kout_mall_night_view_from_side_by_irvin_calicut.jpg" },
 
     /* سوق المباركية — القبلة */
-    { l: 3, q: "ما اسم هذا السوق؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg" },
+    { l: 3, q: "ما اسم هذا السوق؟", a: "سوق المباركية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_at_Night_01.jpg", hide: [[22,27,47,12]] },
     { l: 3, q: "أين يقع سوق المباركية؟", a: "منطقة القبلة في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Kuwait_City_Souq_al-Mubarakeya_2.jpg/960px-Kuwait_City_Souq_al-Mubarakeya_2.jpg" },
 
     /* مجمع وبرج الحمراء — الشرق */
@@ -1929,16 +1929,16 @@ const questionsData = {
     { l: 2, q: "أين يقع مجمع وبرج الحمراء؟", a: "منطقة الشرق في مدينة الكويت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Al_Hamra_Kuwait_Mai_2010.jpg/960px-Al_Hamra_Kuwait_Mai_2010.jpg" },
 
     /* مجمع العالمية — الجهراء */
-    { l: 5, q: "ما اسم هذا المجمع؟", a: "مجمع العالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
-    { l: 5, q: "أين يقع مجمع العالمية؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg" },
+    { l: 5, q: "ما اسم هذا المجمع؟", a: "مجمع العالمية", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg", hide: [[48,19,46,15]] },
+    { l: 5, q: "أين يقع مجمع العالمية؟", a: "الجهراء", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/AL_Alamia_Mall_in_Jahra_Kuwait.jpg/960px-AL_Alamia_Mall_in_Jahra_Kuwait.jpg", hide: [[48,19,46,15]] },
 
     /* سوق المناخ — مدينة الكويت */
     { l: 5, q: "ما اسم هذا السوق؟", a: "سوق المناخ", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
     { l: 5, q: "أين يقع سوق المناخ؟", a: "مدينة الكويت", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mnakh_2.jpg" },
 
-    /* سوق الجمعة — الشويخ */
+    /* سوق الجمعة — الري (انتقل إليها من الشويخ) */
     { l: 3, q: "ما اسم هذا السوق الشعبي؟", a: "سوق الجمعة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
-    { l: 3, q: "أين يقع سوق الجمعة؟", a: "الشويخ", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
+    { l: 3, q: "أين يقع سوق الجمعة؟", a: "الري", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Friday_market_people_up.jpg/960px-Friday_market_people_up.jpg" },
   ],
   /* ---------- مناطق الكويت (24 سؤالاً) ----------
      سؤال واحد فقط: «ما اسم هذه المنطقة؟» — تحديد المنطقة على الخريطة:
