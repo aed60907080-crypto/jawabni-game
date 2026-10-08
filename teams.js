@@ -157,7 +157,7 @@
           points: legacy ? 0 : (Number(p.points) || 0),
           total: legacy ? (Number(p.points) || 0) : (Number(p.total) || 0),
           absent: !!p.absent,
-          /* بطاقات الجولة: صفراء (تنبيه وخصم) وحمراء (اللاعب خارج ما بقي من الجولة) */
+          /* بطاقات الجولة: صفراء (تنبيه وخصم) وحمراء (عقوبةٌ على الفريق: خصمٌ وإيقافُ دوره) */
           yellow: Math.max(0, Number(p.yellow) || 0),
           red: !!p.red
         };
@@ -239,11 +239,12 @@
 
   /* ---------- بطاقات اللاعبين ----------
      صفراء: تنبيه وخصم CARD_YELLOW من نقاط اللاعب — وصفراوان تساويان حمراء.
-     حمراء: طردٌ كامل، وأثرها ثلاثة معاً:
+     حمراء: عقوبتها على **الفريق** لا على اللاعب، وأثرها ثلاثة معاً:
               • خصم CARD_RED من نقاط اللاعب نفسه،
               • خصم CARD_RED_TEAM من نقاط **فريقه** على اللوحة،
               • إيقاف دور الفريق: يفقد دوره القادم.
-            واللاعب خارج ما بقي من الجولة فلا يُسأل ولا يأخذ نقاطاً.
+            واللاعب نفسه يبقى في الجولة ويظهر في «من أجاب؟» — الموقوف
+            هو دور الفريق لا اللاعب.
      وصفراوان تصيران حمراء، فيقع أثرها كاملاً عند الصفراء الثانية.
      وعقوبة الفريق تقع **مرة واحدة** عند أول حمراء للاعب لا كلما كُرّرت.
      البطاقات تُمسح مع بدء جولة جديدة مثل نقاط الجولة. */
@@ -288,7 +289,9 @@
     return p ? { yellow: p.yellow, red: p.red } : { yellow: 0, red: false };
   }
 
-  function isSentOff(name) { return !!cardsOf(name).red; }
+  /* عنده حمراء؟ — خبرٌ عن بطاقته فقط. ولا يُقصى به أحدٌ من الجولة:
+     الحمراء توقف دور الفريق لا اللاعب. */
+  function hasRed(name) { return !!cardsOf(name).red; }
 
   /* يعطي اللاعب بطاقة: kind = "yellow" أو "red" — ويعيد حالته بعدها */
   function giveCard(name, kind) {
@@ -474,7 +477,7 @@
     CARD_RED_TEAM: CARD_RED_TEAM,
     cards: cardsOf,
     teamOfPlayer: teamOfPlayer,
-    isSentOff: isSentOff,
+    hasRed: hasRed,
     giveCard: giveCard,
     clearCards: clearCards,
     playerTotal: playerTotal,

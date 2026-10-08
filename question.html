@@ -3144,8 +3144,8 @@
   function award(team){
     /* «امنع الخصم»: الفريق الممنوع لا يأخذ نقاط هذا السؤال */
     if (awarding || (team && team === blockedTeam)) return;
-    /* اللاعب الذي أخذ بطاقة حمراء خارج ما بقي من الجولة — لا يُسأل ولا يأخذ نقاطاً */
-    const mem = team ? Teams.members(team).filter(m => !(Teams.isSentOff && Teams.isSentOff(m))) : [];
+    /* الحمراء توقف دور **الفريق** لا اللاعب، فصاحبُها يبقى في «من أجاب؟» */
+    const mem = team ? Teams.members(team) : [];
     if (!mem.length) { awarding = true; finishAward(team, null); return; }
     pickPlayer(team, mem).then(player => {
       if (player === undefined) return;          /* أُلغيت النافذة — لم يُحتسب شيء بعد */
