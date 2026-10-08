@@ -11,7 +11,7 @@
    عند أي تعديل على قائمة الملفات أو الاستراتيجية: غيّر VERSION.
    ============================================================ */
 
-const VERSION = 'jawabni-v12';
+const VERSION = 'jawabni-v13';
 const SHELL   = VERSION + '-shell';
 const MEDIA   = VERSION + '-media';
 const REMOTE  = VERSION + '-remote';
