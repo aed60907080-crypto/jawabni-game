@@ -1489,7 +1489,7 @@
      الصورة العادية في ذاكرة المتصفح وعامل الخدمة. */
   /* pin اختياري: [س٪، ص٪] من الصورة الأصلية — تُرسم عليه حلقة حمراء داخل
      القصّة، فتعمل الخريطة المكبّرة كخريطة «ما اسم هذه المنطقة؟» */
-  function cropImage(url, c, pin) {
+  function cropImage(url, c, pin, dark) {
     return new Promise((resolve, reject) => {
       const im = new Image();
       im.crossOrigin = "anonymous";
@@ -1523,6 +1523,35 @@
             g.beginPath(); g.arc(px, py, Math.max(2, r * 0.16), 0, Math.PI * 2);
             g.fillStyle = "#e23b2e"; g.fill();
           }
+          /* dark: يعزل المقتطَع على سواد — تُستعمل في «خمن اسم السيارة»
+             حيث السؤال مصباحُ سيارة وحده. ترفع التباين والتشبّع قليلاً
+             ثم تُظلّل الأطراف بيضوياً حتى السواد، فيبقى المصباح وحده
+             بارزاً بلا هيكل ولا خلفية. والقيم ثابتة لا تتبع الصورة،
+             فلا تختلف النتيجة بين صورة وأخرى. */
+          if (dark) {
+            const d = g.getImageData(0, 0, cv.width, cv.height), px2 = d.data;
+            const mx = cv.width / 2, my = cv.height / 2;
+            const SAT = 1.25, CON = 1.35, LIFT = 0.06;
+            for (let y = 0; y < cv.height; y++) {
+              for (let x = 0; x < cv.width; x++) {
+                const i = (y * cv.width + x) * 4;
+                let r = px2[i] / 255, gg = px2[i+1] / 255, b = px2[i+2] / 255;
+                const L = r * 0.299 + gg * 0.587 + b * 0.114;
+                r  = (L + (r  - L) * SAT - 0.5) * CON + 0.5 - LIFT;
+                gg = (L + (gg - L) * SAT - 0.5) * CON + 0.5 - LIFT;
+                b  = (L + (b  - L) * SAT - 0.5) * CON + 0.5 - LIFT;
+                const dx = (x - mx) / mx, dy = (y - my) / my;
+                const t = Math.sqrt(dx * dx + dy * dy);
+                let v = t < 0.62 ? 1 : 1 - Math.pow((t - 0.62) / 0.46, 1.6);
+                if (v < 0) v = 0; else if (v > 1) v = 1;
+                px2[i]   = Math.max(0, Math.min(255, Math.round(255 * r  * v)));
+                px2[i+1] = Math.max(0, Math.min(255, Math.round(255 * gg * v)));
+                px2[i+2] = Math.max(0, Math.min(255, Math.round(255 * b  * v)));
+              }
+            }
+            g.putImageData(d, 0, 0);
+          }
+
           resolve(cv.toDataURL("image/png"));
         } catch (e) { reject(e); }
       };
@@ -1825,7 +1854,7 @@
 
     /* صورة مقصوصة: شعار بلا كتابة، أو خريطة مكبّرة عليها حلقة (انظر cropImage) */
     if (item.crop && item.img && !item.streets && !item._cropped) {
-      cropImage(item.img, item.crop, item.pin)
+      cropImage(item.img, item.crop, item.pin, item.dark)
         /* الحلقة صارت مرسومة داخل الصورة، فلا نضيف حلقة الخريطة فوقها */
         .then(url => renderMedia(Object.assign({}, item, { img: url, _cropped: true, pin: null })))
         .catch(() => renderMedia(Object.assign({}, item, { _cropped: true })));
