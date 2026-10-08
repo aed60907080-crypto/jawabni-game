@@ -1327,7 +1327,7 @@
     { l: 3, q: "لمن شعار النادي هذا؟", a: "لاتسيو", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/c/ce/S.S._Lazio_badge.svg/500px-S.S._Lazio_badge.svg.png", crop: [0, 0, 100, 34] },
     { l: 3, q: "لمن شعار النادي هذا؟", a: "أتلتيك بلباو", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/9/98/Club_Athletic_Bilbao_logo.svg/500px-Club_Athletic_Bilbao_logo.svg.png", crop: [8, 17, 84, 58] },
     { l: 3, q: "لمن شعار النادي هذا؟", a: "ديربي كاونتي", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4a/Derby_County_crest.svg/500px-Derby_County_crest.svg.png" },
-    { l: 3, q: "لمن شعار النادي هذا؟", a: "سبورتنغ لشبونة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Sporting_Clube_de_Portugal_2026.svg/500px-Sporting_Clube_de_Portugal_2026.svg.png", crop: [8, 24, 84, 76] },
+    { l: 3, q: "لمن شعار النادي هذا؟", a: "سبورتنغ لشبونة", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Sporting_Clube_de_Portugal.svg/500px-Sporting_Clube_de_Portugal.svg.png", crop: [17, 28, 66, 65] },
     { l: 3, q: "لمن شعار النادي هذا؟", a: "الاتفاق السعودي", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/3/34/Al-Ettifaq_FC_logo.svg/500px-Al-Ettifaq_FC_logo.svg.png", crop: [30, 32, 40, 30] },
     { l: 3, q: "لمن شعار النادي هذا؟", a: "وولفرهامبتون", img: "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c9/Wolverhampton_Wanderers_FC_crest.svg/500px-Wolverhampton_Wanderers_FC_crest.svg.png" },
     { l: 4, q: "لمن شعار النادي هذا؟", a: "الترجي التونسي", img: "https://upload.wikimedia.org/wikipedia/en/f/fb/Esp%C3%A9rance_Sportive_de_Tunis_logo.png", crop: [28, 42, 44, 34] },
