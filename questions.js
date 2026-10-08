@@ -1284,7 +1284,7 @@ const questionsData = {
     { l: 1, q: "ما اسم البطل الخارق الذي يرتدي بدلة حديدية؟", a: "الرجل الحديدي (آيرون مان)", img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Iron_Man_transparent_background.png" },
     { l: 1, q: "ما اسم الفيلم الذي يظهر فيه أسد صغير اسمه سيمبا؟", a: "الأسد الملك" },
     { l: 1, q: "ما اسم الشركة التي أنتجت أفلام «توي ستوري»؟", a: "بيكسار", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Pixaranimationstudios.jpg/960px-Pixaranimationstudios.jpg" },
-    { l: 1, q: "ما اسم الأنمي الذي يتحوّل فيه البشر إلى عمالقة ويحاربهم إيرين؟", a: "هجوم العمالقة", img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/%D9%87%D8%AC%D9%88%D9%85_%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%84%D9%82%D8%A9.png" },
+    { l: 1, q: "ما اسم الأنمي الذي يتحوّل فيه البشر إلى عمالقة ويحاربهم إيرين؟", a: "هجوم العمالقة", img: "image/افلام و انمي.jpg" },
     { l: 1, q: "ما اسم البطل الذي يتسلّق الجدران ويطلق الشباك؟", a: "الرجل العنكبوت", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Madame_Tussauds_London_-_Spider-Man_statue.jpg/960px-Madame_Tussauds_London_-_Spider-Man_statue.jpg" },
     { l: 1, q: "ما اسم أشهر استوديو أنمي في اليابان؟", a: "استوديو جيبلي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Studio_Ghibli_studio_3.jpg/960px-Studio_Ghibli_studio_3.jpg" },
     { l: 1, q: "ما اسم فيلم جيبلي الذي فاز بجائزة الأوسكار عام 2003؟", a: "المخطوفة (سبيريتد أواي)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Sen_to_Chihiro_no_kamikakushi.jpg/960px-Sen_to_Chihiro_no_kamikakushi.jpg" },
@@ -1294,14 +1294,14 @@ const questionsData = {
     { l: 2, q: "ما اسم الأنمي الذي يكتب فيه الطالب أسماء في دفتر فيموت أصحابها؟", a: "مذكرة الموت", img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg" },
     { l: 2, q: "ما اسم عائلة الأبطال في سلسلة أفلام العرّاب؟", a: "عائلة كورليوني", img: "https://upload.wikimedia.org/wikipedia/commons/4/48/Marlon_Brando_as_Vito_Corleone.png" },
     { l: 2, q: "ما اسم المخرج الشهير لأفلام إنسبشن وإنترستيلر؟", a: "كريستوفر نولان", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/ChristopherNolan-byPhilipRomano_%28cropped%29.jpg/960px-ChristopherNolan-byPhilipRomano_%28cropped%29.jpg" },
-    { l: 2, q: "ما اسم الأنمي الذي يصطاد فيه تانجيرو الشياطين لإنقاذ أخته؟", a: "قاتل الشياطين", img: "https://upload.wikimedia.org/wikipedia/commons/c/c6/%D9%82%D8%A7%D8%AA%D9%84_%D8%A7%D9%84%D8%B4%D9%8A%D8%A7%D8%B7%D9%8A%D9%86.png" },
+    { l: 2, q: "ما اسم الأنمي الذي يصطاد فيه تانجيرو الشياطين لإنقاذ أخته؟", a: "قاتل الشياطين", img: "image/افلام و انمي.jpg" },
     { l: 2, q: "ما اسم أول فيلم رسوم متحركة طويل من إنتاج ديزني؟", a: "سنو وايت والأقزام السبعة", img: "https://upload.wikimedia.org/wikipedia/commons/8/8e/SNOW_WHITE_DISNEY.jpg" },
     { l: 3, q: "ما اسم الفيلم الذي حصل على أكبر عدد جوائز أوسكار مناصفةً مع فيلمين آخرين (11 جائزة)؟", a: "تايتانيك وبن هور وعودة الملك" },
     { l: 3, q: "ما اسم المخرج الياباني الذي أخرج فيلم «جارتي توتورو»؟", a: "هاياو ميازاكي", img: "https://upload.wikimedia.org/wikipedia/commons/f/ff/HayaoMiyazakiCCJuly09.jpg" },
     { l: 3, q: "ما اسم أنمي الرياضة الشهير عن كرة الطائرة؟", a: "هايكيو", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Haikyu%21%21_sports_uniforms_and_Superman_Booth_main_entrance_20240907.jpg/960px-Haikyu%21%21_sports_uniforms_and_Superman_Booth_main_entrance_20240907.jpg" },
     { l: 3, q: "ما اسم الأنمي الذي يقاتل فيه الطلاب باستخدام «الكويرك» في أكاديمية؟", a: "بطلي الأكاديمي" },
     { l: 3, q: "ما اسم الفيلم المصري الكلاسيكي الذي أخرجه يوسف شاهين وبطله عن محطة القطار؟", a: "باب الحديد" },
-    { l: 3, q: "ما اسم الفيلم الذي بطله «فورست» ويروي حياة رجل بسيط عبر التاريخ الأمريكي؟", a: "فورست غامب", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Forrest_Gump.svg/960px-Forrest_Gump.svg.png" },
+    { l: 3, q: "ما اسم الفيلم الذي بطله «فورست» ويروي حياة رجل بسيط عبر التاريخ الأمريكي؟", a: "فورست غامب", img: "image/افلام و انمي.jpg" },
     { l: 3, q: "ما اسم الأنمي الذي يتحوّل فيه البشر لأرواح ويقاتل فيه إتشيغو؟", a: "بليتش", img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png" },
     { l: 3, q: "ما اسم شركة الإنتاج التي تملك حقوق أفلام مارفل السينمائية؟", a: "ديزني (استوديوهات مارفل)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Walt_Disney_Studios_Alameda_Entrance.jpg/960px-Walt_Disney_Studios_Alameda_Entrance.jpg" },
     { l: 4, q: "ما اسم الفيلم الكوري الذي فاز بأوسكار أفضل فيلم عام 2020؟", a: "باراسايت (طفيلي)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/27th_Tokyo_International_Film_Festival-_Sometani_Shota_from_Parasyte_%2815452428467%29.jpg/960px-27th_Tokyo_International_Film_Festival-_Sometani_Shota_from_Parasyte_%2815452428467%29.jpg" },
@@ -1320,7 +1320,7 @@ const questionsData = {
     { l: 5, q: "من مؤلف المانغا التي يعيش أهلها داخل أسوار ضخمة؟", a: "هاجيمي إيساياما", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/FIBD2023HajimeIsayama_01.jpg/960px-FIBD2023HajimeIsayama_01.jpg" },
     { l: 5, q: "ما اسم المهرجان السينمائي الذي تُمنح فيه السعفة الذهبية؟", a: "مهرجان كان", img: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Cannes.Redcarpet.jpg" },
     { l: 5, q: "ما اسم أول فيلم رسوم متحركة يُرشّح لأوسكار أفضل فيلم؟", a: "الجميلة والوحش", img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Beauty_and_the_beast.png" },
-    { l: 5, q: "ما اسم أقدم استوديو سينمائي ما زال يعمل في هوليوود؟", a: "يونيفرسال بيكتشرز", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Universal_Pictures_2021_%28Blue%29.svg/960px-Universal_Pictures_2021_%28Blue%29.svg.png" }
+    { l: 5, q: "ما اسم أقدم استوديو سينمائي ما زال يعمل في هوليوود؟", a: "يونيفرسال بيكتشرز", img: "image/افلام و انمي.jpg" }
   ],
 
   /* ---------- البوكيمون (50 سؤالاً) ----------
