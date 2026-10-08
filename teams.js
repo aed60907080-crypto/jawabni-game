@@ -239,9 +239,49 @@
 
   /* ---------- بطاقات اللاعبين ----------
      صفراء: تنبيه وخصم CARD_YELLOW من نقاط اللاعب — وصفراوان تساويان حمراء.
-     حمراء: خصم CARD_RED واللاعب خارج ما بقي من الجولة (لا يُسأل ولا يأخذ نقاطاً).
+     حمراء: طردٌ كامل، وأثرها ثلاثة معاً:
+              • خصم CARD_RED من نقاط اللاعب نفسه،
+              • خصم CARD_RED_TEAM من نقاط **فريقه** على اللوحة،
+              • إيقاف دور الفريق: يفقد دوره القادم.
+            واللاعب خارج ما بقي من الجولة فلا يُسأل ولا يأخذ نقاطاً.
+     وصفراوان تصيران حمراء، فيقع أثرها كاملاً عند الصفراء الثانية.
+     وعقوبة الفريق تقع **مرة واحدة** عند أول حمراء للاعب لا كلما كُرّرت.
      البطاقات تُمسح مع بدء جولة جديدة مثل نقاط الجولة. */
   var CARD_YELLOW = 3, CARD_RED = 6;
+  /* خصم الفريق عند الحمراء — ثابت لا يتبع قيمة السؤال */
+  var CARD_RED_TEAM = 300;
+
+  /* فريق اللاعب (أو null إن لم يكن في فريق) */
+  function teamOfPlayer(name) {
+    var found = null;
+    ids().forEach(function (t) {
+      if (!found && members(t).indexOf(name) !== -1) found = t;
+    });
+    return found;
+  }
+
+  /* عقوبة الفريق عند الحمراء: خصم النقاط وإيقاف الدور القادم.
+     تُعيد اسم الفريق، أو null إن لم يكن اللاعب في فريق. */
+  function redCardTeamPenalty(name) {
+    var team = teamOfPlayer(name);
+    if (!team) return null;
+
+    var s = scores();
+    s[team] = Math.max(0, (s[team] || 0) - CARD_RED_TEAM);
+    saveScores(s);
+
+    /* إيقاف الدور — التجميد نفسه الذي يستعمله نظام المفاجآت،
+       و nextTurn يتخطّى الفريق المجمّد ويستهلك تجميده */
+    if (global.Powerups && typeof global.Powerups.freeze === "function") {
+      global.Powerups.freeze(team, 1);
+    } else {
+      var f = {};
+      try { f = JSON.parse(get("frozenTeams") || "{}") || {}; } catch (e) { f = {}; }
+      f[team] = (f[team] || 0) + 1;
+      set("frozenTeams", JSON.stringify(f));
+    }
+    return team;
+  }
 
   function cardsOf(name) {
     var p = players().filter(function (x) { return x.name === name; })[0];
@@ -256,6 +296,7 @@
     list.forEach(function (x) { if (x.name === name) p = x; });
     if (!p) return null;
     var secondYellow = false;
+    var wasRed = !!p.red;                /* لئلا تتكرّر عقوبة الفريق */
     if (kind === "red") {
       p.red = true;
       p.points -= CARD_RED;
@@ -265,7 +306,13 @@
       if (p.yellow >= 2 && !p.red) { p.red = true; secondYellow = true; }   /* صفراوان = حمراء */
     }
     savePlayers(list);
-    return { yellow: p.yellow, red: p.red, points: p.points, secondYellow: secondYellow };
+
+    /* أول حمراء للاعب: خصم من نقاط فريقه وإيقاف دوره القادم */
+    var team = null;
+    if (p.red && !wasRed) team = redCardTeamPenalty(name);
+
+    return { yellow: p.yellow, red: p.red, points: p.points, secondYellow: secondYellow,
+             team: team, teamPenalty: team ? CARD_RED_TEAM : 0, turnStopped: !!team };
   }
 
   /* إزالة بطاقات لاعب (إن أُعطيت بالخطأ) — بلا إرجاع النقاط المخصومة */
@@ -424,7 +471,9 @@
     playerPoints: playerPoints,
     CARD_YELLOW: CARD_YELLOW,
     CARD_RED: CARD_RED,
+    CARD_RED_TEAM: CARD_RED_TEAM,
     cards: cardsOf,
+    teamOfPlayer: teamOfPlayer,
     isSentOff: isSentOff,
     giveCard: giveCard,
     clearCards: clearCards,

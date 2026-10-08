@@ -852,7 +852,19 @@
 
   /* ---------- بطاقات اللاعبين ----------
      صفراء: تنبيه وخصم من نقاط اللاعب — وصفراوان تساويان حمراء.
-     حمراء: اللاعب خارج ما بقي من الجولة، فلا يظهر في «من أجاب؟». */
+     حمراء: طردٌ كامل — خصم من نقاط اللاعب، وخصم ٣٠٠ من نقاط فريقه على
+            اللوحة، وإيقاف دور الفريق القادم، واللاعب خارج ما بقي من
+            الجولة فلا يظهر في «من أجاب؟». */
+  /* نصّ ما وقع بالحمراء: خصم الفريق وإيقاف دوره وخروج اللاعب.
+     وقد لا يكون اللاعب في فريق، فلا يقع إلا خروجه. */
+  function redToast(r) {
+    if (r && r.team) {
+      return '−' + r.teamPenalty + ' من ' + teamLabel(r.team) +
+             '، ويفقد دوره القادم، وخرج اللاعب من الجولة';
+    }
+    return 'خرج من الجولة (ليس في فريق، فلا خصم على اللوحة)';
+  }
+
   function pickCard(player) {
     const c = Teams.cards(player);
     const ov = document.createElement('div');
@@ -860,7 +872,8 @@
     ov.innerHTML =
       '<div class="cp"><h5 data-no-i18n></h5>' +
       '<button type="button" class="yellow">🟨 بطاقة صفراء · خصم ' + Teams.CARD_YELLOW + ' من اللاعب</button>' +
-      '<button type="button" class="red">🟥 بطاقة حمراء · خصم ' + Teams.CARD_RED + ' وخروج من الجولة</button>' +
+      '<button type="button" class="red">🟥 بطاقة حمراء · خصم ' + Teams.CARD_RED_TEAM +
+        ' من الفريق وإيقاف دوره وخروج اللاعب</button>' +
       (c.yellow || c.red ? '<button type="button" class="clear">إزالة بطاقات اللاعب</button>' : '') +
       '<button type="button" class="cancel">إلغاء</button></div>';
     ov.querySelector('h5').textContent = player +
@@ -870,14 +883,14 @@
       const r = Teams.giveCard(player, 'yellow');
       SFX.penaltyCard();
       toast(r && r.secondYellow
-        ? ('🟥 ' + player + ' — صفراء ثانية فحمراء، وخرج من الجولة')
+        ? ('🟥 ' + player + ' — صفراء ثانية فحمراء: ' + redToast(r))
         : ('🟨 ' + player + ' — بطاقة صفراء (−' + Teams.CARD_YELLOW + ')'));
       close(); renderScoreCards();
     };
     ov.querySelector('.red').onclick = () => {
-      Teams.giveCard(player, 'red');
+      const r = Teams.giveCard(player, 'red');
       SFX.penaltyCard();
-      toast('🟥 ' + player + ' — بطاقة حمراء (−' + Teams.CARD_RED + ') وخرج من الجولة');
+      toast('🟥 ' + player + ' — بطاقة حمراء: ' + redToast(r));
       close(); renderScoreCards();
     };
     const clearBtn = ov.querySelector('.clear');
