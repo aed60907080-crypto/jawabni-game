@@ -1016,38 +1016,53 @@ const questionsData = {
   ],
 
 
-  /* ---------- خمن اسم السيارة (قيد البناء — سؤال واحد) ----------
-     نوع واحد: تُعرض **مصابيح السيارة وحدها مضيئةً على سواد**، أمامية أو
-     خلفية، والمطلوب معرفة السيارة. لا هيكل ولا شبك ولا شعار — بصمة
-     الإضاءة هي الدليل، كما أن شكل الدولة الصمّاء دليلُ «خمن اسم الدولة».
+  /* ---------- خمن اسم السيارة (18 سؤالاً) ----------
+     نوع واحد: يُعرض **مصباح السيارة وحده مقتطعاً** — أمامي أو خلفي —
+     والمطلوب معرفة السيارة. لا هيكل ولا شبك ولا شعار: بصمة الإضاءة هي
+     الدليل، كما أن شكل الدولة الصمّاء دليلُ «خمن اسم الدولة».
 
-     الصور في مجلد image/cars-lights/ ولا تُجلب من الإنترنت.
+     كيف تعمل: الحقل crop يقتطع مستطيل المصباح وحده من الصورة الكاملة
+     ويكبّره، فلا يرى اللاعب إلا المصباح. وعند كشف الإجابة تُعرض **الصورة
+     كاملة** (صفحة السؤال تقصّ [0,0,100,100] مع الجواب)، فيرى الجميع
+     السيارة التي كان المصباح لها. والقَصّة نسبةٌ مئوية [س، ص، عرض، ارتفاع]
+     من الصورة الأصلية، مضبوطة واحدةً واحدةً بالمعاينة البصرية على شبكة
+     نسب — لا بالتقدير.
 
-     لماذا سؤال واحد فقط حتى الآن:
-       ويكيميديا كومنز لا تملك رصيداً صالحاً لهذا النوع — بحثتُ فيها
-       بثمانية استعلامات (Rücklicht · Heckleuchten · taillight ·
-       headlight · rear light · Scheinwerfer · تصنيفات الإضاءة)، وما
-       وجدتُه لقطاتٌ نهارية والمصابيحُ مطفأة، وبعضها يُظهر الشبك
-       والشعار معاً فيُفسد السؤال. فلا تصلح واحدة منها.
-       فالصور لا بدّ أن تأتي جاهزةً من صاحب اللعبة.
+     ولا تدخل القَصّةُ على الشعار أبداً: اختيرت ناحيةُ المصباح البعيدة عن
+     وسط الشبك حيث يقع الشعار، فحُذف الشعار بالاقتطاع لا بالتغطية.
 
-     كيف تُضاف صورة جديدة — سطران لا أكثر:
-       ١) ضع الملف في image/cars-lights/ باسم مرقّم: 02-xxx.jpg
-       ٢) أضف سطراً هنا بالمستوى والجواب:
-          { l: 2, q: "ما نوع هذه السيارة؟", a: "أودي A6",
-            img: "image/cars-lights/02-audi-a6.jpg" },
+     الصور: سبع عشرة لقطة أمامية من ويكيميديا كومنز (وهي اللقطات التي
+     كانت في فئة «سيارات» قبل أن تُستبدل بجانبيات بلا شعار — فأجوبتها
+     محقَّقة أصلاً)، وواحدة من صور صاحب اللعبة في image/cars-lights/.
 
-     ولا بدّ أن يأتي **اسم السيارة مع كل صورة**: صور المصابيح المرسومة
-     لا يُجزم بصاحبها بالنظر، والجواب لا يُخمَّن.
+     لماذا ليست «مصابيح مضيئة على سواد» كما في صورة الغلاف: ويكيميديا
+     كومنز لا تملك رصيداً من ذلك — بحثتُ بثمانية استعلامات فما وجدتُه
+     لقطاتٌ نهارية والمصابيح مطفأة. فبصمةُ شكل المصباح هي الدليل هنا بدل
+     توهّجه. ولو وصلت صور مضيئة جاهزة فمكانها image/cars-lights/ وتُضاف
+     بسطر بلا crop.
 
-     ترتيب الصعوبة حين تكتمل: بصمةٌ يعرفها كل أحد في الأول (حلقات
-     BMW · شريط بورشه الممتد · أشرطة موستانج الثلاثة)، ثم ما يعرفه
-     المتابع، ثم ما لا يميّزه إلا من يعرف الطرازات.
-
-     الفئة غير مُسجَّلة في categories.js بعد — سطرها جاهز هناك معلّقاً،
-     يُفَكّ تعليقه متى بلغت ستة أسئلة فأكثر (الجولة تحتاج ستة). */
+     تدرّج الصعوبة: بصمةٌ يعرفها كل أحد في الأول (حلقات BMW · أشرطة
+     موستانج الثلاثة · مصباح رانجلر المستدير · خنفساء)، ثم ما يعرفه
+     المتابع، ثم ما لا يميّزه إلا من يعرف الطرازات (ديلوريان · MC20). */
   "خمن اسم السيارة": [
     { l: 1, q: "ما نوع هذه السيارة؟", a: "بي إم دبليو", img: "image/cars-lights/01-bmw.jpg" },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب رانجلر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/2018_Jeep_Wrangler_Sahara_Unlimited_Multijet_2.1_Front.jpg/960px-2018_Jeep_Wrangler_Sahara_Unlimited_Multijet_2.1_Front.jpg", crop: [12,39,9,15] },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "فورد موستانج", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Ford_Mustang_VII_GT_Rutesheimer_Autoschau_2025_DSC_9234.jpg/960px-Ford_Mustang_VII_GT_Rutesheimer_Autoschau_2025_DSC_9234.jpg", crop: [60,50,18,20] },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "فولكس فاجن بيتل (الخنفساء)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/VW_K%C3%A4fer_Baujahr_1966.jpg/960px-VW_K%C3%A4fer_Baujahr_1966.jpg", crop: [79,45,14,18] },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "تويوتا لاند كروزر", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/2021_Toyota_Land_Cruiser_300_3.4_ZX_%28Colombia%29_front_view_04.png/960px-2021_Toyota_Land_Cruiser_300_3.4_ZX_%28Colombia%29_front_view_04.png", crop: [22,34,14,17] },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "نيسان باترول", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/2016_Nissan_Patrol_%28Y62%29_Ti-L_wagon_%282018-09-17%29_01.jpg/960px-2016_Nissan_Patrol_%28Y62%29_Ti-L_wagon_%282018-09-17%29_01.jpg", crop: [25,33,16,20] },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "بورشه 911", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Porsche_911_No_1000000%2C_70_Years_Porsche_Sports_Car%2C_Berlin_%281X7A3888%29.jpg/960px-Porsche_911_No_1000000%2C_70_Years_Porsche_Sports_Car%2C_Berlin_%281X7A3888%29.jpg", crop: [82,42,15,18] },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "لامبورغيني أفينتادور", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Lamborghini_Aventador_S_%2844554%29.jpg/960px-Lamborghini_Aventador_S_%2844554%29.jpg", crop: [42,41,18,17] },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "فيراري 488", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/2018_Ferrari_488_GTB_Spider_S-A_3.9_Front.jpg/960px-2018_Ferrari_488_GTB_Spider_S-A_3.9_Front.jpg", crop: [17,48,16,18] },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "تسلا سايبرترك", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg/960px-2024_Tesla_Cybertruck_Foundation_Series%2C_front_left_%28Greenwich%29.jpg", crop: [1,41,22,16] },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "كاديلاك إسكاليد", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/2026_Cadillac_Escalade_ESV.jpg/960px-2026_Cadillac_Escalade_ESV.jpg", crop: [12,42,10,26] },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "همر H1", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/94-00_AM_General_Hummer_soft_top.jpg/960px-94-00_AM_General_Hummer_soft_top.jpg", crop: [11,41,40,17] },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "رولز رويس فانتوم", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg/960px-2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg", crop: [24,42,14,16] },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "نيسان GT-R", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/2009-2010_Nissan_GT-R_%28R35%29_coupe_01.jpg/960px-2009-2010_Nissan_GT-R_%28R35%29_coupe_01.jpg", crop: [17,43,15,16] },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "بوغاتي شيرون", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/960px-Bugatti_Chiron_1.jpg", crop: [59,41,17,16] },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "أستون مارتن DB11", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2018_Aston_Martin_DB11_V8_Automatic_4.0_Front.jpg/960px-2018_Aston_Martin_DB11_V8_Automatic_4.0_Front.jpg", crop: [58,43,18,16] },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "مازيراتي MC20", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Maserati_MC20_IAA_2021_1X7A0087.jpg/960px-Maserati_MC20_IAA_2021_1X7A0087.jpg", crop: [22,54,15,14] },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "ديلوريان DMC-12", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/DeLorean_DMC-12_Classic-Days_2022_DSC_0050.jpg/960px-DeLorean_DMC-12_Classic-Days_2022_DSC_0050.jpg", crop: [9,43,12,13] },
   ],
   /* ---------- تقنية (95 سؤالاً) ----------
      ثلاثة أنواع: «ما اسم هذا الجهاز؟» (أجهزة مشهورة بأسمائها بصورها)،
