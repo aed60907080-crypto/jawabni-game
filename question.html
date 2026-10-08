@@ -19,6 +19,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+  <!-- محرّك ويبكِت (سفاري وكلُّ متصفّحات الآيفون والآيباد — فهي كلها
+       ويبكِت): لا يطبّق backdrop-filter:url(#...) ولو زعم @supports أنه
+       يدعمه، فتُعلَّم الصفحة ليأخذ الرسمُ طريقه البديل. ويُكتب هنا قبل
+       التنسيق حتى لا تُرسم طبقةٌ لا تعمل. -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent;
+      if (/AppleWebKit/.test(ua) && !/Chrome|Chromium|Edg|OPR|SamsungBrowser/.test(ua)) {
+        document.documentElement.className += " wk";
+      }
+    })();
+  </script>
+
   <style>
     :root{
       --ink:#04120f;
@@ -425,11 +438,20 @@
       -webkit-backdrop-filter:url(#goalSketch); backdrop-filter:url(#goalSketch);
     }
     .vid.shown > .vid-sketch{ display:none; }
+    /* الطريق البديل: رماديٌّ قاسٍ على الإطار نفسه بدل طبقة الرسم.
+       يُسلَك في حالين — متصفّحٌ يُقرّ أنه لا يدعم backdrop-filter:url،
+       ومتصفّحُ ويبكِت الذي يزعم الدعم ولا يرسم شيئاً (html.wk). */
     @supports not ((backdrop-filter:url(#a)) or (-webkit-backdrop-filter:url(#a))){
       .vid > .vid-sketch{ display:none; }
       .vid.bw iframe{ filter:grayscale(1) brightness(1.4) contrast(3); }
       .vid.bw.shown iframe{ filter:none; }
     }
+    .wk .vid > .vid-sketch{ display:none; }
+    .wk .vid.bw iframe{ filter:grayscale(1) brightness(1.4) contrast(3); }
+    .wk .vid.bw.shown iframe{ filter:none; }
+    /* وملفُّ الفيديو المحلي: سفاري لا يطبّق مرشّح SVG عليه أيضاً */
+    .wk .vid.bw video{ filter:grayscale(1) brightness(1.4) contrast(3); }
+    .wk .vid.bw.shown video{ filter:none; }
     /* غلاف «شغّل المقطع» فوق صورة يوتيوب المصغّرة (تكشف الفريقين) */
     .vid > .vid-cover{
       position:absolute; left:0; right:0; top:25%; bottom:0; z-index:3;
@@ -2121,8 +2143,15 @@
       const box = document.createElement('div');
       box.className = 'vid tt' + (item.bw ? ' bw' : '');
       const fr = document.createElement('iframe');
+      /* زرُّ التشغيل الأصليّ للمشغّل: يُخفى في كل مكان إلا ويبكِت.
+         فآيفون لا يبدأ فيديو إطارٍ من أصلٍ آخر إلا بلمسةٍ **داخله**،
+         ولمسةُ غلافنا في الصفحة الأمّ لا تُحتسب له، فيُرفض أمرُ
+         postMessage("play") ويبقى المقطع واقفاً بلا شيءٍ يُلمس.
+         فيُترك له زرُّه ليجد اللاعبُ ما يضغطه. */
+      const nativePlay = document.documentElement.classList.contains("wk") ? 1 : 0;
       fr.src = "https://www.tiktok.com/player/v1/" + id +
-               "?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0" +
+               "?autoplay=1&controls=0&progress_bar=0&play_button=" + nativePlay +
+               "&volume_control=0" +
                "&fullscreen_button=0&timestamp=0&music_info=0&description=0&rel=0" +
                "&native_context_menu=0&closed_caption=0";
       fr.allow = "autoplay; encrypted-media; picture-in-picture";
