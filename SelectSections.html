@@ -725,7 +725,7 @@
         '<div class="card-btns">' +
           '<button class="btn-reset btn-bonus" onclick="applyBonus(\'' + t + '\', 50)"><i class="fa-solid fa-circle-plus"></i> زيادة 50</button>' +
           '<button class="btn-reset btn-yellow" onclick="applyPenalty(\'' + t + '\', 100)"><i class="fa-regular fa-rectangle-list"></i> بطاقة صفراء · خصم 100</button>' +
-          '<button class="btn-reset btn-red" onclick="applyPenalty(\'' + t + '\', 300, true)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300 وتجميد الدور</button>' +
+          '<button class="btn-reset btn-red" onclick="applyPenalty(\'' + t + '\', 300, true)"><i class="fa-solid fa-rectangle-list"></i> بطاقة حمراء · خصم 300 وإسقاط الدور</button>' +
         '</div>';
       card.querySelector('.team-name').textContent = Teams.name(t);
       /* أسماء اللاعبين تحت اسم الفريق */
@@ -853,17 +853,17 @@
   /* ---------- بطاقات اللاعبين ----------
      صفراء: تنبيه وخصم من نقاط اللاعب — وصفراوان تساويان حمراء.
      حمراء: عقوبتها على الفريق — خصم من نقاط اللاعب، وخصم ٣٠٠ من نقاط
-            فريقه على اللوحة، وتجميد دوره: إن كان صاحبَ الدور بُدّل
-            الدور تلقائياً الآن، وإلا فقَد دورَه القادم. واللاعب نفسه
-            يبقى في الجولة ويظهر في «من أجاب؟». */
-  /* نصّ ما وقع بالحمراء: خصمُ الفريق وتجميدُ دوره.
+            فريقه على اللوحة، وتجميد **الدور الجاري**: إن كان فريقه
+            صاحبَ الدور انتهى دورُه في الحال وانتقل اللعب إلى غيره.
+            واللاعب نفسه يبقى في الجولة ويظهر في «من أجاب؟». */
+  /* نصّ ما وقع بالحمراء: خصمُ الفريق، وسقوطُ دوره الجاري إن كان عليه.
      وقد لا يكون اللاعب في فريق، فلا يقع على اللوحة شيء. */
   function redToast(r) {
     if (!r || !r.team) return 'ليس في فريق، فلا خصم على اللوحة ولا تجميد دور';
     const head = '−' + r.teamPenalty + ' من ' + teamLabel(r.team);
     return r.switchedTo
-      ? head + '، وانتقل الدور إلى ' + teamLabel(r.switchedTo)
-      : head + '، ويفقد ' + teamLabel(r.team) + ' دوره القادم';
+      ? head + '، وسقط دورُه وانتقل إلى ' + teamLabel(r.switchedTo)
+      : head + ' (ليس عليه الدور، فلا دورَ يسقط)';
   }
 
   function pickCard(player) {
@@ -874,7 +874,7 @@
       '<div class="cp"><h5 data-no-i18n></h5>' +
       '<button type="button" class="yellow">🟨 بطاقة صفراء · خصم ' + Teams.CARD_YELLOW + ' من اللاعب</button>' +
       '<button type="button" class="red">🟥 بطاقة حمراء · خصم ' + Teams.CARD_RED_TEAM +
-        ' من الفريق وتجميد دوره</button>' +
+        ' من الفريق وإسقاط دوره</button>' +
       (c.yellow || c.red ? '<button type="button" class="clear">إزالة بطاقات اللاعب</button>' : '') +
       '<button type="button" class="cancel">إلغاء</button></div>';
     ov.querySelector('h5').textContent = player +
@@ -910,8 +910,8 @@
     document.body.appendChild(ov);
   }
 
-  /* isRed: الحمراء تُجمّد دورَ الفريق أيضاً — إن كان صاحبَ الدور
-     بُدّل الدور تلقائياً الآن، وإلا فقَد دورَه القادم. */
+  /* isRed: الحمراء تُسقط الدور الجاري أيضاً — إن كان الفريق صاحبَ
+     الدور انتهى دورُه في الحال وانتقل اللعب إلى غيره. */
   function applyPenalty(team, amount, isRed) {
     SFX.penaltyCard();
     const scores = Teams.scores();
@@ -927,9 +927,9 @@
     const to = Teams.freezeTeamTurn(team);
     if (to) {
       SFX.turn(); updateTurnUI();
-      showBoardToast('🟥 ' + teamLabel(team) + ' — انتقل الدور إلى ' + teamLabel(to));
+      showBoardToast('🟥 ' + teamLabel(team) + ' — سقط دورُه وانتقل إلى ' + teamLabel(to));
     } else {
-      showBoardToast('🟥 ' + teamLabel(team) + ' — يفقد دوره القادم');
+      showBoardToast('🟥 ' + teamLabel(team) + ' — ليس عليه الدور، فلا دورَ يسقط');
     }
   }
 
