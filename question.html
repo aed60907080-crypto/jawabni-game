@@ -1286,6 +1286,8 @@
 <script src="categories.js"></script>
 <script src="images.js"></script>
 <script src="ayah-card.js"></script>
+<script src="online-config.js"></script>
+<script src="online-sync.js"></script>
 <script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
@@ -1323,6 +1325,12 @@
   const params   = new URLSearchParams(location.search);
   const category = params.get('category') || '';
   const points   = parseInt(params.get('points')) || 100;
+
+  /* مزامنة الأونلاين: صفحةُ السؤال تكتب النقاطَ والدورَ والمُجاب،
+     و online-sync.js يرصد هذه المفاتيح من نفسه فيُرسلها. ولا يُعاد
+     الرسمُ هنا: اللاعبُ على سؤاله، والصفحةُ تُغادَر بعد الإجابة إلى
+     اللوحة وهي التي تعرض حالةَ الجميع. */
+  if (window.OnlineSync) OnlineSync.auto();
 
   /* الفرق (٢ أو ٤ أو ٦) — teams.js */
   const TEAM_IDS = Teams.ids();

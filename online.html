@@ -357,6 +357,9 @@ function buildSeededRound(categoryTitles, seed){
 
 /* ---------- الحالة ---------- */
 let room = null;
+/* أنشأ هذا الجهازُ الغرفة؟ فهو مرجعُ الحالة في المزامنة، ومن فتح
+   رابطاً أو أدخل رمزاً فهو تابعٌ يأخذ الحالة منه (online-sync.js) */
+let createdHere = false;
 
 function catIndex(name){ return CategoryLib.all.findIndex(c => c.name === name); }
 function catByIndex(i){ return CategoryLib.all[i]; }
@@ -388,6 +391,7 @@ document.getElementById("createBtn").onclick = () => {
     b: (localStorage.getItem("team2") || "").slice(0, 24)
   };
 
+  createdHere = true;
   if (window.SFX) SFX.coin();
   showRoom();
 };
@@ -482,6 +486,9 @@ document.getElementById("startRoom").onclick = () => {
   localStorage.setItem("team1", room.a || "الفريق 1");
   localStorage.setItem("team2", room.b || "الفريق 2");
   localStorage.setItem("onlineRoom", room.s);
+  /* المُنشئ مرجعُ الحالة والمنضمُّ تابعٌ له — انظر online-sync.js.
+     ويُعرف المُنشئ بأنه من أنشأ الغرفة في هذه الصفحة لا من فتح رابطاً. */
+  localStorage.setItem("onlineHost", createdHere ? "1" : "");
   if (window.Powerups) {
     Powerups.reset();
     Powerups.scatter(names.map(c => c.name));

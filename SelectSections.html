@@ -609,6 +609,8 @@
 <script src="questions-extra2.js"></script>
 <script src="categories.js"></script>
 <script src="images.js"></script>
+<script src="online-config.js"></script>
+<script src="online-sync.js"></script>
 <script src="teams.js"></script>
 <script src="powerups.js"></script>
 <script src="translate.js"></script>
@@ -1022,6 +1024,23 @@
 
   loadScores();
   if (!checkBonusWheel()) checkIfGameEnded();
+
+  /* مزامنة الأونلاين: لا تعمل إلا داخل جولةِ غرفة.
+     النقاطُ وشارةُ الدور يُعاد رسمُهما في مكانهما. وأمّا بطاقاتُ
+     الأسئلة فتُبنى مرّةً واحدة عند التحميل من answeredQuestions ولا
+     دالّةَ تُعيد بناءها، فإن تغيّرت القائمة — أي أجاب جهازٌ آخر —
+     أُعيد تحميلُ الصفحة. ولا يقع ذلك إلا عند تغيّرها حقّاً، فلا
+     تُعاد الصفحة مع كل رسالة. */
+  if (window.OnlineSync) {
+    let lastAnswered = (localStorage.getItem('answeredQuestions') || '[]');
+    OnlineSync.auto(() => {
+      const now = localStorage.getItem('answeredQuestions') || '[]';
+      if (now !== lastAnswered) { lastAnswered = now; location.reload(); return; }
+      loadScores();
+      updateTurnUI();
+      checkIfGameEnded();
+    });
+  }
 
   SFX.mountControls();
   document.querySelectorAll('.category-card .btn').forEach(el =>
