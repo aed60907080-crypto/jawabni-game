@@ -963,13 +963,22 @@
      ومعلّبات. كلها ماركات كانت على رفوف الجمعية سنة ٢٠٠٠ وما قبلها،
      وصورة بيبسي بتصميم التسعينيات نفسه. الصور من ويكيميديا كومنز
      ومن Open Food Facts (قاعدة بيانات مفتوحة لصور المنتجات).
-     hide يغطّي اسم المنتج المطبوع على العبوة في السؤال [x, y, w, h]
+     إخفاء العلامة التجارية في السؤال وإظهارها مع الإجابة — طريقان:
+
+     الأول وهو الأحسن: صورتان. img صورةٌ لا تظهر فيها العلامة (العبوة
+     مُدارةٌ أو مقلوبة)، و aimg صورةُ الإجابة وفيها العلامة. فلا يُغطّى
+     شيء، ويبقى اللونُ والشكلُ دليلاً كاملاً. وهكذا بيبسي.
+
+     والثاني: صورةٌ واحدة و hide يغطّي الاسم المطبوع عليها [x, y, w, h]
      نسبةً من عرض الصورة وارتفاعها، ثم تظهر الصورة كاملة مع الإجابة.
      المستطيلات مضبوطة بالمعاينة البصرية لكل صورة على حدة.
      وما لا اسم ظاهراً فيه (سنيكرز مقطوع، أوريو، كيندر بوينو…) بلا hide. */
   extra["منتجات"] = [
     /* ===== المستوى الأول ===== */
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Pepsi_Can_Retro_Design_1990s.jpg/960px-Pepsi_Can_Retro_Design_1990s.jpg", hide: [[28, 32, 48, 34]] },
+    /* بيبسي: صورةُ السؤال من صور صاحب اللعبة — العلبةُ مُدارةٌ فلا
+       يظهر الاسم، ويبقى اللونُ والشكلُ والشعاعُ الأحمر والأبيض دليلاً.
+       وصورةُ الإجابة (aimg) تُظهر الاسم. فلا قناعَ هنا. */
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "image/products/pepsi-back.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Pepsi_Can_Retro_Design_1990s.jpg/960px-Pepsi_Can_Retro_Design_1990s.jpg" },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سفن أب (7Up)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Can_of_Seven_Up.jpg/960px-Can_of_Seven_Up.jpg", hide: [[5, 22, 92, 46]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "كت كات (KitKat)", img: "https://images.openfoodfacts.org/images/products/761/303/536/6749/front_en.132.400.jpg", hide: [[20, 18, 50, 64]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سنيكرز (Snickers)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Snickers-broken.JPG/500px-Snickers-broken.JPG" },
