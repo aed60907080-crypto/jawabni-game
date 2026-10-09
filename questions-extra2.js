@@ -958,7 +958,7 @@
     { l: 5, q: "ماذا حصل في هذا المشهد؟", a: "قاريسي بك يخضع لعثمان (الحلقة 174)", img: "https://i.ytimg.com/vi/epbTjmeslCY/maxresdefault.jpg", crop: [0, 0, 100, 52] },
   ];
 
-  /* ---------- منتجات (25 سؤالاً) ----------
+  /* ---------- منتجات (26 سؤالاً) ----------
      «ما اسم هذا المنتج؟» — منتجات الجمعية: شيبس وشوكولاتة ومشروبات
      ومعلّبات. كلها ماركات كانت على رفوف الجمعية سنة ٢٠٠٠ وما قبلها،
      وصورة بيبسي بتصميم التسعينيات نفسه. الصور من ويكيميديا كومنز
@@ -975,10 +975,7 @@
      وما لا اسم ظاهراً فيه (سنيكرز مقطوع، أوريو، كيندر بوينو…) بلا hide. */
   extra["منتجات"] = [
     /* ===== المستوى الأول ===== */
-    /* بيبسي: صورةُ السؤال من صور صاحب اللعبة — العلبةُ مُدارةٌ فلا
-       يظهر الاسم، ويبقى اللونُ والشكلُ والشعاعُ الأحمر والأبيض دليلاً.
-       وصورةُ الإجابة (aimg) تُظهر الاسم. فلا قناعَ هنا. */
-    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "image/products/pepsi-back.jpg", aimg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Pepsi_Can_Retro_Design_1990s.jpg/960px-Pepsi_Can_Retro_Design_1990s.jpg" },
+    { l: 1, q: "ما اسم هذا المنتج؟", a: "بيبسي", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Pepsi_Can_Retro_Design_1990s.jpg/960px-Pepsi_Can_Retro_Design_1990s.jpg", hide: [[28, 32, 48, 34]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سفن أب (7Up)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Can_of_Seven_Up.jpg/960px-Can_of_Seven_Up.jpg", hide: [[5, 22, 92, 46]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "كت كات (KitKat)", img: "https://images.openfoodfacts.org/images/products/761/303/536/6749/front_en.132.400.jpg", hide: [[20, 18, 50, 64]] },
     { l: 1, q: "ما اسم هذا المنتج؟", a: "سنيكرز (Snickers)", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Snickers-broken.JPG/500px-Snickers-broken.JPG" },
@@ -1010,7 +1007,14 @@
     { l: 5, q: "ما اسم هذا المنتج؟", a: "كويكر (Quaker)", img: "https://images.openfoodfacts.org/images/products/316/893/000/9801/front_fr.92.400.jpg", hide: [[16, 2, 68, 22]] },
     { l: 5, q: "ما اسم هذا المنتج؟", a: "نسكافيه (Nescafé)", img: "https://images.openfoodfacts.org/images/products/611/101/890/3161/front_fr.48.400.jpg", hide: [[26, 31, 58, 28]] },
     { l: 5, q: "ما اسم هذا المنتج؟", a: "كاتشب هاينز (Heinz)", img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_en.141.400.jpg", hide: [[26, 13, 54, 28]] },
-    { l: 5, q: "ما اسم هذا المنتج؟", a: "تيك تاك (Tic Tac)", img: "https://images.openfoodfacts.org/images/products/000/008/005/2043/front_en.64.400.jpg", hide: [[25, 5, 50, 25]] }
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "تيك تاك (Tic Tac)", img: "https://images.openfoodfacts.org/images/products/000/008/005/2043/front_en.64.400.jpg", hide: [[25, 5, 50, 25]] },
+
+    /* كينزا: صورتان من صور صاحب اللعبة — العلبةُ مُدارةٌ في السؤال
+       فلا يظهر الاسم، ومواجِهةٌ في الإجابة. فلا قناعَ عليها.
+       وهي في الخامس عمداً: العلبةُ زرقاءُ بشعاعٍ أحمرَ وأبيض فتُشبه
+       بيبسي، وبيبسي في الأول — فمن قال «بيبسي» فله عذر. وهذا هو
+       وجهُ الصعوبة فيها، لا عيبٌ فيها. */
+    { l: 5, q: "ما اسم هذا المنتج؟", a: "كينزا (Kinza)", img: "image/products/kinza-back.jpg", aimg: "image/products/kinza-front.jpg" }
   ];
 
   /* ---------- أغاني عربية (30 سؤالاً) ----------
