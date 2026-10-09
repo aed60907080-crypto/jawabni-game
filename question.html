@@ -442,8 +442,6 @@
       transition:filter .6s ease;
     }
     .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
-    /* طبقةُ الرسم القديمة لم تعد تُستعمل */
-    .vid > .vid-sketch{ display:none; }
     /* غلاف «شغّل المقطع» فوق صورة يوتيوب المصغّرة (تكشف الفريقين) */
     .vid > .vid-cover{
       position:absolute; left:0; right:0; top:25%; bottom:0; z-index:3;
@@ -461,7 +459,8 @@
     .vid-cover b{ font-size:19px; font-weight:900; }
     .vid-cover small{ font-size:13px; font-weight:700; opacity:.6; }
     .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
-    /* شريط التحدي فوق المقطع: أبيض وكتابة سوداء كمقاطع «اتحداك تعرف…» */
+    /* cap: شريطٌ أبيض بكتابةٍ سوداء فوق المقطع، لمن أراد عبارةً على الغلاف.
+       ولا يستعمله سؤالٌ اليوم — «من صاحب الهدف» تركه وبقي قناعُ الأعلى وحده. */
     .vid > .vid-mask.cap{
       background:#fff; color:#000; display:flex; align-items:center; justify-content:center;
       font-family:"Cairo",sans-serif; font-weight:900; font-size:clamp(15px, 3.4vw, 24px);
@@ -1255,21 +1254,6 @@
 
 <div id="toastBox"></div>
 
-<!-- مرشّح «الرسم» لمقاطع «من صاحب الهدف» (bw): رمادي ← كشف الحواف ← أبيض وأسود
-     ← تسميك الخطوط — فيظهر الملعب أبيض واللاعبون والخطوط رسماً أسود -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <filter id="goalSketch" color-interpolation-filters="sRGB">
-    <feColorMatrix type="saturate" values="0"/>
-    <feGaussianBlur stdDeviation="0.5"/>
-    <feConvolveMatrix order="3" kernelMatrix="1 1 1 1 -8 1 1 1 1" divisor="1" bias="1" preserveAlpha="true"/>
-    <feComponentTransfer>
-      <feFuncR type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
-      <feFuncG type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
-      <feFuncB type="discrete" tableValues="0 0 0 0 0 0 0 0 1 1"/>
-    </feComponentTransfer>
-    <feMorphology operator="erode" radius="0.6"/>
-  </filter>
-</defs></svg>
 
 <!-- بنك الأسئلة والفئات ومحرّك الصور -->
 <script src="questions.js"></script>
@@ -1694,7 +1678,7 @@
       if (!Array.isArray(r) || r.length < 4) return;
       const mask = document.createElement("i");
       mask.className = "vid-mask";
-      /* cap: شريط الغلاف يحمل عبارة التحدي (كما في مقاطع «اتحداك تعرف…») */
+      /* cap: شريط الغلاف يحمل عبارةً مكتوبة بدل القناع الأصمّ */
       if (item.cap && !box.querySelector(".vid-mask.cap")) {
         mask.classList.add("cap");
         mask.textContent = item.cap;
@@ -2170,11 +2154,6 @@
         fr.style.top = (-100 * t / h).toFixed(3) + "%";
       }
       addVideoMasks(box, item);
-      if (item.bw) {
-        const sk = document.createElement("div");
-        sk.className = "vid-sketch";
-        box.appendChild(sk);
-      }
 
       const send = (type, value) => {
         const m = { type: type, "x-tiktok-player": true };
@@ -2341,14 +2320,6 @@
           cmd("setOption", ["captions", "track", {}]);
         };
 
-        /* أسلوب «الرسم» كمقاطع «اتحداك تعرف صاحب الهدف»: طبقة شفافة فوق المشغّل
-           تمرّر ما تحتها في مرشّح goalSketch (backdrop-filter) — المرشّح نفسه
-           لا يُطبَّق على المشغّل مباشرة في كروم، لكنه يُطبَّق على ما خلف الطبقة */
-        if (item.bw) {
-          const sk = document.createElement("div");
-          sk.className = "vid-sketch";
-          box.appendChild(sk);
-        }
 
         /* غلاف التشغيل: يخفي صورة يوتيوب المصغّرة (عليها أسماء الفريقين) ويشغّل
            المقطع بضغطة — والضغطة نفسها تسمح للمتصفح بعزف الأغنية */
