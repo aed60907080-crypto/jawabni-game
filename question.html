@@ -428,30 +428,22 @@
       display:block; width:100%; aspect-ratio:16/9;
       border:none; background:#000;
     }
-    /* bw: المقطع بأسلوب «الرسم» الأبيض والأسود (مرشّح goalSketch أسفل الصفحة)،
-       فلا تكشف ألوان القميص اللاعب — وتعود ألوانه عند كشف الإجابة */
-    /* ملف فيديو محلي: المرشّح عليه مباشرة. مشغّل يوتيوب: كروم لا يطبّق مرشّح SVG
-       على الإطار نفسه، فتؤدّيه طبقة .vid-sketch الشفافة فوقه (backdrop-filter) */
-    .vid.bw video{ filter:url(#goalSketch); transition:filter .6s ease; }
-    .vid > .vid-sketch{
-      position:absolute; inset:0; z-index:1; pointer-events:none;
-      -webkit-backdrop-filter:url(#goalSketch); backdrop-filter:url(#goalSketch);
+    /* bw: المقطع رماديٌّ متباين — فلا تكشف ألوانُ القميص اللاعب، وتعود
+       ألوانه عند كشف الإجابة.
+
+       كان قبلُ مرشّحَ «رسمٍ» بالأبيض والأسود (feConvolveMatrix): يُخرج خطوطاً
+       سوداء على بياض، فيضيع المشهدُ في اللقطات الواسعة والجمهور. والرماديُّ
+       هو ما كان يظهر على الآيفون وحده — فعُمّم على الأجهزة كلّها.
+
+       وهو مرشّحُ CSS عاديّ لا مرشّحُ SVG، فيُطبَّق على إطار يوتيوب نفسه في كل
+       المتصفّحات — لا يحتاج طبقةً فوقه ولا طريقاً بديلاً لويبكِت. */
+    .vid.bw video, .vid.bw iframe{
+      filter:grayscale(1) brightness(1.15) contrast(1.6);
+      transition:filter .6s ease;
     }
-    .vid.shown > .vid-sketch{ display:none; }
-    /* الطريق البديل: رماديٌّ قاسٍ على الإطار نفسه بدل طبقة الرسم.
-       يُسلَك في حالين — متصفّحٌ يُقرّ أنه لا يدعم backdrop-filter:url،
-       ومتصفّحُ ويبكِت الذي يزعم الدعم ولا يرسم شيئاً (html.wk). */
-    @supports not ((backdrop-filter:url(#a)) or (-webkit-backdrop-filter:url(#a))){
-      .vid > .vid-sketch{ display:none; }
-      .vid.bw iframe{ filter:grayscale(1) brightness(1.4) contrast(3); }
-      .vid.bw.shown iframe{ filter:none; }
-    }
-    .wk .vid > .vid-sketch{ display:none; }
-    .wk .vid.bw iframe{ filter:grayscale(1) brightness(1.4) contrast(3); }
-    .wk .vid.bw.shown iframe{ filter:none; }
-    /* وملفُّ الفيديو المحلي: سفاري لا يطبّق مرشّح SVG عليه أيضاً */
-    .wk .vid.bw video{ filter:grayscale(1) brightness(1.4) contrast(3); }
-    .wk .vid.bw.shown video{ filter:none; }
+    .vid.bw.shown video, .vid.bw.shown iframe{ filter:none; }
+    /* طبقةُ الرسم القديمة لم تعد تُستعمل */
+    .vid > .vid-sketch{ display:none; }
     /* غلاف «شغّل المقطع» فوق صورة يوتيوب المصغّرة (تكشف الفريقين) */
     .vid > .vid-cover{
       position:absolute; left:0; right:0; top:25%; bottom:0; z-index:3;
