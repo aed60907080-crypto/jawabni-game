@@ -2314,7 +2314,7 @@
          برقم الفيديو نفسه — ومع start/end يعيد المقطع المحدّد وحده.
          أمّا المقاطع التي نتحكّم بها (ctl) فنعيدها بأنفسنا في معالج الرسائل. */
       const ytLoop = ctl ? "" : "&loop=1&playlist=" + ytId(item.yt);
-      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1&fs=0" + range + mute + ytLoop;
+      fr.src = "https://www.youtube-nocookie.com/embed/" + ytId(item.yt) + "?rel=0&modestbranding=1&fs=0&cc_load_policy=0" + range + mute + ytLoop;
       /* اللعبة مفتوحة كملف من الجهاز (file://): لا عنوان يُرسل فيرفض يوتيوب
          التشغيل (الخطأ 153) — فنمرّ عبر وسيط على موقع اللعبة (yt.html) يضمّن
          يوتيوب بعنوان الموقع فيعمل المقطع */
@@ -2340,6 +2340,14 @@
         const cmd = (func, args) => {
           try { fr.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); } catch (e) {}
         };
+        /* لا ترجمةَ ولا تفريغَ نصّيّ على المقطع: cc_load_policy=0 لا يكفي إن كان
+           المشاهد قد فعّل الترجمة في حسابه — فنُسقط وحدة الترجمة نفسها. وبهذا
+           يتمّ «بلا كلام»: الصوت مكتوم، ولا يُكتب التعليق على الصورة. */
+        const noCC = () => {
+          cmd("unloadModule", ["captions"]);
+          cmd("unloadModule", ["cc"]);
+          cmd("setOption", ["captions", "track", {}]);
+        };
 
         /* أسلوب «الرسم» كمقاطع «اتحداك تعرف صاحب الهدف»: طبقة شفافة فوق المشغّل
            تمرّر ما تحتها في مرشّح goalSketch (backdrop-filter) — المرشّح نفسه
@@ -2360,6 +2368,7 @@
         cover.querySelector("small").textContent = Math.round(dur) + " ثانية";
         cover.addEventListener("click", () => {
           cover.hidden = true;
+          noCC();
           cmd("seekTo", [item.ys || 0, true]);
           cmd("playVideo");
           if (item.song && window.SFX) { goalSongOn = true; SFX.music.clip(dur); }
@@ -2391,13 +2400,14 @@
 
         fr.addEventListener("load", () => {
           try { fr.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); } catch (e) {}
+          noCC(); setTimeout(noCC, 1200);
         });
         window.addEventListener("message", (e) => {
           if (e.source !== fr.contentWindow || typeof e.data !== "string") return;
           let d; try { d = JSON.parse(e.data); } catch (_) { return; }
           const info = d.info || {};
           const st = d.event === "onStateChange" ? d.info : info.playerState;
-          if (st === 1) ytPlaying = true; else if (st === 2 || st === 0) ytPlaying = false;
+          if (st === 1) { ytPlaying = true; noCC(); } else if (st === 2 || st === 0) ytPlaying = false;
           if (typeof info.currentTime === "number") {
             setBar(info.currentTime - ys0, dur);
             /* خارج نافذة المقطع أو عند نهايته (يوتيوب يُوقف عند end بدل أن
@@ -2453,7 +2463,7 @@
           ? "https://aed60907080-crypto.github.io/jawabni-game/yt.html?go=1&v=" + id +
             (item.ys != null ? "&s=" + Math.floor(item.ys) : "") +
             (item.ye != null ? "&e=" + Math.floor(item.ye) : "") + (item.song ? "&m=1" : "")
-          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1&controls=0&disablekb=1" + range +
+          : "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1&autoplay=1&controls=0&disablekb=1&cc_load_policy=0" + range +
             (item.song ? "&mute=1" : "");
         btn.innerHTML = inGame
           ? '<i class="fa-solid fa-up-right-from-square"></i> لا يظهر المقطع؟ افتحه في نافذة'
