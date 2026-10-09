@@ -1023,6 +1023,10 @@ const questionsData = {
 
      الصور في image/cars-lights/ ولا تُجلب من الإنترنت.
 
+     **ولكل سؤالٍ صورتان:** img واجهةٌ لا يظهر فيها الشعار، و aimg
+     الواجهةُ نفسُها بشعارها تظهر مع الإجابة. فالسؤالُ لا يُفشي جوابه،
+     والجوابُ يُري السيارةَ معروفةً كاملة.
+
      **تاريخُ الباب:** بدأ بصورٍ مقتطعةٍ من لقطاتٍ نهارية، ثم بصماتٍ
      نيونيةٍ مرسومة، ثم وحداتِ مصابيحَ مرسومةً بأجسامها وعدساتها
      ونقاطها. ثم صار صاحبُ اللعبة يولّد الصور فيحذف الرسمَ ويضع
@@ -1053,17 +1057,17 @@ const questionsData = {
      تدرّج الصعوبة: شبكُ جيب السباعيُّ يُعرف من أول نظرة، ثم ما يعرفه
      المتابع، ثم ما لا يميّزه إلا من يعرف الطرازات. */
   "خمن اسم السيارة": [
-    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب رانجلر", img: "image/cars-lights/wrangler.jpeg" },
-    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب جراند شيروكي", img: "image/cars-lights/grand-cherokee.jpg" },
-    { l: 2, q: "ما نوع هذه السيارة؟", a: "فورد موستانج", img: "image/cars-lights/mustang.jpeg", hide: [[34,69,28,14]] },
-    { l: 2, q: "ما نوع هذه السيارة؟", a: "بورشه 911", img: "image/cars-lights/porsche.jpeg" },
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "فيراري", img: "image/cars-lights/ferrari.jpg" },
-    { l: 3, q: "ما نوع هذه السيارة؟", a: "مرسيدس-بنز", img: "image/cars-lights/mercedes.jpeg" },
-    { l: 4, q: "ما نوع هذه السيارة؟", a: "شفروليه كامارو", img: "image/cars-lights/camaro.jpeg" },
-    { l: 4, q: "ما نوع هذه السيارة؟", a: "أودي", img: "image/cars-lights/audi.jpeg", hide: [[27,42,8,11]] },
-    { l: 5, q: "ما نوع هذه السيارة؟", a: "فورد F-150", img: "image/cars-lights/ford-f150.jpeg" },
-    { l: 5, q: "ما نوع هذه السيارة؟", a: "تويوتا سوبرا", img: "image/cars-lights/supra.jpeg" },
-    { l: 5, q: "ما نوع هذه السيارة؟", a: "فولفو", img: "image/cars-lights/volvo.jpeg", hide: [[32,60,30,24]] },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب رانجلر", img: "image/cars-lights/wrangler.jpeg", aimg: "image/cars-lights/wrangler-answer.jpg" },
+    { l: 1, q: "ما نوع هذه السيارة؟", a: "جيب جراند شيروكي", img: "image/cars-lights/grand-cherokee.jpg", aimg: "image/cars-lights/grand-cherokee-answer.jpg" },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "فورد موستانج", img: "image/cars-lights/mustang.jpeg", aimg: "image/cars-lights/mustang-answer.jpg", hide: [[34,69,28,14]] },
+    { l: 2, q: "ما نوع هذه السيارة؟", a: "بورشه 911", img: "image/cars-lights/porsche.jpeg", aimg: "image/cars-lights/porsche-answer.jpg" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "فيراري", img: "image/cars-lights/ferrari.jpg", aimg: "image/cars-lights/ferrari-answer.jpg" },
+    { l: 3, q: "ما نوع هذه السيارة؟", a: "مرسيدس-بنز", img: "image/cars-lights/mercedes.jpeg", aimg: "image/cars-lights/mercedes-answer.jpg" },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "شفروليه كامارو", img: "image/cars-lights/camaro.jpeg", aimg: "image/cars-lights/camaro-answer.jpg" },
+    { l: 4, q: "ما نوع هذه السيارة؟", a: "أودي", img: "image/cars-lights/audi.jpeg", aimg: "image/cars-lights/audi-answer.jpg", hide: [[27,42,8,11]] },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "فورد F-150", img: "image/cars-lights/ford-f150.jpeg", aimg: "image/cars-lights/ford-f150-answer.jpg" },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "تويوتا سوبرا", img: "image/cars-lights/supra.jpeg", aimg: "image/cars-lights/supra-answer.jpg" },
+    { l: 5, q: "ما نوع هذه السيارة؟", a: "فولفو", img: "image/cars-lights/volvo.jpeg", aimg: "image/cars-lights/volvo-answer.jpg", hide: [[32,60,30,24]] },
   ],
   /* ---------- تقنية (95 سؤالاً) ----------
      ثلاثة أنواع: «ما اسم هذا الجهاز؟» (أجهزة مشهورة بأسمائها بصورها)،
