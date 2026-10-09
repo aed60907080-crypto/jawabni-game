@@ -7,8 +7,14 @@
      dark     داكنة — وجه أخضر داكن وعلامات ذهبية
      minimal  بسيطة — حلقة ذهبية وعقارب فقط
      digital  رقمية — الوقت مكتوباً 10:45
+   ونظام الساعة من الإعدادات أيضاً (homeClock24):
+     "1"  أربعٌ وعشرون ساعة — 14:05:09   (الافتراضي)
+     "0"  اثنتا عشرة ساعة  — 2:05:09 م
+   وهو يخصّ الشكل الرقمي: الوجهُ المعقرب اثنا عشريٌّ بطبعه.
+
    HomeClock.mount(canvas, digitalEl) يرسم كل ثانية ويتبع الإعداد،
-   وHomeClock.preview(canvas, digitalEl, style) لمعاينة شكل بعينه.
+   وHomeClock.preview(canvas, digitalEl, style) لمعاينة شكل بعينه
+   (ويعيد دالةً تقبل الشكل، وتتبع نظامَ الساعة من التخزين).
    ============================================================ */
 
 (function (global) {
@@ -113,13 +119,34 @@
 
   function two(n) { return (n < 10 ? "0" : "") + n; }
 
+  /* نظام الساعة: أربعٌ وعشرون افتراضاً (وهو ما كانت عليه) */
+  function is24() {
+    var v = null;
+    try { v = localStorage.getItem("homeClock24"); } catch (e) {}
+    return v !== "0";
+  }
+
+  /* صباحاً/مساءً بلغة الواجهة — والعربية هي الأصل */
+  function meridiem(pm) {
+    var en = false;
+    try { en = !!(global.I18N && global.I18N.get && global.I18N.get() !== "ar"); } catch (e) {}
+    return en ? (pm ? "PM" : "AM") : (pm ? "م" : "ص");
+  }
+
+  /* نصُّ الساعة الرقمية بالنظام المختار */
+  function clockText(now) {
+    var H = now.getHours(), ms = two(now.getMinutes()) + ":" + two(now.getSeconds());
+    if (is24()) return two(H) + ":" + ms;
+    return ((H % 12) || 12) + ":" + ms + " " + meridiem(H >= 12);
+  }
+
   function paint(canvas, digitalEl, style) {
     var digital = style === "digital";
     canvas.hidden = digital;
     if (digitalEl) digitalEl.hidden = !digital;
     var now = new Date();
     if (digital) {
-      if (digitalEl) digitalEl.textContent = two(now.getHours()) + ":" + two(now.getMinutes()) + ":" + two(now.getSeconds());
+      if (digitalEl) digitalEl.textContent = clockText(now);
     } else {
       draw(canvas, style, now);
     }
@@ -142,5 +169,6 @@
     return function (s) { cur = s; tick(); };
   }
 
-  global.HomeClock = { STYLES: STYLES, get: get, draw: draw, mount: mount, preview: preview };
+  global.HomeClock = { STYLES: STYLES, get: get, is24: is24, text: clockText,
+                      draw: draw, mount: mount, preview: preview };
 })(typeof window !== "undefined" ? window : this);
